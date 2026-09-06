@@ -130,6 +130,29 @@ if(bank==0u){selectedCount[0]=0u;selectedCount[1]=prefix[4u*u.info.x-1u];}
     }
     const prefix = new PrefixSumKernel(device); prefix.resize(buffers.counts, prefixLength);
     let priorKey = null, lastFrame = null, revision = 0, lastDispatch = { skipped: false }, lastStats = null;
+    const directCount = new Uint32Array([0, sourceCount]);
+    const counters = { selections: 0, prefixScans: 0, directFrames: 0 };
+    function prepareDirect({ viewportWidth, viewportHeight, layout, selectedIds, selectedCount }) {
+        counters.directFrames++;
+        if (lastFrame?.path === 'direct' && lastFrame.selectedCount === selectedCount &&
+            lastFrame.viewport[0] === viewportWidth && lastFrame.viewport[1] === viewportHeight &&
+            lastFrame.mode === dynamicLod.mode && lastFrame.scale === dynamicLod.pixelScale &&
+            lastFrame.bases[0] === layout.source.base && lastFrame.bases[1] === layout.level1.base &&
+            lastFrame.bases[2] === layout.level2.base && lastFrame.bases[3] === layout.level3.base) return;
+        if (lastFrame?.path !== 'direct' || lastFrame.selectedCount !== selectedCount) selectedCount.write(0, directCount);
+        priorKey = null;
+        lastFrame = { path: 'direct',
+            selectedIds,
+            selectedCount,
+            bases: [layout.source.base, layout.level1.base, layout.level2.base, layout.level3.base],
+            mode: dynamicLod.mode,
+            scale: dynamicLod.pixelScale,
+            viewport: [viewportWidth, viewportHeight],
+            selectionRevision: ++revision,
+            selectionCpuMs: 0 };
+        dynamicLod.selectionRevision = revision;
+        lastDispatch = { skipped: true, path: 'direct' };
+    }
     function prepare({ cameraNode, viewportWidth, viewportHeight, layout, selectedIds, selectedCount }) {
         const p = cameraNode.getPosition(), f = cameraNode.forward, r = cameraNode.right, v = cameraNode.up, bases = [layout.source.base, ...[1, 2, 3].map(l => layout[`level${l}`]?.base ?? 0)];
         const scale = dynamicLod.pixelScale ?? 1; if (!Number.isFinite(scale) || scale <= 0) throw new Error('Invalid chunk detail scale');
@@ -143,13 +166,15 @@ if(bank==0u){selectedCount[0]=0u;selectedCount[1]=prefix[4u*u.info.x-1u];}
         for (const [name, data] of Object.entries({ positionFocal: [p.x, p.y, p.z, focal], forwardWidth: [f.x, f.y, f.z, viewportWidth / 2], rightHeight: [r.x, r.y, r.z, viewportHeight / 2], upNear: [v.x, v.y, v.z, cameraNode.camera.nearClip], limits: policy.levels.map(l => (l.maxPixels || 0) * scale), mergeLimits: policy.levels.map(l => l.mergeMaxPixels || 0), options: [policy.hysteresis || 0, policy.version === 6 ? 1 : 0, 0, 0] }))classify.compute.setParameter(name, new Float32Array(data));
         classify.compute.setParameter('nodeCounts', counts);
         buffers.metrics.clear(); device.computeDispatch([classify.compute], 'SceneRegionCut'); prefix.dispatch(device);
+        counters.selections++; counters.prefixScans++;
         if (rangeArgs) {
             rangeArgs.compute.setParameter('selectedCount', selectedCount); device.computeDispatch([rangeArgs.compute], 'SceneRangeDispatch');
         } else {
             scatter.compute.setParameter('counts', counts); scatter.compute.setParameter('bases', new Uint32Array(bases)); scatter.compute.setParameter('selectedIds', selectedIds); scatter.compute.setParameter('selectedCount', selectedCount);
             device.computeDispatch([scatter.compute], 'SceneRegionScatter');
         }
-        lastFrame = { selectedIds,
+        lastFrame = { path: 'lod',
+            selectedIds,
             selectedCount,
             bases,
             mode,
@@ -165,9 +190,27 @@ if(bank==0u){selectedCount[0]=0u;selectedCount[1]=prefix[4u*u.info.x-1u];}
     }
     async function readStats() {
         const frame = lastFrame; if (!frame) return null; if (lastStats?.selectionRevision === frame.selectionRevision) return lastStats;
+        if (frame.path === 'direct') {
+            return cacheStats({ mode: frame.mode,
+                path: 'direct',
+                viewport: frame.viewport,
+                selectionRevision: frame.selectionRevision,
+                selectionCpuMs: 0,
+                pixelScale: frame.scale,
+                chunksByLevel: [regionCount, 0, 0, 0],
+                splatsByLevel: [sourceCount, 0, 0, 0],
+                activeSplats: sourceCount,
+                coveredSourceSplats: sourceCount,
+                culled: 0,
+                hiddenFull: 0,
+                maxLowerPixels: 0,
+                totalChunks: regionCount,
+                visibilityStage: 'projector' });
+        }
         const data = await buffers.metrics.read(0, 48, new Uint32Array(12), true);
         if (frame !== lastFrame) return null;
         const stats = { mode: frame.mode,
+            path: 'lod',
             viewport: frame.viewport,
             selectionRevision: frame.selectionRevision,
             selectionCpuMs: frame.selectionCpuMs,
@@ -184,8 +227,10 @@ if(bank==0u){selectedCount[0]=0u;selectedCount[1]=prefix[4u*u.info.x-1u];}
     }
     async function audit() {
         const frame = lastFrame; if (!frame || frame.mode !== dynamicLod.mode) throw new Error('Display mode has not reached the renderer yet');
-        const [tags, previousTags, count] = await Promise.all([buffers.tags.read(0, regionCount * 4, new Uint32Array(regionCount), true), buffers.previousTags.read(0, regionCount * 4, new Uint32Array(regionCount), true), frame.selectedCount.read(0, 8, new Uint32Array(2), true)]);
-        const expected = selectSceneRegions(regions, frame.pose, frame.mode, { scale: frame.scale, previousTags }), expectedIds = materializeRegionSelection(expected, regions, sourceOrder, frame.bases);
+        const direct = frame.path === 'direct';
+        const [tags, previousTags, count] = await Promise.all([direct ? new Uint32Array(regionCount).fill(1) : buffers.tags.read(0, regionCount * 4, new Uint32Array(regionCount), true), direct ? null : buffers.previousTags.read(0, regionCount * 4, new Uint32Array(regionCount), true), frame.selectedCount.read(0, 8, new Uint32Array(2), true)]);
+        const expected = direct ? { tags } : selectSceneRegions(regions, frame.pose, frame.mode, { scale: frame.scale, previousTags });
+        const expectedIds = direct ? Uint32Array.from({ length: sourceCount }, (_, i) => frame.bases[0] + i) : materializeRegionSelection(expected, regions, sourceOrder, frame.bases);
         let actual;
         if (directRanges) {
             // Diagnostic only: exercise the projector's exact lookup on the GPU.
@@ -197,21 +242,28 @@ if(bank==0u){selectedCount[0]=0u;selectedCount[1]=prefix[4u*u.info.x-1u];}
 @group(0) @binding(3) var<storage,read> sourceIdMap:array<u32>;
 @group(0) @binding(4) var<storage,read_write> output:array<u32>;
 @compute @workgroup_size(${RANGE_GROUP_SIZE}) fn main(@builtin(global_invocation_id) gid:vec3u,@builtin(num_workgroups) size:vec3u){
-let i=gid.x+gid.y*size.x*${RANGE_GROUP_SIZE}u;if(i<rangeCount()){output[prefixSumBuffer[rangeStart()]+i]=rangeSplatId(i);}}
+let i=gid.x+gid.y*size.x*${RANGE_GROUP_SIZE}u;if(i<rangeCount()){let base=select(prefixSumBuffer[rangeStart()],0u,rangeUniforms.info.w>0u);output[base+i]=rangeSplatId(i);}}
 `, [['info', pc.UNIFORMTYPE_UVEC4]], [['intervals', true], ['prefixSumBuffer', true], ['sourceIdMap', true], ['output', false]]);
             // make() normally calls its uniform block u; use that same binding name.
             const checks = [check.compute, ...Array.from({ length: RANGE_BANKS - 1 }, () => new pc.Compute(device, check.shader, 'SceneRangeAudit'))];
             try {
-                for (let bank = 0; bank < RANGE_BANKS; bank++) {
+                for (let bank = 0; bank < (direct ? 1 : RANGE_BANKS); bank++) {
                     const compute = checks[bank]; compute.setParameter('intervals', buffers.ranges); compute.setParameter('prefixSumBuffer', buffers.counts); compute.setParameter('sourceIdMap', buffers.sourceOrder); compute.setParameter('output', out);
-                    compute.setParameter('info', new Uint32Array([bank, regionCount + 1, frame.bases[bank], 0])); compute.setupIndirectDispatch(bank, dispatchBuffer); device.computeDispatch([compute], 'SceneRangeAudit');
+                    compute.setParameter('info', new Uint32Array([bank, regionCount + 1, frame.bases[bank], direct ? sourceCount : 0]));
+                    if (direct) {
+                        const groups = Math.ceil(sourceCount / RANGE_GROUP_SIZE);
+                        compute.setupDispatch(Math.min(groups, 65535), Math.ceil(groups / 65535));
+                    } else compute.setupIndirectDispatch(bank, dispatchBuffer);
+                    device.computeDispatch([compute], 'SceneRangeAudit');
                 }
                 actual = count[1] ? await out.read(0, count[1] * 4, new Uint32Array(count[1]), true) : new Uint32Array();
             } finally {
                 out.destroy(); for (const c of checks)c.destroy(); check.shader.destroy(); check.bind.destroy();
             }
-            const prefix = rangePrefixes(expected.tags, regions.offsets); let n = 0;
-            for (let bank = 0; bank < RANGE_BANKS; bank++) for (let i = 0; i < prefix[(bank + 1) * (regionCount + 1) - 1] - prefix[bank * (regionCount + 1)]; i++)expectedIds[n++] = resolveRangeId(prefix, regions.offsets, sourceOrder, frame.bases, bank, i);
+            if (!direct) {
+                const prefix = rangePrefixes(expected.tags, regions.offsets); let n = 0;
+                for (let bank = 0; bank < RANGE_BANKS; bank++) for (let i = 0; i < prefix[(bank + 1) * (regionCount + 1) - 1] - prefix[bank * (regionCount + 1)]; i++)expectedIds[n++] = resolveRangeId(prefix, regions.offsets, sourceOrder, frame.bases, bank, i);
+            }
         } else actual = count[1] ? await frame.selectedIds.read(0, count[1] * 4, new Uint32Array(count[1]), true) : new Uint32Array();
         let decisionMismatches = 0, mismatches = 0; for (let i = 0; i < tags.length; i++)decisionMismatches += tags[i] !== expected.tags[i]; for (let i = 0; i < actual.length; i++)mismatches += actual[i] !== expectedIds[i];
         const stats = await readStats();
@@ -227,6 +279,7 @@ let i=gid.x+gid.y*size.x*${RANGE_GROUP_SIZE}u;if(i<rangeCount()){output[prefixSu
             stats };
     }
     return { prepare,
+        prepareDirect,
         readStats,
         audit,
         idCapacity: directRanges ? 1 : sourceCount,
@@ -238,7 +291,7 @@ let i=gid.x+gid.y*size.x*${RANGE_GROUP_SIZE}u;if(i<rangeCount()){output[prefixSu
             get bases() {
                 return lastFrame?.bases;
             } } : null,
-        describeDispatch: () => ({ ...lastDispatch, directRanges }),
+        describeDispatch: () => ({ ...lastDispatch, directRanges, ...counters }),
         invalidate() {
             priorKey = null;
         },

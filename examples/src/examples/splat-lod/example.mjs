@@ -4,7 +4,7 @@ import { runProof } from './proof.mjs';
 const { createSplatRenderer } = await import(new URL('/bundle.js', location.href));
 
 const $ = id => document.getElementById(id);
-const canvas = $('view'), keys = new Set(), controls = ['reset', 'back', 'mode', 'lod', 'colors', 'check'];
+const canvas = $('view'), keys = new Set(), controls = ['reset', 'back', 'mode', 'lod', 'colors', 'check', 'adaptive'];
 let renderer, config, frame, busy = false, lastTime = 0, lastStats = 0, reading = false, dragging = false;
 let position, yaw = 0, pitch = 0;
 const status = (text) => {
@@ -50,6 +50,12 @@ function draw(time) {
             reading = true; lastStats = time;
             renderer.readStats().then((s) => {
                 if (s) $('stats').textContent = `${s.activeSplats.toLocaleString()} splats · ${s.viewport.join(' × ')} pixels · cubes by detail: ${s.chunksByLevel.join(' / ')}`;
+                const p = renderer.getInfo().performance;
+                $('performance').textContent = p.probing ? 'Comparing render speed with brief timing probes…' :
+                    p.reason === 'timing-unavailable' ? 'Using original splats: GPU timing is unavailable.' :
+                        p.reason === 'display-override' ? 'Using your selected display mode.' :
+                            !p.enabled ? 'Fixed screen-size LOD; speed selection is off.' :
+                                p.path === 'lod' ? 'Using LOD: it measured faster.' : 'Using original splats: no clear LOD speed gain.';
             }).catch(failed).finally(() => {
                 reading = false;
             });
@@ -93,6 +99,7 @@ $('mode').onchange = () => {
     renderer.setMode($('mode').value); status($('mode').value === 'lower-only' ? 'Only eligible reduced chunks are shown.' : 'Exploring the scene');
 };
 $('colors').onchange = () => renderer.setChunkColors($('colors').checked);
+$('adaptive').onchange = () => renderer.setAdaptiveLod($('adaptive').checked);
 $('lod').oninput = () => {
     const value = Number($('lod').value); renderer.setLodMultiplier(value); $('factor').textContent = `${value}×`;
 };
@@ -115,6 +122,7 @@ try {
     const override = new URLSearchParams(location.search).get('manifest');
     if (override) config.manifestUrl = override;
     renderer = await createSplatRenderer({ ...config, canvas, onProgress: status, onError: failed });
+    $('adaptive').checked = renderer.getInfo().performance.enabled;
     reset(); disable(false); status('Exploring the scene'); document.body.dataset.ready = 'true';
     frame = requestAnimationFrame(draw);
 } catch (error) {

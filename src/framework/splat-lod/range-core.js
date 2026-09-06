@@ -9,9 +9,11 @@ struct RangeUniforms {info:vec4u};
 var<private> rangeRegion:u32;
 fn rangeStart()->u32 {return rangeUniforms.info.x*rangeUniforms.info.y;}
 fn rangeCount()->u32 {
+    if(rangeUniforms.info.w>0u){return rangeUniforms.info.w;}
     let start=rangeStart();return prefixSumBuffer[start+rangeUniforms.info.y-1u]-prefixSumBuffer[start];
 }
 fn rangeSplatId(index:u32)->u32 {
+    if(rangeUniforms.info.w>0u){return rangeUniforms.info.z+index;}
     let start=rangeStart();let wanted=prefixSumBuffer[start]+index;
     var lo=0u;var hi=rangeUniforms.info.y-1u;
     loop {if(lo>=hi){break;}let mid=(lo+hi)>>1u;

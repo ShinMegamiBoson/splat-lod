@@ -10,7 +10,7 @@ def verify(directory):
     summary = json.loads((directory / 'results.json').read_text())
     p = summary['protocol']
     expected = len(summary['scenes']) * len(p['modes']) * p['repeats']
-    assert p['version'] in (2, 3)
+    assert p['version'] in (2, 3, 4)
     assert summary['reportCount'] == summary['passedCount'] == expected
     assert (p['width'], p['height']) == (2560, 1440)
     reports = summary['reports']

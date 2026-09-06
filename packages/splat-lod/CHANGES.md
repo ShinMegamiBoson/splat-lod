@@ -1,5 +1,13 @@
 # Changes from PlayCanvas
 
+## v0.3.0
+
+- Automatic detail now compares equivalent direct and LOD paths, preferring originals unless LOD has a measured advantage. The raster filters, SH settings and framebuffer size do not change during selection.
+- Added a real source bypass: one bank dispatch, no cube selection or prefix scan, and direct world-ID addressing without a per-splat range search.
+- Bounded asynchronous timestamp probes, separate entry/exit margins, motion rechecks and conservative fallback when timing is unavailable. No GPU completion wait or extra duplicate draw in the normal frame loop.
+- Added `adaptiveLod`, `setAdaptiveLod()`, and path/dispatch diagnostics. Explicit display/debug modes remain available; all four asset banks still remain resident.
+- The old v0.1/v0.2 reports below remain historical fixed-LOD measurements.
+
 ## v0.2.0
 
 - Rebased the five fork commits onto upstream main [d753e98](https://github.com/playcanvas/engine/commit/d753e98c70d67b755754c614f383d215cacbbd63), version 2.23.0-beta.2. No upstream renderer code is replaced by the cube-LOD module.

@@ -68,7 +68,7 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
     });
     const saved = { create: projector._createProjectorCompute, key: projector._projectorKey, destroyComputes: projector._destroyProjectorComputes, apply: world.applyWorkBufferUpdates, dispatch: projector.dispatch };
     const formats = new Set(); let activeBank = 0;
-    const counters = { projectedFrames: 0, suppressedColorRefreshes: 0, bankDispatches: 0 };
+    const counters = { projectedFrames: 0, suppressedColorRefreshes: 0, bankDispatches: 0, directFrames: 0 };
     const rangeFormat = new pc.UniformBufferFormat(app.graphicsDevice, [new pc.UniformFormat('info', pc.UNIFORMTYPE_UVEC4)]);
     const shFormat = new pc.UniformBufferFormat(app.graphicsDevice, [new pc.UniformFormat('visibleShParams', pc.UNIFORMTYPE_UVEC4), new pc.UniformFormat('visibleShModelRotation', pc.UNIFORMTYPE_VEC4)]);
     projector._destroyProjectorComputes();
@@ -128,19 +128,20 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
     };
     projector.dispatch = function (parameters) {
         const clear = this.renderCounter.clear;
+        const direct = dynamicLod.directSource;
         try {
-            for (activeBank = 0; activeBank < RANGE_BANKS; activeBank++) {
+            for (activeBank = 0; activeBank < (direct ? 1 : RANGE_BANKS); activeBank++) {
                 const bankIndex = activeBank, bank = banks[bankIndex];
                 this._updateMaterial(parameters.material, parameters.userCacheWords || 0);
                 const compute = this._getProjectorCompute(parameters.workBuffer, parameters.radialSort, false, false, !!parameters.antiAlias, false);
                 compute.setParameter('intervals', ranges.table); compute.setParameter('prefixSumBuffer', ranges.prefix); compute.setParameter('sourceIdMap', ranges.sourceOrder);
                 const base = ranges.bases?.[activeBank]; if (!Number.isInteger(base)) throw new Error('Missing current bank address');
-                compute.setParameter('info', new Uint32Array([activeBank, ranges.stride, base, 0]));
+                compute.setParameter('info', new Uint32Array([activeBank, ranges.stride, base, direct ? bank.count : 0]));
                 compute.setParameter('visibleShParams', new Uint32Array([base, bank.resource.textureDimensions.x, bank.count, bank.shBands === 0 || dynamicLod.rangeDebugColors || dynamicLod.fuseRangeSh === false ? 0 : 1]));
                 compute.setParameter('visibleShModelRotation', bank.rotation);
                 for (const stream of bank.streams)compute.setParameter(stream, bank.resource.getTexture(stream));
                 const setup = compute.setupDispatch;
-                compute.setupDispatch = () => compute.setupIndirectDispatch(bankIndex, ranges.dispatchBuffer);
+                if (!direct) compute.setupDispatch = () => compute.setupIndirectDispatch(bankIndex, ranges.dispatchBuffer);
                 if (activeBank > 0) this.renderCounter.clear = () => {};
                 try {
                     dispatch(parameters); counters.bankDispatches++;
@@ -149,11 +150,12 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
                 }
             }
             counters.projectedFrames++;
+            if (direct) counters.directFrames++;
         } finally {
             this.renderCounter.clear = clear; activeBank = 0;
         }
     };
-    return { describe: () => ({ name: 'world-indexed-ranges-visible-sh', gpuIdExpansion: false, bankDispatchesPerFrame: RANGE_BANKS, globalDepthSort: true, visibleOnlySh: dynamicLod.fuseRangeSh !== false, initialBases: banks.map(b => b.initialBase), currentBases: ranges.bases, ...counters }),
+    return { describe: () => ({ name: 'world-indexed-ranges-visible-sh', gpuIdExpansion: false, bankDispatchesPerFrame: dynamicLod.directSource ? 1 : RANGE_BANKS, globalDepthSort: true, visibleOnlySh: dynamicLod.fuseRangeSh !== false, initialBases: banks.map(b => b.initialBase), currentBases: ranges.bases, ...counters }),
         restore() {
             projector._destroyProjectorComputes();
             projector._destroyProjectorComputes = saved.destroyComputes; projector._createProjectorCompute = saved.create; projector._projectorKey = saved.key; projector.dispatch = saved.dispatch; world.applyWorkBufferUpdates = saved.apply;

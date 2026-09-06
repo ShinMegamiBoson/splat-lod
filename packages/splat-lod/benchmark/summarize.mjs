@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { imageError, quantile, PROTOCOL } from './protocol.mjs';
 import { sequence } from './sequence.mjs';
 import { MAIN_PROTOCOL } from './main-protocol.mjs';
+import { BENEFIT_PROTOCOL } from './benefit-protocol.mjs';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const stats = a => ({ samples: a.length, median: quantile(a, 0.5), p95: quantile(a, 0.95), min: Math.min(...a), max: Math.max(...a) });
@@ -62,8 +63,8 @@ export async function summarize(directory, protocol = PROTOCOL) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const directory = process.argv[2]; if (!directory) throw new Error('Usage: node summarize.mjs results/RUN [output-directory]');
-    const summary = await summarize(directory, process.argv.includes('--main') ? MAIN_PROTOCOL : PROTOCOL);
-    const output = process.argv[3] && process.argv[3] !== '--main' ? process.argv[3] : directory;
+    const summary = await summarize(directory, process.argv.includes('--benefit') ? BENEFIT_PROTOCOL : process.argv.includes('--main') ? MAIN_PROTOCOL : PROTOCOL);
+    const output = process.argv[3] && !process.argv[3].startsWith('--') ? process.argv[3] : directory;
     await mkdir(output, { recursive: true }); await writeFile(path.join(output, 'results.json'), `${JSON.stringify(summary, null, 2)}\n`);
     console.table(summary.rows.map(r => ({ scene: r.scene,
         mode: r.mode,

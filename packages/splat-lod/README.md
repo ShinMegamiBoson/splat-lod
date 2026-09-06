@@ -4,12 +4,14 @@ A standalone cube-LOD renderer, bundled with PlayCanvas main at [d753e98](https:
 
 This is **WebGPU-only, experimental, and lossy when LOD is enabled**. It renders Gaussians, not MPI tiles or impostors. The default **2×** setting selects lower detail sooner; it does not promise twice the frame rate.
 
+Automatic mode now checks whether LOD actually helps. It falls back to a direct original-splat path when the measured gain is insufficient. Culling, SH and output resolution stay unchanged.
+
 ## Install the built library
 
 The GitHub release contains an installable ESM package. It is not published to the npm registry:
 
 ```sh
-npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.2.0/shinmegami-boson-splat-lod-0.2.0.tgz
+npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
 ```
 
 ```js
@@ -21,6 +23,7 @@ const renderer = await createSplatRenderer({
     manifestUrl: '/scene/manifest.json',
     camera: { position: [2.6, 1.6, 3.2], target: [0, 0, 0] },
     lodMultiplier: 2,
+    adaptiveLod: true,
     renderSettings: { profile: 'exact', shMode: 'visible' },
     onProgress: message => console.log(message),
     onError: error => console.error(error)
@@ -33,6 +36,8 @@ renderer.start();
 // Or use your own animation loop: update the camera, then call render() once.
 renderer.setCamera({ position: [3, 1.6, 3.2], target: [0, 0, 0] });
 renderer.setLodMultiplier(4);
+renderer.setAdaptiveLod(false);  // fixed screen-size LOD, for controlled comparisons
+renderer.setAdaptiveLod(true);   // choose based on measured render cost (default)
 renderer.setMode('source');       // original splats only
 renderer.setMode('lower-only');   // only reduced chunks that actually qualify
 renderer.setMode('automatic');
@@ -85,6 +90,22 @@ The loader validates ownership, metadata digests, replacement-bank digests, coun
 At multiplier 1, cube bounding-sphere diameters of **128 / 64 / 32 physical pixels** are eligible for half / quarter / eighth density. At multiplier 2 these become **256 / 128 / 64 pixels**, before hysteresis. Visibility uses larger Gaussian-support bounds; those bounds do not force higher LOD.
 
 ## Rendering settings
+
+### When LOD runs
+
+The default speed selector compares the direct and LOD paths using PlayCanvas's asynchronous GPU timestamps plus CPU render-submission time. Cost is the larger of those two overlapping spans, not their sum or claimed FPS.
+
+It starts with originals and uses short alternating probe blocks: four warmup frames and twelve measured frames per path. LOD needs at least a 10% median cost advantage and no more than a 10% p95 penalty to activate. Once active, it falls back when its advantage drops below 3% or the tail guard fails. Those different entry/exit margins prevent small fluctuations from constantly switching detail.
+
+Measurements are revisited after substantial camera movement, with a 120-frame minimum hold, or every 600 rendered frames. Resize and LOD-threshold changes invalidate the comparison. Missing or inconclusive GPU timestamps keep the original-splat path. Probe results from an obsolete comparison are ignored.
+
+The direct path does **not** run cube classification, prefix scans, per-splat range searches or three empty LOD-bank dispatches. It projects the source bank once, then uses the same global sort and rasterizer. All banks remain resident; this change saves per-frame work, not memory.
+
+This is measured adaptation, not an oracle that guarantees every future frame is faster. Brief probes can temporarily use the losing path, and movement or contention can make an older measurement stale. No second representation is drawn on top of the first, no completion fence is inserted in the normal render loop, and there is no hidden quality-setting change. Path changes use hysteresis, not a geometry crossfade.
+
+Use `setAdaptiveLod(false)` for the fixed screen-size control. Explicit original/reduced-only modes and diagnostic chunk colors override the speed selector. `getInfo().performance` reports the actual path, decision and probing state; `getInfo().dispatch` exposes selection/prefix/dispatch counters. In direct mode, selection statistics count original records submitted to the projector; final visibility is decided there.
+
+### Culling and SH
 
 Pass `renderSettings` when creating the renderer:
 

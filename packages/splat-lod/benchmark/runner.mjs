@@ -53,6 +53,7 @@ async function runCase() {
         devicePixelRatio,
         browserViewport: [innerWidth, innerHeight],
         phases: {},
+        ...(protocol.version === 4 ? { warmups: {} } : {}),
         quality: [],
         passed: false };
     let adapter, previewPixels;
@@ -61,16 +62,24 @@ async function runCase() {
         await adapter.prepare(cameraAt(task.scene, 0)); adapter.render(); await adapter.flush(); valid(canvas);
         await sequence(['static', 'moving'], async (phase) => {
             progress(`Warming ${phase} frames…`);
+            const warmups = [];
             await sequence(indices(protocol.warmup), async (i) => {
-                await raf(); await adapter.prepare(cameraAt(task.scene, phase === 'static' ? 0 : i / protocol.warmup)); adapter.render(); await adapter.flush();
+                await raf();
+                const start = performance.now();
+                await adapter.prepare(cameraAt(task.scene, phase === 'static' ? 0 : i / protocol.warmup)); adapter.render(); await adapter.flush();
+                if (protocol.version === 4) warmups.push({ completeMs: performance.now() - start, path: adapter.trace?.() ?? null });
             });
+            if (protocol.version === 4) report.warmups[phase] = warmups;
             const samples = [];
             await sequence(indices(protocol.samples), async (i) => {
                 await raf(); valid(canvas);
                 const pose = cameraAt(task.scene, phase === 'static' ? 0 : i / (protocol.samples - 1));
                 const start = performance.now(); await adapter.prepare(pose); const prepared = performance.now();
                 adapter.render(); const submitted = performance.now(); await adapter.flush(); const completed = performance.now();
-                samples.push({ prepareMs: prepared - start, submitMs: submitted - prepared, completeMs: completed - start });
+                samples.push({ prepareMs: prepared - start,
+                    submitMs: submitted - prepared,
+                    completeMs: completed - start,
+                    ...(protocol.version === 4 ? { path: adapter.trace?.() ?? null } : {}) });
                 if (i % 15 === 0) progress(`Measuring ${phase}: ${i + 1}/${protocol.samples}`);
             });
             report.phases[phase] = { samples, medianMs: quantile(samples.map(s => s.completeMs), 0.5), p95Ms: quantile(samples.map(s => s.completeMs), 0.95) };
@@ -81,7 +90,11 @@ async function runCase() {
         await until(() => previous - start >= duration, async () => {
             const now = await raf(); valid(canvas); const t = Math.min(1, (now - start) / duration);
             const prepareStart = performance.now(); await adapter.prepare(cameraAt(task.scene, t), true); adapter.render();
-            interactive.push({ intervalMs: now - previous, submitMs: performance.now() - prepareStart, t, sortLag: adapter.sortLag?.() || null });
+            interactive.push({ intervalMs: now - previous,
+                submitMs: performance.now() - prepareStart,
+                t,
+                sortLag: adapter.sortLag?.() || null,
+                ...(protocol.version === 4 ? { path: adapter.trace?.() ?? null } : {}) });
             previous = now;
         });
         await adapter.flush();

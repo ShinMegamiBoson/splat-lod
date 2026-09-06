@@ -86,7 +86,8 @@ export function installAdaptiveIndexedLodFrontEnd(app, dynamicLod, { createSelec
         if (!currentFrame || numIntervals !== 1 || totalActiveSplats !== sourceCount) {
             throw new Error('GPU adaptive LOD received a stale render frame');
         }
-        selector.prepare({
+        const prepare = dynamicLod.directSource ? selector.prepareDirect : selector.prepare;
+        prepare({
             ...currentFrame,
             selectedIds: this.compactedSplatIds,
             selectedCount: this.countBuffer

@@ -7,6 +7,7 @@ import { checkedBytes, loadManifest } from './manifest.js';
 import { DEFAULT_LOD_MULTIPLIER, lodScale, validateCamera, validateViewport } from './options.js';
 import { renderSettings } from './render-settings.js';
 import { ENGINE_BASE } from './engine-base.js';
+import { createLodPerformanceMonitor } from './performance-policy.js';
 
 /** Tested upstream engine revision; this package bundles the fork, not an npm peer. */
 export { ENGINE_BASE };
@@ -59,10 +60,12 @@ class SplatRenderer {
         this._settings = settings;
     }
 
-    _install() {
+    _install(adaptive) {
         this._frontEnd = installAdaptiveIndexedLodFrontEnd(this._app, this._lod, {
             createSelector: args => createSceneRegionSelector({ ...args, directRanges: true }), installProjection: installSceneRangeProjection
         });
+        this._performance = createLodPerformanceMonitor(this._app.graphicsDevice, this._lod, this._data.regions.policy.cellSize);
+        this._performance.setEnabled(adaptive);
     }
 
     _assertActive() {
@@ -72,7 +75,9 @@ class SplatRenderer {
     }
 
     _render() {
+        const start = this._performance?.before(this._view);
         this._app.update(0); this._app.fire('framerender'); this._app.render();
+        this._performance?.after(start);
     }
 
     /** Submit one frame without waiting for the GPU or reading back pixels. */
@@ -127,6 +132,7 @@ class SplatRenderer {
         this._assertActive();
         const device = this._app.graphicsDevice;
         const [w, h] = validateViewport(width, height, pixelRatio, device.wgpu.limits.maxTextureDimension2D);
+        if (w !== device.width || h !== device.height) this._performance?.invalidate();
         device.maxPixelRatio = 1; device.resizeCanvas(w, h);
     }
 
@@ -135,7 +141,18 @@ class SplatRenderer {
      * @param {number} multiplier - Greater than 0 and at most 16; 1 uses the original 128/64/32px thresholds.
      */
     setLodMultiplier(multiplier) {
-        this._assertActive(); this._lod.pixelScale = lodScale(multiplier);
+        this._assertActive();
+        const scale = lodScale(multiplier);
+        if (scale !== this._lod.pixelScale) this._performance?.invalidate();
+        this._lod.pixelScale = scale;
+    }
+
+    /**
+     * Enable measured render-path selection, or use fixed screen-size LOD.
+     * @param {boolean} enabled - True selects LOD only after a measured gain.
+     */
+    setAdaptiveLod(enabled) {
+        this._assertActive(); this._performance.setEnabled(enabled);
     }
 
     /**
@@ -145,6 +162,7 @@ class SplatRenderer {
     setMode(mode) {
         this._assertActive();
         if (!['automatic', 'source', 'lower-only'].includes(mode)) throw new RangeError('Invalid display mode');
+        if (mode !== this._lod.mode) this._performance?.invalidate();
         this._lod.mode = mode;
     }
 
@@ -153,7 +171,9 @@ class SplatRenderer {
      * @param {boolean} enabled - Whether to replace natural SH colors with diagnostic cube colors.
      */
     setChunkColors(enabled) {
-        this._assertActive(); this._colors.setEnabled(enabled);
+        this._assertActive();
+        if (Boolean(enabled) !== this._colors.enabled) this._performance?.invalidate();
+        this._colors.setEnabled(enabled);
     }
 
     /**
@@ -174,6 +194,8 @@ class SplatRenderer {
             backend: 'webgpu',
             shBands: this._data.manifest.shBands ?? 3,
             renderSettings: this._settings,
+            performance: this._performance?.describe(),
+            dispatch: this._frontEnd ? { ...this._frontEnd.describeDispatch(), projection: this._frontEnd.projection?.() } : null,
             mode: this._lod.mode,
             lodMultiplier: this._lod.pixelScale * 2,
             viewport: [this._app.graphicsDevice.width, this._app.graphicsDevice.height],
@@ -188,9 +210,11 @@ class SplatRenderer {
 
     async _diagnostic(callback) {
         this._assertActive(); const resume = this._frame !== null; this.stop(); this._busy = true;
+        this._performance?.suspend(true);
         try {
             return await callback();
         } finally {
+            this._performance?.suspend(false);
             this._busy = false; if (resume && !this._disposed && !this._failure) this.start();
         }
     }
@@ -232,7 +256,7 @@ class SplatRenderer {
         if (this._busy) throw new Error('Wait for capture or audit before disposing');
         this.stop(); this._disposed = true;
         this._app.graphicsDevice.wgpu.removeEventListener('uncapturederror', this._gpuError);
-        this._frontEnd?.restore(); this._colors?.destroy();
+        this._performance?.destroy(); this._frontEnd?.restore(); this._colors?.destroy();
         for (const asset of this._assets) {
             asset.unload(); this._app.assets.remove(asset);
         }
@@ -253,6 +277,7 @@ class SplatRenderer {
  * @param {object} options.camera - Perspective camera with position and target arrays.
  * @param {number} [options.lodMultiplier] - Larger values select lower detail sooner, not an FPS promise.
  * @param {object} [options.renderSettings] - Raster culling profile and visible or cached SH evaluation.
+ * @param {boolean} [options.adaptiveLod] - Use measured benefit to choose LOD or the direct source path.
  * @param {AbortSignal} [options.signal] - Abort loading; partially created resources are released.
  * @param {Function} [options.onProgress] - Receives readable loading-stage messages.
  * @param {Function} [options.onError] - Receives asynchronous GPU/device-loss errors.
@@ -263,6 +288,8 @@ export async function createSplatRenderer(options) {
     const view = validateCamera({ up: [0, 1, 0], fovDegrees: 40, near: 0.01, far: 1000000, ...options.camera });
     const scale = lodScale(options.lodMultiplier ?? DEFAULT_LOD_MULTIPLIER);
     const settings = renderSettings(options.renderSettings);
+    const adaptive = options.adaptiveLod ?? true;
+    if (typeof adaptive !== 'boolean') throw new TypeError('adaptiveLod must be a boolean');
     const background = options.background ?? [0.07, 0.07, 0.07];
     if (background.length !== 3 || background.some(v => !Number.isFinite(v) || v < 0 || v > 1)) throw new RangeError('background must contain three values in [0,1]');
     const url = new URL(options.manifestUrl, document.baseURI);
@@ -315,7 +342,7 @@ export async function createSplatRenderer(options) {
         options.onProgress?.('Initializing GPU selection and global depth sorting…');
         app.start(); cancelAnimationFrame(app.frameRequestId); app.frameRequestId = null;
         renderer.render(); await renderer.flush();
-        renderer._install(); renderer.render(); await renderer.flush();
+        renderer._install(adaptive); renderer.render(); await renderer.flush();
         options.signal?.throwIfAborted();
         renderer._assertActive();
         options.onProgress?.('Loaded');

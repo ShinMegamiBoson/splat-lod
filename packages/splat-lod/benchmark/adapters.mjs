@@ -41,14 +41,22 @@ export async function createAdapter(id, canvas, scene, progress) {
             pixelRatio: 1,
             background: scene.background.map(v => v / 255),
             lodMultiplier: 2,
+            adaptiveLod: id === 'ours-auto',
             renderSettings: OPTIMIZATION_SETTINGS[id],
             onProgress: progress });
-        renderer.resize(P.width, P.height, 1); renderer.setMode(id === 'ours-source' ? 'source' : 'automatic');
+        renderer.resize(P.width, P.height, 1); renderer.setMode(['ours-source', 'ours-direct'].includes(id) ? 'source' : 'automatic');
         return { prepare: pose => renderer.setCamera(pose),
             render: () => renderer.render(),
             flush: () => renderer.flush(),
             capture: async () => (await renderer.capture()).pixels,
             dispose: () => renderer.dispose(),
+            trace: () => {
+                const info = renderer.getInfo();
+                return { ...info.performance,
+                    selections: info.dispatch.selections,
+                    prefixScans: info.dispatch.prefixScans,
+                    bankDispatches: info.dispatch.projection.bankDispatches };
+            },
             stats: async () => ({ ...renderer.getInfo(),
                 selection: await renderer.readStats(),
                 settings: pcSettings(renderer._app),

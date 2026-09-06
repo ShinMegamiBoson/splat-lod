@@ -18,6 +18,8 @@
     <details>
       <summary>Compare detail and verify</summary>
       <label>Show <select id="mode" disabled><option value="automatic">Automatic detail</option><option value="source">All original splats</option><option value="lower-only">Reduced chunks only</option></select></label>
+      <label><input id="adaptive" type="checkbox" checked disabled> Use LOD only when it helps</label>
+      <p id="performance"></p>
       <label>Lower detail sooner: <output id="factor">2×</output><input id="lod" type="range" min="1" max="16" step="1" value="2" disabled></label>
       <p>This trades detail for potential speed, without reducing viewport resolution.</p>
       <label><input id="colors" type="checkbox" disabled> Color chunks</label>

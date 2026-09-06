@@ -23,6 +23,8 @@ async function readPng(url, width, height) {
 
 export async function runProof(renderer, config) {
     const original = renderer.getInfo(), checks = [];
+    // Make geometry/color checks deterministic; speed policy is tested separately.
+    renderer.setAdaptiveLod?.(false);
     renderer.setChunkColors(false);
     const view = config.camera;
     const d = view.position.map((v, i) => v - view.target[i]);
@@ -33,6 +35,21 @@ export async function runProof(renderer, config) {
             renderer.setMode(mode);
             checks.push(await renderer.audit());
         });
+        let bypass = null;
+        if (renderer.setAdaptiveLod) {
+            renderer.setMode('source'); renderer.setCamera(near); renderer.render(); await renderer.flush();
+            const before = renderer.getInfo().dispatch;
+            await inSequence(Array.from({ length: 8 }, (_, i) => i), async (i) => {
+                renderer.setCamera({ ...near, position: near.position.map((v, axis) => v + (axis === 0 ? i * Math.hypot(...d) * 0.001 : 0)) });
+                renderer.render(); await renderer.flush();
+            });
+            const after = renderer.getInfo().dispatch;
+            bypass = { frames: 8,
+                selectionPasses: after.selections - before.selections,
+                prefixScans: after.prefixScans - before.prefixScans,
+                sourceDispatches: after.projection.bankDispatches - before.projection.bankDispatches };
+            bypass.passed = bypass.selectionPasses === 0 && bypass.prefixScans === 0 && bypass.sourceDispatches === 8;
+        }
         renderer.setCamera(view); renderer.setMode('automatic');
         const normal = await renderer.capture();
         renderer.setChunkColors(true); const colored = await renderer.capture();
@@ -53,13 +70,15 @@ export async function runProof(renderer, config) {
                 });
             });
         }
-        return { passed: checks.every(c => c.passed) && !colorChange.exact && (colorRoundTrip.exact || colorRoundTrip.psnrDb > 65) && references.every(r => r.exact || r.psnrDb > 65),
+        return { passed: checks.every(c => c.passed) && (!bypass || bypass.passed) && !colorChange.exact && (colorRoundTrip.exact || colorRoundTrip.psnrDb > 65) && references.every(r => r.exact || r.psnrDb > 65),
             info: original,
             checks,
+            bypass,
             colorRoundTrip,
             colorChange,
             references };
     } finally {
         renderer.resize(...original.viewport, 1); renderer.setCamera(original.camera); renderer.setMode(original.mode); renderer.setChunkColors(original.chunkColors); renderer.setLodMultiplier(original.lodMultiplier);
+        if (original.performance) renderer.setAdaptiveLod?.(original.performance.enabled);
     }
 }

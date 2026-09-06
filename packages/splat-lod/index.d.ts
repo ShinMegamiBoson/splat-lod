@@ -24,6 +24,8 @@ export interface RendererOptions {
     background?: Vec3;
     /** Default 2. LOD activates sooner; NOT a promised FPS speedup. */
     lodMultiplier?: number;
+    /** Default true. Compare equivalent direct/LOD paths using asynchronous GPU timestamps. */
+    adaptiveLod?: boolean;
     renderSettings?: RenderSettings;
     /** Defaults to devicePixelRatio. Does not change canvas CSS size. */
     pixelRatio?: number;
@@ -32,6 +34,7 @@ export interface RendererOptions {
     onError?: (error: Error) => void;
 }
 export interface SelectionStats {
+    path?: 'direct' | 'lod';
     mode: DisplayMode;
     viewport: [number, number];
     selectionRevision: number;
@@ -61,6 +64,18 @@ export interface RendererInfo {
     backend: 'webgpu';
     shBands: 0 | 3;
     renderSettings: Required<RenderSettings> & { minPixelSize: number; minContribution: number };
+    performance?: {
+        enabled: boolean;
+        path: 'direct' | 'lod';
+        reason: string;
+        probing: boolean;
+        timestampSupported: boolean;
+        decision: null | {directMs: number; lodMs: number; directP95: number; lodP95: number; gain: number; samplesPerPath: number};
+        directFrames: number;
+        lodFrames: number;
+        probeFrames: number;
+    };
+    dispatch: null | {selections: number; prefixScans: number; directFrames: number; projection: object};
     mode: DisplayMode;
     lodMultiplier: number;
     viewport: [number, number];
@@ -80,6 +95,7 @@ export interface SplatRenderer {
     setCamera(camera: Partial<Camera>): void;
     resize(width: number, height: number, pixelRatio?: number): void;
     setLodMultiplier(multiplier: number): void;
+    setAdaptiveLod(enabled: boolean): void;
     setMode(mode: DisplayMode): void;
     setChunkColors(enabled: boolean): void;
     readStats(): Promise<SelectionStats | null>;
