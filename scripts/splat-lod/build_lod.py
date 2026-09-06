@@ -1,4 +1,4 @@
-"""Preprocess one SH3 PLY into exhaustive cube-local 1/2, 1/4 and 1/8 Gaussian banks.
+"""Preprocess one SH0/SH3 PLY into exhaustive cube-local 1/2, 1/4 and 1/8 Gaussian banks.
 
 No image rendering, Torch, model downloads, credentials, or scene-specific settings.
 Existing nonempty output directories are never overwritten.
@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 from cubes import cube_partition, cube_draw_bounds, cube_groups, order_within_regions
 from moments import moment_parent
-from ply_source import load_source, ply_header
+from ply_source import FIELDS, load_source, ply_fields, ply_header
 
 
 def digest(path):
@@ -40,6 +40,8 @@ def build(source_file, destination, cell_size):
     if not np.isfinite(cell_size) or cell_size <= 0:
         raise ValueError('cell-size must be positive and finite')
     src = load_source(source_file)
+    sh_bands = getattr(src, 'sh_bands', 3)
+    output_columns = [FIELDS.index(f) for f in ply_fields(sh_bands)]
     policy = default_policy()
     policy['cellSize'] = cell_size
     part = cube_partition(src.pos, cell_size)
@@ -70,7 +72,7 @@ def build(source_file, destination, cell_size):
         target = root / f"level-{level['id']}.ply"
         temporary = target.with_suffix('.ply.tmp')
         with temporary.open('wb') as stream:
-            stream.write(ply_header(count))
+            stream.write(ply_header(count, sh_bands))
             for first in range(0, count, 8192):
                 end = min(first + 8192, count)
                 sizes = groups['sizes'][first:end]
@@ -89,7 +91,7 @@ def build(source_file, destination, cell_size):
                 if ((rows[:, :3] < lo - 1e-5) | (rows[:, :3] > lo + cell_size + 1e-5)).any():
                     raise RuntimeError('A merged Gaussian center left its cube')
                 np.maximum.at(draw[:, 3], owners, np.linalg.norm(rows[:, :3] - draw[owners, :3], axis=1) + 3 * np.exp(rows[:, 52:55]).max(1))
-                stream.write(rows.astype('<f4').tobytes())
+                stream.write(rows[:, output_columns].astype('<f4').tobytes())
                 progress(f"level-{level['id']}", end, count)
         temporary.replace(target)
         offset_name = f"level-{level['id']}.offsets.u32"
@@ -102,9 +104,11 @@ def build(source_file, destination, cell_size):
         'source': source_name, 'sourceBytes': (root / source_name).stat().st_size, 'sourceSha256': src.fingerprint,
         'sourceOrder': 'source-order.u32', 'levels': levels,
         'files': {name: {'bytes': (root / name).stat().st_size, 'sha256': digest(root / name)} for name in names},
-        'method': 'cube-kd-area-moments-sh3-v1', 'qualityQualified': False,
+        'method': f'cube-kd-area-moments-sh{sh_bands}-v1', 'qualityQualified': False,
         'buildSeconds': time.time() - started
     }
+    if sh_bands != 3:
+        manifest['shBands'] = sh_bands
     save_json(root / 'manifest.json', manifest)
     progress('complete', len(order), len(order))
     return manifest

@@ -1,0 +1,16 @@
+{
+  "ideas": [
+    {"id":"I1","title":"PC contribution cutoff","claim":"Cull low integrated-opacity Gaussians before sort and raster.","provenance":{"kind":"plausible_seed","source":"src/scene/gsplat-unified/gsplat-params.js; benchmark/measurements/2026-09-05/summary.json","evidence":"PC defaults use contribution=3 and are faster than our unfiltered LOD on both object scenes, but the combined-default comparison does not isolate this mechanism.","confidence":"medium","boundary":"Same Apple GPU, input and viewport; approximation needs an error check."}},
+    {"id":"I2","title":"PC footprint cutoff","claim":"Dropping sub-two-pixel Gaussians reduces sort and raster work.","provenance":{"kind":"plausible_seed","source":"src/scene/gsplat-unified/gsplat-params.js; benchmark/measurements/2026-09-05/summary.json","evidence":"Stock minPixelSize=2; prior bee default PSNR of 18.04 dB is a warning that aggressive default filters may be unsuitable.","confidence":"medium","boundary":"Can discard substantial aggregate opacity; never assume an invisible loss."}},
+    {"id":"I3","title":"PC cached SH","claim":"Reuse work-buffer SH until the camera-direction change justifies refreshing it.","provenance":{"kind":"plausible_seed","source":"src/scene/gsplat-unified/gsplat-world.js and src/framework/splat-lod/range-projector.js","evidence":"Native PC uses a 10-degree update threshold; our existing visible-only path deliberately bypasses that cache.","confidence":"medium","boundary":"Full-bank color refreshes can cost more than visible-only SH in large scenes."}}
+  ],
+  "components": [
+    {"id":"C1","idea_ids":["I1"],"axis":"signal","claim":"Use integrated projected opacity, not distance alone, to reject a Gaussian.","evidence_ids":["I1"],"active":true,"incompatible_with":[]},
+    {"id":"C2","idea_ids":["I1"],"axis":"operator","claim":"Use PC's existing contribution cutoff of 3 in the projector.","evidence_ids":["I1"],"active":true,"incompatible_with":[]},
+    {"id":"C3","idea_ids":["I2"],"axis":"signal","claim":"Use the Gaussian's projected footprint to reject small splats.","evidence_ids":["I2"],"active":true,"incompatible_with":[]},
+    {"id":"C4","idea_ids":["I2"],"axis":"operator","claim":"Use PC's two-pixel footprint cutoff in addition to contribution culling.","evidence_ids":["I2"],"active":true,"incompatible_with":[]},
+    {"id":"C5","idea_ids":["I3"],"axis":"schedule","claim":"Evaluate visible SH after fine culling on every current view.","evidence_ids":["I3"],"active":true,"incompatible_with":["C6"]},
+    {"id":"C6","idea_ids":["I3"],"axis":"schedule","claim":"Use native PC work-buffer color updates at a ten-degree threshold.","evidence_ids":["I3"],"active":true,"incompatible_with":["C5"]},
+    {"id":"C7","idea_ids":["I1","I2","I3"],"axis":"guardrail","claim":"Reject a new default if minimum foreground PSNR falls by over 0.5 dB or p95 increases by over 20 percent against exact LOD.","evidence_ids":["I1","I2","I3"],"active":true,"incompatible_with":[]}
+  ]
+}

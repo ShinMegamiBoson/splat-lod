@@ -1,11 +1,11 @@
-"""Generate a deterministic, original SH3 torus fixture. No third-party scene assets."""
+"""Generate a deterministic, original SH0 or SH3 torus. No third-party scene assets."""
 import argparse
 from pathlib import Path
 import numpy as np
-from ply_source import ply_header
+from ply_source import FIELDS, ply_fields, ply_header
 
 
-def make_example(output):
+def make_example(output, sh_bands=3):
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     u, v = np.meshgrid(np.linspace(0, 2 * np.pi, 256, endpoint=False), np.linspace(0, 2 * np.pi, 64, endpoint=False))
@@ -21,12 +21,14 @@ def make_example(output):
     rows[:, 52:55] = np.log([.019, .015, .017])
     rows[:, 55] = 1
     with output.open('xb') as stream:
-        stream.write(ply_header(len(rows)))
-        stream.write(rows.tobytes())
+        stream.write(ply_header(len(rows), sh_bands))
+        stream.write(rows[:, [FIELDS.index(f) for f in ply_fields(sh_bands)]].tobytes())
     return len(rows)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('output', type=Path)
-    print(make_example(parser.parse_args().output))
+    parser.add_argument('--sh-bands', type=int, choices=(0, 3), default=3)
+    args = parser.parse_args()
+    print(make_example(args.output, args.sh_bands))

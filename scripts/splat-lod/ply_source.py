@@ -1,4 +1,4 @@
-"""Strict SH3 PLY input. IDs stay in file order; no reordering or intermediate quantization."""
+"""Strict SH0/SH3 PLY input. IDs stay in file order; no extra quantization."""
 import hashlib
 from pathlib import Path
 import numpy as np
@@ -10,9 +10,15 @@ FIELDS += [f'f_rest_{i}' for i in range(45)] + ['opacity']
 FIELDS += [f'scale_{i}' for i in range(3)] + [f'rot_{i}' for i in range(4)]
 
 
-def ply_header(count):
+def ply_fields(sh_bands=3):
+    if sh_bands not in (0, 3):
+        raise ValueError('Expected SH0 or SH3')
+    return FIELDS if sh_bands == 3 else [f for f in FIELDS if not f.startswith('f_rest_')]
+
+
+def ply_header(count, sh_bands=3):
     return ('ply\nformat binary_little_endian 1.0\nelement vertex ' + str(count) + '\n'
-            + ''.join('property float ' + f + '\n' for f in FIELDS) + 'end_header\n').encode()
+            + ''.join('property float ' + f + '\n' for f in ply_fields(sh_bands)) + 'end_header\n').encode()
 
 
 def read_header(filename):
@@ -38,13 +44,14 @@ class FloatPlySource:
         if len(elements) != 1 or elements[0][1] != 'vertex' or any(p[0] != 'float' or len(p) != 2 for p in props):
             raise ValueError('Expected one float32 vertex element with SH3 fields')
         names = [p[1] for p in props]
+        self.sh_bands = 3 if any(n.startswith('f_rest_') for n in names) else 0
         count = int(elements[0][2])
-        if count < 2 or count > 0xffffffff or len(set(names)) != len(names) or any(f not in names for f in FIELDS):
+        if count < 2 or count > 0xffffffff or len(set(names)) != len(names) or any(f not in names for f in ply_fields(self.sh_bands)):
             raise ValueError('Invalid vertex count, duplicate fields, or missing SH3 fields')
         if self.filename.stat().st_size != len(header) + count * len(props) * 4:
             raise ValueError('PLY payload length mismatch')
         self.rows = np.memmap(filename, mode='r', dtype='<f4', offset=len(header), shape=(count, len(props)))
-        self.indices = np.array([names.index(f) for f in FIELDS])
+        self.indices = np.array([names.index(f) if f in names else -1 for f in FIELDS])
         with self.filename.open('rb') as stream:
             self.fingerprint = hashlib.file_digest(stream, 'sha256').hexdigest()
         self.pos = np.array(self.rows[:, self.indices[:3]], dtype=np.float32)
@@ -52,6 +59,8 @@ class FloatPlySource:
 
     def decode(self, ids):
         rows = self.rows[np.asarray(ids)][..., self.indices]
+        if self.sh_bands == 0:
+            rows[..., 6:51] = 0
         if not np.isfinite(rows).all():
             raise ValueError('Nonfinite splat parameters')
         scale = np.exp(rows[..., 52:55])

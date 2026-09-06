@@ -1,5 +1,13 @@
 export type Vec3 = [number, number, number];
 export type DisplayMode = 'automatic' | 'source' | 'lower-only';
+export interface RenderSettings {
+    /** Exact disables culling; the other profiles discard small contributions. */
+    profile?: 'exact' | 'contribution' | 'playcanvas';
+    /** Visible evaluates current-view SH after culling; cached uses PC's work-buffer updates. */
+    shMode?: 'visible' | 'cached';
+    /** Used only by cached SH. Default 10 degrees, in [0,180]. */
+    colorUpdateAngle?: number;
+}
 export interface Camera {
     position: Vec3;
     target: Vec3;
@@ -16,6 +24,7 @@ export interface RendererOptions {
     background?: Vec3;
     /** Default 2. LOD activates sooner; NOT a promised FPS speedup. */
     lodMultiplier?: number;
+    renderSettings?: RenderSettings;
     /** Defaults to devicePixelRatio. Does not change canvas CSS size. */
     pixelRatio?: number;
     signal?: AbortSignal;
@@ -50,7 +59,8 @@ export interface AuditResult {
 export interface RendererInfo {
     engine: { readonly version: string; readonly revision: string };
     backend: 'webgpu';
-    shBands: 3;
+    shBands: 0 | 3;
+    renderSettings: Required<RenderSettings> & { minPixelSize: number; minContribution: number };
     mode: DisplayMode;
     lodMultiplier: number;
     viewport: [number, number];

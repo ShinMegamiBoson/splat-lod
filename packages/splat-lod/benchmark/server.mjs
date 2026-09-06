@@ -6,15 +6,20 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { SCENES } from './scenes.mjs';
+import { MAIN_PROTOCOL } from './main-protocol.mjs';
 const root = fileURLToPath(new URL('.', import.meta.url));
-const config = JSON.parse(await readFile(path.join(root, 'config.local.json')));
+const main = process.argv.includes('--main');
+const config = JSON.parse(await readFile(path.join(root, main ? 'config-main.local.json' : 'config.local.json')));
 const fileHash = async file => createHash('sha256').update(await readFile(file)).digest('hex');
-const publicConfig = { libraryRevision: '21bf25a67082af374fd899b6d91846381bb89c89',
+const revision = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+const publicConfig = { libraryRevision: main ? revision : '21bf25a67082af374fd899b6d91846381bb89c89',
     evidence: { harnessRevision: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
         librarySha256: await fileHash(path.resolve(root, config.bundle)),
-        harnessSha256: await fileHash(path.join(root, 'build/runner.js')),
+        harnessSha256: await fileHash(path.join(root, main ? 'build/main-runner.js' : 'build/runner.js')),
+        ...(main ? { upstreamRevision: MAIN_PROTOCOL.engineRevision, upstreamBundleSha256: await fileHash(path.resolve(root, '../../../build/playcanvas.min.mjs')) } : {}),
         dependencyLockSha256: await fileHash(path.join(root, 'package-lock.json')) },
-    scenes: SCENES };
+    ...(main ? { protocol: MAIN_PROTOCOL } : {}),
+    scenes: main ? config.scenes : SCENES };
 const port = Number(process.env.PORT || 8016);
 const beneath = (dir, name) => {
     const file = path.resolve(dir, `.${name}`);
@@ -48,7 +53,7 @@ const server = createServer(async (req, res) => {
         }
         let file;
         if (route === '/') file = path.join(root, 'index.html');
-        else if (route === '/runner.js') file = path.join(root, 'build/runner.js');
+        else if (route === '/runner.js') file = path.join(root, main ? 'build/main-runner.js' : 'build/runner.js');
         else if (route === '/ours.js') file = path.resolve(root, config.bundle);
         else if (route.startsWith('/data/')) {
             const [, , key, ...parts] = route.split('/');

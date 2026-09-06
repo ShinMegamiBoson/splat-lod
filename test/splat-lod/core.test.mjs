@@ -119,6 +119,7 @@ describe('asset contract', function () {
     }
     it('accepts the precise supported bank contract and rejects partial/changed schemas', function () {
         assert.equal(validateManifest(manifest()).sourceCount, 26);
+        assert.equal(validateManifest({ ...manifest(), shBands: 0 }).shBands, 0);
         const corrupt = (change) => {
             const m = manifest(); change(m); assert.throws(() => validateManifest(m));
         };
@@ -130,6 +131,9 @@ describe('asset contract', function () {
         });
         corrupt((m) => {
             m.sourceCount = NaN;
+        });
+        corrupt((m) => {
+            m.shBands = 2;
         });
         corrupt((m) => {
             m.levels[0].sha256 = 'wrong';

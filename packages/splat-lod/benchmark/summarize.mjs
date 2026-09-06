@@ -4,33 +4,34 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { imageError, quantile, PROTOCOL } from './protocol.mjs';
 import { sequence } from './sequence.mjs';
+import { MAIN_PROTOCOL } from './main-protocol.mjs';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const stats = a => ({ samples: a.length, median: quantile(a, 0.5), p95: quantile(a, 0.95), min: Math.min(...a), max: Math.max(...a) });
 
-export async function summarize(directory) {
+export async function summarize(directory, protocol = PROTOCOL) {
     const reports = [];
     await sequence((await readdir(directory)).filter(s => /^\d+$/.test(s)).sort((a, b) => Number(a) - Number(b)), async (name) => {
         const r = JSON.parse(await readFile(path.join(directory, name, 'report.json')));
         if (r.pilot) throw new Error('Pilot runs must not be published as benchmark results');
-        if (JSON.stringify(r.protocol) !== JSON.stringify(PROTOCOL)) throw new Error('Mixed or obsolete benchmark protocol');
-        if (r.passed && ['static', 'moving'].some(phase => r.phases[phase].samples.length !== PROTOCOL.samples)) throw new Error('Missing timing frames');
+        if (JSON.stringify(r.protocol) !== JSON.stringify(protocol)) throw new Error('Mixed or obsolete benchmark protocol');
+        if (r.passed && ['static', 'moving'].some(phase => r.phases[phase].samples.length !== protocol.samples)) throw new Error('Missing timing frames');
         reports.push(r);
     });
     if (!reports.length) throw new Error('No completed reports');
     const scenes = [...new Set(reports.map(r => r.scene.id))], rows = [];
     await sequence(scenes, async (scene) => {
-        await sequence(PROTOCOL.modes, async (mode) => {
+        await sequence(protocol.modes, async (mode) => {
             const trials = reports.filter(r => r.scene.id === scene && r.mode === mode);
-            if (trials.length !== PROTOCOL.repeats || new Set(trials.map(r => r.round)).size !== PROTOCOL.repeats) throw new Error(`Incomplete trials for ${scene}/${mode}`);
+            if (trials.length !== protocol.repeats || new Set(trials.map(r => r.round)).size !== protocol.repeats) throw new Error(`Incomplete trials for ${scene}/${mode}`);
             await sequence(trials.filter(t => t.passed), async (r) => {
                 const reference = reports.find(b => b.scene.id === scene && b.mode === 'pc-full' && b.round === r.round);
                 if (!reference?.passed) throw new Error('Missing full-quality reference');
                 r.errors = [];
-                await sequence(PROTOCOL.qualityFractions, async (_, i) => {
+                await sequence(protocol.qualityFractions, async (_, i) => {
                     const a = await readFile(path.join(directory, String(reference.index), `quality-${i}.rgba`));
                     const b = await readFile(path.join(directory, String(r.index), `quality-${i}.rgba`));
-                    if (a.length !== PROTOCOL.width * PROTOCOL.height * 4) throw new Error('Image resolution mismatch');
+                    if (a.length !== protocol.width * protocol.height * 4) throw new Error('Image resolution mismatch');
                     r.errors.push({ t: r.quality[i].t, referenceSha256: hash(a), candidateSha256: hash(b), ...imageError(a, b, r.scene.background) });
                 });
             });
@@ -42,7 +43,7 @@ export async function summarize(directory) {
                 row.interactiveFps = trials.map(r => r.interactive.rafFps);
                 row.interactiveP95Ms = trials.map(r => r.interactive.p95IntervalMs);
                 row.minPsnrDb = Math.min(...trials.flatMap(r => r.errors.map(e => (e.exact ? Infinity : e.psnrDb))));
-                row.minForegroundPsnrDb = Math.min(...trials.flatMap(r => r.errors.map(e => (e.exact ? Infinity : e.foregroundPsnrDb))));
+                row.minForegroundPsnrDb = Math.min(...trials.flatMap(r => r.errors.map(e => (e.foregroundSquared === 0 ? Infinity : e.foregroundPsnrDb))));
                 row.selectedSplats = trials.flatMap(r => r.quality.map(q => q.stats.selection?.activeSplats)).filter(Number.isFinite);
                 row.staticReusesPresentation = mode === 'luma';
                 row.perTrial = trials.map(r => ({ staticMedianMs: r.phases.static.medianMs, movingMedianMs: r.phases.moving.medianMs }));
@@ -51,7 +52,7 @@ export async function summarize(directory) {
         });
     });
     return { generatedAt: new Date().toISOString(),
-        protocol: PROTOCOL,
+        protocol,
         scenes: reports.filter(r => r.round === 0 && r.mode === 'pc-full').map(r => r.scene),
         reportCount: reports.length,
         passedCount: reports.filter(r => r.passed).length,
@@ -61,8 +62,8 @@ export async function summarize(directory) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const directory = process.argv[2]; if (!directory) throw new Error('Usage: node summarize.mjs results/RUN [output-directory]');
-    const summary = await summarize(directory);
-    const output = process.argv[3] || directory;
+    const summary = await summarize(directory, process.argv.includes('--main') ? MAIN_PROTOCOL : PROTOCOL);
+    const output = process.argv[3] && process.argv[3] !== '--main' ? process.argv[3] : directory;
     await mkdir(output, { recursive: true }); await writeFile(path.join(output, 'results.json'), `${JSON.stringify(summary, null, 2)}\n`);
     console.table(summary.rows.map(r => ({ scene: r.scene,
         mode: r.mode,

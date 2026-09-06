@@ -5,9 +5,11 @@ import { installSceneRangeProjection } from './range-projector.js';
 import { createSceneChunkColors } from './chunk-colors.js';
 import { checkedBytes, loadManifest } from './manifest.js';
 import { DEFAULT_LOD_MULTIPLIER, lodScale, validateCamera, validateViewport } from './options.js';
+import { renderSettings } from './render-settings.js';
+import { ENGINE_BASE } from './engine-base.js';
 
 /** Tested upstream engine revision; this package bundles the fork, not an npm peer. */
-export const ENGINE_BASE = Object.freeze({ version: '2.21.4', revision: 'e287e0c67f3c20c689a52b7c53d2b7fedbe887da' });
+export { ENGINE_BASE };
 
 /** Standalone renderer returned by createSplatRenderer. Construction is internal. */
 class SplatRenderer {
@@ -26,14 +28,14 @@ class SplatRenderer {
         });
     }
 
-    _initialize(banks, scale) {
+    _initialize(banks, scale, settings) {
         const { sourceOrder, regions, manifest } = this._data;
         this._colors = createSceneChunkColors(pc, this._app.graphicsDevice, banks, sourceOrder, regions.offsets);
         const colors = this._colors;
         this._lod = {
             mode: 'automatic',
             pixelScale: scale,
-            fuseRangeSh: true,
+            fuseRangeSh: settings.shMode === 'visible',
             get rangeDebugColors() {
                 return colors.enabled;
             },
@@ -54,6 +56,7 @@ class SplatRenderer {
             }
         };
         this._residentCount = banks.reduce((sum, b) => sum + b.count, 0);
+        this._settings = settings;
     }
 
     _install() {
@@ -169,7 +172,8 @@ class SplatRenderer {
         this._assertActive();
         return { engine: ENGINE_BASE,
             backend: 'webgpu',
-            shBands: 3,
+            shBands: this._data.manifest.shBands ?? 3,
+            renderSettings: this._settings,
             mode: this._lod.mode,
             lodMultiplier: this._lod.pixelScale * 2,
             viewport: [this._app.graphicsDevice.width, this._app.graphicsDevice.height],
@@ -248,6 +252,7 @@ class SplatRenderer {
  * @param {string|URL} options.manifestUrl - Completed cube manifest, relative to document.baseURI.
  * @param {object} options.camera - Perspective camera with position and target arrays.
  * @param {number} [options.lodMultiplier] - Larger values select lower detail sooner, not an FPS promise.
+ * @param {object} [options.renderSettings] - Raster culling profile and visible or cached SH evaluation.
  * @param {AbortSignal} [options.signal] - Abort loading; partially created resources are released.
  * @param {Function} [options.onProgress] - Receives readable loading-stage messages.
  * @param {Function} [options.onError] - Receives asynchronous GPU/device-loss errors.
@@ -257,6 +262,7 @@ export async function createSplatRenderer(options) {
     if (!options?.canvas || !options.manifestUrl) throw new TypeError('canvas and manifestUrl are required');
     const view = validateCamera({ up: [0, 1, 0], fovDegrees: 40, near: 0.01, far: 1000000, ...options.camera });
     const scale = lodScale(options.lodMultiplier ?? DEFAULT_LOD_MULTIPLIER);
+    const settings = renderSettings(options.renderSettings);
     const background = options.background ?? [0.07, 0.07, 0.07];
     if (background.length !== 3 || background.some(v => !Number.isFinite(v) || v < 0 || v > 1)) throw new RangeError('background must contain three values in [0,1]');
     const url = new URL(options.manifestUrl, document.baseURI);
@@ -272,7 +278,7 @@ export async function createSplatRenderer(options) {
         if (!device.isWebGPU) throw new Error('WebGPU is required; this package has no WebGL fallback');
         app = new pc.Application(options.canvas, { graphicsDevice: device });
         app.autoRender = false;
-        Object.assign(app.scene.gsplat, { renderer: pc.GSPLAT_RENDERER_RASTER_GPU_SORT, splatBudget: 0, radialSorting: false, minPixelSize: 0, minContribution: 0, foveationStrength: 0, alphaClipForward: 1 / 255, colorUpdateAngle: 0 });
+        Object.assign(app.scene.gsplat, { renderer: pc.GSPLAT_RENDERER_RASTER_GPU_SORT, radialSorting: false, minPixelSize: settings.minPixelSize, minContribution: settings.minContribution, foveationStrength: 0, alphaClipForward: 1 / 255, colorUpdateAngle: settings.colorUpdateAngle });
         const camera = new pc.Entity('splat-lod-camera');
         camera.addComponent('camera', { clearColor: new pc.Color(...background, 1), fov: view.fovDegrees, nearClip: view.near, farClip: view.far, toneMapping: pc.TONEMAP_NONE });
         app.root.addChild(camera);
@@ -287,7 +293,7 @@ export async function createSplatRenderer(options) {
             options.signal?.throwIfAborted();
             options.onProgress?.(`Loading Gaussian bank ${i + 1} of ${definitions.length}…`);
             const bankUrl = new URL(bank.file, url);
-            if (!/\.(?:ply|sog)$/i.test(bankUrl.pathname)) throw new Error('Banks must be SH3 PLY files or SOG v2 bundles');
+            if (!/\.(?:ply|sog)$/i.test(bankUrl.pathname)) throw new Error('Banks must be PLY files or SOG v2 bundles');
             const bytes = await checkedBytes(bankUrl, bank, options.signal);
             options.signal?.throwIfAborted();
             const asset = new pc.Asset(bank.id, 'gsplat', { url: bankUrl.href, contents: new Response(bytes) }, { reorder: false, decompress: true });
@@ -299,13 +305,13 @@ export async function createSplatRenderer(options) {
             });
             app.assets.add(asset); app.assets.load(asset); await ready;
             options.signal?.throwIfAborted();
-            if (asset.resource.gsplatData.numSplats !== bank.count || asset.resource.gsplatData.shBands !== 3) throw new Error(`Incorrect splat count or SH degree: ${bank.key}`);
+            if (asset.resource.gsplatData.numSplats !== bank.count || asset.resource.gsplatData.shBands !== (m.shBands ?? 3)) throw new Error(`Incorrect splat count or SH degree: ${bank.key}`);
             const entity = new pc.Entity(bank.id);
             entity.addComponent('gsplat', { asset: asset.id, unified: true }); app.root.addChild(entity);
             loaded.push({ ...bank, entity, asset });
             return loaded;
         }, Promise.resolve([]));
-        renderer._initialize(banks, scale);
+        renderer._initialize(banks, scale, settings);
         options.onProgress?.('Initializing GPU selection and global depth sorting…');
         app.start(); cancelAnimationFrame(app.frameRequestId); app.frameRequestId = null;
         renderer.render(); await renderer.flush();

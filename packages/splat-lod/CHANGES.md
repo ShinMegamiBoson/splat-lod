@@ -1,8 +1,17 @@
-# Changes from PlayCanvas 2.21.4
+# Changes from PlayCanvas
+
+## v0.2.0
+
+- Rebased the five fork commits onto upstream main [d753e98](https://github.com/playcanvas/engine/commit/d753e98c70d67b755754c614f383d215cacbbd63), version 2.23.0-beta.2. No upstream renderer code is replaced by the cube-LOD module.
+- Added explicit profiles for PC's contribution and footprint culling, plus the choice between fused visible SH and PC's cached work-buffer SH.
+- Added native SH0 preprocessing and rendering for the large city inputs. Missing directional coefficients are not synthesized, and SH3 inputs keep all 45 higher-order coefficients.
+- Added a same-upstream-base comparison and larger-input tests, separate from the v0.1 measurements below.
+
+## v0.1.0 extraction
 
 Base: [`e287e0c67f3c20c689a52b7c53d2b7fedbe887da`](https://github.com/playcanvas/engine/commit/e287e0c67f3c20c689a52b7c53d2b7fedbe887da), tag `v2.21.4`.
 
-## Added
+### Added
 
 - A standalone ESM bundle and typed API: load, camera updates, native-resolution resize, LOD multiplier, original/reduced-only modes, chunk coloring, explicit diagnostics, start/stop and disposal.
 - `src/framework/splat-lod/`: cube selection, permanent source indexing, bank-major range prefixes, indirect range projection, fused visible-only SH3 evaluation, and instance-local integration with the native GPU-sort renderer.
@@ -11,7 +20,7 @@ Base: [`e287e0c67f3c20c689a52b7c53d2b7fedbe887da`](https://github.com/playcanvas
 - An original synthetic example with camera controls, diagnostic chunk coloring, and GPU-versus-CPU selected-ID audits.
 - Unit tests, preprocessing tests, TypeScript consumer checks, package build/CI and documented browser regression results.
 
-## Runtime changes
+### Runtime changes
 
 | Stock pipeline stage | Fork's cube-LOD path |
 | --- | --- |
@@ -25,14 +34,14 @@ The extraction is additive. Existing upstream engine sources outside the new mod
 
 The library's per-view path does not upload camera-indexed splat lists, read full-resolution images, render impostors, cache MPI meshes, use temporal/stochastic approximations, or alter the canvas resolution for speed. Validation readbacks are explicit opt-in methods.
 
-## What was intentionally not included
+### What was intentionally not included
 
 - Prior MPI, spherical-shell, radiance-meshlet, impostor, temporal and view-cell experiments.
 - Scene-specific cameras, absolute project paths, benchmark servers, cloud credentials or model-generation scripts.
 - The bee, store, city scans or their derived LOD banks. The example is generated from mathematical geometry.
 - Claims of universally optimal LOD, lossless merging, 2× FPS, or a win with LOD disabled.
 
-## Validation of this extraction
+### Validation of this extraction
 
 - Rebuilding all 2,315,943 bee source splats with the standalone preprocessor produced **byte-identical** replacement PLY banks and all eight metadata files compared with the benchmarked implementation: 249 cubes, 1,158,035 / 579,071 / 289,599 replacement records.
 - Real WebGPU browser checks passed for both the synthetic scene and the bee: original, automatic and eligible-reduced-only views at near and far poses; zero GPU/CPU decision or selected-ID mismatches.

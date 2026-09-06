@@ -1,0 +1,13 @@
+{
+  "baseline":"Stock upstream main d753e98c70d67b755754c614f383d215cacbbd63, release/minified build; exact LOD on the same base is the optimization control",
+  "selection_data":"Frozen Bee and Ekotori full scans and paths from packages/splat-lod/benchmark/scenes.mjs",
+  "holdout_policy":"Freeze all three stock-setting candidates and guards before reading large-city timing or image-error results. Camera/setup preflights are not selection evidence. Report every variant, including regressions.",
+  "primary_metric":"Median completed moving-frame latency pooled across two reversed-order trials, separately per scene",
+  "guardrails":["0.5 dB maximum reduction in minimum foreground PSNR from exact LOD","20 percent maximum moving p95 regression from exact LOD","All available source SH, global current-view GPU sorting, identical physical 2560x1440 resolution"],
+  "promotion_rule":"A default needs at least 5 percent moving-median improvement with both guards passing in selection and larger-input validation. Otherwise keep exact as default and expose useful lossy profiles explicitly.",
+  "failure_handling":"Retain failures and errors; no best-run picking. One fresh closed browser tab per case. Incomplete or hidden-tab measurements are invalid, not slow-renderer results. If rerunning a scene after setup repair, rerun all of its modes in prescribed order.",
+  "seeds":[17],
+  "budget":"One three-proposal selection batch, then the same fixed variants on two larger inputs; 7 configurations x 4 inputs x 2 trials, 90 static and 90 moving frames each. Under 100 GB disk, no paid services. Stop after reporting that batch; record but do not automatically execute a fresh next frontier.",
+  "commands":["npm run build:min:esm", "npm --prefix packages/splat-lod run build", "cd packages/splat-lod/benchmark && node build.mjs --main && node server.mjs --main", "Open a fresh CUA browser tab per /?single=1&run=pc-main-20260906&index=N, set 1280x720 viewport, and press Run comparison"],
+  "artifact_dir":"packages/splat-lod/benchmark/results/pc-main-20260906"
+}

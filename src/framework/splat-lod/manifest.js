@@ -7,6 +7,7 @@ export function validateManifest(manifest) {
         throw new Error('Expected a completed version-6 cube LOD manifest');
     }
     const p = m.policy;
+    if (![0, 3].includes(m.shBands ?? 3)) throw new Error('Expected SH0 or SH3 banks; coefficients must not be dropped');
     if (!p || p.version !== defaults.version || !Number.isFinite(p.cellSize) || p.cellSize <= 0 || !Number.isFinite(p.hysteresis) || p.hysteresis < 0 || p.hysteresis >= 1 || p.levels?.length !== defaults.levels.length) {
         throw new Error('Invalid cube LOD policy');
     }
@@ -20,7 +21,7 @@ export function validateManifest(manifest) {
     }
     for (const [i, level] of m.levels.entries()) {
         if (level.id !== i + 1 || level.span !== p.levels[i + 1].span || !Number.isSafeInteger(level.splats) || level.splats < 1 || level.splats > m.sourceCount || typeof level.file !== 'string' || !level.file.endsWith('.ply')) {
-            throw new Error('Expected three nonempty, ordered SH3 PLY replacement banks');
+            throw new Error('Expected three nonempty, ordered PLY replacement banks');
         }
         validateDigest(level);
     }

@@ -1,9 +1,21 @@
 import { expect } from 'chai';
 
+import { MAIN_PROTOCOL, OPTIMIZATION_SETTINGS } from '../../packages/splat-lod/benchmark/main-protocol.mjs';
 import { PROTOCOL, cameraAt, imageError, quantile } from '../../packages/splat-lod/benchmark/protocol.mjs';
 import { SCENES } from '../../packages/splat-lod/benchmark/scenes.mjs';
+import { ENGINE_BASE } from '../../src/framework/splat-lod/engine-base.js';
 
 describe('multi-scene benchmark protocol', function () {
+    it('keeps the main-base ablations separate from the published v2 protocol', function () {
+        expect(MAIN_PROTOCOL.version).to.equal(3);
+        expect(PROTOCOL.version).to.equal(2);
+        expect(MAIN_PROTOCOL.engineRevision).to.equal(ENGINE_BASE.revision);
+        expect(MAIN_PROTOCOL.modes).to.have.length(7);
+        expect(MAIN_PROTOCOL.modes).to.include.members(['pc-full', 'pc-default', 'ours-source', 'ours-lod']);
+        expect(OPTIMIZATION_SETTINGS['ours-contribution']).to.deep.equal({ profile: 'contribution', shMode: 'visible' });
+        expect(OPTIMIZATION_SETTINGS['ours-defaults'].shMode).to.equal('visible');
+        expect(OPTIMIZATION_SETTINGS['ours-cached'].colorUpdateAngle).to.equal(10);
+    });
     it('uses three entire scenes with SH3 and a matched physical viewport', function () {
         expect(SCENES.map(s => s.count)).to.deep.equal([652804, 2315943, 7081853]);
         expect([PROTOCOL.width, PROTOCOL.height]).to.deep.equal([2560, 1440]);

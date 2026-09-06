@@ -1,6 +1,6 @@
 # Standalone splat LOD
 
-A small browser-facing API around the benchmarked cube-LOD Gaussian renderer, bundled with this fork's PlayCanvas **2.21.4** engine. No Endless Almanac codebase, application, scene service, credentials, or PlayCanvas npm peer is required at runtime.
+A standalone cube-LOD renderer, bundled with PlayCanvas main at [d753e98](https://github.com/playcanvas/engine/commit/d753e98c70d67b755754c614f383d215cacbbd63) (2.23.0-beta.2). It doesn't need the original project, a CDN, or a PlayCanvas npm dependency at runtime.
 
 This is **WebGPU-only, experimental, and lossy when LOD is enabled**. It renders Gaussians, not MPI tiles or impostors. The default **2×** setting selects lower detail sooner; it does not promise twice the frame rate.
 
@@ -9,7 +9,7 @@ This is **WebGPU-only, experimental, and lossy when LOD is enabled**. It renders
 The GitHub release contains an installable ESM package. It is not published to the npm registry:
 
 ```sh
-npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.1.0/shinmegami-boson-splat-lod-0.1.0.tgz
+npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.2.0/shinmegami-boson-splat-lod-0.2.0.tgz
 ```
 
 ```js
@@ -21,6 +21,7 @@ const renderer = await createSplatRenderer({
     manifestUrl: '/scene/manifest.json',
     camera: { position: [2.6, 1.6, 3.2], target: [0, 0, 0] },
     lodMultiplier: 2,
+    renderSettings: { profile: 'exact', shMode: 'visible' },
     onProgress: message => console.log(message),
     onError: error => console.error(error)
 });
@@ -62,7 +63,7 @@ python3 -m venv .venv
 
 Choose the cube edge length in **your scene's world units**. The example uses `0.25`; the bee used `0.03`. There is no universal correct size. Small cubes refine spatially but create more selection work and singleton cubes; large cubes keep distant and nearby geometry tied to the same LOD choice.
 
-Input: binary little-endian float32 Gaussian PLY with degree-3 SH, or the SuperSplat compressed PLY layout with SH3. Optional float32 fields such as normals are ignored. Source positions must already be in the desired world coordinate system. Every source center belongs to exactly one fixed cube; Gaussian footprints are **not clipped** at cube boundaries. A nonempty output directory is refused rather than overwritten.
+Input: binary little-endian float32 Gaussian PLY with SH0 or SH3, or the SuperSplat compressed PLY layout with SH3. SH0 inputs stay SH0; no higher coefficients are invented. Optional float32 fields such as normals are ignored. Source positions must already be in world coordinates. Every center belongs to exactly one cube; Gaussian footprints are not clipped at cube boundaries. Use a new output directory.
 
 Output:
 
@@ -78,19 +79,33 @@ The loader validates ownership, metadata digests, replacement-bank digests, coun
 1. **Offline:** spatial KD grouping **inside each cube**, followed by optical-depth/surface-area weighted moment matching of position, covariance, opacity, DC and all 45 higher-order SH coefficients. Group spans are 2, 4 and 8; no cross-cube merge occurs.
 2. **Per view, GPU:** project cube bounds and select one complete bank range for each visible cube. Near cubes keep all originals; distant cubes use a reduced bank. A 10% hysteresis band reduces boundary toggling.
 3. **GPU prefix scan:** compact the selected **ranges**, not a per-frame CPU list of splat IDs. A permanent source-order map and current world-bank addresses resolve each Gaussian directly in the projector.
-4. **Projection and SH:** dispatch the four banks into one projected cache and counter. Evaluate SH3 for visible splats, preserving PlayCanvas's color quantization. There is no full-bank color refresh each moving frame.
+4. **Projection and SH:** dispatch the four banks into one projected cache and counter. By default, evaluate SH3 for visible splats, preserving PlayCanvas's color quantization. SH0 needs no directional color evaluation. An optional cached mode uses PC's work-buffer color updates instead.
 5. **Global sort and draw:** retain PlayCanvas's GPU depth sort across all selected banks, then its quad expansion, Gaussian rasterization, and alpha blending. There is no per-chunk compositing order.
 
 At multiplier 1, cube bounding-sphere diameters of **128 / 64 / 32 physical pixels** are eligible for half / quarter / eighth density. At multiplier 2 these become **256 / 128 / 64 pixels**, before hysteresis. Visibility uses larger Gaussian-support bounds; those bounds do not force higher LOD.
 
+## Rendering settings
+
+Pass `renderSettings` when creating the renderer:
+
+| `profile` | Minimum pixel size | Minimum contribution |
+| --- | ---: | ---: |
+| `exact` | 0 | 0 |
+| `contribution` | 0 | 3 |
+| `playcanvas` | 2 | 3 |
+
+These are the upstream projector's filters. `exact` disables extra culling; it does not make merged LOD splats lossless. To compare against unmerged originals, also call `setMode('source')`.
+
+`shMode: 'visible'` evaluates current-view SH after culling. `shMode: 'cached'` uses PC's color cache, with `colorUpdateAngle: 10` by default. Caching can trade color accuracy for speed, and a full-bank refresh can cost more than evaluating just the visible splats. All available source coefficients remain in the assets. `getInfo().renderSettings` reports the active settings.
+
 ## Limits and quality
 
 - All four banks remain resident. This reduces per-view work, **not memory use or initial download size**. There is no streaming or on-demand bank eviction.
-- SH3 only; no silent dropping of coefficients. The SOG v2 runtime path is retained, but this extraction's browser regression tests cover native and compressed PLY, not a new SOG scene.
+- SH0 and SH3; no silent dropping of coefficients. SH1/SH2 inputs are rejected. The SOG v2 runtime path is retained; browser regression tests use native and compressed PLY.
 - Static geometry, identity model transform, one mono perspective camera per renderer. No WebGL, XR/stereo, orthographic camera, picking, animated splats, or scene-graph embedding API is supplied.
 - Merged covariance and SH are approximations. Weighted SH does **not** exactly encode internal occlusion, and the pixel-size thresholds are not a proven perceptual-error bound. View-dependent differences and LOD transitions can remain visible.
 - LOD is a quality/performance tradeoff, not a universal speedup. Compare the LOD-disabled control and stock-default/full-quality settings in the [three-scene benchmark](BENCHMARKS.md).
-- The integration deliberately pins private projector APIs to PlayCanvas 2.21.4. Shader-source substitutions and layout checks fail closed if those internals change. Rebase and requalify before upgrading the engine.
+- The integration uses private projector APIs. The tested base is recorded in [engine-base.js](../../src/framework/splat-lod/engine-base.js); shader-source and layout checks fail if those internals change.
 
 ## Build and run the example from the fork
 

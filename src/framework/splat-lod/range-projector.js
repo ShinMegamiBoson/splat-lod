@@ -56,14 +56,15 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
     function bankIndex(name) {
         return name === 'scene-lod-source' ? 0 : Number(name.match(/^scene-lod-level([123])$/)?.[1]);
     }
-    if (infos.length !== RANGE_BANKS || infos.some((v, i) => bankIndex(v.node.name) !== i || v.intervalOffsets.length !== 1 || v.resource.gsplatData.shBands !== 3)) throw new Error('Range SH requires four flat source/LOD SH3 placements');
+    if (infos.length !== RANGE_BANKS || infos.some((v, i) => bankIndex(v.node.name) !== i || v.intervalOffsets.length !== 1 || ![0, 3].includes(v.resource.gsplatData.shBands))) throw new Error('Range projection requires four flat SH0 or SH3 placements');
     const banks = infos.map((info) => {
-        const resource = info.resource, sog = !!resource.getTexture('sh_labels'), streams = sog ? SOG_STREAMS : NATIVE_STREAMS;
+        const resource = info.resource, shBands = resource.gsplatData.shBands, sog = !!resource.getTexture('sh_labels');
+        const streams = shBands === 0 ? [] : sog ? SOG_STREAMS : NATIVE_STREAMS;
         if (streams.some(n => !resource.getTexture(n))) throw new Error('Unsupported SH resource format');
         const q = new pc.Quat().setFromMat4(info.node.getWorldTransform()); if (q.w < 0)q.mulScalar(-1);
         // PlayCanvas destroys old world-state placement records after a layout
         // update. Keep immutable asset metadata, never their intervalOffsets.
-        return { resource, sog, streams, count: info.activeSplats, initialBase: info.intervalOffsets[0], rotation: new Float32Array([q.x, q.y, q.z, q.w]) };
+        return { resource, shBands, sog, streams, count: info.activeSplats, initialBase: info.intervalOffsets[0], rotation: new Float32Array([q.x, q.y, q.z, q.w]) };
     });
     const saved = { create: projector._createProjectorCompute, key: projector._projectorKey, destroyComputes: projector._destroyProjectorComputes, apply: world.applyWorkBufferUpdates, dispatch: projector.dispatch };
     const formats = new Set(); let activeBank = 0;
@@ -93,9 +94,9 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
             ['gsplatFormatDeclCS', wb.getComputeInputDeclarations(fixed.length)], ['gsplatFormatReadCS', wb.getReadCode()], ['gsplatHelpersVS', gsplatHelpersSource],
             ['gsplatModifyVS', this._userModifySource ?? gsplatModifySource], ['gsplatProjectCommonCS', RANGE_PROJECT_COMMON], ['gsplatEvalSHVS', gsplatEvalSHSource],
             ['rangeShDeclarationsCS', `var<private> rangeSourceUv:vec2i;\n${declarations}\nstruct VisibleShUniforms {visibleShParams:vec4u,visibleShModelRotation:vec4f};\n@group(0) @binding(${shStart + shBindings.length}) var<uniform> visibleShUniforms:VisibleShUniforms;`],
-            ['rangeShEvaluationCS', bank.sog ? VISIBLE_SH_EVALUATION_SOURCE : `${nativeSHSource}\n${nativeEvaluation}`]
+            ['rangeShEvaluationCS', bank.shBands === 0 ? `${commonSh}\nfn evaluateVisibleSh(index:u32,center:vec3f,fallback:vec3f)->vec3f{return fallback;}` : bank.sog ? VISIBLE_SH_EVALUATION_SOURCE : `${nativeSHSource}\n${nativeEvaluation}`]
         ]);
-        const defines = new Map([['{CACHE_STRIDE}', String(CACHE_STRIDE)], ['SH_BANDS', '3']]);
+        const defines = new Map([['{CACHE_STRIDE}', String(CACHE_STRIDE)], ['SH_BANDS', String(bank.shBands)]]);
         if (bank.sog)defines.set('SOG_V2', ''); if (radialSort)defines.set('RADIAL_SORT', ''); if (antiAlias)defines.set('GSPLAT_AA', '');
         this._userDefines?.forEach((v, k) => {
             if (!['{CACHE_STRIDE}', 'SH_BANDS', 'SOG_V2', 'RADIAL_SORT', 'GSPLAT_AA'].includes(k))defines.set(k, v);
@@ -135,7 +136,7 @@ export function installSceneRangeProjection({ app, projector, selector, dynamicL
                 compute.setParameter('intervals', ranges.table); compute.setParameter('prefixSumBuffer', ranges.prefix); compute.setParameter('sourceIdMap', ranges.sourceOrder);
                 const base = ranges.bases?.[activeBank]; if (!Number.isInteger(base)) throw new Error('Missing current bank address');
                 compute.setParameter('info', new Uint32Array([activeBank, ranges.stride, base, 0]));
-                compute.setParameter('visibleShParams', new Uint32Array([base, bank.resource.textureDimensions.x, bank.count, dynamicLod.rangeDebugColors || dynamicLod.fuseRangeSh === false ? 0 : 1]));
+                compute.setParameter('visibleShParams', new Uint32Array([base, bank.resource.textureDimensions.x, bank.count, bank.shBands === 0 || dynamicLod.rangeDebugColors || dynamicLod.fuseRangeSh === false ? 0 : 1]));
                 compute.setParameter('visibleShModelRotation', bank.rotation);
                 for (const stream of bank.streams)compute.setParameter(stream, bank.resource.getTexture(stream));
                 const setup = compute.setupDispatch;

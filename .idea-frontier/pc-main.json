@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "objective": "Reduce moving-frame latency versus the rebased exact-LOD renderer without losing more than 0.5 dB minimum foreground PSNR or worsening p95 by over 20 percent; compare the result to stock upstream main on larger inputs",
+  "success_criteria": [],
+  "constraints": [],
+  "config": {
+    "seed": 17,
+    "batch_size": 6,
+    "test_n": 3,
+    "frontier_size": 10,
+    "stable_cycles": 3,
+    "max_arity": 3,
+    "score_weights": {
+      "evidence_strength": 3,
+      "expected_impact": 3,
+      "feasibility": 2,
+      "testability": 2,
+      "information_gain": 2,
+      "generality": 1,
+      "novelty": 1,
+      "cost_efficiency": 1
+    }
+  },
+  "ideas": [
+    {
+      "id": "I1",
+      "title": "PC contribution cutoff",
+      "claim": "Cull low integrated-opacity Gaussians before sort and raster.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "src/scene/gsplat-unified/gsplat-params.js; benchmark/measurements/2026-09-05/summary.json",
+        "evidence": "PC defaults use contribution=3 and are faster than our unfiltered LOD on both object scenes, but the combined-default comparison does not isolate this mechanism.",
+        "confidence": "medium",
+        "boundary": "Same Apple GPU, input and viewport; approximation needs an error check."
+      }
+    },
+    {
+      "id": "I2",
+      "title": "PC footprint cutoff",
+      "claim": "Dropping sub-two-pixel Gaussians reduces sort and raster work.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "src/scene/gsplat-unified/gsplat-params.js; benchmark/measurements/2026-09-05/summary.json",
+        "evidence": "Stock minPixelSize=2; prior bee default PSNR of 18.04 dB is a warning that aggressive default filters may be unsuitable.",
+        "confidence": "medium",
+        "boundary": "Can discard substantial aggregate opacity; never assume an invisible loss."
+      }
+    },
+    {
+      "id": "I3",
+      "title": "PC cached SH",
+      "claim": "Reuse work-buffer SH until the camera-direction change justifies refreshing it.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "src/scene/gsplat-unified/gsplat-world.js and src/framework/splat-lod/range-projector.js",
+        "evidence": "Native PC uses a 10-degree update threshold; our existing visible-only path deliberately bypasses that cache.",
+        "confidence": "medium",
+        "boundary": "Full-bank color refreshes can cost more than visible-only SH in large scenes."
+      }
+    }
+  ],
+  "components": [
+    {
+      "id": "C1",
+      "idea_ids": [
+        "I1"
+      ],
+      "axis": "signal",
+      "claim": "Use integrated projected opacity, not distance alone, to reject a Gaussian.",
+      "evidence_ids": [
+        "I1"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C2",
+      "idea_ids": [
+        "I1"
+      ],
+      "axis": "operator",
+      "claim": "Use PC's existing contribution cutoff of 3 in the projector.",
+      "evidence_ids": [
+        "I1"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C3",
+      "idea_ids": [
+        "I2"
+      ],
+      "axis": "signal",
+      "claim": "Use the Gaussian's projected footprint to reject small splats.",
+      "evidence_ids": [
+        "I2"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C4",
+      "idea_ids": [
+        "I2"
+      ],
+      "axis": "operator",
+      "claim": "Use PC's two-pixel footprint cutoff in addition to contribution culling.",
+      "evidence_ids": [
+        "I2"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C5",
+      "idea_ids": [
+        "I3"
+      ],
+      "axis": "schedule",
+      "claim": "Evaluate visible SH after fine culling on every current view.",
+      "evidence_ids": [
+        "I3"
+      ],
+      "active": true,
+      "incompatible_with": [
+        "C6"
+      ]
+    },
+    {
+      "id": "C6",
+      "idea_ids": [
+        "I3"
+      ],
+      "axis": "schedule",
+      "claim": "Use native PC work-buffer color updates at a ten-degree threshold.",
+      "evidence_ids": [
+        "I3"
+      ],
+      "active": true,
+      "incompatible_with": [
+        "C5"
+      ]
+    },
+    {
+      "id": "C7",
+      "idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axis": "guardrail",
+      "claim": "Reject a new default if minimum foreground PSNR falls by over 0.5 dB or p95 increases by over 20 percent against exact LOD.",
+      "evidence_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "active": true,
+      "incompatible_with": []
+    }
+  ],
+  "combinations": [
+    {
+      "id": "R001",
+      "cycle": 1,
+      "component_ids": [
+        "C1",
+        "C5",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axes": [
+        "guardrail",
+        "schedule",
+        "signal"
+      ],
+      "fingerprint": "C1|C5|C7",
+      "status": "scheduled"
+    },
+    {
+      "id": "R002",
+      "cycle": 1,
+      "component_ids": [
+        "C1",
+        "C3",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axes": [
+        "guardrail",
+        "signal"
+      ],
+      "fingerprint": "C1|C3|C7",
+      "status": "scheduled"
+    },
+    {
+      "id": "R003",
+      "cycle": 1,
+      "component_ids": [
+        "C4",
+        "C6",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axes": [
+        "guardrail",
+        "operator",
+        "schedule"
+      ],
+      "fingerprint": "C4|C6|C7",
+      "status": "scheduled"
+    },
+    {
+      "id": "R004",
+      "cycle": 1,
+      "component_ids": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2"
+      ],
+      "axes": [
+        "operator",
+        "signal"
+      ],
+      "fingerprint": "C2|C3|C4",
+      "status": "scheduled"
+    },
+    {
+      "id": "R005",
+      "cycle": 1,
+      "component_ids": [
+        "C2",
+        "C6",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axes": [
+        "guardrail",
+        "operator",
+        "schedule"
+      ],
+      "fingerprint": "C2|C6|C7",
+      "status": "scheduled"
+    },
+    {
+      "id": "R006",
+      "cycle": 1,
+      "component_ids": [
+        "C1",
+        "C3",
+        "C5"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "axes": [
+        "schedule",
+        "signal"
+      ],
+      "fingerprint": "C1|C3|C5",
+      "status": "scheduled"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "P1",
+      "cycle": 1,
+      "combination_id": "R001",
+      "parent_proposal_ids": [],
+      "title": "Contribution culling with current-view visible SH",
+      "family": "contribution-cull",
+      "hypothesis": "Contribution=3 removes costly low-opacity splats without materially reducing the existing LOD quality.",
+      "mechanism": "Set minContribution=3, retain minPixelSize=0, then evaluate SH only for surviving projected splats.",
+      "interaction": "The fine cull saves both SH work and later sorting/raster work; it does not add a full-bank color refresh.",
+      "known_implementation": true,
+      "prerequisites": [
+        "Rebased GPU projector",
+        "Existing fine-cull uniforms"
+      ],
+      "baseline": "Rebased exact LOD 2x: zero cutoffs, visible SH",
+      "test": "Bee and shop, 2560x1440, 2 reversed trials; validate frozen settings on 16.18M and 32.37M Lublin inputs",
+      "primary_metric": "Pooled median completed moving-frame latency, separately per scene",
+      "guardrails": [
+        "Minimum foreground PSNR no more than 0.5 dB below exact LOD",
+        "Moving p95 no more than 20 percent worse",
+        "Same input count, SH terms, paths, resolution and GPU sort"
+      ],
+      "rejection_rule": "Do not promote as a default without at least 5 percent median gain and both quality and tail guards passing on selection and larger tests.",
+      "failure_modes": [
+        "Many individually weak splats jointly cover an opaque surface"
+      ],
+      "cost": "One bounded local batch; no paid services; under 100 GB of derived artifacts",
+      "boundary": "Single Apple M5 Max device and fixed paths",
+      "scores": {
+        "evidence_strength": 3,
+        "expected_impact": 4,
+        "feasibility": 5,
+        "testability": 5,
+        "information_gain": 5,
+        "generality": 4,
+        "novelty": 1,
+        "cost_efficiency": 5
+      },
+      "score_reasons": {
+        "evidence_strength": "Default bundle was faster but unisolated.",
+        "expected_impact": "Saves work before SH, sorting and draw.",
+        "feasibility": "Existing upstream uniform.",
+        "testability": "One independent cutoff change.",
+        "information_gain": "Separates contribution from footprint loss.",
+        "generality": "Any static Gaussian scene.",
+        "novelty": "Existing PC mechanism.",
+        "cost_efficiency": "No additional buffers."
+      },
+      "status": "frozen"
+    },
+    {
+      "id": "P2",
+      "cycle": 1,
+      "combination_id": "R002",
+      "parent_proposal_ids": [],
+      "title": "PC fine culling plus visible SH",
+      "family": "footprint-cull",
+      "hypothesis": "PC's additional two-pixel cutoff accelerates LOD while retaining its measured quality.",
+      "mechanism": "Set minPixelSize=2 and minContribution=3 with the existing visible-only SH projector.",
+      "interaction": "Footprint and opacity signals reject different splats; evaluating SH after both avoids paying for discarded colors.",
+      "known_implementation": true,
+      "prerequisites": [
+        "Rebased GPU projector"
+      ],
+      "baseline": "Rebased exact LOD 2x; also compare P1 to isolate footprint cutoff",
+      "test": "Same frozen paired bee/shop and larger-city protocol as P1",
+      "primary_metric": "Pooled median completed moving-frame latency, separately per scene",
+      "guardrails": [
+        "Minimum foreground PSNR within 0.5 dB of exact LOD",
+        "Moving p95 within 20 percent of exact LOD",
+        "No resolution or SH-band reduction"
+      ],
+      "rejection_rule": "Promote only with at least 5 percent median gain and all guards passing; retain failed-quality settings only as explicit opt-in.",
+      "failure_modes": [
+        "Two-pixel cutoff can erase dense fur or thin details, as suggested by prior bee default error"
+      ],
+      "cost": "Same bounded local batch",
+      "boundary": "Fixed full-resolution views on one device",
+      "scores": {
+        "evidence_strength": 3,
+        "expected_impact": 4,
+        "feasibility": 5,
+        "testability": 5,
+        "information_gain": 5,
+        "generality": 4,
+        "novelty": 1,
+        "cost_efficiency": 5
+      },
+      "score_reasons": {
+        "evidence_strength": "Prior default comparison exposed both speed and quality differences.",
+        "expected_impact": "Can discard many small Gaussians.",
+        "feasibility": "Two existing upstream uniforms.",
+        "testability": "Compare with P1.",
+        "information_gain": "Tests whether default footprint policy fits merged splats.",
+        "generality": "Screen-size criterion.",
+        "novelty": "Established PC setting.",
+        "cost_efficiency": "No new passes."
+      },
+      "status": "frozen"
+    },
+    {
+      "id": "P3",
+      "cycle": 1,
+      "combination_id": "R003",
+      "parent_proposal_ids": [],
+      "title": "PC culling and cached SH",
+      "family": "color-reuse",
+      "hypothesis": "Reusing PC's color work buffer is cheaper than evaluating visible SH every moving frame.",
+      "mechanism": "Use PC-default fine culling, disable fused visible SH, and keep PC colorUpdateAngle=10 with native work-buffer updates.",
+      "interaction": "Culling cuts raster work while cached color avoids repeated SH when the camera remains inside the update cone.",
+      "known_implementation": true,
+      "prerequisites": [
+        "Native work-buffer color refresh",
+        "Existing fuseRangeSh switch"
+      ],
+      "baseline": "P2 isolates SH schedule; exact LOD remains the quality guard",
+      "test": "Same protocol, including full camera translation and rotation; SH0 city inputs cannot establish an SH-reuse benefit",
+      "primary_metric": "Pooled median completed moving-frame latency, separately per scene",
+      "guardrails": [
+        "Foreground PSNR within 0.5 dB of exact LOD",
+        "Moving p95 within 20 percent of exact LOD",
+        "Fresh globally sorted geometry every frame"
+      ],
+      "rejection_rule": "Do not promote if color refresh spikes erase median gains or either quality guard fails.",
+      "failure_modes": [
+        "Full resident-bank color updates cost more than visible-only SH",
+        "Cached view color becomes inaccurate"
+      ],
+      "cost": "Same bounded local batch; no extra color buffers",
+      "boundary": "Native PC whole-bank caching may be unsuitable inside large chunks",
+      "scores": {
+        "evidence_strength": 2,
+        "expected_impact": 3,
+        "feasibility": 5,
+        "testability": 5,
+        "information_gain": 5,
+        "generality": 3,
+        "novelty": 1,
+        "cost_efficiency": 5
+      },
+      "score_reasons": {
+        "evidence_strength": "Mechanism available but not independently tested in our renderer.",
+        "expected_impact": "Potential savings on SH-rich inputs.",
+        "feasibility": "Existing switch and upstream cache.",
+        "testability": "Direct paired P2 comparison.",
+        "information_gain": "Resolves whether our visible-SH choice was useful.",
+        "generality": "Only SH-rich scenes benefit.",
+        "novelty": "Existing PC schedule.",
+        "cost_efficiency": "No new GPU allocation."
+      },
+      "status": "frozen"
+    }
+  ],
+  "rejections": [
+    {
+      "combination_id": "R004",
+      "cycle": 1,
+      "reason": "Same implementation as P2; no separate mechanism or independent test needed."
+    },
+    {
+      "combination_id": "R005",
+      "cycle": 1,
+      "reason": "Contribution-only plus cached SH is deferred to keep this adoption batch at three experiments; P3 tests stock cached SH after stock culling."
+    },
+    {
+      "combination_id": "R006",
+      "cycle": 1,
+      "reason": "Same fine-culling and visible-SH implementation as P2."
+    }
+  ],
+  "frontier_history": [
+    {
+      "cycle": 1,
+      "created_at": "2026-09-06T03:53:11.593089+00:00",
+      "champion_identity": [
+        {
+          "family": "color-reuse",
+          "proposal_id": "P3"
+        },
+        {
+          "family": "contribution-cull",
+          "proposal_id": "P1"
+        },
+        {
+          "family": "footprint-cull",
+          "proposal_id": "P2"
+        }
+      ],
+      "ranked": [
+        {
+          "rank": 1,
+          "proposal_id": "P1",
+          "title": "Contribution culling with current-view visible SH",
+          "family": "contribution-cull",
+          "weighted_score": 61
+        },
+        {
+          "rank": 2,
+          "proposal_id": "P2",
+          "title": "PC fine culling plus visible SH",
+          "family": "footprint-cull",
+          "weighted_score": 61
+        },
+        {
+          "rank": 3,
+          "proposal_id": "P3",
+          "title": "PC culling and cached SH",
+          "family": "color-reuse",
+          "weighted_score": 54
+        }
+      ],
+      "entered": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "left": [],
+      "unchanged_updates": 0,
+      "stable": false
+    }
+  ],
+  "test_batches": [
+    {
+      "id": "T001",
+      "cycle": 1,
+      "status": "frozen",
+      "frozen_at": "2026-09-06T03:53:11.633829+00:00",
+      "proposal_ids": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "frontier_snapshot": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "protocol": {
+        "baseline": "Stock upstream main d753e98c70d67b755754c614f383d215cacbbd63, release/minified build; exact LOD on the same base is the optimization control",
+        "selection_data": "Frozen Bee and Ekotori full scans and paths from packages/splat-lod/benchmark/scenes.mjs",
+        "holdout_policy": "Freeze all three stock-setting candidates and guards before reading large-city timing or image-error results. Camera/setup preflights are not selection evidence. Report every variant, including regressions.",
+        "primary_metric": "Median completed moving-frame latency pooled across two reversed-order trials, separately per scene",
+        "guardrails": [
+          "0.5 dB maximum reduction in minimum foreground PSNR from exact LOD",
+          "20 percent maximum moving p95 regression from exact LOD",
+          "All available source SH, global current-view GPU sorting, identical physical 2560x1440 resolution"
+        ],
+        "promotion_rule": "A default needs at least 5 percent moving-median improvement with both guards passing in selection and larger-input validation. Otherwise keep exact as default and expose useful lossy profiles explicitly.",
+        "failure_handling": "Retain failures and errors; no best-run picking. One fresh closed browser tab per case. Incomplete or hidden-tab measurements are invalid, not slow-renderer results. If rerunning a scene after setup repair, rerun all of its modes in prescribed order.",
+        "seeds": [
+          17
+        ],
+        "budget": "One three-proposal selection batch, then the same fixed variants on two larger inputs; 7 configurations x 4 inputs x 2 trials, 90 static and 90 moving frames each. Under 100 GB disk, no paid services. Stop after reporting that batch; record but do not automatically execute a fresh next frontier.",
+        "commands": [
+          "npm run build:min:esm",
+          "npm --prefix packages/splat-lod run build",
+          "cd packages/splat-lod/benchmark && node build.mjs --main && node server.mjs --main",
+          "Open a fresh CUA browser tab per /?single=1&run=pc-main-20260906&index=N, set 1280x720 viewport, and press Run comparison"
+        ],
+        "artifact_dir": "packages/splat-lod/benchmark/results/pc-main-20260906"
+      },
+      "results": []
+    }
+  ],
+  "learnings": []
+}

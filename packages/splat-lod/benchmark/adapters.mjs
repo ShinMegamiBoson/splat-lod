@@ -6,6 +6,7 @@ import { webgpuAdapter } from '@luma.gl/webgpu';
 import { GPUPagedSplatRenderer, makeGPUSplatData } from '@luma.gl/splats';
 import { PROTOCOL as P } from './protocol.mjs';
 import { sequence, until } from './sequence.mjs';
+import { OPTIMIZATION_SETTINGS } from './main-protocol.mjs';
 
 const pause = () => new Promise((resolve) => {
     setTimeout(resolve, 0);
@@ -40,6 +41,7 @@ export async function createAdapter(id, canvas, scene, progress) {
             pixelRatio: 1,
             background: scene.background.map(v => v / 255),
             lodMultiplier: 2,
+            renderSettings: OPTIMIZATION_SETTINGS[id],
             onProgress: progress });
         renderer.resize(P.width, P.height, 1); renderer.setMode(id === 'ours-source' ? 'source' : 'automatic');
         return { prepare: pose => renderer.setCamera(pose),
@@ -83,14 +85,14 @@ async function createPlayCanvas(id, canvas, scene, progress) {
         clearColor: new pc.Color(...scene.background.map(v => v / 255), 1),
         toneMapping: pc.TONEMAP_NONE });
     app.root.addChild(camera);
-    progress('Loading original SH3 source…');
+    progress(`Loading original SH${scene.shBands ?? 3} source…`);
     const asset = new pc.Asset('source', 'gsplat', { url: scene.source }, id === 'pc-full' ? { reorder: false, decompress: true } : {});
     const loaded = new Promise((resolve, reject) => {
         asset.ready(resolve); asset.once('error', reject);
     });
     app.assets.add(asset); app.assets.load(asset); await loaded;
     const data = asset.resource.gsplatData;
-    if (data.numSplats !== scene.count || data.shBands !== 3) throw new Error('PlayCanvas count/SH mismatch');
+    if (data.numSplats !== scene.count || data.shBands !== (scene.shBands ?? 3)) throw new Error('PlayCanvas count/SH mismatch');
     const entity = new pc.Entity('source'); entity.addComponent('gsplat', { asset: asset.id, unified: true }); app.root.addChild(entity);
     const prepare = (pose) => {
         camera.setPosition(...pose.position); camera.lookAt(new pc.Vec3(...pose.target), new pc.Vec3(...pose.up));

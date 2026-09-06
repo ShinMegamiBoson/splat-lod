@@ -4,7 +4,8 @@ import { sequence, indices, until } from './sequence.mjs';
 const status = document.querySelector('#status'), output = document.querySelector('#result'), button = document.querySelector('#start');
 const query = new URLSearchParams(location.search), config = await (await fetch('/config.json')).json();
 const pilot = query.get('pilot') === '1';
-const protocol = pilot ? { ...PROTOCOL, warmup: 2, samples: 6, interactiveDurationMs: 200 } : PROTOCOL;
+const selectedProtocol = config.protocol ?? PROTOCOL;
+const protocol = pilot ? { ...selectedProtocol, warmup: 2, samples: 6, interactiveDurationMs: 200 } : selectedProtocol;
 const cases = config.scenes.flatMap(scene => Array.from({ length: protocol.repeats }, (_, round) => (round % 2 ? [...protocol.modes].reverse() : protocol.modes).map(mode => ({ scene, mode, round })))).flat();
 const index = Number(query.get('index') || 0), task = cases[index];
 const run = query.get('run') || `${pilot ? 'pilot' : 'run'}-${Date.now()}`;
@@ -26,6 +27,13 @@ const valid = (canvas) => {
     if (innerWidth !== protocol.cssWidth || innerHeight !== protocol.cssHeight) throw new Error('Use a 1280×720 browser viewport for this matched comparison');
 };
 progress('Ready to run. Keep this tab visible.'); button.disabled = false;
+if (task.scene.attribution) {
+    const credit = document.createElement('p'); credit.textContent = task.scene.attribution;
+    for (const link of task.scene.attributionLinks ?? []) {
+        const a = document.createElement('a'); a.href = link; a.textContent = ` ${link}`; credit.append(a);
+    }
+    document.querySelector('main').append(credit);
+}
 
 async function runCase() {
     button.disabled = true;

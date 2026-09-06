@@ -8,8 +8,10 @@ import numpy as np
 
 def verify(directory):
     summary = json.loads((directory / 'results.json').read_text())
-    assert summary['reportCount'] == summary['passedCount'] == 36
     p = summary['protocol']
+    expected = len(summary['scenes']) * len(p['modes']) * p['repeats']
+    assert p['version'] in (2, 3)
+    assert summary['reportCount'] == summary['passedCount'] == expected
     assert (p['width'], p['height']) == (2560, 1440)
     reports = summary['reports']
     image_checks = 0
@@ -41,18 +43,22 @@ def verify(directory):
             image_checks += 1
     for row in summary['rows']:
         trials = [r for r in reports if r['scene']['id'] == row['scene'] and r['mode'] == row['mode']]
-        assert len(trials) == 2 and {r['round'] for r in trials} == {0, 1}
+        assert len(trials) == p['repeats'] and {r['round'] for r in trials} == set(range(p['repeats']))
         for phase in ('static', 'moving'):
             samples = [s['completeMs'] for r in trials for s in r['phases'][phase]['samples']]
-            assert len(samples) == 180 and np.isfinite(samples).all()
+            assert len(samples) == p['samples'] * p['repeats'] and np.isfinite(samples).all()
             assert abs(float(np.median(samples)) - row[f'{phase}Ms']['median']) < 1e-9
             assert abs(float(np.quantile(samples, .95)) - row[f'{phase}Ms']['p95']) < 1e-9
         quality = [e for r in trials for e in r['errors']]
         if row['mode'] != 'pc-full':
-            assert abs(min(e['psnrDb'] for e in quality) - row['minPsnrDb']) < 1e-9
-            assert abs(min(e['foregroundPsnrDb'] for e in quality) - row['minForegroundPsnrDb']) < 1e-9
+            for field, squared, metric in [('psnrDb', 'squared', 'minPsnrDb'), ('foregroundPsnrDb', 'foregroundSquared', 'minForegroundPsnrDb')]:
+                value = min(np.inf if e[squared] == 0 else e[field] for e in quality)
+                if np.isfinite(value):
+                    assert abs(value - row[metric]) < 1e-9
+                else:
+                    assert row[metric] is None
     result = {'passed': True, 'independentImplementation': 'Python / NumPy', 'qualityPairsChecked': image_checks,
-              'timingRowsChecked': len(summary['rows']), 'timedFramesChecked': 6480,
+              'timingRowsChecked': len(summary['rows']), 'timedFramesChecked': expected * p['samples'] * 2,
               'summarySha256': hashlib.sha256((directory / 'results.json').read_bytes()).hexdigest()}
     (directory / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))

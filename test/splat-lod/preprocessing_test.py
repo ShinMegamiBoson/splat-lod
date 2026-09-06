@@ -8,7 +8,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts/splat-lod'))
 from build_lod import build, digest
 from make_example import make_example
-from ply_source import load_source, ply_header
+from ply_source import load_source, ply_header, FIELDS, ply_fields
 from cubes import cube_partition, cube_groups
 from moments import moment_parent
 
@@ -68,6 +68,28 @@ class PreprocessingTest(unittest.TestCase):
             source = Path(temporary) / 'bad.ply'
             source.write_bytes(ply_header(2))
             with self.assertRaises(ValueError): load_source(source)
+
+    def test_sh0_keeps_native_dc_without_inventing_higher_coefficients(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            make_example(root / 'sh3.ply')
+            full = load_source(root / 'sh3.ply')
+            columns = [FIELDS.index(f) for f in ply_fields(0)]
+            rows = np.array(full.rows[:64, columns])
+            source = root / 'sh0.ply'
+            source.write_bytes(ply_header(len(rows), 0) + rows.astype('<f4').tobytes())
+            decoded = load_source(source)
+            self.assertEqual(decoded.sh_bands, 0)
+            sh = decoded.decode(np.array([0, 4, 20]))[-1]
+            np.testing.assert_array_equal(sh[:, 1:], 0)
+            np.testing.assert_array_equal(sh[:, 0], rows[[0, 4, 20], 3:6])
+            manifest = build(source, root / 'lod', .25)
+            self.assertEqual(manifest['shBands'], 0)
+            for level in manifest['levels']:
+                bank = load_source(root / 'lod' / level['file'])
+                self.assertEqual(bank.sh_bands, 0)
+                self.assertEqual(len(bank.pos), level['splats'])
+                np.testing.assert_array_equal(bank.decode(np.array([0]))[-1][:, 1:], 0)
 
 
 if __name__ == '__main__': unittest.main()

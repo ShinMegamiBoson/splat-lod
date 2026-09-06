@@ -31,7 +31,7 @@ jobs:
       - run: npm ci --ignore-scripts
         working-directory: packages/splat-lod/benchmark
       - run: python -m pip install -r scripts/splat-lod/requirements.txt
-      - run: npm --prefix packages/splat-lod run build
+      - run: node packages/splat-lod/benchmark/build-main.mjs
       - run: npm run build
         working-directory: packages/splat-lod/benchmark
       - run: npm --prefix packages/splat-lod run lint
