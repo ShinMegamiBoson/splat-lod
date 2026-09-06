@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "node build.mjs",
-    "lint": "cd ../.. && eslint src/framework/splat-lod test/splat-lod packages/splat-lod/*.mjs examples/src/examples/splat-lod/*.mjs",
+    "lint": "cd ../.. && eslint src/framework/splat-lod test/splat-lod packages/splat-lod/*.mjs packages/splat-lod/benchmark/*.mjs examples/src/examples/splat-lod/*.mjs",
     "test": "cd ../.. && mocha 'test/splat-lod/**/*.test.mjs' --timeout 10000",
     "test:types": "../../node_modules/.bin/tsc --strict --noEmit --lib es2022,dom --module nodenext --moduleResolution nodenext ../../test/splat-lod/public-api.mts",
     "prepack": "npm run build",

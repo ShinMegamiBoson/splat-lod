@@ -1,0 +1,20 @@
+{
+  "name": "splat-lod-renderer-benchmark",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node server.mjs",
+    "summarize": "node summarize.mjs"
+  },
+  "dependencies": {
+    "playcanvas": "2.22.0",
+    "@sparkjsdev/spark": "2.1.0",
+    "three": "0.180.0",
+    "@luma.gl/splats": "9.4.0",
+    "@luma.gl/core": "9.4.0",
+    "@luma.gl/webgpu": "9.4.0",
+    "@playcanvas/splat-transform": "3.3.3",
+    "esbuild": "0.25.9"
+  }
+}
