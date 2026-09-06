@@ -10,18 +10,26 @@ def verify(directory):
     summary = json.loads((directory / 'results.json').read_text())
     p = summary['protocol']
     expected = len(summary['scenes']) * len(p['modes']) * p['repeats']
-    assert p['version'] in (2, 3, 4)
-    assert summary['reportCount'] == summary['passedCount'] == expected
+    assert p['version'] in (2, 3, 4, 5)
+    assert summary['reportCount'] == expected
+    if p['version'] < 5:
+        assert summary['passedCount'] == expected
     assert (p['width'], p['height']) == (2560, 1440)
     reports = summary['reports']
+    passed_count = sum(bool(r['passed']) for r in reports)
+    assert summary['passedCount'] == passed_count
+    assert sorted(r['index'] for r in reports) == list(range(expected))
     image_checks = 0
     warmup_frames = 0
     direct_bypass_checks = 0
     for r in reports:
-        assert r['passed'] and not r['pilot']
+        assert not r['pilot']
         assert r['browserViewport'] == [1280, 720]
         assert r['evidence'] == reports[0]['evidence']
-        if p['version'] == 4:
+        if not r['passed']:
+            assert p['version'] == 5 and (r.get('error') or r.get('disposeError'))
+            continue
+        if p['version'] >= 4:
             for phase in ('static', 'moving'):
                 warmups = r['warmups'][phase]
                 assert len(warmups) == p['warmup']
@@ -70,12 +78,17 @@ def verify(directory):
     for row in summary['rows']:
         trials = [r for r in reports if r['scene']['id'] == row['scene'] and r['mode'] == row['mode']]
         assert len(trials) == p['repeats'] and {r['round'] for r in trials} == set(range(p['repeats']))
+        assert row['passed'] == all(r['passed'] for r in trials)
+        if not row['passed']:
+            assert p['version'] == 5 and row['failures']
+            assert 'movingMs' not in row and 'minPsnrDb' not in row
+            continue
         for phase in ('static', 'moving'):
             samples = [s['completeMs'] for r in trials for s in r['phases'][phase]['samples']]
             assert len(samples) == p['samples'] * p['repeats'] and np.isfinite(samples).all()
             assert abs(float(np.median(samples)) - row[f'{phase}Ms']['median']) < 1e-9
             assert abs(float(np.quantile(samples, .95)) - row[f'{phase}Ms']['p95']) < 1e-9
-            if p['version'] == 4 or 'mean' in row[f'{phase}Ms']:
+            if p['version'] >= 4 or 'mean' in row[f'{phase}Ms']:
                 assert abs(float(np.mean(samples)) - row[f'{phase}Ms']['mean']) < 1e-9
         quality = [e for r in trials for e in r['errors']]
         if row['mode'] != 'pc-full':
@@ -86,10 +99,11 @@ def verify(directory):
                 else:
                     assert row[metric] is None
     result = {'passed': True, 'independentImplementation': 'Python / NumPy', 'qualityPairsChecked': image_checks,
-              'timingRowsChecked': len(summary['rows']), 'timedFramesChecked': expected * p['samples'] * 2,
+              'timingRowsChecked': sum(bool(r['passed']) for r in summary['rows']),
+              'failedCasesRetained': expected - passed_count, 'timedFramesChecked': passed_count * p['samples'] * 2,
               'summarySha256': hashlib.sha256((directory / 'results.json').read_bytes()).hexdigest()}
-    if p['version'] == 4:
-        assert warmup_frames == expected * p['warmup'] * 2
+    if p['version'] >= 4:
+        assert warmup_frames == passed_count * p['warmup'] * 2
         result.update(warmupFramesChecked=warmup_frames, directBypassTransitionsChecked=direct_bypass_checks)
     (directory / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))

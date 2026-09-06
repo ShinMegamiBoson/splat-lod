@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Standalone splat LOD</title>
+  <title>Splat LOD</title>
   <style>
     *{box-sizing:border-box}body{margin:0;background:#121212;color:#eee;font:15px system-ui}canvas{display:block;width:100vw;height:100vh;touch-action:none}aside{position:fixed;top:18px;left:18px;max-width:min(480px,calc(100vw - 36px));background:#161c22ed;border:1px solid #38434e;border-radius:14px;padding:18px}h1{font-size:20px;margin:0 0 8px}p{margin:8px 0;line-height:1.45}button,select,input{font:inherit}button,select{padding:7px 10px;background:#283440;color:white;border:1px solid #586674;border-radius:6px}button:disabled,select:disabled,input:disabled{opacity:.45}label{display:block;margin:10px 0}pre{white-space:pre-wrap;max-height:30vh;overflow:auto;font-size:11px}summary{cursor:pointer;margin-top:14px}#status{color:#9bd6c7}#stats{font-variant-numeric:tabular-nums;color:#c0c9d0}a{color:#addddd}.row{display:flex;gap:8px;flex-wrap:wrap}
   </style>
@@ -10,7 +10,7 @@
 <body>
   <canvas id="view" aria-label="Interactive Gaussian splat scene"></canvas>
   <aside>
-    <h1>Standalone splat LOD</h1>
+    <h1>Splat LOD</h1>
     <p id="status" role="status">Loading the scene…</p>
     <p id="hint">Drag to look · WASD move · Shift speeds up</p>
     <p id="stats"></p>
@@ -26,7 +26,7 @@
       <button id="check" disabled>Check renderer</button>
       <pre id="proof" aria-label="Verification results"></pre>
     </details>
-    <p><a href="https://github.com/ShinMegamiBoson/playcanvas-splat-lod">Library and methodology</a></p>
+    <p><a href="https://github.com/ShinMegamiBoson/splat-lod">Library and methodology</a></p>
   </aside>
   <script type="module" src="/example.mjs"></script>
 </body>

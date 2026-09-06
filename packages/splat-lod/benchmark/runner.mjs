@@ -53,7 +53,7 @@ async function runCase() {
         devicePixelRatio,
         browserViewport: [innerWidth, innerHeight],
         phases: {},
-        ...(protocol.version === 4 ? { warmups: {} } : {}),
+        ...(protocol.version >= 4 ? { warmups: {} } : {}),
         quality: [],
         passed: false };
     let adapter, previewPixels;
@@ -67,9 +67,9 @@ async function runCase() {
                 await raf();
                 const start = performance.now();
                 await adapter.prepare(cameraAt(task.scene, phase === 'static' ? 0 : i / protocol.warmup)); adapter.render(); await adapter.flush();
-                if (protocol.version === 4) warmups.push({ completeMs: performance.now() - start, path: adapter.trace?.() ?? null });
+                if (protocol.version >= 4) warmups.push({ completeMs: performance.now() - start, path: adapter.trace?.() ?? null });
             });
-            if (protocol.version === 4) report.warmups[phase] = warmups;
+            if (protocol.version >= 4) report.warmups[phase] = warmups;
             const samples = [];
             await sequence(indices(protocol.samples), async (i) => {
                 await raf(); valid(canvas);
@@ -79,7 +79,7 @@ async function runCase() {
                 samples.push({ prepareMs: prepared - start,
                     submitMs: submitted - prepared,
                     completeMs: completed - start,
-                    ...(protocol.version === 4 ? { path: adapter.trace?.() ?? null } : {}) });
+                    ...(protocol.version >= 4 ? { path: adapter.trace?.() ?? null } : {}) });
                 if (i % 15 === 0) progress(`Measuring ${phase}: ${i + 1}/${protocol.samples}`);
             });
             report.phases[phase] = { samples, medianMs: quantile(samples.map(s => s.completeMs), 0.5), p95Ms: quantile(samples.map(s => s.completeMs), 0.95) };
@@ -94,7 +94,7 @@ async function runCase() {
                 submitMs: performance.now() - prepareStart,
                 t,
                 sortLag: adapter.sortLag?.() || null,
-                ...(protocol.version === 4 ? { path: adapter.trace?.() ?? null } : {}) });
+                ...(protocol.version >= 4 ? { path: adapter.trace?.() ?? null } : {}) });
             previous = now;
         });
         await adapter.flush();

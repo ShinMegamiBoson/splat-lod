@@ -1,6 +1,6 @@
-# PlayCanvas Splat LOD
+# Splat LOD
 
-Full-resolution splats up close, fewer splats farther away. A standalone WebGPU renderer forked from PlayCanvas, with per-cube LOD and SH0/SH3.
+Full-resolution splats up close, fewer splats farther away. A standalone WebGPU renderer with per-cube LOD and SH0/SH3.
 
 <!-- benefit-rerun:start -->
 ## 1.45–2.17× faster than PlayCanvas full quality in our moving-camera tests
@@ -37,13 +37,13 @@ Automatic mode can switch to originals during the separate image captures. Its h
 
 **Historical same-run comparison, September 6, 2026 UTC:** our v0.1.0 bundle, PlayCanvas 2.22.0, Spark 2.1.0 and luma.gl 9.4.0. These are not new v0.3 measurements. Three complete SH3 scenes at 2560×1440 on an Apple M5 Max with 128 GiB RAM; two reversed-order trials, 6,480 timed frames.
 
-Median frame times while moving the camera, including current-view sorting and GPU completion—not interactive FPS:
+Median frame times while moving the camera, including current-view sorting and GPU completion—not interactive FPS. Bold is the fastest measured renderer; speedup is versus the next-fastest. Margins within 5% are near-ties, not established wins:
 
-| Scene / original splats | Our v0.1, LOD 2× | PC 2.22 defaults | PC 2.22 full quality | Spark 2.1¹ | luma.gl 9.4² |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Cicada Shell · 0.65M | 5.21 ms | 4.84 ms | 5.29 ms | 19.77 ms | 6.32 ms |
-| Bumblebee · 2.32M | 5.39 ms | 4.93 ms | 8.61 ms | 29.00 ms | 10.39 ms |
-| Ekotori shop · 7.08M | 10.10 ms | 10.85 ms | 16.83 ms | 88.80 ms | 24.04 ms |
+| Scene / original splats | Our v0.1, LOD 2× | PC 2.22 defaults | PC 2.22 full quality | Spark 2.1¹ | luma.gl 9.4² | Fastest | Over next-best |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |
+| Cicada Shell · 0.65M | 5.21 ms | **4.84 ms** | 5.29 ms | 19.77 ms | 6.32 ms | PC defaults | 1.08× |
+| Bumblebee · 2.32M | 5.39 ms | **4.93 ms** | 8.61 ms | 29.00 ms | 10.39 ms | PC defaults | 1.09× |
+| Ekotori shop · 7.08M | **10.10 ms** | 10.85 ms | 16.83 ms | 88.80 ms | 24.04 ms | Splat LOD v0.1 | 1.07× |
 
 Minimum foreground RGB PSNR across five poses and both trials, against same-trial **PC full quality**. Higher is better; the reference compared with itself has zero error. These quality values come from the same configurations and cohort as the speed table.
 
@@ -60,6 +60,7 @@ PC defaults keeps its size/contribution cutoffs and cached-SH threshold; full qu
 ¹ Spark's completed-frame test waits for a current-camera sort. Its normal asynchronous loop is timed separately, so this is not a claim that its interactive FPS is this much slower. ² luma.gl's renderer is experimental. All use SH3, but parameter packing, projection/filtering and sorting differ.
 
 [Full results, p95 and interactive timings](packages/splat-lod/BENCHMARKS.md) · [Pinned versions and methodology](packages/splat-lod/benchmark/README.md) · [Raw measurements](packages/splat-lod/benchmark/measurements/2026-09-05/summary.json)
+
 <!-- multi-scene-benchmark:end -->
 
 <details>
@@ -132,7 +133,7 @@ Splat IDs stay tied to the scene. Changing the view selects ranges of IDs instea
 ## Use it
 
 ```sh
-npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
+npm install https://github.com/ShinMegamiBoson/splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
 ```
 
 ```js
@@ -149,7 +150,7 @@ renderer.start();
 
 Use the included Python tools to build the LOD files and manifest first. The engine is bundled; there are no runtime imports from a CDN or the original project.
 
-[Setup, preprocessing and API](packages/splat-lod/README.md) · [Download](https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/tag/splat-lod-v0.3.0)
+[Setup, preprocessing and API](packages/splat-lod/README.md) · [Download](https://github.com/ShinMegamiBoson/splat-lod/releases/tag/splat-lod-v0.3.0)
 
 ## Limits
 

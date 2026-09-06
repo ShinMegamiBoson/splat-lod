@@ -155,10 +155,11 @@ async function createSpark(canvas, sceneConfig, progress) {
         focalAdjustment: 2,
         preBlurAmount: 0.3,
         blurAmount: 0 });
-    scene.add(spark); progress('Loading original SH3 source into Spark…');
+    const shBands = sceneConfig.shBands ?? 3;
+    scene.add(spark); progress(`Loading original SH${shBands} source into Spark…`);
     const mesh = new SplatMesh({ url: sceneConfig.source, editable: false, raycastable: false, lod: false, enableLod: false });
-    mesh.maxSh = 3; scene.add(mesh); await mesh.initialized;
-    if (mesh.numSplats !== sceneConfig.count || mesh.splats.getNumSh() !== 3) throw new Error('Spark count/SH mismatch');
+    mesh.maxSh = shBands; scene.add(mesh); await mesh.initialized;
+    if (mesh.numSplats !== sceneConfig.count || mesh.splats.getNumSh() !== shBands) throw new Error('Spark count/SH mismatch');
     const gl = renderer.getContext(), state = { lastKey: null };
     const prepare = async (pose, interactive = false) => {
         setThree(camera, pose); spark.autoUpdate = interactive;
@@ -254,22 +255,25 @@ async function createLuma(canvas, scene, progress) {
         gpuError = e.error;
     });
     const manifestUrl = new URL(scene.luma, location.href), meta = await (await fetch(manifestUrl)).json(), pages = [];
-    if (meta.count !== scene.count || meta.shDegree !== 3) throw new Error('Luma input count/SH mismatch');
+    const shBands = scene.shBands ?? 3;
+    if (meta.count !== scene.count || meta.shDegree !== shBands || ![0, 3].includes(shBands)) throw new Error('Luma input count/SH mismatch');
     await sequence(meta.pages, async (page, i) => {
-        progress(`Loading native Float32 SH3 page ${i + 1}/${meta.pages.length}…`);
+        progress(`Loading native Float32 SH${shBands} page ${i + 1}/${meta.pages.length}…`);
         const response = await fetch(new URL(page.file, manifestUrl)); if (!response.ok) throw new Error('Missing Luma page');
         const buffer = await response.arrayBuffer();
         const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', buffer))].map(b => b.toString(16).padStart(2, '0')).join('');
-        if (hash !== page.sha256 || buffer.byteLength !== page.count * 60 * 4) throw new Error('Luma page hash/size mismatch');
+        if (hash !== page.sha256 || buffer.byteLength !== page.count * (shBands ? 60 : 15) * 4) throw new Error('Luma page hash/size mismatch');
         const columns = {}; let offset = 0;
-        for (const [key, width] of [['positions', 3], ['scales', 3], ['rotations', 4], ['colors', 4], ['opacities', 1], ['sphericalHarmonics', 45]]) {
+        const fields = [['positions', 3], ['scales', 3], ['rotations', 4], ['colors', 4], ['opacities', 1]];
+        if (shBands) fields.push(['sphericalHarmonics', 45]);
+        for (const [key, width] of fields) {
             columns[key] = new Float32Array(buffer, offset, page.count * width); offset += page.count * width * 4;
         }
-        pages.push({ id: String(i), data: makeGPUSplatData(device, { ...columns, sphericalHarmonicsDegree: 3 }) });
+        pages.push({ id: String(i), data: makeGPUSplatData(device, { ...columns, sphericalHarmonicsDegree: shBands }) });
     });
     const renderer = new GPUPagedSplatRenderer(device, { pages,
         viewportSize: [P.width, P.height],
-        sphericalHarmonicsDegree: 3,
+        sphericalHarmonicsDegree: shBands,
         clearColor: [...scene.background.map(v => v / 255), 1],
         toneMapping: 'none',
         alphaCutoff: 1 / 255,
@@ -301,7 +305,7 @@ async function createLuma(canvas, scene, progress) {
         stats() {
             return { engine: 'luma.gl 9.4.0 GPUPagedSplatRenderer (experimental)',
                 sourceCount: meta.count,
-                shBands: 3,
+                shBands,
                 sourceEncoding: 'native Float32 columns',
                 renderer: renderer.stats,
                 encodedFrames,

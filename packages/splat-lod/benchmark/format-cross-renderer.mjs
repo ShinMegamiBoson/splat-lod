@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { rankRenderers } from './rank-renderers.mjs';
 
 // The historical cohort is deliberately separate from the current runtime's reruns.
 export function formatCrossRendererComparison(summary) {
@@ -10,11 +11,18 @@ export function formatCrossRendererComparison(summary) {
     const row = (scene, mode) => summary.rows.find(r => r.scene === scene && r.mode === mode);
     const f = n => n.toFixed(2);
     const table = rows => rows.map(r => `| ${r.join(' | ')} |`).join('\n');
+    const modes = ['ours-lod', 'pc-default', 'pc-full', 'spark', 'luma'];
+    const labels = { 'ours-lod': 'Splat LOD v0.1', 'pc-default': 'PC defaults', 'pc-full': 'PC full quality', spark: 'Spark', luma: 'luma.gl' };
     const latency = table([
-        ['Scene / original splats', 'Our v0.1, LOD 2×', 'PC 2.22 defaults', 'PC 2.22 full quality', 'Spark 2.1¹', 'luma.gl 9.4²'],
-        ['---', '---:', '---:', '---:', '---:', '---:'],
-        ...summary.scenes.map(s => [`${s.name} · ${f(s.count / 1e6)}M`,
-            ...['ours-lod', 'pc-default', 'pc-full', 'spark', 'luma'].map(m => `${f(row(s.id, m).movingMs.median)} ms`)])
+        ['Scene / original splats', 'Our v0.1, LOD 2×', 'PC 2.22 defaults', 'PC 2.22 full quality', 'Spark 2.1¹', 'luma.gl 9.4²', 'Fastest', 'Over next-best'],
+        ['---', '---:', '---:', '---:', '---:', '---:', '---', '---:'],
+        ...summary.scenes.map((s) => {
+            const rank = rankRenderers(summary.rows.filter(r => r.scene === s.id), modes);
+            return [`${s.name} · ${f(s.count / 1e6)}M`, ...modes.map((m) => {
+                const value = `${f(row(s.id, m).movingMs.median)} ms`;
+                return rank.winners.includes(m) ? `**${value}**` : value;
+            }), rank.winners.map(m => labels[m]).join(' / '), `${f(rank.speedup)}×${rank.nearTie ? ' (near-tie)' : ''}`];
+        })
     ]);
     const quality = table([
         ['Scene', 'Our v0.1, LOD 2×', 'PC defaults', 'Spark 2.1', 'luma.gl 9.4'],
@@ -26,7 +34,7 @@ export function formatCrossRendererComparison(summary) {
     return [
         '## Multi-scene benchmarks — PlayCanvas, Spark and luma.gl',
         '**Historical same-run comparison, September 6, 2026 UTC:** our v0.1.0 bundle, PlayCanvas 2.22.0, Spark 2.1.0 and luma.gl 9.4.0. These are not new v0.3 measurements. Three complete SH3 scenes at 2560×1440 on an Apple M5 Max with 128 GiB RAM; two reversed-order trials, 6,480 timed frames.',
-        'Median frame times while moving the camera, including current-view sorting and GPU completion—not interactive FPS:',
+        'Median frame times while moving the camera, including current-view sorting and GPU completion—not interactive FPS. Bold is the fastest measured renderer; speedup is versus the next-fastest. Margins within 5% are near-ties, not established wins:',
         latency,
         'Minimum foreground RGB PSNR across five poses and both trials, against same-trial **PC full quality**. Higher is better; the reference compared with itself has zero error. These quality values come from the same configurations and cohort as the speed table.',
         quality,

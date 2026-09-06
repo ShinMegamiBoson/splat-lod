@@ -8,10 +8,12 @@ import { execFileSync } from 'node:child_process';
 import { SCENES } from './scenes.mjs';
 import { MAIN_PROTOCOL } from './main-protocol.mjs';
 import { BENEFIT_PROTOCOL } from './benefit-protocol.mjs';
+import { LARGE_PROTOCOL } from './large-protocol.mjs';
 const root = fileURLToPath(new URL('.', import.meta.url));
+const large = process.argv.includes('--large');
 const benefit = process.argv.includes('--benefit');
-const main = process.argv.includes('--main') || benefit;
-const config = JSON.parse(await readFile(path.join(root, main ? 'config-main.local.json' : 'config.local.json')));
+const main = process.argv.includes('--main') || benefit || large;
+const config = JSON.parse(await readFile(path.join(root, large ? 'config-large.local.json' : main ? 'config-main.local.json' : 'config.local.json')));
 const fileHash = async file => createHash('sha256').update(await readFile(file)).digest('hex');
 const revision = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const publicConfig = { libraryRevision: main ? revision : '21bf25a67082af374fd899b6d91846381bb89c89',
@@ -20,7 +22,7 @@ const publicConfig = { libraryRevision: main ? revision : '21bf25a67082af374fd89
         harnessSha256: await fileHash(path.join(root, main ? 'build/main-runner.js' : 'build/runner.js')),
         ...(main ? { upstreamRevision: MAIN_PROTOCOL.engineRevision, upstreamBundleSha256: await fileHash(path.resolve(root, '../../../build/playcanvas.min.mjs')) } : {}),
         dependencyLockSha256: await fileHash(path.join(root, 'package-lock.json')) },
-    ...(main ? { protocol: benefit ? BENEFIT_PROTOCOL : MAIN_PROTOCOL } : {}),
+    ...(main ? { protocol: large ? LARGE_PROTOCOL : benefit ? BENEFIT_PROTOCOL : MAIN_PROTOCOL } : {}),
     scenes: main ? config.scenes : SCENES };
 const port = Number(process.env.PORT || 8016);
 const beneath = (dir, name) => {

@@ -11,6 +11,8 @@ from make_example import make_example
 from ply_source import load_source, ply_header, FIELDS, ply_fields
 from cubes import cube_partition, cube_groups
 from moments import moment_parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'packages/splat-lod/benchmark'))
+from export_luma import export
 
 
 class PreprocessingTest(unittest.TestCase):
@@ -90,6 +92,38 @@ class PreprocessingTest(unittest.TestCase):
                 self.assertEqual(bank.sh_bands, 0)
                 self.assertEqual(len(bank.pos), level['splats'])
                 np.testing.assert_array_equal(bank.decode(np.array([0]))[-1][:, 1:], 0)
+
+    def test_luma_pages_preserve_native_sh0_and_sh3_parameters(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            make_example(root / 'full.ply')
+            full = load_source(root / 'full.ply')
+            for bands in (0, 3):
+                columns = [FIELDS.index(f) for f in ply_fields(bands)]
+                rows = np.array(full.rows[:64, columns])
+                source = root / f'sh{bands}.ply'
+                source.write_bytes(ply_header(len(rows), bands) + rows.astype('<f4').tobytes())
+                output = root / f'pages{bands}'
+                export(source, output)
+                manifest = json.loads((output / 'manifest.json').read_text())
+                self.assertEqual(manifest['shDegree'], bands)
+                self.assertEqual(manifest['sourceSha256'], digest(source))
+                self.assertEqual(manifest['count'], 64)
+                page = output / manifest['pages'][0]['file']
+                self.assertEqual(digest(page), manifest['pages'][0]['sha256'])
+                flat = np.fromfile(page, '<f4')
+                self.assertEqual(len(flat), 64 * (60 if bands else 15))
+                p, cov, scales, opacity, sh = load_source(source).decode(np.arange(64))
+                np.testing.assert_array_equal(flat[:64*3].reshape(64, 3), p)
+                np.testing.assert_allclose(flat[64*3:64*6].reshape(64, 3), scales)
+                q = flat[64*6:64*10].reshape(64, 4)
+                np.testing.assert_allclose(np.linalg.norm(q, axis=1), 1, atol=1e-6)
+                color = flat[64*10:64*14].reshape(64, 4)
+                np.testing.assert_allclose(color[:, :3], sh[:, 0] * .28209479177387814 + .5)
+                np.testing.assert_array_equal(color[:, 3], 1)
+                np.testing.assert_allclose(flat[64*14:64*15], opacity)
+                if bands:
+                    np.testing.assert_array_equal(flat[64*15:].reshape(64, 15, 3), sh[:, 1:])
 
 
 if __name__ == '__main__': unittest.main()

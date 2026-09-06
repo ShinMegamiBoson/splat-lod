@@ -1,6 +1,6 @@
-# Standalone splat LOD
+# Splat LOD
 
-A standalone cube-LOD renderer, bundled with PlayCanvas main at [d753e98](https://github.com/playcanvas/engine/commit/d753e98c70d67b755754c614f383d215cacbbd63) (2.23.0-beta.2). It doesn't need the original project, a CDN, or a PlayCanvas npm dependency at runtime.
+A standalone WebGPU renderer with automatic cube-based LOD. The engine is bundled: no runtime CDN or engine-package dependency.
 
 This is **WebGPU-only, experimental, and lossy when LOD is enabled**. It renders Gaussians, not MPI tiles or impostors. The default **2×** setting selects lower detail sooner; it does not promise twice the frame rate.
 
@@ -11,7 +11,7 @@ Automatic mode now checks whether LOD actually helps. It falls back to a direct 
 The GitHub release contains an installable ESM package. It is not published to the npm registry:
 
 ```sh
-npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
+npm install https://github.com/ShinMegamiBoson/splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
 ```
 
 ```js
@@ -131,8 +131,8 @@ These are the upstream projector's filters. `exact` disables extra culling; it d
 ## Build and run the example from the fork
 
 ```sh
-git clone https://github.com/ShinMegamiBoson/playcanvas-splat-lod.git
-cd playcanvas-splat-lod
+git clone https://github.com/ShinMegamiBoson/splat-lod.git
+cd splat-lod
 npm ci --ignore-scripts
 npm --prefix packages/splat-lod run build
 
@@ -156,4 +156,4 @@ npm --prefix packages/splat-lod run test:types
 
 The package build reuses upstream's release transforms and bundles the fork's source. It does not fetch a runtime from a CDN. Generated bundles, scans, bank files, and local proof captures are not committed.
 
-MIT, retaining PlayCanvas's license. This is an independent fork, not an official PlayCanvas release. Third-party scene licenses remain separate.
+MIT, retaining PlayCanvas's license. This is an independent fork of [PlayCanvas main at d753e98](https://github.com/playcanvas/engine/commit/d753e98c70d67b755754c614f383d215cacbbd63) (2.23.0-beta.2), not an official PlayCanvas release. Third-party scene licenses remain separate.
