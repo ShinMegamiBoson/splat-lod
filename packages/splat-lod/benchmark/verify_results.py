@@ -15,10 +15,36 @@ def verify(directory):
     assert (p['width'], p['height']) == (2560, 1440)
     reports = summary['reports']
     image_checks = 0
+    warmup_frames = 0
+    direct_bypass_checks = 0
     for r in reports:
         assert r['passed'] and not r['pilot']
         assert r['browserViewport'] == [1280, 720]
         assert r['evidence'] == reports[0]['evidence']
+        if p['version'] == 4:
+            for phase in ('static', 'moving'):
+                warmups = r['warmups'][phase]
+                assert len(warmups) == p['warmup']
+                assert np.isfinite([s['completeMs'] for s in warmups]).all()
+                warmup_frames += len(warmups)
+            if r['mode'].startswith('ours-'):
+                groups = [r['warmups'][phase] + r['phases'][phase]['samples'] for phase in ('static', 'moving')]
+                groups.append(r['interactive']['frames'])
+                for group in groups:
+                    previous = None
+                    for sample in group:
+                        trace = sample['path']
+                        assert trace['path'] in ('direct', 'lod')
+                        if r['mode'] == 'ours-direct':
+                            assert trace['path'] == 'direct' and not trace['probing']
+                        if r['mode'] == 'ours-fixed':
+                            assert trace['path'] == 'lod' and not trace['probing']
+                        if previous and trace['path'] == 'direct':
+                            assert trace['selections'] == previous['selections']
+                            assert trace['prefixScans'] == previous['prefixScans']
+                            assert trace['bankDispatches'] - previous['bankDispatches'] == 1
+                            direct_bypass_checks += 1
+                        previous = trace
         reference = next(a for a in reports if a['scene']['id'] == r['scene']['id'] and a['mode'] == 'pc-full' and a['round'] == r['round'])
         for i, error in enumerate(r['errors']):
             first = (directory / str(reference['index']) / f'quality-{i}.rgba').read_bytes()
@@ -49,6 +75,8 @@ def verify(directory):
             assert len(samples) == p['samples'] * p['repeats'] and np.isfinite(samples).all()
             assert abs(float(np.median(samples)) - row[f'{phase}Ms']['median']) < 1e-9
             assert abs(float(np.quantile(samples, .95)) - row[f'{phase}Ms']['p95']) < 1e-9
+            if p['version'] == 4 or 'mean' in row[f'{phase}Ms']:
+                assert abs(float(np.mean(samples)) - row[f'{phase}Ms']['mean']) < 1e-9
         quality = [e for r in trials for e in r['errors']]
         if row['mode'] != 'pc-full':
             for field, squared, metric in [('psnrDb', 'squared', 'minPsnrDb'), ('foregroundPsnrDb', 'foregroundSquared', 'minForegroundPsnrDb')]:
@@ -60,6 +88,9 @@ def verify(directory):
     result = {'passed': True, 'independentImplementation': 'Python / NumPy', 'qualityPairsChecked': image_checks,
               'timingRowsChecked': len(summary['rows']), 'timedFramesChecked': expected * p['samples'] * 2,
               'summarySha256': hashlib.sha256((directory / 'results.json').read_bytes()).hexdigest()}
+    if p['version'] == 4:
+        assert warmup_frames == expected * p['warmup'] * 2
+        result.update(warmupFramesChecked=warmup_frames, directBypassTransitionsChecked=direct_bypass_checks)
     (directory / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))
 

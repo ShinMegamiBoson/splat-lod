@@ -1,0 +1,198 @@
+{
+  "kind": "installed-package-with-measured-lod-fallback",
+  "version": "0.3.0",
+  "engineRevision": "d753e98c70d67b755754c614f383d215cacbbd63",
+  "runtimeSha256": "6411f9e357dd3e07b469c2d2b6231ab8d0a898391feb89451d3aee68b3a12213",
+  "installedPackage": true,
+  "installedRuntimeMatchesTimedRuntime": true,
+  "syntheticSH0": {
+    "sourceCount": 16384,
+    "residentCount": 31088,
+    "chunkCount": 328,
+    "viewport": [
+      2560,
+      1440
+    ],
+    "sourceHashVerified": true,
+    "globalDepthSort": true,
+    "rawLocalProof": "proof-1788690463894.json",
+    "measuredChoice": {
+      "enabled": true,
+      "path": "lod",
+      "reason": "lod-faster",
+      "probing": false,
+      "timestampSupported": true,
+      "decision": {
+        "directMs": 1.703936,
+        "lodMs": 1.441792,
+        "directP95": 2.2577152,
+        "lodP95": 1.572864,
+        "gain": 0.15384615384615385,
+        "samplesPerPath": 12
+      },
+      "directFrames": 48,
+      "lodFrames": 1385,
+      "probeFrames": 96
+    },
+    "checks": [
+      {
+        "view": "near",
+        "mode": "automatic",
+        "path": "lod",
+        "selected": 10112,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      },
+      {
+        "view": "near",
+        "mode": "source",
+        "path": "direct",
+        "selected": 16384,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      },
+      {
+        "view": "near",
+        "mode": "lower-only",
+        "path": "lod",
+        "selected": 6392,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      },
+      {
+        "view": "far",
+        "mode": "automatic",
+        "path": "lod",
+        "selected": 2196,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      },
+      {
+        "view": "far",
+        "mode": "source",
+        "path": "direct",
+        "selected": 16384,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      },
+      {
+        "view": "far",
+        "mode": "lower-only",
+        "path": "lod",
+        "selected": 2196,
+        "decisionMismatches": 0,
+        "idMismatches": 0,
+        "passed": true
+      }
+    ],
+    "bypass": {
+      "frames": 8,
+      "selectionPasses": 0,
+      "prefixScans": 0,
+      "sourceDispatches": 8,
+      "passed": true
+    },
+    "colorRoundTrip": {
+      "exact": false,
+      "psnrDb": 76.51329036253782,
+      "maximum": 3
+    },
+    "colorChange": {
+      "exact": false,
+      "psnrDb": 16.629482681460583,
+      "maximum": 202
+    },
+    "passed": true
+  },
+  "fallbackControls": [
+    {
+      "rawLocalProof": "proof-1788690169257.json",
+      "multiplier": 0.001,
+      "performance": {
+        "enabled": true,
+        "path": "direct",
+        "reason": "direct-preferred",
+        "probing": false,
+        "timestampSupported": true,
+        "decision": {
+          "directMs": 2.523136,
+          "lodMs": 2.9491199999999997,
+          "directP95": 2.8704767999999996,
+          "lodP95": 3.2702464,
+          "gain": -0.16883116883116878,
+          "samplesPerPath": 12
+        },
+        "directFrames": 1648,
+        "lodFrames": 48,
+        "probeFrames": 96
+      },
+      "bypass": {
+        "frames": 8,
+        "selectionPasses": 0,
+        "prefixScans": 0,
+        "sourceDispatches": 8,
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "rawLocalProof": "proof-1788690284366.json",
+      "multiplier": 2,
+      "performance": {
+        "enabled": true,
+        "path": "direct",
+        "reason": "direct-preferred",
+        "probing": false,
+        "timestampSupported": true,
+        "decision": {
+          "directMs": 2.3265279999999997,
+          "lodMs": 2.29376,
+          "directP95": 3.1621119999999996,
+          "lodP95": 2.7394047999999995,
+          "gain": 0.014084507042253502,
+          "samplesPerPath": 12
+        },
+        "directFrames": 6681,
+        "lodFrames": 8809,
+        "probeFrames": 832
+      },
+      "bypass": {
+        "frames": 8,
+        "selectionPasses": 0,
+        "prefixScans": 0,
+        "sourceDispatches": 8,
+        "passed": true
+      },
+      "passed": true
+    }
+  ],
+  "benchmark": {
+    "report": "BENEFIT-BENCHMARKS.md",
+    "evidence": "benchmark/measurements/2026-09-06-benefit",
+    "casesPassed": 32,
+    "timedFramesChecked": 5760,
+    "warmupFramesChecked": 4096,
+    "qualityPairsChecked": 160,
+    "directBypassTransitionsChecked": 4693,
+    "independentVerification": "Python / NumPy",
+    "inputCounts": [
+      2315943,
+      7081853,
+      16184440,
+      32368879
+    ],
+    "inputSHBands": [
+      3,
+      3,
+      0,
+      0
+    ]
+  },
+  "scope": "Installed runtime matches the frozen benchmark. Live positive, losing and marginal cost decisions are examples, not guarantees for every frame or view. Automatic image captures may use originals after view jumps; fixed-LOD quality remains lossy.",
+  "passed": true
+}

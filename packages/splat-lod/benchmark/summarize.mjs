@@ -8,7 +8,7 @@ import { MAIN_PROTOCOL } from './main-protocol.mjs';
 import { BENEFIT_PROTOCOL } from './benefit-protocol.mjs';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-const stats = a => ({ samples: a.length, median: quantile(a, 0.5), p95: quantile(a, 0.95), min: Math.min(...a), max: Math.max(...a) });
+const stats = a => ({ samples: a.length, mean: a.reduce((sum, v) => sum + v, 0) / a.length, median: quantile(a, 0.5), p95: quantile(a, 0.95), min: Math.min(...a), max: Math.max(...a) });
 
 export async function summarize(directory, protocol = PROTOCOL) {
     const reports = [];

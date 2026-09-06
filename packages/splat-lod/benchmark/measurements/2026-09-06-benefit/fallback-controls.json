@@ -1,0 +1,718 @@
+[
+  {
+    "rawLocalProof": "proof-1788690169257.json",
+    "proof": {
+      "passed": true,
+      "info": {
+        "engine": {
+          "version": "2.23.0-beta.2",
+          "revision": "d753e98c70d67b755754c614f383d215cacbbd63"
+        },
+        "backend": "webgpu",
+        "shBands": 0,
+        "renderSettings": {
+          "profile": "exact",
+          "shMode": "visible",
+          "minPixelSize": 0,
+          "minContribution": 0,
+          "colorUpdateAngle": 0
+        },
+        "performance": {
+          "enabled": true,
+          "path": "direct",
+          "reason": "direct-preferred",
+          "probing": false,
+          "timestampSupported": true,
+          "decision": {
+            "directMs": 2.523136,
+            "lodMs": 2.9491199999999997,
+            "directP95": 2.8704767999999996,
+            "lodP95": 3.2702464,
+            "gain": -0.16883116883116878,
+            "samplesPerPath": 12
+          },
+          "directFrames": 1648,
+          "lodFrames": 48,
+          "probeFrames": 96
+        },
+        "dispatch": {
+          "skipped": true,
+          "path": "direct",
+          "directRanges": true,
+          "selections": 12,
+          "prefixScans": 12,
+          "directFrames": 1648,
+          "projection": {
+            "name": "world-indexed-ranges-visible-sh",
+            "gpuIdExpansion": false,
+            "bankDispatchesPerFrame": 1,
+            "globalDepthSort": true,
+            "visibleOnlySh": true,
+            "initialBases": [
+              0,
+              16384,
+              24656,
+              28892
+            ],
+            "currentBases": [
+              0,
+              16384,
+              24656,
+              28892
+            ],
+            "projectedFrames": 1696,
+            "suppressedColorRefreshes": 0,
+            "bankDispatches": 1840,
+            "directFrames": 1648
+          }
+        },
+        "mode": "automatic",
+        "lodMultiplier": 0.001,
+        "viewport": [
+          2560,
+          1440
+        ],
+        "sourceCount": 16384,
+        "residentCount": 31088,
+        "chunkCount": 328,
+        "chunkColors": false,
+        "sourceHashVerified": true,
+        "globalDepthSort": true,
+        "camera": {
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "fovDegrees": 40,
+          "near": 0.01,
+          "far": 1000000,
+          "position": [
+            2.6,
+            1.6,
+            3.2
+          ],
+          "target": [
+            2.0121196788600253,
+            1.2382274946830925,
+            2.476454989366185
+          ]
+        }
+      },
+      "checks": [
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "automatic",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "automatic",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 26,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "source",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "source",
+            "path": "direct",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 27,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328,
+            "visibilityStage": "projector"
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 0,
+          "gpuSelectedCount": 0,
+          "sourceSplatsSubmitted": 0,
+          "mode": "lower-only",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "lower-only",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 28,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 0,
+            "coveredSourceSplats": 0,
+            "culled": 0,
+            "hiddenFull": 328,
+            "maxLowerPixels": 0,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "automatic",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "automatic",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 29,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "source",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "source",
+            "path": "direct",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 30,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328,
+            "visibilityStage": "projector"
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 0,
+          "gpuSelectedCount": 0,
+          "sourceSplatsSubmitted": 0,
+          "mode": "lower-only",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "lower-only",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 31,
+            "selectionCpuMs": 0,
+            "pixelScale": 0.0005,
+            "chunksByLevel": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 0,
+            "coveredSourceSplats": 0,
+            "culled": 0,
+            "hiddenFull": 328,
+            "maxLowerPixels": 0,
+            "totalChunks": 328
+          }
+        }
+      ],
+      "bypass": {
+        "frames": 8,
+        "selectionPasses": 0,
+        "prefixScans": 0,
+        "sourceDispatches": 8,
+        "passed": true
+      },
+      "colorRoundTrip": {
+        "exact": false,
+        "psnrDb": 73.64658554950384,
+        "maximum": 3
+      },
+      "colorChange": {
+        "exact": false,
+        "psnrDb": 16.346910167369337,
+        "maximum": 202
+      },
+      "references": []
+    }
+  },
+  {
+    "rawLocalProof": "proof-1788690284366.json",
+    "proof": {
+      "passed": true,
+      "info": {
+        "engine": {
+          "version": "2.23.0-beta.2",
+          "revision": "d753e98c70d67b755754c614f383d215cacbbd63"
+        },
+        "backend": "webgpu",
+        "shBands": 0,
+        "renderSettings": {
+          "profile": "exact",
+          "shMode": "visible",
+          "minPixelSize": 0,
+          "minContribution": 0,
+          "colorUpdateAngle": 0
+        },
+        "performance": {
+          "enabled": true,
+          "path": "direct",
+          "reason": "direct-preferred",
+          "probing": false,
+          "timestampSupported": true,
+          "decision": {
+            "directMs": 2.3265279999999997,
+            "lodMs": 2.29376,
+            "directP95": 3.1621119999999996,
+            "lodP95": 2.7394047999999995,
+            "gain": 0.014084507042253502,
+            "samplesPerPath": 12
+          },
+          "directFrames": 6681,
+          "lodFrames": 8809,
+          "probeFrames": 832
+        },
+        "dispatch": {
+          "skipped": true,
+          "path": "direct",
+          "directRanges": true,
+          "selections": 109,
+          "prefixScans": 109,
+          "directFrames": 6681,
+          "projection": {
+            "name": "world-indexed-ranges-visible-sh",
+            "gpuIdExpansion": false,
+            "bankDispatchesPerFrame": 1,
+            "globalDepthSort": true,
+            "visibleOnlySh": true,
+            "initialBases": [
+              0,
+              16384,
+              24656,
+              28892
+            ],
+            "currentBases": [
+              0,
+              16384,
+              24656,
+              28892
+            ],
+            "projectedFrames": 15490,
+            "suppressedColorRefreshes": 0,
+            "bankDispatches": 41917,
+            "directFrames": 6681
+          }
+        },
+        "mode": "automatic",
+        "lodMultiplier": 2,
+        "viewport": [
+          2560,
+          1440
+        ],
+        "sourceCount": 16384,
+        "residentCount": 31088,
+        "chunkCount": 328,
+        "chunkColors": false,
+        "sourceHashVerified": true,
+        "globalDepthSort": true,
+        "camera": {
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "fovDegrees": 40,
+          "near": 0.01,
+          "far": 1000000,
+          "position": [
+            2.6,
+            1.6,
+            3.2
+          ],
+          "target": [
+            2.0121196788600253,
+            1.2382274946830925,
+            2.476454989366185
+          ]
+        }
+      },
+      "checks": [
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 10112,
+          "gpuSelectedCount": 10112,
+          "sourceSplatsSubmitted": 3720,
+          "mode": "automatic",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "automatic",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 220,
+            "selectionCpuMs": 0,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              86,
+              242,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              3720,
+              6392,
+              0,
+              0
+            ],
+            "activeSplats": 10112,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 230.14718627929688,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "source",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "source",
+            "path": "direct",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 221,
+            "selectionCpuMs": 0,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328,
+            "visibilityStage": "projector"
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 6392,
+          "gpuSelectedCount": 6392,
+          "sourceSplatsSubmitted": 0,
+          "mode": "lower-only",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "lower-only",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 222,
+            "selectionCpuMs": 0,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              0,
+              242,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              0,
+              6392,
+              0,
+              0
+            ],
+            "activeSplats": 6392,
+            "coveredSourceSplats": 12664,
+            "culled": 0,
+            "hiddenFull": 86,
+            "maxLowerPixels": 230.14718627929688,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 2196,
+          "gpuSelectedCount": 2196,
+          "sourceSplatsSubmitted": 0,
+          "mode": "automatic",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "automatic",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 223,
+            "selectionCpuMs": 0,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              0,
+              0,
+              0,
+              328
+            ],
+            "splatsByLevel": [
+              0,
+              0,
+              0,
+              2196
+            ],
+            "activeSplats": 2196,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 25.19001007080078,
+            "totalChunks": 328
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 16384,
+          "gpuSelectedCount": 16384,
+          "sourceSplatsSubmitted": 16384,
+          "mode": "source",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "source",
+            "path": "direct",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 224,
+            "selectionCpuMs": 0,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              328,
+              0,
+              0,
+              0
+            ],
+            "splatsByLevel": [
+              16384,
+              0,
+              0,
+              0
+            ],
+            "activeSplats": 16384,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 0,
+            "totalChunks": 328,
+            "visibilityStage": "projector"
+          }
+        },
+        {
+          "passed": true,
+          "decisionMismatches": 0,
+          "mismatches": 0,
+          "expectedCount": 2196,
+          "gpuSelectedCount": 2196,
+          "sourceSplatsSubmitted": 0,
+          "mode": "lower-only",
+          "exactMatchToExclusiveChunkSelection": true,
+          "stats": {
+            "mode": "lower-only",
+            "path": "lod",
+            "viewport": [
+              2560,
+              1440
+            ],
+            "selectionRevision": 225,
+            "selectionCpuMs": 0.09999990463256836,
+            "pixelScale": 1,
+            "chunksByLevel": [
+              0,
+              0,
+              0,
+              328
+            ],
+            "splatsByLevel": [
+              0,
+              0,
+              0,
+              2196
+            ],
+            "activeSplats": 2196,
+            "coveredSourceSplats": 16384,
+            "culled": 0,
+            "hiddenFull": 0,
+            "maxLowerPixels": 25.19001007080078,
+            "totalChunks": 328
+          }
+        }
+      ],
+      "bypass": {
+        "frames": 8,
+        "selectionPasses": 0,
+        "prefixScans": 0,
+        "sourceDispatches": 8,
+        "passed": true
+      },
+      "colorRoundTrip": {
+        "exact": false,
+        "psnrDb": 75.78324849948349,
+        "maximum": 3
+      },
+      "colorChange": {
+        "exact": false,
+        "psnrDb": 16.628230530198373,
+        "maximum": 202
+      },
+      "references": []
+    }
+  }
+]

@@ -125,7 +125,7 @@ These are the upstream projector's filters. `exact` disables extra culling; it d
 - SH0 and SH3; no silent dropping of coefficients. SH1/SH2 inputs are rejected. The SOG v2 runtime path is retained; browser regression tests use native and compressed PLY.
 - Static geometry, identity model transform, one mono perspective camera per renderer. No WebGL, XR/stereo, orthographic camera, picking, animated splats, or scene-graph embedding API is supplied.
 - Merged covariance and SH are approximations. Weighted SH does **not** exactly encode internal occlusion, and the pixel-size thresholds are not a proven perceptual-error bound. View-dependent differences and LOD transitions can remain visible.
-- LOD is a quality/performance tradeoff, not a universal speedup. Compare the LOD-disabled control, stock defaults and the full-quality reference in the [current-main, four-input benchmark](MAIN-BENCHMARKS.md). The [older three-renderer comparison](BENCHMARKS.md) uses v0.1.
+- LOD is a quality/performance tradeoff, not a universal speedup. The [v0.3 automatic/direct comparison](BENEFIT-BENCHMARKS.md) includes probe overhead and fallback checks. The [fixed-LOD/stock-defaults comparison](MAIN-BENCHMARKS.md) uses v0.2; the [older three-renderer comparison](BENCHMARKS.md) uses v0.1.
 - The integration uses private projector APIs. The tested base is recorded in [engine-base.js](../../src/framework/splat-lod/engine-base.js); shader-source and layout checks fail if those internals change.
 
 ## Build and run the example from the fork

@@ -2,6 +2,28 @@
 
 Full-resolution splats up close, fewer splats farther away. A standalone WebGPU renderer forked from PlayCanvas, with per-cube LOD and SH0/SH3.
 
+<!-- benefit-benchmark:start -->
+## LOD only when it helps
+
+v0.3 starts with the original splats, measures both paths, and keeps LOD only when it is cheaper. The fallback bypasses cube selection, prefix scans and range lookup. Same SH, culling and resolution either way.
+
+Moving-camera results on an Apple M5 Max, 2560×1440. Four inputs, four configurations, two reversed-order trials; **5,760 timed frames**, with probe frames included. Completed-frame latency includes a GPU completion fence; it is not interactive FPS.
+
+| Input | Direct mean / median / p95 | Automatic mean / median / p95 | Mean speedup |
+| --- | ---: | ---: | ---: |
+| Bumblebee | 6.77 / 6.73 / 7.44 ms | 5.25 / 4.82 / 7.38 ms | 1.29× |
+| Ekotori shop | 11.54 / 11.42 / 12.60 ms | 7.79 / 7.72 / 8.10 ms | 1.48× |
+| Lublin city · published LOD 4 | 44.37 / 43.77 / 55.30 ms | 20.03 / 19.87 / 24.52 ms | 2.21× |
+| Lublin city · published LOD 3 | 87.82 / 85.98 / 108.36 ms | 34.65 / 35.09 / 40.08 ms | 2.53× |
+
+These four paths benefited from LOD. A separate live no-reduction control verified fallback when LOD cost more. Automatic selection is not free: brief probes can run the losing path. The full report includes fixed-LOD controls, warmups, tails and the actual path used for each image.
+
+LOD is still lossy. On abrupt jumps, automatic quality captures can use originals; their higher PSNR is **not** the quality of the faster LOD frames. [All results and caveats](packages/splat-lod/BENEFIT-BENCHMARKS.md) · [Reproduce](packages/splat-lod/benchmark/BENEFIT.md).
+<!-- benefit-benchmark:end -->
+
+<details>
+<summary>Previous release: v0.2 fixed-LOD comparison on PlayCanvas main</summary>
+
 <!-- main-benchmark:start -->
 ## Benchmarks on current PlayCanvas main
 
@@ -26,6 +48,8 @@ I also tried PC’s contribution culling, small-splat culling and cached SH. The
 
 Lublin: 3D scanning data created and provided by [Andrii Shramko](https://www.linkedin.com/in/andrii-shramko/), [Teleportour](https://www.linkedin.com/company/teleportour/) · [teleportour.com](https://teleportour.com).
 <!-- main-benchmark:end -->
+
+</details>
 
 <details>
 <summary>Previous release: v0.1 comparisons with PlayCanvas, Spark and luma.gl</summary>
@@ -69,6 +93,8 @@ Below 1× means slower. The LOD setting of 2× makes reduced splats kick in soon
 3. On the GPU, pick a version for each cube based on its size on screen.
 4. Project the selected splats, evaluate their SH for the visible ones, then depth-sort and render them together.
 
+Automatic mode measures whether those LOD steps pay for themselves. If they don't, it skips them and projects the original source bank directly.
+
 Splat IDs stay tied to the scene. Changing the view selects ranges of IDs instead of rebuilding the whole list on the CPU. The final output is still splats—no impostors or cached images.
 
 [Changes from stock PlayCanvas](packages/splat-lod/CHANGES.md)
@@ -76,7 +102,7 @@ Splat IDs stay tied to the scene. Changing the view selects ranges of IDs instea
 ## Use it
 
 ```sh
-npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.2.0/shinmegami-boson-splat-lod-0.2.0.tgz
+npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.3.0/shinmegami-boson-splat-lod-0.3.0.tgz
 ```
 
 ```js
@@ -93,7 +119,7 @@ renderer.start();
 
 Use the included Python tools to build the LOD files and manifest first. The engine is bundled; there are no runtime imports from a CDN or the original project.
 
-[Setup, preprocessing and API](packages/splat-lod/README.md) · [Download](https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/tag/splat-lod-v0.2.0)
+[Setup, preprocessing and API](packages/splat-lod/README.md) · [Download](https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/tag/splat-lod-v0.3.0)
 
 ## Limits
 

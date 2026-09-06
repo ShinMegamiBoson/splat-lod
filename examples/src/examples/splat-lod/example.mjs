@@ -122,7 +122,12 @@ try {
     const override = new URLSearchParams(location.search).get('manifest');
     if (override) config.manifestUrl = override;
     renderer = await createSplatRenderer({ ...config, canvas, onProgress: status, onError: failed });
-    $('adaptive').checked = renderer.getInfo().performance.enabled;
+    const initial = renderer.getInfo();
+    $('adaptive').checked = initial.performance.enabled;
+    $('lod').min = String(Math.min(1, initial.lodMultiplier));
+    if (!Number.isInteger(initial.lodMultiplier)) $('lod').step = 'any';
+    $('lod').value = String(initial.lodMultiplier);
+    $('factor').textContent = `${initial.lodMultiplier}×`;
     reset(); disable(false); status('Exploring the scene'); document.body.dataset.ready = 'true';
     frame = requestAnimationFrame(draw);
 } catch (error) {
