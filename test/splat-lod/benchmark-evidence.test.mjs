@@ -36,6 +36,6 @@ describe('published multi-scene benchmark evidence', function () {
         for (const r of s.rows.filter(r => r.mode !== 'ours-source')) expect(readme).to.include(`${r.movingMs.median.toFixed(2)} ms`);
         const shop = s.rows.find(r => r.scene === 'ekotori' && r.mode === 'ours-lod');
         expect(readme).to.include(`${shop.movingMs.p95.toFixed(2)} ms`);
-        expect(readme).to.include('No clean win over PlayCanvas defaults yet');
+        expect(readme).to.include('It doesn\'t consistently beat stock PlayCanvas yet');
     });
 });
