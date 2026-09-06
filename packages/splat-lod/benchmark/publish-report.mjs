@@ -3,6 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { sequence } from './sequence.mjs';
+import { formatCrossRendererComparison } from './format-cross-renderer.mjs';
+import { assertPublicData } from './publication-privacy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const input = await readFile(process.argv[2]), summary = JSON.parse(input);
@@ -10,6 +12,7 @@ const inputDirectory = path.dirname(process.argv[2]);
 const verification = JSON.parse(await readFile(path.join(inputDirectory, 'verification.json')));
 if (!verification.passed || verification.summarySha256 !== createHash('sha256').update(input).digest('hex')) throw new Error('Independent verification is missing or stale');
 if (summary.passedCount !== 36 || summary.reportCount !== 36) throw new Error('Publish only the complete 36-case report');
+assertPublicData(summary);
 const destination = path.join(root, 'measurements/2026-09-05');
 await mkdir(path.join(destination, 'runs'), { recursive: true });
 const { reports, ...compact } = summary;
@@ -43,6 +46,7 @@ await sequence(['multi-scene-20260906-r1', 'multi-scene-20260906-r2', 'multi-sce
             included: run === 'multi-scene-20260906-r2' && index < 24 });
     });
 });
+assertPublicData(attempts);
 await writeFile(path.join(destination, 'development-attempts.json'), `${JSON.stringify(attempts, null, 2)}\n`);
 
 const row = (scene, mode) => summary.rows.find(r => r.scene === scene && r.mode === mode);
@@ -54,23 +58,11 @@ const names = { 'pc-default': 'PlayCanvas 2.22 defaults',
     luma: 'luma.gl 9.4 · experimental' };
 const f = n => (Number.isFinite(n) ? n.toFixed(2) : '—');
 const frames = reports.reduce((sum, r) => sum + r.phases.static.samples.length + r.phases.moving.samples.length, 0);
-const latency = ['| Scene / original splats | Ours, LOD 2× | PC defaults | PC full quality | Spark¹ | luma.gl² |',
-    '| --- | ---: | ---: | ---: | ---: | ---: |',
-    ...summary.scenes.map(s => `| ${s.name} · ${(s.count / 1e6).toFixed(2)}M | ${['ours-lod', 'pc-default', 'pc-full', 'spark', 'luma'].map(m => `${f(row(s.id, m).movingMs.median)} ms`).join(' | ')} |`)].join('\n');
-const quality = ['| Scene | Speed vs PC defaults / full quality | Our minimum foreground PSNR | PC-default foreground PSNR |',
-    '| --- | ---: | ---: | ---: |',
-    ...summary.scenes.map((s) => {
-        const ours = row(s.id, 'ours-lod'), defaults = row(s.id, 'pc-default'), full = row(s.id, 'pc-full');
-        return `| ${s.name} | ${f(defaults.movingMs.median / ours.movingMs.median)}× / ${f(full.movingMs.median / ours.movingMs.median)}× | ${f(ours.minForegroundPsnrDb)} dB | ${f(defaults.minForegroundPsnrDb)} dB |`;
-    })].join('\n');
-const intro = `## Multi-scene benchmarks\n\nThree full SH3 scenes at 2560×1440, on an Apple M5 Max with 128 GB RAM. Two runs per configuration, in reversed order; ${frames.toLocaleString('en-US')} timed frames total.\n\nThese are median frame times while moving the camera. They include sorting and waiting for the GPU to finish, so don't read them as interactive FPS.\n\n${latency}\n\nPC defaults uses stock settings. PC full quality disables size and contribution cutoffs and updates SH every view. LOD is lossy, so here's the error against full quality (higher PSNR is better):\n\n${quality}\n\nBelow 1× means slower. The LOD setting of 2× makes reduced splats kick in sooner; it doesn't mean twice the FPS.\n\n¹ This test waits for Spark's current-camera sort. Its normal async loop is timed separately. ² luma.gl's renderer is experimental. All use SH3, but packing, filtering and sorting differ.\n\n[Full results and interactive timings](packages/splat-lod/BENCHMARKS.md) · [Run the benchmark](packages/splat-lod/benchmark/README.md) · [Raw data](packages/splat-lod/benchmark/measurements/2026-09-05/summary.json)`;
 const readmeFile = path.resolve(root, '../../../README.md');
 const readme = await readFile(readmeFile, 'utf8');
 const start = '<!-- multi-scene-benchmark:start -->', end = '<!-- multi-scene-benchmark:end -->';
 if (!readme.includes(start) || !readme.includes(end)) throw new Error('Missing publication markers');
-const shop = row('ekotori', 'ours-lod'), shopDefault = row('ekotori', 'pc-default');
-const verdict = `It doesn't consistently beat stock PlayCanvas yet. The bee and cicada are slower than the defaults. The shop is ${f(shopDefault.movingMs.median / shop.movingMs.median)}× faster at the median, but loses quality and has bad frame-time spikes: p95 is ${f(shop.movingMs.p95)} ms versus ${f(shopDefault.movingMs.p95)} ms. The bigger speedups are against full quality, not the defaults.\n\n`;
-const lead = intro.replace(latency, `${verdict}${latency}`);
+const lead = formatCrossRendererComparison(summary);
 await writeFile(readmeFile, `${readme.slice(0, readme.indexOf(start) + start.length)}\n${lead}\n${readme.slice(readme.indexOf(end))}`);
 
 const detailed = summary.scenes.map((s) => {

@@ -48,7 +48,7 @@ Foreground means reference RGB more than 3/255 from the background, not a true a
 
 Runtime, input and harness hashes match the [first v0.3 run](../../../BENEFIT-BENCHMARKS.md). These differences are rerun variation, not a new optimization. Two trials on one device do not establish statistical significance or an every-frame speed guarantee. Older measurements remain unchanged.
 
-After all cases completed, the device reported battery power at 25%, discharging, with no recorded thermal/performance warning. Power state was not tracked during either cohort. This limits comparison but does not establish the cause of slower absolute times. [Recorded observation](environment-after.json).
+Power state was not tracked during either cohort, and power/thermal conditions were not controlled. This limits comparison but does not establish the cause of slower absolute times. [Measurement conditions](conditions.json).
 
 ## Reproduce and inspect
 

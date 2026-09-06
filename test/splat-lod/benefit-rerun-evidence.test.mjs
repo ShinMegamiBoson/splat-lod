@@ -63,6 +63,7 @@ describe('latest benchmark positioning', function () {
             const fixed = summary.rows.find(r => r.scene === row.scene && r.mode === 'ours-fixed');
             expect(row.fixedLodMinForegroundPsnrDb).to.equal(fixed.minForegroundPsnrDb);
             expect(report).to.include(`${fixed.minForegroundPsnrDb.toFixed(2)} dB`);
+            expect(lead).to.include(`| ${fixed.movingMs.mean.toFixed(2)} ms | ${fixed.minForegroundPsnrDb.toFixed(2)} dB |`);
         }
         const ratios = comparison.rows.map(r => r.speedupVsPcMean);
         expect(lead).to.include(`${Math.min(...ratios).toFixed(2)}–${Math.max(...ratios).toFixed(2)}× faster than PlayCanvas full quality in our moving-camera tests`);
@@ -70,6 +71,8 @@ describe('latest benchmark positioning', function () {
         expect(lead).to.include('LOD trades image quality for speed');
         expect(lead).to.include('not stock defaults');
         expect(lead).to.include('other renderers were not rerun');
+        expect(lead).to.include('fixed-LOD controls from that same v0.3 run');
+        expect(lead).to.include('not** the quality of its LOD-rendered timing frames');
         expect(report).to.include('Do not pair the higher PSNR');
         expect(report).to.include('Power state was not tracked during either cohort');
     });

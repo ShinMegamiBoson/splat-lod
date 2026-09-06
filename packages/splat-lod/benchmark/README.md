@@ -2,7 +2,7 @@
 
 This is the **v0.1 historical harness**. For the rebased v0.2 library and 16M/32M inputs, use [the same-main benchmark instructions](MAIN.md). Do not compare the new library to this older npm baseline and label it a same-engine test.
 
-This package is benchmark tooling, not a runtime dependency of the splat library. It pins PlayCanvas 2.22.0, Spark 2.1.0 / Three 0.180.0, and experimental luma.gl 9.4.0. The two `ours-*` cases import the standalone library bundle, not the original Endless Almanac demo.
+This package is benchmark tooling, not a runtime dependency of the splat library. It pins PlayCanvas 2.22.0, Spark 2.1.0 / Three 0.180.0, and experimental luma.gl 9.4.0. The two `ours-*` cases import the standalone library bundle.
 
 ## Inputs and setup
 

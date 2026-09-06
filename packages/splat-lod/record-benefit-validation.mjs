@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { assertPublicData } from './benchmark/publication-privacy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const [installed, proofFile] = process.argv.slice(2);
@@ -32,7 +33,6 @@ const validation = { kind: 'installed-package-with-measured-lod-fallback',
         viewport: proof.info.viewport,
         sourceHashVerified: proof.info.sourceHashVerified,
         globalDepthSort: proof.info.globalDepthSort,
-        rawLocalProof: path.basename(proofFile),
         measuredChoice: proof.info.performance,
         checks: proof.checks.map((c, i) => ({ view: i < 3 ? 'near' : 'far',
             mode: c.mode,
@@ -45,8 +45,7 @@ const validation = { kind: 'installed-package-with-measured-lod-fallback',
         colorRoundTrip: proof.colorRoundTrip,
         colorChange: proof.colorChange,
         passed: proof.passed },
-    fallbackControls: (await json(path.join(directory, 'fallback-controls.json'))).map(c => ({ rawLocalProof: c.rawLocalProof,
-        multiplier: c.proof.info.lodMultiplier,
+    fallbackControls: (await json(path.join(directory, 'fallback-controls.json'))).map(c => ({ multiplier: c.proof.info.lodMultiplier,
         performance: c.proof.info.performance,
         bypass: c.proof.bypass,
         passed: c.proof.passed })),
@@ -62,5 +61,6 @@ const validation = { kind: 'installed-package-with-measured-lod-fallback',
         inputSHBands: summary.scenes.map(s => s.shBands ?? 3) },
     scope: 'Installed runtime matches the frozen benchmark. Live positive, losing and marginal cost decisions are examples, not guarantees for every frame or view. Automatic image captures may use originals after view jumps; fixed-LOD quality remains lossy.',
     passed: true };
+assertPublicData(validation);
 await writeFile(path.join(root, 'VALIDATION-v0.3.json'), `${JSON.stringify(validation, null, 2)}\n`);
 console.log('Recorded installed runtime parity, live selection audits and independent benchmark verification.');

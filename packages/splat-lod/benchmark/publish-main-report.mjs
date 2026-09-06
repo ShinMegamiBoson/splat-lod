@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { MAIN_PROTOCOL } from './main-protocol.mjs';
 import { sequence } from './sequence.mjs';
+import { assertPublicData } from './publication-privacy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const input = path.resolve(process.argv[2]);
@@ -16,6 +17,7 @@ assert.equal(verification.summarySha256, createHash('sha256').update(bytes).dige
 assert.deepEqual(summary.protocol, MAIN_PROTOCOL);
 assert.equal(summary.reportCount, 56);
 assert.equal(summary.passedCount, 56);
+assertPublicData(summary);
 const { reports, ...compact } = summary;
 const evidence = reports[0].evidence;
 assert.equal(evidence.upstreamRevision, MAIN_PROTOCOL.engineRevision);

@@ -5,6 +5,7 @@ import path from 'node:path';
 import { gzipSync } from 'node:zlib';
 
 import { BENEFIT_PROTOCOL } from './benefit-protocol.mjs';
+import { assertPublicData } from './publication-privacy.mjs';
 
 // Publish numeric evidence only. Keep the first cohort and released runtime unchanged.
 assert.equal(process.argv.length, 3, 'Pass the verified benefit-gate-20260906-r2 directory');
@@ -21,11 +22,22 @@ assert.equal(summary.reportCount, 32);
 assert.equal(summary.passedCount, 32);
 assert.equal(summary.reports.length, 32);
 assert(summary.reports.every(r => r.run === 'benefit-gate-20260906-r2' && r.passed && !r.pilot));
+assertPublicData(summary);
+assertPublicData(comparison);
+const environment = JSON.parse(await readFile(path.join(input, 'environment-after.json')));
+assert.equal(typeof environment.powerStateTrackedDuringRun, 'boolean');
+assert.equal(typeof environment.previousCohortPowerStateRecorded, 'boolean');
+const conditions = {
+    powerStateTrackedDuringRun: environment.powerStateTrackedDuringRun,
+    previousCohortPowerStateRecorded: environment.previousCohortPowerStateRecorded,
+    interpretation: 'Power and thermal conditions were not controlled over either cohort. Cross-run timing differences do not establish a runtime improvement or their cause.'
+};
 
 const destination = new URL('./measurements/2026-09-06-benefit-rerun/', import.meta.url);
 await mkdir(destination, { recursive: true });
 await writeFile(new URL('results.json.gz', destination), gzipSync(raw, { level: 9 }));
-await Promise.all(['comparison.json', 'verification.json', 'environment-after.json'].map(async (name) => {
+await writeFile(new URL('conditions.json', destination), `${JSON.stringify(conditions, null, 2)}\n`);
+await Promise.all(['comparison.json', 'verification.json'].map(async (name) => {
     const data = await readFile(path.join(input, name));
     await writeFile(new URL(name, destination), data);
 }));

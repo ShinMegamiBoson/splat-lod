@@ -17,7 +17,50 @@ Apple M5 Max, 2560×1440, inputs from 2.32M to 32.37M splats. Automatic LOD meas
 Mean completed-frame times from the September 6 v0.3 rerun, including sorting, probe frames and a GPU completion fence—not interactive FPS. Same engine base, full source SH, resolution and zero size/contribution cutoffs. Two reversed-order trials per configuration; the two city inputs are levels of the same scan.
 
 This comparison is against **PlayCanvas full quality, not stock defaults**. Stock defaults and other renderers were not rerun. Earlier results below include losses; this isn't a claim to be the fastest renderer on every scene or device. [Latest results, image error and per-frame data](packages/splat-lod/benchmark/measurements/2026-09-06-benefit-rerun/README.md) · [Reproduce](packages/splat-lod/benchmark/BENEFIT.md).
+
+### What quality does the reduced version retain?
+
+These are the **fixed-LOD controls from that same v0.3 run**, measured against full-quality PlayCanvas. Lower frame time is better; higher foreground PSNR is better.
+
+| Input | Fixed LOD moving mean | Fixed LOD minimum foreground PSNR |
+| --- | ---: | ---: |
+| Bumblebee | 6.09 ms | 28.58 dB |
+| Ekotori shop | 10.56 ms | 31.55 dB |
+| Lublin · published LOD 4 | 26.73 ms | 36.81 dB |
+| Lublin · published LOD 3 | 44.84 ms | 37.61 dB |
+
+Automatic mode can switch to originals during the separate image captures. Its higher PSNR on those captures is **not** the quality of its LOD-rendered timing frames. Five poses are sampled; this is not an all-angle or temporal-quality guarantee.
 <!-- benefit-rerun:end -->
+
+<!-- multi-scene-benchmark:start -->
+## Multi-scene benchmarks — PlayCanvas, Spark and luma.gl
+
+**Historical same-run comparison, September 6, 2026 UTC:** our v0.1.0 bundle, PlayCanvas 2.22.0, Spark 2.1.0 and luma.gl 9.4.0. These are not new v0.3 measurements. Three complete SH3 scenes at 2560×1440 on an Apple M5 Max with 128 GiB RAM; two reversed-order trials, 6,480 timed frames.
+
+Median frame times while moving the camera, including current-view sorting and GPU completion—not interactive FPS:
+
+| Scene / original splats | Our v0.1, LOD 2× | PC 2.22 defaults | PC 2.22 full quality | Spark 2.1¹ | luma.gl 9.4² |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Cicada Shell · 0.65M | 5.21 ms | 4.84 ms | 5.29 ms | 19.77 ms | 6.32 ms |
+| Bumblebee · 2.32M | 5.39 ms | 4.93 ms | 8.61 ms | 29.00 ms | 10.39 ms |
+| Ekotori shop · 7.08M | 10.10 ms | 10.85 ms | 16.83 ms | 88.80 ms | 24.04 ms |
+
+Minimum foreground RGB PSNR across five poses and both trials, against same-trial **PC full quality**. Higher is better; the reference compared with itself has zero error. These quality values come from the same configurations and cohort as the speed table.
+
+| Scene | Our v0.1, LOD 2× | PC defaults | Spark 2.1 | luma.gl 9.4 |
+| --- | ---: | ---: | ---: | ---: |
+| Cicada Shell | 27.08 dB | 33.07 dB | 33.11 dB | 30.64 dB |
+| Bumblebee | 28.58 dB | 18.04 dB | 32.90 dB | 28.73 dB |
+| Ekotori shop | 31.55 dB | 41.98 dB | 37.58 dB | 38.22 dB |
+
+In this run, v0.1 is slower than PC defaults on the bee and cicada. The shop is 1.07× faster at the median, but loses quality and has bad frame-time spikes: p95 is 43.51 ms versus 12.93 ms. Faster is not automatically better: Spark and luma.gl retain more foreground detail than our LOD in these tests.
+
+PC defaults keeps its size/contribution cutoffs and cached-SH threshold; full quality disables those approximations. Foreground PSNR avoids diluting error with empty background, but is still only a five-pose test. The LOD setting of 2× changes transition distances; it doesn't mean twice the FPS.
+
+¹ Spark's completed-frame test waits for a current-camera sort. Its normal asynchronous loop is timed separately, so this is not a claim that its interactive FPS is this much slower. ² luma.gl's renderer is experimental. All use SH3, but parameter packing, projection/filtering and sorting differ.
+
+[Full results, p95 and interactive timings](packages/splat-lod/BENCHMARKS.md) · [Pinned versions and methodology](packages/splat-lod/benchmark/README.md) · [Raw measurements](packages/splat-lod/benchmark/measurements/2026-09-05/summary.json)
+<!-- multi-scene-benchmark:end -->
 
 <details>
 <summary>First v0.3 run: automatic LOD versus our original-splat path</summary>
@@ -70,41 +113,6 @@ I also tried PC’s contribution culling, small-splat culling and cached SH. The
 
 Lublin: 3D scanning data created and provided by [Andrii Shramko](https://www.linkedin.com/in/andrii-shramko/), [Teleportour](https://www.linkedin.com/company/teleportour/) · [teleportour.com](https://teleportour.com).
 <!-- main-benchmark:end -->
-
-</details>
-
-<details>
-<summary>Previous release: v0.1 comparisons with PlayCanvas, Spark and luma.gl</summary>
-
-<!-- multi-scene-benchmark:start -->
-## Multi-scene benchmarks
-
-Three full SH3 scenes at 2560×1440, on an Apple M5 Max with 128 GB RAM. Two runs per configuration, in reversed order; 6,480 timed frames total.
-
-These are median frame times while moving the camera. They include sorting and waiting for the GPU to finish, so don't read them as interactive FPS.
-
-It doesn't consistently beat stock PlayCanvas yet. The bee and cicada are slower than the defaults. The shop is 1.07× faster at the median, but loses quality and has bad frame-time spikes: p95 is 43.51 ms versus 12.93 ms. The bigger speedups are against full quality, not the defaults.
-
-| Scene / original splats | Ours, LOD 2× | PC defaults | PC full quality | Spark¹ | luma.gl² |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Cicada Shell · 0.65M | 5.21 ms | 4.84 ms | 5.29 ms | 19.77 ms | 6.32 ms |
-| Bumblebee · 2.32M | 5.39 ms | 4.93 ms | 8.61 ms | 29.00 ms | 10.39 ms |
-| Ekotori shop · 7.08M | 10.10 ms | 10.85 ms | 16.83 ms | 88.80 ms | 24.04 ms |
-
-PC defaults uses stock settings. PC full quality disables size and contribution cutoffs and updates SH every view. LOD is lossy, so here's the error against full quality (higher PSNR is better):
-
-| Scene | Speed vs PC defaults / full quality | Our minimum foreground PSNR | PC-default foreground PSNR |
-| --- | ---: | ---: | ---: |
-| Cicada Shell | 0.93× / 1.01× | 27.08 dB | 33.07 dB |
-| Bumblebee | 0.91× / 1.60× | 28.58 dB | 18.04 dB |
-| Ekotori shop | 1.07× / 1.67× | 31.55 dB | 41.98 dB |
-
-Below 1× means slower. The LOD setting of 2× makes reduced splats kick in sooner; it doesn't mean twice the FPS.
-
-¹ This test waits for Spark's current-camera sort. Its normal async loop is timed separately. ² luma.gl's renderer is experimental. All use SH3, but packing, filtering and sorting differ.
-
-[Full results and interactive timings](packages/splat-lod/BENCHMARKS.md) · [Run the benchmark](packages/splat-lod/benchmark/README.md) · [Raw data](packages/splat-lod/benchmark/measurements/2026-09-05/summary.json)
-<!-- multi-scene-benchmark:end -->
 
 </details>
 

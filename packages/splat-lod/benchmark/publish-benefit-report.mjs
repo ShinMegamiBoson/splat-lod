@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { BENEFIT_PROTOCOL } from './benefit-protocol.mjs';
 import { sequence } from './sequence.mjs';
+import { assertPublicData } from './publication-privacy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const input = path.resolve(process.argv[2]);
@@ -15,6 +16,7 @@ assert(verification.passed);
 assert.equal(verification.summarySha256, createHash('sha256').update(bytes).digest('hex'));
 assert.deepEqual(summary.protocol, BENEFIT_PROTOCOL);
 assert.equal(summary.reportCount, 32); assert.equal(summary.passedCount, 32);
+assertPublicData(summary);
 const { reports, ...compact } = summary, evidence = reports[0].evidence;
 assert(reports.every(r => r.run === 'benefit-gate-20260906-r1' && r.passed && !r.pilot));
 for (const r of reports) assert.deepEqual(r.evidence, evidence);
@@ -32,10 +34,11 @@ const save = (name, value) => writeFile(path.join(destination, name), `${JSON.st
 assert.equal(process.argv.length, 5, 'Pass the run directory, no-reduction proof and marginal-gain proof');
 const controls = await Promise.all(process.argv.slice(3).map(async (file) => {
     const proof = JSON.parse(await readFile(file));
+    assertPublicData(proof);
     assert(proof.passed && proof.bypass.passed);
     assert.equal(proof.info.performance.path, 'direct');
     assert.equal(proof.info.performance.probing, false);
-    return { rawLocalProof: path.basename(file), proof };
+    return { proof };
 }));
 await save('fallback-controls.json', controls);
 await sequence(reports, r => save(`runs/${r.scene.id}-${r.mode}-${r.round}.json`, r));
