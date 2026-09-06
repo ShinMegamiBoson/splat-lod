@@ -2,6 +2,26 @@
 
 Full-resolution splats up close, fewer splats farther away. A standalone WebGPU renderer forked from PlayCanvas, with per-cube LOD and SH0/SH3.
 
+<!-- benefit-rerun:start -->
+## 1.45–2.17× faster than PlayCanvas full quality in our moving-camera tests
+
+Apple M5 Max, 2560×1440, inputs from 2.32M to 32.37M splats. Automatic LOD measures whether reducing splats saves time and falls back to originals when it doesn't. **LOD trades image quality for speed.**
+
+| Input | PlayCanvas full quality | Our automatic LOD | Speedup |
+| --- | ---: | ---: | ---: |
+| Bumblebee · 2.32M | 8.46 ms | 5.83 ms | 1.45× |
+| Ekotori shop · 7.08M | 21.15 ms | 9.74 ms | 2.17× |
+| Lublin · published LOD 4 · 16.18M | 50.40 ms | 27.42 ms | 1.84× |
+| Lublin · published LOD 3 · 32.37M | 81.98 ms | 47.04 ms | 1.74× |
+
+Mean completed-frame times from the September 6 v0.3 rerun, including sorting, probe frames and a GPU completion fence—not interactive FPS. Same engine base, full source SH, resolution and zero size/contribution cutoffs. Two reversed-order trials per configuration; the two city inputs are levels of the same scan.
+
+This comparison is against **PlayCanvas full quality, not stock defaults**. Stock defaults and other renderers were not rerun. Earlier results below include losses; this isn't a claim to be the fastest renderer on every scene or device. [Latest results, image error and per-frame data](packages/splat-lod/benchmark/measurements/2026-09-06-benefit-rerun/README.md) · [Reproduce](packages/splat-lod/benchmark/BENEFIT.md).
+<!-- benefit-rerun:end -->
+
+<details>
+<summary>First v0.3 run: automatic LOD versus our original-splat path</summary>
+
 <!-- benefit-benchmark:start -->
 ## LOD only when it helps
 
@@ -20,6 +40,8 @@ These four paths benefited from LOD. A separate live no-reduction control verifi
 
 LOD is still lossy. On abrupt jumps, automatic quality captures can use originals; their higher PSNR is **not** the quality of the faster LOD frames. [All results and caveats](packages/splat-lod/BENEFIT-BENCHMARKS.md) · [Reproduce](packages/splat-lod/benchmark/BENEFIT.md).
 <!-- benefit-benchmark:end -->
+
+</details>
 
 <details>
 <summary>Previous release: v0.2 fixed-LOD comparison on PlayCanvas main</summary>

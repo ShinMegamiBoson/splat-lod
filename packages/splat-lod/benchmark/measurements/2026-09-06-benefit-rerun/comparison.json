@@ -1,0 +1,342 @@
+{
+  "verification": {
+    "passed": true,
+    "independentImplementation": "Python / NumPy",
+    "qualityPairsChecked": 160,
+    "timingRowsChecked": 16,
+    "timedFramesChecked": 5760,
+    "summarySha256": "b51aa4f090cc33c784ed7a6fa9f5cc070900de2c598bd309d1a2891ccf63fe21",
+    "warmupFramesChecked": 4096,
+    "directBypassTransitionsChecked": 4581
+  },
+  "rows": [
+    {
+      "scene": "bee",
+      "name": "Bumblebee",
+      "sourceCount": 2315943,
+      "movingMs": {
+        "pc": {
+          "samples": 180,
+          "mean": 8.457999995019701,
+          "median": 8.267500162124634,
+          "p95": 10.1402498960495,
+          "min": 7.095000267028809,
+          "max": 16.019999980926514
+        },
+        "direct": {
+          "samples": 180,
+          "mean": 9.833166676097447,
+          "median": 9.322499990463257,
+          "p95": 12.831000256538388,
+          "min": 7.335000038146973,
+          "max": 14.545000076293945
+        },
+        "fixed": {
+          "samples": 180,
+          "mean": 6.0933333184983995,
+          "median": 6.0299999713897705,
+          "p95": 7.005750107765198,
+          "min": 5.105000019073486,
+          "max": 7.789999961853027
+        },
+        "auto": {
+          "samples": 180,
+          "mean": 5.829722226990594,
+          "median": 5.197500228881836,
+          "p95": 8.472249794006347,
+          "min": 4.235000133514404,
+          "max": 12.190000057220459
+        }
+      },
+      "speedupVsPcMean": 1.4508409947665502,
+      "speedupVsDirectMean": 1.686729880640214,
+      "autoOverFixedMean": 0.9567377857522542,
+      "previousAutoMean": 5.253972191280789,
+      "autoMeanChangePercent": 10.95837615329005,
+      "fixedLodMinForegroundPsnrDb": 28.581326298557034,
+      "autoMinForegroundPsnrDb": 66.84041152410339,
+      "automaticTrials": [
+        {
+          "round": 0,
+          "index": 3,
+          "movingDirectFrames": 16,
+          "movingLodFrames": 74,
+          "movingProbeFrames": 32,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 64,
+          "interactiveFrames": 481,
+          "capturePaths": [
+            "direct",
+            "direct",
+            "direct",
+            "direct",
+            "direct"
+          ]
+        },
+        {
+          "round": 1,
+          "index": 4,
+          "movingDirectFrames": 16,
+          "movingLodFrames": 74,
+          "movingProbeFrames": 32,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 64,
+          "interactiveFrames": 481,
+          "capturePaths": [
+            "direct",
+            "direct",
+            "direct",
+            "direct",
+            "direct"
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "name": "Ekotori shop",
+      "sourceCount": 7081853,
+      "movingMs": {
+        "pc": {
+          "samples": 180,
+          "mean": 21.15422220495012,
+          "median": 20.337499856948853,
+          "p95": 24.73300001621246,
+          "min": 17.985000133514404,
+          "max": 26.80500030517578
+        },
+        "direct": {
+          "samples": 180,
+          "mean": 18.663083344035677,
+          "median": 18.515000104904175,
+          "p95": 22.55775017738342,
+          "min": 14.525000095367432,
+          "max": 25.21999979019165
+        },
+        "fixed": {
+          "samples": 180,
+          "mean": 10.560333320829603,
+          "median": 10.047500133514404,
+          "p95": 13.28000020980835,
+          "min": 8.140000343322754,
+          "max": 14.440000057220459
+        },
+        "auto": {
+          "samples": 180,
+          "mean": 9.736222224765354,
+          "median": 9.664999961853027,
+          "p95": 11.653999614715575,
+          "min": 7.820000171661377,
+          "max": 17.44499969482422
+        }
+      },
+      "speedupVsPcMean": 2.172734117668513,
+      "speedupVsDirectMean": 1.9168711347368061,
+      "autoOverFixedMean": 0.9219616397487435,
+      "previousAutoMean": 7.7891944408416744,
+      "autoMeanChangePercent": 24.99652305140416,
+      "fixedLodMinForegroundPsnrDb": 31.54993947234619,
+      "autoMinForegroundPsnrDb": 60.49791819920241,
+      "automaticTrials": [
+        {
+          "round": 0,
+          "index": 11,
+          "movingDirectFrames": 1,
+          "movingLodFrames": 89,
+          "movingProbeFrames": 1,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 34,
+          "interactiveFrames": 336,
+          "capturePaths": [
+            "direct",
+            "direct",
+            "direct",
+            "direct",
+            "direct"
+          ]
+        },
+        {
+          "round": 1,
+          "index": 12,
+          "movingDirectFrames": 1,
+          "movingLodFrames": 89,
+          "movingProbeFrames": 1,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 34,
+          "interactiveFrames": 371,
+          "capturePaths": [
+            "direct",
+            "direct",
+            "direct",
+            "direct",
+            "direct"
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "name": "Lublin city · published LOD 4",
+      "sourceCount": 16184440,
+      "movingMs": {
+        "pc": {
+          "samples": 180,
+          "mean": 50.39944443702698,
+          "median": 49.76249980926514,
+          "p95": 63.1737500667572,
+          "min": 35.674999713897705,
+          "max": 67.27500009536743
+        },
+        "direct": {
+          "samples": 180,
+          "mean": 48.808305552270674,
+          "median": 48.13499975204468,
+          "p95": 62.52424998283386,
+          "min": 33.5,
+          "max": 69.0149998664856
+        },
+        "fixed": {
+          "samples": 180,
+          "mean": 26.73161110348172,
+          "median": 26.727499961853027,
+          "p95": 33.816250038146975,
+          "min": 18.40000009536743,
+          "max": 36.860000133514404
+        },
+        "auto": {
+          "samples": 180,
+          "mean": 27.421388880411783,
+          "median": 26.817500114440918,
+          "p95": 35.01999976634979,
+          "min": 18.794999599456787,
+          "max": 39.99499988555908
+        }
+      },
+      "speedupVsPcMean": 1.837961040442753,
+      "speedupVsDirectMean": 1.7799355738372697,
+      "autoOverFixedMean": 1.025803823580249,
+      "previousAutoMean": 20.034583322207133,
+      "autoMeanChangePercent": 36.87027296453338,
+      "fixedLodMinForegroundPsnrDb": 36.80578626026204,
+      "autoMinForegroundPsnrDb": 36.80680746771813,
+      "automaticTrials": [
+        {
+          "round": 0,
+          "index": 19,
+          "movingDirectFrames": 0,
+          "movingLodFrames": 90,
+          "movingProbeFrames": 0,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 0,
+          "interactiveFrames": 157,
+          "capturePaths": [
+            "lod",
+            "lod",
+            "lod",
+            "lod",
+            "lod"
+          ]
+        },
+        {
+          "round": 1,
+          "index": 20,
+          "movingDirectFrames": 0,
+          "movingLodFrames": 90,
+          "movingProbeFrames": 0,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 0,
+          "interactiveFrames": 148,
+          "capturePaths": [
+            "lod",
+            "lod",
+            "lod",
+            "lod",
+            "lod"
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "name": "Lublin city · published LOD 3",
+      "sourceCount": 32368879,
+      "movingMs": {
+        "pc": {
+          "samples": 180,
+          "mean": 81.97702779769898,
+          "median": 79.5699999332428,
+          "p95": 105.27675013542174,
+          "min": 59.769999980926514,
+          "max": 118.67500019073486
+        },
+        "direct": {
+          "samples": 180,
+          "mean": 80.39102775520749,
+          "median": 78.31750011444092,
+          "p95": 105.91849999427795,
+          "min": 59,
+          "max": 125.44999980926514
+        },
+        "fixed": {
+          "samples": 180,
+          "mean": 44.83602777322133,
+          "median": 44.22500014305115,
+          "p95": 56.291499853134155,
+          "min": 30.670000076293945,
+          "max": 60.13000011444092
+        },
+        "auto": {
+          "samples": 180,
+          "mean": 47.03508334159851,
+          "median": 46.889999866485596,
+          "p95": 57.369000220298766,
+          "min": 31.009999752044678,
+          "max": 63.47499990463257
+        }
+      },
+      "speedupVsPcMean": 1.742891092640997,
+      "speedupVsDirectMean": 1.7091715809528183,
+      "autoOverFixedMean": 1.0490466189266343,
+      "previousAutoMean": 34.65102778540717,
+      "autoMeanChangePercent": 35.739359977676386,
+      "fixedLodMinForegroundPsnrDb": 37.607563262392915,
+      "autoMinForegroundPsnrDb": 37.609599587156815,
+      "automaticTrials": [
+        {
+          "round": 0,
+          "index": 27,
+          "movingDirectFrames": 0,
+          "movingLodFrames": 90,
+          "movingProbeFrames": 0,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 0,
+          "interactiveFrames": 90,
+          "capturePaths": [
+            "lod",
+            "lod",
+            "lod",
+            "lod",
+            "lod"
+          ]
+        },
+        {
+          "round": 1,
+          "index": 28,
+          "movingDirectFrames": 0,
+          "movingLodFrames": 90,
+          "movingProbeFrames": 0,
+          "movingFrames": 90,
+          "interactiveProbeFrames": 0,
+          "interactiveFrames": 90,
+          "capturePaths": [
+            "lod",
+            "lod",
+            "lod",
+            "lod",
+            "lod"
+          ]
+        }
+      ]
+    }
+  ]
+}
