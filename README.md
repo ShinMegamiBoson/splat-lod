@@ -1,141 +1,42 @@
-# PlayCanvas Engine
+# PlayCanvas Splat LOD
 
-[![NPM Version](https://img.shields.io/npm/v/playcanvas)](https://www.npmjs.com/package/playcanvas)
-[![NPM Downloads](https://img.shields.io/npm/dw/playcanvas)](https://npmtrends.com/playcanvas)
-[![License](https://img.shields.io/npm/l/playcanvas)](https://github.com/playcanvas/engine/blob/main/LICENSE)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white&color=black)](https://discord.gg/RSaMRzg)
-[![Reddit](https://img.shields.io/badge/Reddit-FF4500?style=flat&logo=reddit&logoColor=white&color=black)](https://www.reddit.com/r/PlayCanvas)
-[![X](https://img.shields.io/badge/X-000000?style=flat&logo=x&logoColor=white&color=black)](https://x.com/intent/follow?screen_name=playcanvas)
+Standalone **WebGPU Gaussian splat rendering with cube-based LOD**, forked from PlayCanvas under ShinMegamiBoson.
 
-| [User Manual](https://developer.playcanvas.com/user-manual/engine/) | [API Reference](https://api.playcanvas.com/engine/) | [Examples](https://playcanvas.com/examples/) | [Blog](https://blog.playcanvas.com) | [Forum](https://forum.playcanvas.com) |
+The library extracts the renderer tested in the bee comparison: original / half / quarter / eighth-density cube banks, GPU screen-size selection, world-indexed range projection, visible-only SH3, and PlayCanvas's global GPU depth sort. The default **2×** setting makes LOD activate sooner; it is not a promise of 2× FPS.
 
-PlayCanvas is an open-source game engine built on WebGL2 and WebGPU. Use it to create interactive 3D apps, games and visualizations that run in any browser on any device.
-
-[English](https://github.com/playcanvas/engine/blob/main/README.md)
-[中文](https://github.com/playcanvas/engine/blob/main/README-zh.md)
-[日本語](https://github.com/playcanvas/engine/blob/main/README-ja.md)
-[한글](https://github.com/playcanvas/engine/blob/main/README-kr.md)
-
-## Install
+- [Install, API, preprocessing and example](packages/splat-lod/README.md)
+- [Description of changes from PlayCanvas](packages/splat-lod/CHANGES.md)
+- [Measured performance and quality tradeoffs](packages/splat-lod/BENCHMARKS.md)
+- [Download the installable package](https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/tag/splat-lod-v0.1.0)
 
 ```sh
-npm install playcanvas
+npm install https://github.com/ShinMegamiBoson/playcanvas-splat-lod/releases/download/splat-lod-v0.1.0/shinmegami-boson-splat-lod-0.1.0.tgz
 ```
-
-Or scaffold a full project in seconds with [`create-playcanvas`](https://github.com/playcanvas/create-playcanvas):
-
-```sh
-npm create playcanvas@latest
-```
-
-## Usage
-
-Here's a super-simple Hello World example - a spinning cube!
 
 ```js
-import {
-  Application,
-  Color,
-  Entity,
-  FILLMODE_FILL_WINDOW,
-  RESOLUTION_AUTO
-} from 'playcanvas';
+import { createSplatRenderer } from '@shinmegami-boson/splat-lod';
 
-const canvas = document.createElement('canvas');
-document.body.appendChild(canvas);
-
-const app = new Application(canvas);
-
-// fill the available space at full resolution
-app.setCanvasFillMode(FILLMODE_FILL_WINDOW);
-app.setCanvasResolution(RESOLUTION_AUTO);
-
-// ensure canvas is resized when window changes size
-window.addEventListener('resize', () => app.resizeCanvas());
-
-// create box entity
-const box = new Entity('cube');
-box.addComponent('render', {
-  type: 'box'
+const renderer = await createSplatRenderer({
+    canvas: document.querySelector('canvas'),
+    manifestUrl: '/scene/manifest.json',
+    camera: { position: [2.6, 1.6, 3.2], target: [0, 0, 0] },
+    lodMultiplier: 2
 });
-app.root.addChild(box);
-
-// create camera entity
-const camera = new Entity('camera');
-camera.addComponent('camera', {
-  clearColor: new Color(0.1, 0.2, 0.3)
-});
-app.root.addChild(camera);
-camera.setPosition(0, 0, 3);
-
-// create directional light entity
-const light = new Entity('light');
-light.addComponent('light');
-app.root.addChild(light);
-light.setEulerAngles(45, 0, 0);
-
-// rotate the box according to the delta time since the last frame
-app.on('update', dt => box.rotate(10 * dt, 20 * dt, 30 * dt));
-
-app.start();
+renderer.start();
 ```
 
-Want to play with the code yourself? Edit it on [CodePen](https://codepen.io/playcanvas/pen/NPbxMj).
+Prepare the manifest and Gaussian banks with the included Python tools. The package is self-contained at runtime; it does not import Endless Almanac or fetch an engine from a CDN.
 
-A full guide to setting up a local development environment based on the PlayCanvas Engine can be found [here](https://developer.playcanvas.com/user-manual/engine/standalone/).
+## What is actually proven?
 
-## Features
+The standalone preprocessor reproduced the bee's three LOD banks and eight metadata files **byte-for-byte**. Real-browser GPU selection audits passed for the synthetic scene and bee, and six full-resolution bee render comparisons closely matched the original implementation. Details and proof boundaries are in [CHANGES.md](packages/splat-lod/CHANGES.md).
 
-PlayCanvas is a fully-featured game engine.
+The earlier benchmark measured **6.50 ms moving completed-frame latency with LOD** versus **9.30 ms for stock PlayCanvas 2.22.0**, at 2560×1440 on one Apple M5 Max. That is a scene-specific **1.43×** result with loss: minimum foreground PSNR was **28.73 dB**. The four-bank path with LOD disabled was slower than stock. These are not lossless-quality, universal-speedup or interactive-FPS claims.
 
-* 🧊 **Graphics** - Advanced 2D + 3D graphics engine built on WebGL2 & WebGPU
-* 💠 **Gaussian Splatting** - First-class support for loading and rendering [3D Gaussian Splats](https://developer.playcanvas.com/user-manual/graphics/gaussian-splatting/)
-* 🥽 **XR** - Built-in support for immersive AR and VR experiences via [WebXR](https://developer.playcanvas.com/user-manual/xr/)
-* ⚛️ **Physics** - Full integration with 3D rigid-body physics engine [ammo.js](https://github.com/kripken/ammo.js)
-* 🏃 **Animation** - Powerful state-based animations for characters and arbitrary scene properties
-* 🎮 **Input** - Mouse, keyboard, touch and gamepad APIs
-* 🔊 **Sound** - 3D positional sounds built on the Web Audio API
-* 📦 **Assets** - Asynchronous streaming system built on [glTF 2.0](https://www.khronos.org/gltf/), [Draco](https://google.github.io/draco/) and [Basis](https://github.com/BinomialLLC/basis_universal) compression
-* 📜 **Scripts** - Write game behaviors in TypeScript or JavaScript
+## Scope
 
-## Ecosystem
+Experimental; WebGPU only, static world-space geometry, perspective camera, SH3. All four banks are resident; this is **not a streaming or memory-reduction solution**. No bee, store, city scan, or derived private asset is included. The example creates its own synthetic geometry.
 
-Build with PlayCanvas your way:
+Pinned to upstream [PlayCanvas 2.21.4](https://github.com/playcanvas/engine/tree/v2.21.4), commit `e287e0c67f3c20c689a52b7c53d2b7fedbe887da`, because that is the tested private projector API. The full upstream engine remains in this fork; its original documentation is in [README.upstream.md](README.upstream.md).
 
-| Package | Description |
-| ------- | ----------- |
-| [`playcanvas`](https://www.npmjs.com/package/playcanvas) | Core engine (you are here) |
-| [`@playcanvas/react`](https://www.npmjs.com/package/@playcanvas/react) | React renderer for PlayCanvas |
-| [`@playcanvas/web-components`](https://www.npmjs.com/package/@playcanvas/web-components) | Declarative 3D via Custom Elements |
-| [`create-playcanvas`](https://www.npmjs.com/package/create-playcanvas) | Project scaffolding CLI |
-| [PlayCanvas Editor](https://github.com/playcanvas/editor) | Browser-based visual editor |
-
-## Project Showcase
-
-[Many games and apps](https://github.com/playcanvas/awesome-playcanvas) have been published using the PlayCanvas engine. Here is a small selection:
-
-[![Seemore](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/14705/319531/O4J4VU-image-25.jpg)](https://playcanv.as/p/MflWvdTW/) [![After The Flood](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/14928/440410/98554E-image-25.jpg)](https://playcanv.as/p/44MRmJRU/) [![Casino](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/14928/349824/U88HJQ-image-25.jpg)](https://playcanv.as/p/LpmXGUe6/)  
-[![Swooop](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/12/4763/TKYXB8-image-25.jpg)](https://playcanv.as/p/JtL2iqIH/) [![dev Archer](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/12/415995/10A5A9-image-25.jpg)](https://playcanv.as/p/JERg21J8/) [![Gaussian Splat Statues](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/12/1224723/266D9C-image-25.jpg)](https://playcanv.as/p/cLkf99ZV/)  
-[![Car](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/12/347824/7ULQ3Y-image-25.jpg)](https://playcanv.as/p/RqJJ9oU9/) [![Star-Lord](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/12/333626/BGQN9H-image-25.jpg)](https://playcanv.as/p/SA7hVBLt/) [![Global Illumination](https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/projects/4373/625081/6AB32D-image-25.jpg)](https://playcanv.as/p/ZV4PW6wr/ )
-
-You can see more games on the [PlayCanvas website](https://playcanvas.com/explore).
-
-## Users
-
-PlayCanvas is used by leading companies in video games, advertising and visualization such as:  
-**Animech, Arm, BMW, Disney, Facebook, Famobi, Funday Factory, IGT, King, Miniclip, Leapfrog, Mojiworks, Mozilla, Nickelodeon, Nordeus, NOWWA, PikPok, PlaySide Studios, Polaris, Product Madness, Samsung, Snap, Spry Fox, Zeptolab, Zynga**
-
-## How to build
-
-Ensure you have [Node.js 18+](https://nodejs.org) installed. Then, install all of the required Node.js dependencies:
-
-```sh
-npm install
-```
-
-Now you can run various build options:
-
-| Command | Description | Outputs To |
-| ------- | ----------- | ---------- |
-| `npm run build` | Build all engine flavors and type declarations | `build` |
-| `npm run docs` | Build engine [API reference docs](https://api.playcanvas.com/engine/) | `docs` |
+[MIT license](LICENSE), retaining PlayCanvas's copyright. This is an independent fork, not an official PlayCanvas package. Third-party scan licenses are separate.
