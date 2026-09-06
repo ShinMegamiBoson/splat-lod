@@ -6,6 +6,8 @@ This is **WebGPU-only, experimental, and lossy when LOD is enabled**. It renders
 
 Automatic mode now checks whether LOD actually helps. It falls back to a direct original-splat path when the measured gain is insufficient. Culling, SH and output resolution stay unchanged.
 
+[Latest large-scene results: speed, quality and winners](https://github.com/ShinMegamiBoson/splat-lod/blob/codex/standalone-splat-lod/packages/splat-lod/benchmark/measurements/2026-09-06-large/README.md). This renderer does not win every scene; the report includes the losses and actual direct/LOD paths.
+
 ## Install the built library
 
 The GitHub release contains an installable ESM package. It is not published to the npm registry:

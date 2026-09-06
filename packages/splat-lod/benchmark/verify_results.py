@@ -105,6 +105,22 @@ def verify(directory):
     if p['version'] >= 4:
         assert warmup_frames == passed_count * p['warmup'] * 2
         result.update(warmupFramesChecked=warmup_frames, directBypassTransitionsChecked=direct_bypass_checks)
+    if p['version'] == 5:
+        ranking_checks = []
+        for scene in summary['scenes']:
+            candidates = []
+            for mode in p['rankedModes']:
+                row = next(r for r in summary['rows'] if r['scene'] == scene['id'] and r['mode'] == mode)
+                if row['passed']:
+                    values = [s['completeMs'] for r in reports if r['scene']['id'] == scene['id'] and r['mode'] == mode
+                              for s in r['phases']['moving']['samples']]
+                    candidates.append((float(np.median(values)), mode))
+            candidates.sort(key=lambda value: value[0])
+            ranking_checks.append({'scene': scene['id'],
+                                   'winners': [mode for ms, mode in candidates if ms == candidates[0][0]],
+                                   'speedup': candidates[1][0] / candidates[0][0] if len(candidates) > 1 else None,
+                                   'complete': len(candidates) == len(p['rankedModes'])})
+        result['rankingChecks'] = ranking_checks
     (directory / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))
 

@@ -38,7 +38,10 @@ describe('published multi-scene benchmark evidence', function () {
         expect(readme.indexOf('## Multi-scene benchmarks')).to.be.lessThan(readme.indexOf('npm install'));
         const lead = readme.split('<!-- multi-scene-benchmark:start -->')[1].split('<!-- multi-scene-benchmark:end -->')[0].trim();
         expect(lead).to.equal(formatCrossRendererComparison(s));
-        expect(readme.indexOf('<!-- multi-scene-benchmark:start -->')).to.be.lessThan(readme.indexOf('<details>'));
+        // The new same-runtime cohort leads the page; historical results remain
+        // intact in a clearly labeled disclosure instead of competing with it.
+        expect(readme.indexOf('<!-- large-benchmark:start -->')).to.be.lessThan(readme.indexOf('<details>'));
+        expect(readme.indexOf('Earlier scenes and renderer versions')).to.be.lessThan(readme.indexOf('<!-- multi-scene-benchmark:start -->'));
         const reports = readdirSync(new URL('runs/', evidence)).map(name => json(`runs/${name}`));
         for (const row of s.rows.filter(r => r.mode !== 'ours-source')) {
             const trials = reports.filter(r => r.scene.id === row.scene && r.mode === row.mode);

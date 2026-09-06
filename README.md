@@ -2,6 +2,49 @@
 
 Full-resolution splats up close, fewer splats farther away. A standalone WebGPU renderer with per-cube LOD and SH0/SH3.
 
+<!-- large-benchmark:start -->
+## Large-scene benchmarks
+
+September 6, 2026 · Splat LOD v0.3 · Apple M5 Max, 128 GB · **2560×1440**. Three new, distinct scenes; full published resolution, including LCC2Rock's environment. Rocca has SH3; the other two are natively SH0.
+
+**Moving-camera median frame time; lower is better.** Bold is the fastest measured configuration. “Over next-best” is its speedup over second place—not necessarily our speedup. PC = PlayCanvas. Margins within 5% are near-ties, not established wins.
+
+| Scene / input splats | Fastest | Over next-best | Splat LOD v0.3 | PC defaults | PC full quality | Spark 2.1 | luma.gl 9.4 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Rocca di Montecatini Alto · 7.05M | PC defaults | 1.70× | 9.89 ms | **5.83 ms** | 10.13 ms | 100.70 ms | 22.34 ms |
+| Wat Paknam Bhasicaroen · 8.85M | PC full quality | 1.02× (near-tie) | 18.28 ms | 14.32 ms | **14.02 ms** | 120.68 ms | 27.18 ms |
+| LCC2Rock · 12.25M | Splat LOD v0.3 | 1.22× | **9.10 ms** | 11.09 ms | 12.35 ms | 148.81 ms | 27.61 ms |
+
+Automatic mode used **original splats for all 540 measured moving frames**. These timings measure its optimized direct fallback, not an LOD speedup.
+
+PlayCanvas is 2.23.0-beta.2 on the same engine base as this library. Two reversed-order trials; 36/36 cases completed. Timings include current-view sorting and a GPU completion fence, so they are **not interactive FPS**. Spark waits for its worker sort here; its normal asynchronous loop is reported separately. luma.gl is experimental. Different default approximations mean this is not a quality-matched race.
+
+### Quality
+
+Worst foreground RGB PSNR across five poses and both trials versus full-quality PlayCanvas; higher is better. ∞ means zero measured error, not a general equivalence guarantee. These are separate image captures, not measurements of every timed frame.
+
+| Scene | Splat LOD v0.3 | PC defaults | PC full quality | Spark 2.1 | luma.gl 9.4 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Rocca di Montecatini Alto | 60.94 dB | 21.64 dB | ∞ | 27.14 dB | 23.06 dB |
+| Wat Paknam Bhasicaroen | 62.16 dB | 30.90 dB | ∞ | 32.78 dB | 23.74 dB |
+| LCC2Rock | 30.18 dB | 29.94 dB | ∞ | 31.24 dB | 25.97 dB |
+
+**Quality captures can use a different path from the timing frames.** Rocca di Montecatini Alto: 10 original / 0 LOD; Wat Paknam Bhasicaroen: 10 original / 0 LOD; LCC2Rock: 6 original / 4 LOD. The fixed-LOD control below keeps reduction enabled for both timing and captures:
+
+| Scene | Fixed LOD moving median / p95 | Fixed LOD minimum foreground PSNR |
+| --- | ---: | ---: |
+| Rocca di Montecatini Alto | 11.73 / 12.83 ms | 27.84 dB |
+| Wat Paknam Bhasicaroen | 17.73 / 22.79 ms | 39.30 dB |
+| LCC2Rock | 9.33 / 14.74 ms | 29.89 dB |
+
+LOD trades quality for speed. The 2× setting changes transition distances, not FPS. These short paths on one device do not establish a universal fastest renderer or all-angle quality.
+
+[All frame times, actual LOD paths and source credits](packages/splat-lod/benchmark/measurements/2026-09-06-large/README.md) · [Reproduce](packages/splat-lod/benchmark/LARGE.md) · [Numeric results](packages/splat-lod/benchmark/measurements/2026-09-06-large/summary.json)
+<!-- large-benchmark:end -->
+
+<details>
+<summary>Earlier scenes and renderer versions</summary>
+
 <!-- benefit-rerun:start -->
 ## 1.45–2.17× faster than PlayCanvas full quality in our moving-camera tests
 
@@ -62,6 +105,8 @@ PC defaults keeps its size/contribution cutoffs and cached-SH threshold; full qu
 [Full results, p95 and interactive timings](packages/splat-lod/BENCHMARKS.md) · [Pinned versions and methodology](packages/splat-lod/benchmark/README.md) · [Raw measurements](packages/splat-lod/benchmark/measurements/2026-09-05/summary.json)
 
 <!-- multi-scene-benchmark:end -->
+
+</details>
 
 <details>
 <summary>First v0.3 run: automatic LOD versus our original-splat path</summary>

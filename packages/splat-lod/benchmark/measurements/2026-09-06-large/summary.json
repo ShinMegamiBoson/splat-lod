@@ -1,0 +1,1505 @@
+{
+  "generatedAt": "2026-09-06T12:32:39.028Z",
+  "protocol": {
+    "version": 5,
+    "width": 2560,
+    "height": 1440,
+    "cssWidth": 1280,
+    "cssHeight": 720,
+    "warmup": 64,
+    "samples": 90,
+    "interactiveDurationMs": 4000,
+    "repeats": 2,
+    "qualityFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "modes": [
+      "pc-full",
+      "ours-auto",
+      "pc-default",
+      "spark",
+      "luma",
+      "ours-fixed"
+    ],
+    "engineRevision": "d753e98c70d67b755754c614f383d215cacbbd63",
+    "rankedModes": [
+      "pc-full",
+      "ours-auto",
+      "pc-default",
+      "spark",
+      "luma"
+    ],
+    "rankingMetric": "moving-completed-frame-median-ms",
+    "runnerUpSpeedup": "second-smallest eligible median / smallest eligible median",
+    "nearTieFraction": 0.05
+  },
+  "scenes": [
+    {
+      "id": "rocca",
+      "name": "Rocca di Montecatini Alto",
+      "count": 7049716,
+      "shBands": 3,
+      "cellSize": 0.5178302377462387,
+      "cubeSizeRule": "max-axis-central-98-percent-extent / 32",
+      "source": "/data/rocca/source.ply",
+      "manifest": "/data/rocca/manifest.json",
+      "luma": "/data/luma-rocca/manifest.json",
+      "sourceSha256": "5a98304f01a543a5fd53647ba69a7abe4532511ceef7e319ab252b454fd205c6",
+      "sceneUrl": "https://superspl.at/scene/abdf12c6",
+      "creator": "enryt",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "publishedUrl": "https://d28zzqy0iyovbz.cloudfront.net/abdf12c6/v1/lod-meta.json",
+      "publishedMetadataSha256": "e5100b3c7bd77405d6e366aa64406b172de4c5fca7686074737fa100a779a828",
+      "sourceDescription": "Entire published LOD 0 plus 0 environment splats; no extra filtering.",
+      "environmentCount": 0,
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "motionScale": 0.5178302377462387,
+      "camera": {
+        "position": [
+          -2,
+          -2,
+          -2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 46.69212571046592,
+        "near": 0.05,
+        "far": 10000
+      }
+    },
+    {
+      "id": "wat-paknam",
+      "name": "Wat Paknam Bhasicaroen",
+      "count": 8845461,
+      "shBands": 0,
+      "cellSize": 5.691155672073364,
+      "cubeSizeRule": "max-axis-central-98-percent-extent / 32",
+      "source": "/data/wat-paknam/source.ply",
+      "manifest": "/data/wat-paknam/manifest.json",
+      "luma": "/data/luma-wat-paknam/manifest.json",
+      "sourceSha256": "9c4a0e2e49b168a1209a2ab1b84be15395c6af3fd977f6de2597412460ebbf0d",
+      "sceneUrl": "https://superspl.at/scene/905ec260",
+      "creator": "ethan3111",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "publishedUrl": "https://d28zzqy0iyovbz.cloudfront.net/905ec260/v1/meta.json",
+      "publishedMetadataSha256": "a36fca95e89e481f8afe5148d23f1ed8aa2e87bd8a7fae9a55b2720b852f0dc3",
+      "sourceDescription": "Entire published source; no filtering or extra parameter quantization.",
+      "environmentCount": 0,
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "motionScale": 5.691155672073364,
+      "camera": {
+        "position": [
+          10.509292602539062,
+          -3.538285970687866,
+          -5.693440914154053
+        ],
+        "target": [
+          4.566736126872327,
+          -0.37897425636651877,
+          -2.040177225600002
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 46.69212571046592,
+        "near": 0.05,
+        "far": 10000
+      }
+    },
+    {
+      "id": "lcc2rock",
+      "name": "LCC2Rock",
+      "count": 12245931,
+      "shBands": 0,
+      "cellSize": 2.1178823113441467,
+      "cubeSizeRule": "max-axis-central-98-percent-extent / 32",
+      "source": "/data/lcc2rock/source.ply",
+      "manifest": "/data/lcc2rock/manifest.json",
+      "luma": "/data/luma-lcc2rock/manifest.json",
+      "sourceSha256": "e4abc69cda3943cf48550ea3a4ba7936265a9d344d5e4a486d6d837f6ef2073f",
+      "sceneUrl": "https://superspl.at/scene/157bad1d",
+      "creator": "kumar3ar",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "publishedUrl": "https://d28zzqy0iyovbz.cloudfront.net/157bad1d/v1/lod-meta.json",
+      "publishedMetadataSha256": "4b4ffff565ed02ae73c2a584c60b7d4a69814fbfd0ae964c5aed931c18816871",
+      "sourceDescription": "Entire published LOD 0 plus 26349 environment splats; no extra filtering.",
+      "environmentCount": 26349,
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "motionScale": 2.1178823113441467,
+      "camera": {
+        "position": [
+          0,
+          -2,
+          0
+        ],
+        "target": [
+          -2,
+          -2,
+          0
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 46.69212571046592,
+        "near": 0.05,
+        "far": 10000
+      }
+    }
+  ],
+  "reportCount": 36,
+  "passedCount": 36,
+  "rows": [
+    {
+      "scene": "rocca",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        0,
+        11
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 7.837222210566202,
+        "median": 7.779999732971191,
+        "p95": 8.64049985408783,
+        "min": 7.130000114440918,
+        "max": 9.044999599456787
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 10.23738890224033,
+        "median": 10.134999990463257,
+        "p95": 11.315000057220459,
+        "min": 9.115000247955322,
+        "max": 11.960000038146973
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.015861103269788953,
+        "median": 0.014999866485595703,
+        "p95": 0.02500009536743164,
+        "min": 0,
+        "max": 0.039999961853027344
+      },
+      "interactiveFps": [
+        105.5302332891753,
+        76.59030920530694
+      ],
+      "interactiveP95Ms": [
+        16.665000000000873,
+        17.073499999999786
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 8.047499895095825,
+          "movingMedianMs": 10.305000066757202
+        },
+        {
+          "staticMedianMs": 7.50499963760376,
+          "movingMedianMs": 9.952499866485596
+        }
+      ]
+    },
+    {
+      "scene": "rocca",
+      "mode": "ours-auto",
+      "passed": true,
+      "trials": [
+        1,
+        10
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 8.602555566363865,
+        "median": 7.877500057220459,
+        "p95": 11.293499970436095,
+        "min": 7.134999752044678,
+        "max": 12.65999984741211
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 9.786250000529819,
+        "median": 9.890000104904175,
+        "p95": 12.644999980926514,
+        "min": 7.390000343322754,
+        "max": 14.054999828338623
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.030222219891018337,
+        "median": 0.03000020980834961,
+        "p95": 0.04500007629394531,
+        "min": 0.009999752044677734,
+        "max": 0.1100001335144043
+      },
+      "interactiveFps": [
+        119.98065311968443,
+        94.85587384417738
+      ],
+      "interactiveP95Ms": [
+        9.230749999999716,
+        16.729999999999563
+      ],
+      "minPsnrDb": 60.958300240671036,
+      "minForegroundPsnrDb": 60.943009902670056,
+      "selectedSplats": [
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716,
+        7049716
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.520000219345093,
+          "movingMedianMs": 7.934999942779541
+        },
+        {
+          "staticMedianMs": 9.609999895095825,
+          "movingMedianMs": 11.322499990463257
+        }
+      ]
+    },
+    {
+      "scene": "rocca",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        2,
+        9
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 6.470611132515801,
+        "median": 6.3999998569488525,
+        "p95": 7.043999958038329,
+        "min": 5.920000076293945,
+        "max": 8.630000114440918
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 6.052499990993076,
+        "median": 5.829999923706055,
+        "p95": 7.6469999790191645,
+        "min": 5.175000190734863,
+        "max": 8.170000076293945
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.020777771208021375,
+        "median": 0.019999980926513672,
+        "p95": 0.029999732971191406,
+        "min": 0.005000114440917969,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        120.25318034733709,
+        119.97315600634357
+      ],
+      "interactiveP95Ms": [
+        9.154750000000604,
+        9.15499999999965
+      ],
+      "minPsnrDb": 21.648479886400608,
+      "minForegroundPsnrDb": 21.639617496395015,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 6.349999904632568,
+          "movingMedianMs": 5.7799999713897705
+        },
+        {
+          "staticMedianMs": 6.4674999713897705,
+          "movingMedianMs": 5.885000228881836
+        }
+      ]
+    },
+    {
+      "scene": "rocca",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        3,
+        8
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 14.945805546972487,
+        "median": 14.47249984741211,
+        "p95": 19.116249775886534,
+        "min": 13.59000015258789,
+        "max": 33.03499984741211
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 101.02438889079623,
+        "median": 100.69500017166138,
+        "p95": 107.34825026988983,
+        "min": 93.00500011444092,
+        "max": 116.36500024795532
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 85.72530555460187,
+        "median": 85.5,
+        "p95": 90.27900021076202,
+        "min": 77.69499969482422,
+        "max": 96.49500036239624
+      },
+      "interactiveFps": [
+        70.16247231578609,
+        80.41706989666906
+      ],
+      "interactiveP95Ms": [
+        41.69499999999971,
+        33.48550000000159
+      ],
+      "minPsnrDb": 27.15669212644514,
+      "minForegroundPsnrDb": 27.141528037281127,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 14.52999997138977,
+          "movingMedianMs": 100.8125
+        },
+        {
+          "staticMedianMs": 14.379999876022339,
+          "movingMedianMs": 100.18250012397766
+        }
+      ]
+    },
+    {
+      "scene": "rocca",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        4,
+        7
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 0.39025001525878905,
+        "median": 0.35000014305114746,
+        "p95": 0.7259999275207516,
+        "min": 0.15999984741210938,
+        "max": 1.4850001335144043
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 22.642499995231628,
+        "median": 22.33500027656555,
+        "p95": 28.589750170707696,
+        "min": 17.875,
+        "max": 31.15999984741211
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.031249994701809353,
+        "median": 0.02500009536743164,
+        "p95": 0.050250172615051186,
+        "min": 0.014999866485595703,
+        "max": 0.7149996757507324
+      },
+      "interactiveFps": [
+        45.1100460820305,
+        51.9257883589339
+      ],
+      "interactiveP95Ms": [
+        25.450000000000728,
+        25.10899999999965
+      ],
+      "minPsnrDb": 23.063024173315974,
+      "minForegroundPsnrDb": 23.058098847316728,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.23999977111816406,
+          "movingMedianMs": 24.490000247955322
+        },
+        {
+          "staticMedianMs": 0.4525001049041748,
+          "movingMedianMs": 20.142499923706055
+        }
+      ]
+    },
+    {
+      "scene": "rocca",
+      "mode": "ours-fixed",
+      "passed": true,
+      "trials": [
+        5,
+        6
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 9.764444433318245,
+        "median": 9.59249997138977,
+        "p95": 11.506750106811523,
+        "min": 8.054999828338623,
+        "max": 12.429999828338623
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 11.855749977959526,
+        "median": 11.727500200271606,
+        "p95": 12.832999920845031,
+        "min": 10.789999961853027,
+        "max": 15.62000036239624
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.03161111937628852,
+        "median": 0.03000020980834961,
+        "p95": 0.04999971389770508,
+        "min": 0.010000228881835938,
+        "max": 0.059999942779541016
+      },
+      "interactiveFps": [
+        88.81781246218698,
+        89.06763401934542
+      ],
+      "interactiveP95Ms": [
+        17.173750000001746,
+        16.74499999999898
+      ],
+      "minPsnrDb": 27.85039974610533,
+      "minForegroundPsnrDb": 27.84166537054643,
+      "selectedSplats": [
+        4226248,
+        4317968,
+        4396240,
+        4325759,
+        4357336,
+        4226248,
+        4317968,
+        4396240,
+        4325759,
+        4357336
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 9.997499942779541,
+          "movingMedianMs": 12.007500171661377
+        },
+        {
+          "staticMedianMs": 9.437500238418579,
+          "movingMedianMs": 11.585000038146973
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        12,
+        23
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 14.776666686269973,
+        "median": 14.387500047683716,
+        "p95": 17.034749746322632,
+        "min": 13.5,
+        "max": 17.785000324249268
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 13.896777780850728,
+        "median": 14.017499685287476,
+        "p95": 17.575000166893005,
+        "min": 10.03000020980835,
+        "max": 19.860000133514404
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.01869445906745063,
+        "median": 0.015000343322753906,
+        "p95": 0.03499987125396729,
+        "min": 0.004999637603759766,
+        "max": 0.059999942779541016
+      },
+      "interactiveFps": [
+        66.86067906000872,
+        56.72001582189915
+      ],
+      "interactiveP95Ms": [
+        25.008250000000498,
+        25.997999999999386
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 15.200000286102295,
+          "movingMedianMs": 14.997499704360962
+        },
+        {
+          "staticMedianMs": 14.02999997138977,
+          "movingMedianMs": 13.582499980926514
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "ours-auto",
+      "passed": true,
+      "trials": [
+        13,
+        22
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 17.299388869603476,
+        "median": 17.040000200271606,
+        "p95": 22.626249790191647,
+        "min": 13.235000133514404,
+        "max": 26
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 18.068666659461126,
+        "median": 18.27500009536743,
+        "p95": 21.765749883651733,
+        "min": 12.595000267028809,
+        "max": 23.630000114440918
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.031083318922254775,
+        "median": 0.03000020980834961,
+        "p95": 0.04525008201599113,
+        "min": 0.009999752044677734,
+        "max": 0.06500005722045898
+      },
+      "interactiveFps": [
+        54.90696871296575,
+        55.4497486652721
+      ],
+      "interactiveP95Ms": [
+        25.19499999999971,
+        24.93924999999872
+      ],
+      "minPsnrDb": 62.16018636928078,
+      "minForegroundPsnrDb": 62.16018636928078,
+      "selectedSplats": [
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461,
+        8845461
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 19.930000066757202,
+          "movingMedianMs": 17.744999647140503
+        },
+        {
+          "staticMedianMs": 14.232499837875366,
+          "movingMedianMs": 19.56749987602234
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        14,
+        21
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 13.442249978913202,
+        "median": 13.25249981880188,
+        "p95": 15.330750370025635,
+        "min": 11.735000133514404,
+        "max": 16.074999809265137
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 14.263027742173936,
+        "median": 14.324999809265137,
+        "p95": 16.95099980831146,
+        "min": 10.605000019073486,
+        "max": 19.985000133514404
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.018361094262864856,
+        "median": 0.01750016212463379,
+        "p95": 0.03000020980834961,
+        "min": 0.004999637603759766,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        65.87771449247333,
+        66.56768774518787
+      ],
+      "interactiveP95Ms": [
+        24.795999999999868,
+        20.67850000000016
+      ],
+      "minPsnrDb": 30.899822320659457,
+      "minForegroundPsnrDb": 30.899822320659457,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 13.210000276565552,
+          "movingMedianMs": 13.490000009536743
+        },
+        {
+          "staticMedianMs": 13.277499914169312,
+          "movingMedianMs": 14.892500162124634
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        15,
+        20
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 19.935916680759853,
+        "median": 19.03250002861023,
+        "p95": 23.430249834060668,
+        "min": 17.929999828338623,
+        "max": 59.69000005722046
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 120.2108333296246,
+        "median": 120.68249988555908,
+        "p95": 127.58674993515014,
+        "min": 107.25500011444092,
+        "max": 135.00999975204468
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 101.57080556816526,
+        "median": 101.7574999332428,
+        "p95": 107.91849994659424,
+        "min": 89.65999984741211,
+        "max": 114.48000001907349
+      },
+      "interactiveFps": [
+        56.57137588065681,
+        38.802977879815224
+      ],
+      "interactiveP95Ms": [
+        55.77650000000021,
+        83.8487499999992
+      ],
+      "minPsnrDb": 32.781514127107975,
+      "minForegroundPsnrDb": 32.781514127107975,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 18.984999895095825,
+          "movingMedianMs": 120.03500008583069
+        },
+        {
+          "staticMedianMs": 19.075000047683716,
+          "movingMedianMs": 120.81500005722046
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        16,
+        19
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 0.2579444143507216,
+        "median": 0.24499988555908203,
+        "p95": 0.38499977588653567,
+        "min": 0.11999988555908203,
+        "max": 0.7049999237060547
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 28.588472220632767,
+        "median": 27.182499885559082,
+        "p95": 36.27375009059905,
+        "min": 22.365000247955322,
+        "max": 38.954999923706055
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.02305553224351671,
+        "median": 0.019999980926513672,
+        "p95": 0.03500032424926758,
+        "min": 0.009999752044677734,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        29.684380820921554,
+        31.380088835537205
+      ],
+      "interactiveP95Ms": [
+        50.06574999999875,
+        38.4987500000002
+      ],
+      "minPsnrDb": 23.742527031022718,
+      "minForegroundPsnrDb": 23.742527031022718,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.23749995231628418,
+          "movingMedianMs": 26.547499895095825
+        },
+        {
+          "staticMedianMs": 0.25,
+          "movingMedianMs": 30.585000038146973
+        }
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "mode": "ours-fixed",
+      "passed": true,
+      "trials": [
+        17,
+        18
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 16.720527789327832,
+        "median": 16.510000228881836,
+        "p95": 21.283499860763545,
+        "min": 13.619999885559082,
+        "max": 24.769999980926514
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 17.439583362473382,
+        "median": 17.725000143051147,
+        "p95": 22.7855003118515,
+        "min": 10.940000057220459,
+        "max": 25.295000076293945
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.032027790281507706,
+        "median": 0.03000020980834961,
+        "p95": 0.04999971389770508,
+        "min": 0.014999866485595703,
+        "max": 0.059999942779541016
+      },
+      "interactiveFps": [
+        46.75291086607281,
+        51.64786634430412
+      ],
+      "interactiveP95Ms": [
+        27.62250000000058,
+        25.609000000001107
+      ],
+      "minPsnrDb": 39.29835001672221,
+      "minForegroundPsnrDb": 39.29835001672221,
+      "selectedSplats": [
+        7374809,
+        7251250,
+        7584956,
+        7691174,
+        7636265,
+        7374809,
+        7251250,
+        7584956,
+        7691174,
+        7636265
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 15.234999895095825,
+          "movingMedianMs": 16.05999994277954
+        },
+        {
+          "staticMedianMs": 17.212499856948853,
+          "movingMedianMs": 18.449999809265137
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        24,
+        35
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 7.9480277723736235,
+        "median": 7.75249981880188,
+        "p95": 9.35124990940094,
+        "min": 7.134999752044678,
+        "max": 10
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 12.326055574417115,
+        "median": 12.352499961853027,
+        "p95": 20.141750240325926,
+        "min": 5.714999675750732,
+        "max": 24.204999923706055
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.016305555237664117,
+        "median": 0.015000343322753906,
+        "p95": 0.02500009536743164,
+        "min": 0,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        82.87092852881638,
+        77.90915792186311
+      ],
+      "interactiveP95Ms": [
+        23.443249999999033,
+        24.9949999999998
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.427500009536743,
+          "movingMedianMs": 10.615000009536743
+        },
+        {
+          "staticMedianMs": 8.325000047683716,
+          "movingMedianMs": 13.865000009536743
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "ours-auto",
+      "passed": true,
+      "trials": [
+        25,
+        34
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 6.761138892173767,
+        "median": 6.605000019073486,
+        "p95": 7.666249966621399,
+        "min": 6.035000324249268,
+        "max": 8.650000095367432
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 9.837166680230034,
+        "median": 9.102500200271606,
+        "p95": 16.860750031471245,
+        "min": 4.335000038146973,
+        "max": 22.084999561309814
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.023583314153883192,
+        "median": 0.02500009536743164,
+        "p95": 0.039999961853027344,
+        "min": 0.004999637603759766,
+        "max": 0.05499982833862305
+      },
+      "interactiveFps": [
+        94.30984776943491,
+        83.3097413781277
+      ],
+      "interactiveP95Ms": [
+        19.02449999999969,
+        25.0049999999992
+      ],
+      "minPsnrDb": 30.22694342634667,
+      "minForegroundPsnrDb": 30.179448371800248,
+      "selectedSplats": [
+        12245931,
+        12245931,
+        12245931,
+        12245931,
+        12245931,
+        7195975,
+        4925537,
+        7102106,
+        9903468,
+        12245931
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 6.567499876022339,
+          "movingMedianMs": 8.795000314712524
+        },
+        {
+          "staticMedianMs": 6.610000133514404,
+          "movingMedianMs": 9.752500057220459
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        26,
+        33
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 8.277138866318596,
+        "median": 8.264999866485596,
+        "p95": 9.43025028705597,
+        "min": 7.204999923706055,
+        "max": 10.329999923706055
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 11.096500007311503,
+        "median": 11.09250020980835,
+        "p95": 14.02074987888336,
+        "min": 8.255000114440918,
+        "max": 15.71500015258789
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.013222228156195746,
+        "median": 0.014999866485595703,
+        "p95": 0.02500009536743164,
+        "min": 0,
+        "max": 0.039999961853027344
+      },
+      "interactiveFps": [
+        103.28838791525862,
+        99.54170897397195
+      ],
+      "interactiveP95Ms": [
+        16.670000000000073,
+        16.683500000000276
+      ],
+      "minPsnrDb": 29.95147236425804,
+      "minForegroundPsnrDb": 29.935619267107366,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 8.074999809265137,
+          "movingMedianMs": 10.93500018119812
+        },
+        {
+          "staticMedianMs": 8.319999933242798,
+          "movingMedianMs": 11.289999961853027
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        27,
+        32
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 14.245611113972133,
+        "median": 14.239999771118164,
+        "p95": 14.951999711990354,
+        "min": 13.264999866485596,
+        "max": 15.529999732971191
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 149.16163890096877,
+        "median": 148.80749988555908,
+        "p95": 161.6902500629425,
+        "min": 133.5900001525879,
+        "max": 168.32000017166138
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 129.56483334435356,
+        "median": 129.65000009536743,
+        "p95": 139.41575021743773,
+        "min": 116.1850004196167,
+        "max": 143.3949999809265
+      },
+      "interactiveFps": [
+        53.41853673148451,
+        73.38312312126189
+      ],
+      "interactiveP95Ms": [
+        63.752999999998764,
+        35.857499999998254
+      ],
+      "minPsnrDb": 31.26002092268637,
+      "minForegroundPsnrDb": 31.244519446594445,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 14.290000200271606,
+          "movingMedianMs": 148.48250007629395
+        },
+        {
+          "staticMedianMs": 14.22499966621399,
+          "movingMedianMs": 149.22499990463257
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        28,
+        31
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 0.26450000603993734,
+        "median": 0.25499987602233887,
+        "p95": 0.3855002164840697,
+        "min": 0.125,
+        "max": 0.8300004005432129
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 28.125472214486862,
+        "median": 27.605000019073486,
+        "p95": 39.113000011444086,
+        "min": 18.71500015258789,
+        "max": 74.42500019073486
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.023833314577738445,
+        "median": 0.019999980926513672,
+        "p95": 0.039999961853027344,
+        "min": 0.014999866485595703,
+        "max": 0.08500003814697266
+      },
+      "interactiveFps": [
+        44.93283038353025,
+        38.82939335295546
+      ],
+      "interactiveP95Ms": [
+        40.27000000000044,
+        41.6800000000012
+      ],
+      "minPsnrDb": 25.98360880431112,
+      "minForegroundPsnrDb": 25.96789752162043,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.25750017166137695,
+          "movingMedianMs": 25.732500076293945
+        },
+        {
+          "staticMedianMs": 0.25,
+          "movingMedianMs": 32.84249997138977
+        }
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "mode": "ours-fixed",
+      "passed": true,
+      "trials": [
+        29,
+        30
+      ],
+      "staticMs": {
+        "samples": 180,
+        "mean": 6.6892499923706055,
+        "median": 6.5,
+        "p95": 7.515499854087829,
+        "min": 6.085000038146973,
+        "max": 7.74500036239624
+      },
+      "movingMs": {
+        "samples": 180,
+        "mean": 9.265416706932916,
+        "median": 9.334999799728394,
+        "p95": 14.74499990940094,
+        "min": 4.019999980926514,
+        "max": 17.34000015258789
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "mean": 0.019750030835469563,
+        "median": 0.015000343322753906,
+        "p95": 0.03500032424926758,
+        "min": 0.004999637603759766,
+        "max": 0.06999969482421875
+      },
+      "interactiveFps": [
+        99.91665306620789,
+        97.04523455508875
+      ],
+      "interactiveP95Ms": [
+        17.674999999999272,
+        18.686000000000785
+      ],
+      "minPsnrDb": 29.93615517492585,
+      "minForegroundPsnrDb": 29.888183161606065,
+      "selectedSplats": [
+        7192467,
+        4922871,
+        7099440,
+        9900802,
+        7528297,
+        7192467,
+        4922871,
+        7099440,
+        9900802,
+        7528297
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.052500009536743,
+          "movingMedianMs": 8.972500085830688
+        },
+        {
+          "staticMedianMs": 6.4125001430511475,
+          "movingMedianMs": 9.517499923706055
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "harnessRevision": "eb8a0cc5307cc9c1ce5d8ac5487f074b265233b5",
+    "librarySha256": "6411f9e357dd3e07b469c2d2b6231ab8d0a898391feb89451d3aee68b3a12213",
+    "harnessSha256": "03e417e80121afea9c4544ed3a4b3f989d7bae0b41d8cedd68711e5c5249e1d2",
+    "upstreamRevision": "d753e98c70d67b755754c614f383d215cacbbd63",
+    "upstreamBundleSha256": "5ead0f0e40c318bf97a5839f68a9f151c851c6cd1cfca82cd8e75c46b4f23138",
+    "dependencyLockSha256": "184d7cdc44e6a1463772563eaba96594c30d79e53dadb1b7589d0f31349a0174"
+  },
+  "benchmarkSpecs": {
+    "chip": "Apple M5 Max",
+    "memory": "128 GB",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "physicalPixels": [
+      2560,
+      1440
+    ]
+  },
+  "conditions": "Power, thermal state and unrelated system activity were not controlled. Treat this as a two-trial device-specific test, not a statistical ranking or a cross-cohort runtime improvement.",
+  "rankings": [
+    {
+      "scene": "rocca",
+      "eligible": [
+        {
+          "mode": "pc-default",
+          "ms": 5.829999923706055
+        },
+        {
+          "mode": "ours-auto",
+          "ms": 9.890000104904175
+        },
+        {
+          "mode": "pc-full",
+          "ms": 10.134999990463257
+        },
+        {
+          "mode": "luma",
+          "ms": 22.33500027656555
+        },
+        {
+          "mode": "spark",
+          "ms": 100.69500017166138
+        }
+      ],
+      "excluded": [],
+      "complete": true,
+      "winners": [
+        "pc-default"
+      ],
+      "runnerUp": {
+        "mode": "ours-auto",
+        "ms": 9.890000104904175
+      },
+      "speedup": 1.696397981874626,
+      "nearTie": false
+    },
+    {
+      "scene": "wat-paknam",
+      "eligible": [
+        {
+          "mode": "pc-full",
+          "ms": 14.017499685287476
+        },
+        {
+          "mode": "pc-default",
+          "ms": 14.324999809265137
+        },
+        {
+          "mode": "ours-auto",
+          "ms": 18.27500009536743
+        },
+        {
+          "mode": "luma",
+          "ms": 27.182499885559082
+        },
+        {
+          "mode": "spark",
+          "ms": 120.68249988555908
+        }
+      ],
+      "excluded": [],
+      "complete": true,
+      "winners": [
+        "pc-full"
+      ],
+      "runnerUp": {
+        "mode": "pc-default",
+        "ms": 14.324999809265137
+      },
+      "speedup": 1.021936873970499,
+      "nearTie": true
+    },
+    {
+      "scene": "lcc2rock",
+      "eligible": [
+        {
+          "mode": "ours-auto",
+          "ms": 9.102500200271606
+        },
+        {
+          "mode": "pc-default",
+          "ms": 11.09250020980835
+        },
+        {
+          "mode": "pc-full",
+          "ms": 12.352499961853027
+        },
+        {
+          "mode": "luma",
+          "ms": 27.605000019073486
+        },
+        {
+          "mode": "spark",
+          "ms": 148.80749988555908
+        }
+      ],
+      "excluded": [],
+      "complete": true,
+      "winners": [
+        "ours-auto"
+      ],
+      "runnerUp": {
+        "mode": "pc-default",
+        "ms": 11.09250020980835
+      },
+      "speedup": 1.218621254133822,
+      "nearTie": false
+    }
+  ],
+  "automaticPaths": [
+    {
+      "scene": "rocca",
+      "round": 0,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 1,
+      "capturePaths": [
+        "direct",
+        "direct",
+        "direct",
+        "direct",
+        "direct"
+      ]
+    },
+    {
+      "scene": "rocca",
+      "round": 1,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 1,
+      "capturePaths": [
+        "direct",
+        "direct",
+        "direct",
+        "direct",
+        "direct"
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "round": 0,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 0,
+      "capturePaths": [
+        "direct",
+        "direct",
+        "direct",
+        "direct",
+        "direct"
+      ]
+    },
+    {
+      "scene": "wat-paknam",
+      "round": 1,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 0,
+      "capturePaths": [
+        "direct",
+        "direct",
+        "direct",
+        "direct",
+        "direct"
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "round": 0,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 0,
+      "capturePaths": [
+        "direct",
+        "direct",
+        "direct",
+        "direct",
+        "direct"
+      ]
+    },
+    {
+      "scene": "lcc2rock",
+      "round": 1,
+      "passed": true,
+      "timedFrames": 90,
+      "reducedFrames": 0,
+      "directFrames": 90,
+      "probeFrames": 0,
+      "capturePaths": [
+        "lod",
+        "lod",
+        "lod",
+        "lod",
+        "direct"
+      ]
+    }
+  ],
+  "rawArchive": "results.json.gz",
+  "uncompressedResultsSha256": "def3a319bfc4c466b1fc5c2de93b4257a2c20a682208ae7d08067dfb3bd26be6",
+  "verification": {
+    "passed": true,
+    "independentImplementation": "Python / NumPy",
+    "qualityPairsChecked": 180,
+    "timingRowsChecked": 18,
+    "failedCasesRetained": 0,
+    "timedFramesChecked": 6480,
+    "summarySha256": "def3a319bfc4c466b1fc5c2de93b4257a2c20a682208ae7d08067dfb3bd26be6",
+    "warmupFramesChecked": 4608,
+    "directBypassTransitionsChecked": 3698,
+    "rankingChecks": [
+      {
+        "scene": "rocca",
+        "winners": [
+          "pc-default"
+        ],
+        "speedup": 1.696397981874626,
+        "complete": true
+      },
+      {
+        "scene": "wat-paknam",
+        "winners": [
+          "pc-full"
+        ],
+        "speedup": 1.021936873970499,
+        "complete": true
+      },
+      {
+        "scene": "lcc2rock",
+        "winners": [
+          "ours-auto"
+        ],
+        "speedup": 1.218621254133822,
+        "complete": true
+      }
+    ]
+  }
+}
