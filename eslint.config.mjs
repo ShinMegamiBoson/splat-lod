@@ -39,6 +39,10 @@ export default [
         }
     },
     {
+        files: ['src/framework/splat-lod/**/*.js', 'test/splat-lod/**/*.mjs'],
+        languageOptions: { ecmaVersion: 2025 }
+    },
+    {
         files: ['scripts/**/*.js'],
         rules: {
             'no-var': 'off'

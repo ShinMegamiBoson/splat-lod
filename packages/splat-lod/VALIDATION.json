@@ -1,0 +1,119 @@
+{
+  "kind": "standalone-extraction-parity",
+  "sourceCount": 2315943,
+  "sourceSha256": "265a31cf8ed2c513d318668a6883bb5eab35cbadbce9eac5e2637246effa8fdd",
+  "sourceHashVerified": true,
+  "engine": {
+    "version": "2.21.4",
+    "revision": "e287e0c67f3c20c689a52b7c53d2b7fedbe887da"
+  },
+  "installedPackage": true,
+  "standalonePreprocessedBanks": true,
+  "selectionAudits": [
+    {
+      "mode": "automatic",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 1584165
+    },
+    {
+      "mode": "source",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 2315943
+    },
+    {
+      "mode": "lower-only",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 731858
+    },
+    {
+      "mode": "automatic",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 289601
+    },
+    {
+      "mode": "source",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 2315943
+    },
+    {
+      "mode": "lower-only",
+      "passed": true,
+      "decisionMismatches": 0,
+      "idMismatches": 0,
+      "selectedCount": 289599
+    }
+  ],
+  "frameComparisons": [
+    {
+      "mode": "source",
+      "view": 0,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 86.1550668588468,
+      "maxRgbError255": 6,
+      "selectedCount": 2315943
+    },
+    {
+      "mode": "source",
+      "view": 1,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 85.72373339150153,
+      "maxRgbError255": 11,
+      "selectedCount": 2315943
+    },
+    {
+      "mode": "source",
+      "view": 2,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 87.6866798429412,
+      "maxRgbError255": 5,
+      "selectedCount": 2315943
+    },
+    {
+      "mode": "automatic",
+      "view": 0,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 88.55503139974253,
+      "maxRgbError255": 3,
+      "selectedCount": 1158037
+    },
+    {
+      "mode": "automatic",
+      "view": 1,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 88.77255698290577,
+      "maxRgbError255": 6,
+      "selectedCount": 1158037
+    },
+    {
+      "mode": "automatic",
+      "view": 2,
+      "width": 2560,
+      "height": 1440,
+      "psnrDb": 89.75990480713881,
+      "maxRgbError255": 7,
+      "selectedCount": 1049234
+    }
+  ],
+  "colorRoundTrip": {
+    "exact": false,
+    "psnrDb": 82.90536554293995,
+    "maximum": 15
+  },
+  "passed": true,
+  "scope": "Comparison against the previous renderer, not approximation error against source. Full-image PSNR; small nonzero differences remain."
+}

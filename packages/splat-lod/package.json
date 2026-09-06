@@ -1,0 +1,40 @@
+{
+  "name": "@shinmegami-boson/splat-lod",
+  "version": "0.1.0",
+  "description": "Standalone PlayCanvas-fork WebGPU Gaussian splat renderer with cube-local SH3 LOD and world-indexed GPU ranges",
+  "type": "module",
+  "license": "MIT",
+  "author": "ShinMegamiBoson",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShinMegamiBoson/playcanvas-splat-lod.git",
+    "directory": "packages/splat-lod"
+  },
+  "homepage": "https://github.com/ShinMegamiBoson/playcanvas-splat-lod",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.js"
+    }
+  },
+  "types": "./build/index.d.ts",
+  "files": [
+    "build",
+    "README.md",
+    "CHANGES.md",
+    "BENCHMARKS.md",
+    "VALIDATION.json",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "lint": "cd ../.. && eslint src/framework/splat-lod test/splat-lod packages/splat-lod/*.mjs examples/src/examples/splat-lod/*.mjs",
+    "test": "cd ../.. && mocha 'test/splat-lod/**/*.test.mjs' --timeout 10000",
+    "test:types": "../../node_modules/.bin/tsc --strict --noEmit --lib es2022,dom --module nodenext --moduleResolution nodenext ../../test/splat-lod/public-api.mts",
+    "prepack": "npm run build",
+    "demo": "node serve.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
