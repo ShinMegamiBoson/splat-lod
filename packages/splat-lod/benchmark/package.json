@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
+    "build:main": "node build-main.mjs",
     "serve": "node server.mjs",
+    "serve:main": "node server.mjs --main",
     "summarize": "node summarize.mjs"
   },
   "dependencies": {

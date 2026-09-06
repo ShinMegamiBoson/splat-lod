@@ -1,0 +1,104 @@
+{
+  "baseline": "ours-lod",
+  "defaultChanged": false,
+  "rule": "At least 5% lower moving median, at most 0.5 dB lost minimum foreground PSNR and at most 20% higher moving p95 on every selection and validation input.",
+  "reason": "No candidate passed the frozen rule on all four inputs. Keep exact/visible as default; the three tested alternatives remain opt-in.",
+  "deltas": [
+    {
+      "scene": "bee",
+      "mode": "ours-contribution",
+      "medianReduction": 0.31725882593973487,
+      "qualityLossDb": 9.555235349647372,
+      "p95Ratio": 0.8284423772832554,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-defaults",
+      "medianReduction": 0.251994166611197,
+      "qualityLossDb": 9.555253160129272,
+      "p95Ratio": 0.9239399958390727,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-cached",
+      "medianReduction": 0.21718633216602168,
+      "qualityLossDb": 9.694684338950722,
+      "p95Ratio": 0.9117878586276496,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-contribution",
+      "medianReduction": 0.05724953742790362,
+      "qualityLossDb": 0.03922971567243394,
+      "p95Ratio": 0.9532938198375372,
+      "passesSceneRule": true
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-defaults",
+      "medianReduction": 0.04667081468502943,
+      "qualityLossDb": 0.03919653435897885,
+      "p95Ratio": 0.9509991788284659,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-cached",
+      "medianReduction": 0.04698196057099746,
+      "qualityLossDb": 0.03899342580297116,
+      "p95Ratio": 1.6893516833479065,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-contribution",
+      "medianReduction": 0.0549823411003284,
+      "qualityLossDb": 0.3508605386724071,
+      "p95Ratio": 0.9696020491241532,
+      "passesSceneRule": true
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-defaults",
+      "medianReduction": 0.04629379321409577,
+      "qualityLossDb": 0.35212264046511166,
+      "p95Ratio": 0.9448530410766706,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-cached",
+      "medianReduction": 0.054982354047305226,
+      "qualityLossDb": 0.350146228270134,
+      "p95Ratio": 0.9449740101713319,
+      "passesSceneRule": true
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-contribution",
+      "medianReduction": 0.11934457797785247,
+      "qualityLossDb": 4.034395428916618,
+      "p95Ratio": 1.192569603166159,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-defaults",
+      "medianReduction": 0.10874703831920463,
+      "qualityLossDb": 4.039043922295583,
+      "p95Ratio": 0.8851137282021887,
+      "passesSceneRule": false
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-cached",
+      "medianReduction": 0.07556860236405194,
+      "qualityLossDb": 4.038804484153204,
+      "p95Ratio": 0.9569267423846605,
+      "passesSceneRule": false
+    }
+  ]
+}

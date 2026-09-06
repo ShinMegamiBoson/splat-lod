@@ -6,6 +6,9 @@
 - Added explicit profiles for PC's contribution and footprint culling, plus the choice between fused visible SH and PC's cached work-buffer SH.
 - Added native SH0 preprocessing and rendering for the large city inputs. Missing directional coefficients are not synthesized, and SH3 inputs keep all 45 higher-order coefficients.
 - Added a same-upstream-base comparison and larger-input tests, separate from the v0.1 measurements below.
+- Tested Bee (2.32M, SH3), shop (7.08M, SH3), and complete published Lublin levels containing 16.18M and 32.37M SH0 splats. All 56 cases passed; 10,080 timed frames and 280 image comparisons were independently checked. [Results](MAIN-BENCHMARKS.md).
+- Kept exact/visible as the default. Contribution culling helps some inputs, but the extra quality loss on Bee and the 32M city input fails the preset guard. Cached SH did not give a consistent win. The alternatives remain explicit options.
+- The installed v0.2 bundle is byte-identical to the timed runtime. Six near/far synthetic SH0 selection audits passed with zero mismatches. [Package checks](VALIDATION-v0.2.json). The v0.1 extraction validation below is retained as historical evidence.
 
 ## v0.1.0 extraction
 

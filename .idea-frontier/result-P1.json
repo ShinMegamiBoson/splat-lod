@@ -1,0 +1,193 @@
+{
+  "proposal_id": "P1",
+  "outcome": "regressed",
+  "primary": {
+    "baseline": "ours-lod",
+    "candidate": "ours-contribution",
+    "delta": [
+      {
+        "scene": "bee",
+        "medianReduction": 0.31725882593973487
+      },
+      {
+        "scene": "ekotori",
+        "medianReduction": 0.05724953742790362
+      },
+      {
+        "scene": "lublin-16m",
+        "medianReduction": 0.0549823411003284
+      },
+      {
+        "scene": "lublin-32m",
+        "medianReduction": 0.11934457797785247
+      }
+    ],
+    "uncertainty": "Two reversed-order trials on one device; no confidence interval or significance claim.",
+    "perTrial": [
+      {
+        "scene": "bee",
+        "mode": "ours-lod",
+        "values": [
+          {
+            "staticMedianMs": 5.914999961853027,
+            "movingMedianMs": 6.7250001430511475
+          },
+          {
+            "staticMedianMs": 5.730000019073486,
+            "movingMedianMs": 6.9725000858306885
+          }
+        ]
+      },
+      {
+        "scene": "bee",
+        "mode": "ours-contribution",
+        "values": [
+          {
+            "staticMedianMs": 4.3349997997283936,
+            "movingMedianMs": 3.9624998569488525
+          },
+          {
+            "staticMedianMs": 5.372499942779541,
+            "movingMedianMs": 5.317500114440918
+          }
+        ]
+      },
+      {
+        "scene": "ekotori",
+        "mode": "ours-lod",
+        "values": [
+          {
+            "staticMedianMs": 7.769999980926514,
+            "movingMedianMs": 8.140000104904175
+          },
+          {
+            "staticMedianMs": 7.480000019073486,
+            "movingMedianMs": 7.9100000858306885
+          }
+        ]
+      },
+      {
+        "scene": "ekotori",
+        "mode": "ours-contribution",
+        "values": [
+          {
+            "staticMedianMs": 7.3374998569488525,
+            "movingMedianMs": 7.667499780654907
+          },
+          {
+            "staticMedianMs": 7.184999942779541,
+            "movingMedianMs": 7.547499656677246
+          }
+        ]
+      },
+      {
+        "scene": "lublin-16m",
+        "mode": "ours-lod",
+        "values": [
+          {
+            "staticMedianMs": 16.925000190734863,
+            "movingMedianMs": 18.194999933242798
+          },
+          {
+            "staticMedianMs": 16.950000047683716,
+            "movingMedianMs": 18.524999856948853
+          }
+        ]
+      },
+      {
+        "scene": "lublin-16m",
+        "mode": "ours-contribution",
+        "values": [
+          {
+            "staticMedianMs": 16.390000104904175,
+            "movingMedianMs": 17.430000066757202
+          },
+          {
+            "staticMedianMs": 16.40249991416931,
+            "movingMedianMs": 17.295000076293945
+          }
+        ]
+      },
+      {
+        "scene": "lublin-32m",
+        "mode": "ours-lod",
+        "values": [
+          {
+            "staticMedianMs": 28.579999923706055,
+            "movingMedianMs": 30.68499994277954
+          },
+          {
+            "staticMedianMs": 28.56749987602234,
+            "movingMedianMs": 30.615000009536743
+          }
+        ]
+      },
+      {
+        "scene": "lublin-32m",
+        "mode": "ours-contribution",
+        "values": [
+          {
+            "staticMedianMs": 25.807499885559082,
+            "movingMedianMs": 26.982500076293945
+          },
+          {
+            "staticMedianMs": 25.959999799728394,
+            "movingMedianMs": 27.140000104904175
+          }
+        ]
+      }
+    ]
+  },
+  "guardrails": {
+    "passed": false,
+    "deltas": [
+      {
+        "scene": "bee",
+        "mode": "ours-contribution",
+        "medianReduction": 0.31725882593973487,
+        "qualityLossDb": 9.555235349647372,
+        "p95Ratio": 0.8284423772832554,
+        "passesSceneRule": false
+      },
+      {
+        "scene": "ekotori",
+        "mode": "ours-contribution",
+        "medianReduction": 0.05724953742790362,
+        "qualityLossDb": 0.03922971567243394,
+        "p95Ratio": 0.9532938198375372,
+        "passesSceneRule": true
+      },
+      {
+        "scene": "lublin-16m",
+        "mode": "ours-contribution",
+        "medianReduction": 0.0549823411003284,
+        "qualityLossDb": 0.3508605386724071,
+        "p95Ratio": 0.9696020491241532,
+        "passesSceneRule": true
+      },
+      {
+        "scene": "lublin-32m",
+        "mode": "ours-contribution",
+        "medianReduction": 0.11934457797785247,
+        "qualityLossDb": 4.034395428916618,
+        "p95Ratio": 1.192569603166159,
+        "passesSceneRule": false
+      }
+    ]
+  },
+  "protocol_deviations": [
+    "Build command consolidated into build-main.mjs, pinning all three builds to the same ENGINE_BASE.",
+    "Original run name pc-main-20260906 excluded after first-tab cleanup on an automation timeout; complete 56-case pc-main-20260906-r2 cohort used, with no fastest-attempt picking.",
+    "Browser viewport reports DPR 1, not the initially assumed 2. All cases explicitly render the frozen 2560x1440 framebuffer inside 1280x720 CSS, verified from every raw capture; no resolution change."
+  ],
+  "artifacts": [
+    "packages/splat-lod/benchmark/measurements/2026-09-06/summary.json",
+    "packages/splat-lod/benchmark/measurements/2026-09-06/verification.json",
+    "packages/splat-lod/benchmark/measurements/2026-09-06/optimization-decision.json"
+  ],
+  "observations": [
+    "Speed improves on some inputs but the universal promotion guard fails. Keep as explicit opt-in, not a new default.",
+    "Minimum foreground PSNR losses versus existing LOD are about 9.6 dB on Bee and 4 dB on 32M Lublin.",
+    "Contribution-only passes the per-scene rule on shop and 16M Lublin; this does not validate a universal policy."
+  ]
+}

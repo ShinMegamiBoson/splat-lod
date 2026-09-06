@@ -1,0 +1,1903 @@
+{
+  "generatedAt": "2026-09-06T04:48:04.250Z",
+  "protocol": {
+    "version": 3,
+    "width": 2560,
+    "height": 1440,
+    "cssWidth": 1280,
+    "cssHeight": 720,
+    "warmup": 20,
+    "samples": 90,
+    "interactiveDurationMs": 4000,
+    "repeats": 2,
+    "qualityFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "modes": [
+      "pc-full",
+      "ours-lod",
+      "ours-contribution",
+      "ours-defaults",
+      "ours-cached",
+      "pc-default",
+      "ours-source"
+    ],
+    "engineRevision": "d753e98c70d67b755754c614f383d215cacbbd63"
+  },
+  "scenes": [
+    {
+      "id": "bee",
+      "name": "Bumblebee",
+      "count": 2315943,
+      "cellSize": 0.03,
+      "source": "/data/bee/source.compressed.ply",
+      "manifest": "/data/bee/manifest.json",
+      "luma": "/data/luma-bee/manifest.json",
+      "sourceSha256": "265a31cf8ed2c513d318668a6883bb5eab35cbadbce9eac5e2637246effa8fdd",
+      "sceneUrl": "https://superspl.at/scene/cf6ac78e",
+      "creator": "Dany Bittel (danylyon)",
+      "background": [
+        18,
+        18,
+        18
+      ],
+      "motionScale": 0.05,
+      "camera": {
+        "position": [
+          0.5789085030555725,
+          0.1545514017343521,
+          -0.2128286063671112
+        ],
+        "target": [
+          -0.029645833304136116,
+          -0.01141313311933568,
+          0.031808660507327585
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fovDegrees": 40,
+        "near": 0.1,
+        "far": 1000
+      }
+    },
+    {
+      "id": "ekotori",
+      "name": "Ekotori shop",
+      "count": 7081853,
+      "cellSize": 0.5,
+      "source": "/data/ekotori/source.ply",
+      "manifest": "/data/ekotori/manifest.json",
+      "luma": "/data/luma-ekotori/manifest.json",
+      "sourceSha256": "15ce5c1d3a6e99a8e29e3cdfd71179d4ead8ff17cb26c386c5429bfde09e78be",
+      "sceneUrl": "https://superspl.at/scene/8fa2ded1",
+      "creator": "J (jjames)",
+      "background": [
+        4,
+        5,
+        6
+      ],
+      "motionScale": 0.5,
+      "camera": {
+        "position": [
+          -1.9858983755111694,
+          -2.3475029468536377,
+          4.052705764770508
+        ],
+        "target": [
+          0.19238454783604775,
+          -1.733221074142452,
+          1.4301609710575098
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 72.48762310530823,
+        "near": 0.1,
+        "far": 1000
+      }
+    },
+    {
+      "id": "lublin-16m",
+      "name": "Lublin city · published LOD 4",
+      "count": 16184440,
+      "shBands": 0,
+      "cellSize": 16,
+      "source": "/data/lublin-16m/source.ply",
+      "manifest": "/data/lublin-16m/manifest.json",
+      "sourceSha256": "cb0eb55953f6097ba1d998a9e41fdfa65e02d22e525c3f448b979635a026728e",
+      "sceneUrl": "https://code.playcanvas.com/examples_data/downtown_02/lod-meta.json",
+      "sourceDescription": "Entire published LOD 4, not the 258,951,032-splat original; no extra point filtering.",
+      "creator": "Andrii Shramko, Teleportour",
+      "attribution": "3D scanning data created and provided by Andrii Shramko, Teleportour.",
+      "attributionLinks": [
+        "https://www.linkedin.com/in/andrii-shramko/",
+        "https://www.linkedin.com/company/teleportour/",
+        "https://teleportour.com"
+      ],
+      "background": [
+        8,
+        8,
+        8
+      ],
+      "motionScale": 10,
+      "camera": {
+        "position": [
+          -87.42,
+          -179.97,
+          -14.23
+        ],
+        "target": [
+          -86.547,
+          -179.545,
+          -14.486
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "fovDegrees": 75,
+        "near": 0.1,
+        "far": 10000
+      }
+    },
+    {
+      "id": "lublin-32m",
+      "name": "Lublin city · published LOD 3",
+      "count": 32368879,
+      "shBands": 0,
+      "cellSize": 16,
+      "source": "/data/lublin-32m/source.ply",
+      "manifest": "/data/lublin-32m/manifest.json",
+      "sourceSha256": "f45791c02e7b8f00a92a1e3afeea2c95659a10ba8089c5ff980ad55d508969af",
+      "sceneUrl": "https://code.playcanvas.com/examples_data/downtown_02/lod-meta.json",
+      "sourceDescription": "Entire published LOD 3, not the 258,951,032-splat original; no extra point filtering.",
+      "creator": "Andrii Shramko, Teleportour",
+      "attribution": "3D scanning data created and provided by Andrii Shramko, Teleportour.",
+      "attributionLinks": [
+        "https://www.linkedin.com/in/andrii-shramko/",
+        "https://www.linkedin.com/company/teleportour/",
+        "https://teleportour.com"
+      ],
+      "background": [
+        8,
+        8,
+        8
+      ],
+      "motionScale": 10,
+      "camera": {
+        "position": [
+          -87.42,
+          -179.97,
+          -14.23
+        ],
+        "target": [
+          -86.547,
+          -179.545,
+          -14.486
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "fovDegrees": 75,
+        "near": 0.1,
+        "far": 10000
+      }
+    }
+  ],
+  "reportCount": 56,
+  "passedCount": 56,
+  "rows": [
+    {
+      "scene": "bee",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        0,
+        13
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.0299999713897705,
+        "p95": 9.02699997425079,
+        "min": 6.419999599456787,
+        "max": 12.550000190734863
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 7.849999904632568,
+        "p95": 9.301999735832213,
+        "min": 6.680000305175781,
+        "max": 10.760000228881836
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.010000228881835938,
+        "p95": 0.019999980926513672,
+        "min": 0,
+        "max": 0.03000020980834961
+      },
+      "interactiveFps": [
+        120.00234516017571,
+        119.99715006768588
+      ],
+      "interactiveP95Ms": [
+        9.904999999999745,
+        9.925500000001056
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 6.9375,
+          "movingMedianMs": 7.900000095367432
+        },
+        {
+          "staticMedianMs": 7.192499876022339,
+          "movingMedianMs": 7.762500286102295
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        1,
+        12
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.777500152587891,
+        "p95": 7.296249961853025,
+        "min": 4.144999980926514,
+        "max": 9.204999923706055
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 6.894999742507935,
+        "p95": 8.57874982357025,
+        "min": 4.385000228881836,
+        "max": 9.704999923706055
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.04999971389770508,
+        "p95": 0.07025015354156486,
+        "min": 0.009999752044677734,
+        "max": 0.08500003814697266
+      },
+      "interactiveFps": [
+        119.9941502851736,
+        119.96401079676097
+      ],
+      "interactiveP95Ms": [
+        9.960249999999178,
+        9.875500000000011
+      ],
+      "minPsnrDb": 39.52939490963163,
+      "minForegroundPsnrDb": 28.581407734019486,
+      "selectedSplats": [
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.914999961853027,
+          "movingMedianMs": 6.7250001430511475
+        },
+        {
+          "staticMedianMs": 5.730000019073486,
+          "movingMedianMs": 6.9725000858306885
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-contribution",
+      "passed": true,
+      "trials": [
+        2,
+        11
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.1524999141693115,
+        "p95": 22.3515002727508,
+        "min": 3.0950002670288086,
+        "max": 59.34499979019165
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 4.707500219345093,
+        "p95": 7.106999897956846,
+        "min": 3.2799997329711914,
+        "max": 9.150000095367432
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.07499980926513672,
+        "min": 0.014999866485595703,
+        "max": 0.08500003814697266
+      },
+      "interactiveFps": [
+        106.39453641577785,
+        115.12983323655934
+      ],
+      "interactiveP95Ms": [
+        15.34875000000011,
+        10.3100000000004
+      ],
+      "minPsnrDb": 30.456958084220073,
+      "minForegroundPsnrDb": 19.026172384372114,
+      "selectedSplats": [
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 4.3349997997283936,
+          "movingMedianMs": 3.9624998569488525
+        },
+        {
+          "staticMedianMs": 5.372499942779541,
+          "movingMedianMs": 5.317500114440918
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-defaults",
+      "passed": true,
+      "trials": [
+        3,
+        10
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 4.247499942779541,
+        "p95": 7.298000073432921,
+        "min": 3.2950000762939453,
+        "max": 21.53000020980835
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.1575000286102295,
+        "p95": 7.926250076293943,
+        "min": 3.755000114440918,
+        "max": 9.154999732971191
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.07000017166137695,
+        "min": 0.010000228881835938,
+        "max": 0.10500001907348633
+      },
+      "interactiveFps": [
+        93.41650899508562,
+        119.97300607363341
+      ],
+      "interactiveP95Ms": [
+        25.887749999999958,
+        9.970499999999356
+      ],
+      "minPsnrDb": 30.456942055774935,
+      "minForegroundPsnrDb": 19.026154573890214,
+      "selectedSplats": [
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 3.950000047683716,
+          "movingMedianMs": 4.917499780654907
+        },
+        {
+          "staticMedianMs": 5.6000001430511475,
+          "movingMedianMs": 5.477499961853027
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-cached",
+      "passed": true,
+      "trials": [
+        4,
+        9
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.434999942779541,
+        "p95": 7.841500163078307,
+        "min": 2.8350000381469727,
+        "max": 9.514999866485596
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.397500038146973,
+        "p95": 7.821999931335445,
+        "min": 3.9000000953674316,
+        "max": 11.650000095367432
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.03000020980834961,
+        "p95": 0.07499980926513672,
+        "min": 0.009999752044677734,
+        "max": 0.09999990463256836
+      },
+      "interactiveFps": [
+        119.99730006074863,
+        120.01342353884904
+      ],
+      "interactiveP95Ms": [
+        10.150249999999687,
+        9.975000000000364
+      ],
+      "minPsnrDb": 30.317382379709827,
+      "minForegroundPsnrDb": 18.886723395068763,
+      "selectedSplats": [
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.235000133514404,
+          "movingMedianMs": 5.984999895095825
+        },
+        {
+          "staticMedianMs": 5.672499895095825,
+          "movingMedianMs": 5.017499923706055
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        5,
+        8
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 6.267500162124634,
+        "p95": 7.760250234603882,
+        "min": 3.7450003623962402,
+        "max": 8.829999923706055
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.307499885559082,
+        "p95": 7.181999826431274,
+        "min": 3.4749999046325684,
+        "max": 14.320000171661377
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.04999971389770508,
+        "min": 0.004999637603759766,
+        "max": 0.05500030517578125
+      },
+      "interactiveFps": [
+        119.94182821331654,
+        119.99940000299999
+      ],
+      "interactiveP95Ms": [
+        10.105249999999568,
+        10.170250000000033
+      ],
+      "minPsnrDb": 29.468380275042904,
+      "minForegroundPsnrDb": 18.03659864485063,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.892500162124634,
+          "movingMedianMs": 5.9725000858306885
+        },
+        {
+          "staticMedianMs": 6.430000066757202,
+          "movingMedianMs": 4.639999866485596
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        6,
+        7
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.884999990463257,
+        "p95": 9.120750355720519,
+        "min": 7.194999694824219,
+        "max": 11.09499979019165
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 7.920000076293945,
+        "p95": 9.17050006389618,
+        "min": 7.059999942779541,
+        "max": 10.054999828338623
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.03000020980834961,
+        "min": 0.009999752044677734,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        119.9827524793311,
+        119.99430027073713
+      ],
+      "interactiveP95Ms": [
+        10.295500000000084,
+        9.805250000000251
+      ],
+      "minPsnrDb": 77.77586637248105,
+      "minForegroundPsnrDb": 66.50654705725675,
+      "selectedSplats": [
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.829999923706055,
+          "movingMedianMs": 8.289999961853027
+        },
+        {
+          "staticMedianMs": 7.982499837875366,
+          "movingMedianMs": 7.734999895095825
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        14,
+        27
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 11.735000133514404,
+        "p95": 44.855000233650166,
+        "min": 11.045000076293945,
+        "max": 54.375
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 13.762499809265137,
+        "p95": 46.7377500772476,
+        "min": 12.930000305175781,
+        "max": 58.989999771118164
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000104904174805,
+        "p95": 0.02500009536743164,
+        "min": 0.005000114440917969,
+        "max": 0.034999847412109375
+      },
+      "interactiveFps": [
+        73.66804430071545,
+        77.7056106699048
+      ],
+      "interactiveP95Ms": [
+        21.344000000000417,
+        19.28500000000031
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 13.942499876022339,
+          "movingMedianMs": 16.297499895095825
+        },
+        {
+          "staticMedianMs": 11.502500057220459,
+          "movingMedianMs": 13.389999866485596
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        15,
+        26
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.595000267028809,
+        "p95": 8.212250041961669,
+        "min": 7.204999923706055,
+        "max": 14.070000171661377
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 8.035000085830688,
+        "p95": 8.607000017166136,
+        "min": 7.529999732971191,
+        "max": 12.699999809265137
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.03000020980834961,
+        "min": 0.005000114440917969,
+        "max": 0.039999961853027344
+      },
+      "interactiveFps": [
+        119.98785123006289,
+        119.99835002268718
+      ],
+      "interactiveP95Ms": [
+        9.88499999999858,
+        9.057000000000333
+      ],
+      "minPsnrDb": 31.54847811477643,
+      "minForegroundPsnrDb": 31.550137900767226,
+      "selectedSplats": [
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342,
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.769999980926514,
+          "movingMedianMs": 8.140000104904175
+        },
+        {
+          "staticMedianMs": 7.480000019073486,
+          "movingMedianMs": 7.9100000858306885
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-contribution",
+      "passed": true,
+      "trials": [
+        16,
+        25
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.255000114440918,
+        "p95": 7.92174961566925,
+        "min": 7.009999752044678,
+        "max": 8.130000114440918
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 7.575000047683716,
+        "p95": 8.204999923706055,
+        "min": 7.225000381469727,
+        "max": 11.565000057220459
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.029999732971191406,
+        "min": 0.005000114440917969,
+        "max": 0.04499959945678711
+      },
+      "interactiveFps": [
+        119.99775004218668,
+        119.99550016874369
+      ],
+      "interactiveP95Ms": [
+        9.841000000000166,
+        9.135250000001905
+      ],
+      "minPsnrDb": 31.509298411657163,
+      "minForegroundPsnrDb": 31.51090818509479,
+      "selectedSplats": [
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342,
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.3374998569488525,
+          "movingMedianMs": 7.667499780654907
+        },
+        {
+          "staticMedianMs": 7.184999942779541,
+          "movingMedianMs": 7.547499656677246
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-defaults",
+      "passed": true,
+      "trials": [
+        17,
+        24
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.502500057220459,
+        "p95": 7.996249890327453,
+        "min": 7.019999980926514,
+        "max": 12.179999828338623
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 7.6600000858306885,
+        "p95": 8.185249948501587,
+        "min": 7.179999828338623,
+        "max": 8.864999771118164
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.02500009536743164,
+        "min": 0.004999637603759766,
+        "max": 0.03500032424926758
+      },
+      "interactiveFps": [
+        120.02225776588922,
+        120.01926296694603
+      ],
+      "interactiveP95Ms": [
+        9.729999999999563,
+        9.139999999999418
+      ],
+      "minPsnrDb": 31.50933264157524,
+      "minForegroundPsnrDb": 31.510941366408247,
+      "selectedSplats": [
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342,
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.517500162124634,
+          "movingMedianMs": 7.692499876022339
+        },
+        {
+          "staticMedianMs": 7.472499847412109,
+          "movingMedianMs": 7.634999990463257
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-cached",
+      "passed": true,
+      "trials": [
+        18,
+        23
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.0874998569488525,
+        "p95": 8.028000092506408,
+        "min": 6.369999885559082,
+        "max": 11.195000171661377
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 7.6575000286102295,
+        "p95": 14.540249967575074,
+        "min": 6.929999828338623,
+        "max": 15.925000190734863
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.034999847412109375,
+        "min": 0.009999752044677734,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        119.99970000075005,
+        120.00219546636201
+      ],
+      "interactiveP95Ms": [
+        9.135499999998501,
+        9.205000000001746
+      ],
+      "minPsnrDb": 31.509360160778446,
+      "minForegroundPsnrDb": 31.511144474964254,
+      "selectedSplats": [
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342,
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 7.2174999713897705,
+          "movingMedianMs": 7.81000018119812
+        },
+        {
+          "staticMedianMs": 6.9775002002716064,
+          "movingMedianMs": 7.454999923706055
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        19,
+        22
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 9.730000019073486,
+        "p95": 10.175500178337098,
+        "min": 9.485000133514404,
+        "max": 10.434999942779541
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 9.805000066757202,
+        "p95": 11.776999640464782,
+        "min": 9.315000057220459,
+        "max": 12.170000076293945
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.010000228881835938,
+        "p95": 0.019999980926513672,
+        "min": 0,
+        "max": 0.03000020980834961
+      },
+      "interactiveFps": [
+        105.783144553665,
+        105.49657136143072
+      ],
+      "interactiveP95Ms": [
+        16.664249999999175,
+        16.659999999999854
+      ],
+      "minPsnrDb": 41.977809949638726,
+      "minForegroundPsnrDb": 41.97630437139213,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 9.707499980926514,
+          "movingMedianMs": 9.787500143051147
+        },
+        {
+          "staticMedianMs": 9.78499984741211,
+          "movingMedianMs": 9.825000047683716
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        20,
+        21
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 12.570000171661377,
+        "p95": 13.010249781608582,
+        "min": 11.90999984741211,
+        "max": 13.295000076293945
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 12.964999914169312,
+        "p95": 13.576749825477599,
+        "min": 12.269999980926514,
+        "max": 14.385000228881836
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03500032424926758,
+        "min": 0.005000114440917969,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        82.47926182306577,
+        80.97803470808537
+      ],
+      "interactiveP95Ms": [
+        17.25749999999971,
+        17.194249999999556
+      ],
+      "minPsnrDb": 56.992291517327246,
+      "minForegroundPsnrDb": 56.99000589951037,
+      "selectedSplats": [
+        4029033,
+        3935808,
+        4138366,
+        4255840,
+        4292233,
+        4029033,
+        3935808,
+        4138366,
+        4255840,
+        4292233
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 12.477500200271606,
+          "movingMedianMs": 13.107499837875366
+        },
+        {
+          "staticMedianMs": 12.662499904632568,
+          "movingMedianMs": 12.78250002861023
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        28,
+        41
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 36.575000047683716,
+        "p95": 42.30700020790099,
+        "min": 32.980000019073486,
+        "max": 45.56500005722046
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 38.292500019073486,
+        "p95": 44.371500110626215,
+        "min": 29.27999973297119,
+        "max": 50.02999973297119
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.02500009536743164,
+        "min": 0.009999752044677734,
+        "max": 0.03500032424926758
+      },
+      "interactiveFps": [
+        30.002033195638056,
+        24.498310482678583
+      ],
+      "interactiveP95Ms": [
+        41.94000000000051,
+        49.26299999999992
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 35.90750002861023,
+          "movingMedianMs": 34.459999799728394
+        },
+        {
+          "staticMedianMs": 37.80250000953674,
+          "movingMedianMs": 41.049999952316284
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        29,
+        40
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 16.9375,
+        "p95": 17.3527498960495,
+        "min": 16.089999675750732,
+        "max": 20.19000005722046
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 18.414999961853027,
+        "p95": 20.667499852180477,
+        "min": 14.850000381469727,
+        "max": 25.329999923706055
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03499987125396729,
+        "min": 0.009999752044677734,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        59.41822566692588,
+        46.99002636690364
+      ],
+      "interactiveP95Ms": [
+        23.029749999998693,
+        28.4845000000003
+      ],
+      "minPsnrDb": 38.54963923499332,
+      "minForegroundPsnrDb": 36.803663676061554,
+      "selectedSplats": [
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805,
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 16.925000190734863,
+          "movingMedianMs": 18.194999933242798
+        },
+        {
+          "staticMedianMs": 16.950000047683716,
+          "movingMedianMs": 18.524999856948853
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-contribution",
+      "passed": true,
+      "trials": [
+        30,
+        39
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 16.397500038146973,
+        "p95": 16.927249717712403,
+        "min": 15.62000036239624,
+        "max": 17.18000030517578
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 17.40250015258789,
+        "p95": 20.039250206947322,
+        "min": 14.900000095367432,
+        "max": 21.630000114440918
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.024999618530273438,
+        "p95": 0.034999847412109375,
+        "min": 0.009999752044677734,
+        "max": 0.039999961853027344
+      },
+      "interactiveFps": [
+        60.128780378756424,
+        52.457443898637244
+      ],
+      "interactiveP95Ms": [
+        23.69499999999971,
+        27.334499999999935
+      ],
+      "minPsnrDb": 38.20068026293643,
+      "minForegroundPsnrDb": 36.45280313738915,
+      "selectedSplats": [
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805,
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 16.390000104904175,
+          "movingMedianMs": 17.430000066757202
+        },
+        {
+          "staticMedianMs": 16.40249991416931,
+          "movingMedianMs": 17.295000076293945
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-defaults",
+      "passed": true,
+      "trials": [
+        31,
+        38
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 16.480000019073486,
+        "p95": 16.920500063896178,
+        "min": 15.654999732971191,
+        "max": 17.239999771118164
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 17.56249976158142,
+        "p95": 19.527750086784362,
+        "min": 14.585000038146973,
+        "max": 20.389999866485596
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03500032424926758,
+        "min": 0.014999866485595703,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        59.90624672387713,
+        59.521141212039716
+      ],
+      "interactiveP95Ms": [
+        23.24799999999977,
+        25.09099999999962
+      ],
+      "minPsnrDb": 38.19942465334631,
+      "minForegroundPsnrDb": 36.45154103559644,
+      "selectedSplats": [
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805,
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 16.519999980926514,
+          "movingMedianMs": 17.56249976158142
+        },
+        {
+          "staticMedianMs": 16.389999866485596,
+          "movingMedianMs": 17.510000228881836
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-cached",
+      "passed": true,
+      "trials": [
+        32,
+        37
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 16.454999923706055,
+        "p95": 17.10600001811981,
+        "min": 15.700000286102295,
+        "max": 17.679999828338623
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 17.40249991416931,
+        "p95": 19.530250215530394,
+        "min": 14.78000020980835,
+        "max": 20.425000190734863
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.039999961853027344,
+        "min": 0.009999752044677734,
+        "max": 0.07499980926513672
+      },
+      "interactiveFps": [
+        60.460700544645974,
+        60.317313935418106
+      ],
+      "interactiveP95Ms": [
+        23.557500000001255,
+        23.311750000000483
+      ],
+      "minPsnrDb": 38.20139262005985,
+      "minForegroundPsnrDb": 36.45351744779142,
+      "selectedSplats": [
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805,
+        5674561,
+        5757179,
+        6202995,
+        6348857,
+        5953805
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 16.462499856948853,
+          "movingMedianMs": 17.53249979019165
+        },
+        {
+          "staticMedianMs": 16.452500104904175,
+          "movingMedianMs": 17.394999980926514
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        33,
+        36
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 28.359999656677246,
+        "p95": 29.081249928474424,
+        "min": 27.5649995803833,
+        "max": 29.62000036239624
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 28.03749990463257,
+        "p95": 30.572250151634215,
+        "min": 23.385000228881836,
+        "max": 32.795000076293945
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.02500009536743164,
+        "min": 0.009999752044677734,
+        "max": 0.039999961853027344
+      },
+      "interactiveFps": [
+        37.74770378482817,
+        37.3524577917227
+      ],
+      "interactiveP95Ms": [
+        32.49374999999945,
+        33.03599999999914
+      ],
+      "minPsnrDb": 41.71669849065131,
+      "minForegroundPsnrDb": 39.853204109399826,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 28.227500200271606,
+          "movingMedianMs": 27.980000019073486
+        },
+        {
+          "staticMedianMs": 28.580000162124634,
+          "movingMedianMs": 28.134999752044678
+        }
+      ]
+    },
+    {
+      "scene": "lublin-16m",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        34,
+        35
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 35.19749975204468,
+        "p95": 36.912249851226804,
+        "min": 32.28999996185303,
+        "max": 37.545000076293945
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 34.37750005722046,
+        "p95": 38.01774985790252,
+        "min": 28.875,
+        "max": 40.91000032424927
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.039999961853027344,
+        "min": 0.014999866485595703,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        30.936001147625866,
+        30.97237140581115
+      ],
+      "interactiveP95Ms": [
+        40.94249999999938,
+        38.891999999997644
+      ],
+      "minPsnrDb": 60.605573185602296,
+      "minForegroundPsnrDb": 58.83529344772526,
+      "selectedSplats": [
+        12465093,
+        11761044,
+        12720250,
+        13578808,
+        13023097,
+        12465093,
+        11761044,
+        12720250,
+        13578808,
+        13023097
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 35.08750009536743,
+          "movingMedianMs": 34.37000012397766
+        },
+        {
+          "staticMedianMs": 35.31500005722046,
+          "movingMedianMs": 34.46250009536743
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        42,
+        55
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 60.6875,
+        "p95": 78.32499992847443,
+        "min": 57.64999961853027,
+        "max": 83.51999998092651
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 65.50750017166138,
+        "p95": 78.18850009441374,
+        "min": 49.614999771118164,
+        "max": 83.72000026702881
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.02500009536743164,
+        "min": 0.009999752044677734,
+        "max": 0.034999847412109375
+      },
+      "interactiveFps": [
+        14.972154247551073,
+        17.964004625731178
+      ],
+      "interactiveP95Ms": [
+        81.29999999999927,
+        67.72725000000136
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 67.14500021934509,
+          "movingMedianMs": 71.89750003814697
+        },
+        {
+          "staticMedianMs": 59.67750000953674,
+          "movingMedianMs": 60.4300000667572
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        43,
+        54
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 28.575000047683716,
+        "p95": 30.037999844551084,
+        "min": 27.149999618530273,
+        "max": 31.075000286102295
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 30.667500019073486,
+        "p95": 34.32525014877319,
+        "min": 24.56500005722046,
+        "max": 35.15999984741211
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03500032424926758,
+        "min": 0.014999866485595703,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        31.88537208734598,
+        34.983994822368786
+      ],
+      "interactiveP95Ms": [
+        44.511500000001604,
+        36.17700000000165
+      ],
+      "minPsnrDb": 39.36567088129249,
+      "minForegroundPsnrDb": 37.604614576073786,
+      "selectedSplats": [
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338,
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 28.579999923706055,
+          "movingMedianMs": 30.68499994277954
+        },
+        {
+          "staticMedianMs": 28.56749987602234,
+          "movingMedianMs": 30.615000009536743
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-contribution",
+      "passed": true,
+      "trials": [
+        44,
+        53
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 25.84999990463257,
+        "p95": 26.986249661445616,
+        "min": 24.945000171661377,
+        "max": 27.889999866485596
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 27.007500171661377,
+        "p95": 40.935249948501585,
+        "min": 22.664999961853027,
+        "max": 43.71999979019165
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.034999847412109375,
+        "min": 0.010000228881835938,
+        "max": 0.04999971389770508
+      },
+      "interactiveFps": [
+        39.67600425206986,
+        37.99905002374942
+      ],
+      "interactiveP95Ms": [
+        32.11800000000221,
+        34.12149999999892
+      ],
+      "minPsnrDb": 35.432273726146235,
+      "minForegroundPsnrDb": 33.57021914715717,
+      "selectedSplats": [
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338,
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 25.807499885559082,
+          "movingMedianMs": 26.982500076293945
+        },
+        {
+          "staticMedianMs": 25.959999799728394,
+          "movingMedianMs": 27.140000104904175
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-defaults",
+      "passed": true,
+      "trials": [
+        45,
+        52
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 25.97250008583069,
+        "p95": 27.156750202178955,
+        "min": 24.740000247955322,
+        "max": 27.87999963760376
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 27.332500219345093,
+        "p95": 30.381750130653373,
+        "min": 22.59500026702881,
+        "max": 31.84499979019165
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03499987125396729,
+        "min": 0.014999866485595703,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        39.821648790479664,
+        37.732077263299956
+      ],
+      "interactiveP95Ms": [
+        30.597000000000115,
+        33.88500000000022
+      ],
+      "minPsnrDb": 35.42763403486595,
+      "minForegroundPsnrDb": 33.5655706537782,
+      "selectedSplats": [
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338,
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 25.644999980926514,
+          "movingMedianMs": 26.890000104904175
+        },
+        {
+          "staticMedianMs": 26.447499752044678,
+          "movingMedianMs": 27.565000295639038
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-cached",
+      "passed": true,
+      "trials": [
+        46,
+        51
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 27.19249987602234,
+        "p95": 30.66400029659271,
+        "min": 24.769999980926514,
+        "max": 31.235000133514404
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 28.34999990463257,
+        "p95": 32.84674980640411,
+        "min": 23.545000076293945,
+        "max": 39.84000015258789
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.03499987125396729,
+        "min": 0.014999866485595703,
+        "max": 0.04999971389770508
+      },
+      "interactiveFps": [
+        34.981722050228754,
+        37.794727386879984
+      ],
+      "interactiveP95Ms": [
+        34.498250000000716,
+        33.25050000000083
+      ],
+      "minPsnrDb": 35.42787301876669,
+      "minForegroundPsnrDb": 33.56581009192058,
+      "selectedSplats": [
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338,
+        11766083,
+        11695803,
+        12730536,
+        13098305,
+        12266338
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 29.22499990463257,
+          "movingMedianMs": 29.880000114440918
+        },
+        {
+          "staticMedianMs": 26.15000009536743,
+          "movingMedianMs": 27.744999885559082
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        47,
+        50
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 37.18499994277954,
+        "p95": 38.40574975013733,
+        "min": 35.985000133514404,
+        "max": 48.92999982833862
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 37.15750002861023,
+        "p95": 41.26175010204315,
+        "min": 31.485000133514404,
+        "max": 43.485000133514404
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.024999618530273438,
+        "min": 0.009999752044677734,
+        "max": 0.029999732971191406
+      },
+      "interactiveFps": [
+        28.60091771640326,
+        28.654116163786913
+      ],
+      "interactiveP95Ms": [
+        44.42299999999959,
+        42.09000000000051
+      ],
+      "minPsnrDb": 34.557652605453704,
+      "minForegroundPsnrDb": 32.68828379804515,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 37.23750019073486,
+          "movingMedianMs": 37.08750033378601
+        },
+        {
+          "staticMedianMs": 37.09750008583069,
+          "movingMedianMs": 37.24499988555908
+        }
+      ]
+    },
+    {
+      "scene": "lublin-32m",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        48,
+        49
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 62.13000011444092,
+        "p95": 66.65024998188018,
+        "min": 58.579999923706055,
+        "max": 80.44000005722046
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 63.52999997138977,
+        "p95": 72.90324997901917,
+        "min": 49.83000040054321,
+        "max": 80.3600001335144
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.029999732971191406,
+        "p95": 0.03500032424926758,
+        "min": 0.014999866485595703,
+        "max": 0.05499982833862305
+      },
+      "interactiveFps": [
+        16.26184527593394,
+        17.386898227033146
+      ],
+      "interactiveP95Ms": [
+        74.47624999999789,
+        70.89325000000045
+      ],
+      "minPsnrDb": 59.207676128945934,
+      "minForegroundPsnrDb": 57.43369526983922,
+      "selectedSplats": [
+        25493478,
+        23733548,
+        25879519,
+        27679469,
+        26582693,
+        25493478,
+        23733548,
+        25879519,
+        27679469,
+        26582693
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 62.875,
+          "movingMedianMs": 65.59249997138977
+        },
+        {
+          "staticMedianMs": 61.75499987602234,
+          "movingMedianMs": 62.71000027656555
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "cpu": "Apple M5 Max",
+    "memoryBytes": 137438953472,
+    "os": "macOS 26.4 (25E246)",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "physicalRenderSize": [
+      2560,
+      1440
+    ],
+    "cssViewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "explicitFramebufferScale": 2
+  },
+  "evidence": {
+    "harnessRevision": "371cddb4226e49aab757f18cd0625690a485fe68",
+    "librarySha256": "c3123256856c66248a8c3ee106e1e38a5b30c59bdee105cd96519b4336dec8de",
+    "harnessSha256": "0ab4851356b4f65e7ab562ad88058dae539ad83312cdf93ff15a67646df3e430",
+    "upstreamRevision": "d753e98c70d67b755754c614f383d215cacbbd63",
+    "upstreamBundleSha256": "5ead0f0e40c318bf97a5839f68a9f151c851c6cd1cfca82cd8e75c46b4f23138",
+    "dependencyLockSha256": "184d7cdc44e6a1463772563eaba96594c30d79e53dadb1b7589d0f31349a0174"
+  }
+}

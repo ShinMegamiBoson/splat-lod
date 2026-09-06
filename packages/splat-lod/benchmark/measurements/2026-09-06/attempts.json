@@ -1,0 +1,19 @@
+[
+  {
+    "run": "pc-main-20260906",
+    "index": 0,
+    "included": false,
+    "outcome": "operator-cancelled",
+    "reason": "The browser wait timed out after about five seconds despite a longer requested timeout. Cleanup closed the first tab. The entire attempt was excluded before speed comparison; this was not a renderer failure."
+  },
+  {
+    "run": "pc-main-20260906-r2",
+    "included": true,
+    "indices": [
+      0,
+      55
+    ],
+    "count": 56,
+    "reason": "Fresh independently closed tab per case, both trials, prescribed order. Transient UI-read timeouts left the active measurement running; no case was replaced or chosen by speed."
+  }
+]

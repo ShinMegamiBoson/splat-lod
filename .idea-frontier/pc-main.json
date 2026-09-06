@@ -57,6 +57,42 @@
         "confidence": "medium",
         "boundary": "Full-bank color refreshes can cost more than visible-only SH in large scenes."
       }
+    },
+    {
+      "id": "I4",
+      "title": "Selected-ID SH cache",
+      "claim": "Cache directional color only for selected visible permanent IDs and refresh changed directions incrementally.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "L3; measurements/2026-09-06",
+        "evidence": "Whole-bank cached SH has worse shop tails than visible-only evaluation. A smaller cache is not yet tested.",
+        "confidence": "medium",
+        "boundary": "SH3 inputs; exact ID and per-splat direction validity must survive LOD and camera changes."
+      }
+    },
+    {
+      "id": "I5",
+      "title": "Coverage-preserving tiny-splat aggregation",
+      "claim": "Replace groups of weak subpixel splats with screen-space representatives instead of discarding their opacity.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "L1; measurements/2026-09-06",
+        "evidence": "Contribution culling loses 9.6 dB on bee and 4 dB on 32M city despite speed gains. Preserving aggregate coverage may repair the failure.",
+        "confidence": "low",
+        "boundary": "Approximate; differing depth and SH prohibit indiscriminate pixel-bin merges."
+      }
+    },
+    {
+      "id": "I6",
+      "title": "One-time physical bank locality",
+      "claim": "Order each immutable bank spatially while retaining a permanent logical-to-physical ID map.",
+      "provenance": {
+        "kind": "plausible_seed",
+        "source": "source/range-projector inspection; current large-bank measurements",
+        "evidence": "All bank parameters remain resident and large-source traversal costs persist. Cache-local memory access is an untested orthogonal direction.",
+        "confidence": "low",
+        "boundary": "Must not enable loader reorder without updating ID maps, metadata digests and SH addressing."
+      }
     }
   ],
   "components": [
@@ -155,6 +191,132 @@
         "I1",
         "I2",
         "I3"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C8",
+      "idea_ids": [
+        "I4"
+      ],
+      "axis": "representation",
+      "claim": "Store cached color keyed by permanent selected Gaussian ID.",
+      "evidence_ids": [
+        "I4",
+        "L3"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C9",
+      "idea_ids": [
+        "I4"
+      ],
+      "axis": "schedule",
+      "claim": "Refresh only newly visible or direction-invalid cached colors.",
+      "evidence_ids": [
+        "I4",
+        "L3"
+      ],
+      "active": true,
+      "incompatible_with": [
+        "C6"
+      ]
+    },
+    {
+      "id": "C10",
+      "idea_ids": [
+        "I4"
+      ],
+      "axis": "signal",
+      "claim": "Use per-splat view direction change, including translation, to invalidate color.",
+      "evidence_ids": [
+        "I4"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C11",
+      "idea_ids": [
+        "I5"
+      ],
+      "axis": "operator",
+      "claim": "Moment-merge compatible tiny projected splats while preserving opacity rather than hard-culling them.",
+      "evidence_ids": [
+        "I5",
+        "L1"
+      ],
+      "active": true,
+      "incompatible_with": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "id": "C12",
+      "idea_ids": [
+        "I5"
+      ],
+      "axis": "constraint",
+      "claim": "Restrict projected aggregation to bounded depth and color variation.",
+      "evidence_ids": [
+        "I5"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C13",
+      "idea_ids": [
+        "I5"
+      ],
+      "axis": "signal",
+      "claim": "Estimate aggregate projected coverage of weak splats before replacing a group.",
+      "evidence_ids": [
+        "I5",
+        "L1"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C14",
+      "idea_ids": [
+        "I6"
+      ],
+      "axis": "representation",
+      "claim": "Use physically spatially ordered immutable parameter banks.",
+      "evidence_ids": [
+        "I6"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C15",
+      "idea_ids": [
+        "I6"
+      ],
+      "axis": "constraint",
+      "claim": "Preserve logical world IDs with a one-time bijective address remap.",
+      "evidence_ids": [
+        "I6"
+      ],
+      "active": true,
+      "incompatible_with": []
+    },
+    {
+      "id": "C16",
+      "idea_ids": [
+        "I6"
+      ],
+      "axis": "evaluation",
+      "claim": "Compare same-selected-ID renders and frame tails before considering locality a win.",
+      "evidence_ids": [
+        "I6"
       ],
       "active": true,
       "incompatible_with": []
@@ -282,6 +444,132 @@
       ],
       "fingerprint": "C1|C3|C5",
       "status": "scheduled"
+    },
+    {
+      "id": "R007",
+      "cycle": 2,
+      "component_ids": [
+        "C3",
+        "C7",
+        "C8"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3",
+        "I4"
+      ],
+      "axes": [
+        "guardrail",
+        "representation",
+        "signal"
+      ],
+      "fingerprint": "C3|C7|C8",
+      "status": "scheduled"
+    },
+    {
+      "id": "R008",
+      "cycle": 2,
+      "component_ids": [
+        "C10",
+        "C14",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "I6"
+      ],
+      "axes": [
+        "guardrail",
+        "representation",
+        "signal"
+      ],
+      "fingerprint": "C10|C14|C7",
+      "status": "scheduled"
+    },
+    {
+      "id": "R009",
+      "cycle": 2,
+      "component_ids": [
+        "C12",
+        "C3",
+        "C5"
+      ],
+      "parent_idea_ids": [
+        "I2",
+        "I3",
+        "I5"
+      ],
+      "axes": [
+        "constraint",
+        "schedule",
+        "signal"
+      ],
+      "fingerprint": "C12|C3|C5",
+      "status": "scheduled"
+    },
+    {
+      "id": "R010",
+      "cycle": 2,
+      "component_ids": [
+        "C11",
+        "C12",
+        "C14"
+      ],
+      "parent_idea_ids": [
+        "I5",
+        "I6"
+      ],
+      "axes": [
+        "constraint",
+        "operator",
+        "representation"
+      ],
+      "fingerprint": "C11|C12|C14",
+      "status": "scheduled"
+    },
+    {
+      "id": "R011",
+      "cycle": 2,
+      "component_ids": [
+        "C13",
+        "C9"
+      ],
+      "parent_idea_ids": [
+        "I4",
+        "I5"
+      ],
+      "axes": [
+        "schedule",
+        "signal"
+      ],
+      "fingerprint": "C13|C9",
+      "status": "scheduled"
+    },
+    {
+      "id": "R012",
+      "cycle": 2,
+      "component_ids": [
+        "C12",
+        "C5",
+        "C7"
+      ],
+      "parent_idea_ids": [
+        "I1",
+        "I2",
+        "I3",
+        "I5"
+      ],
+      "axes": [
+        "constraint",
+        "guardrail",
+        "schedule"
+      ],
+      "fingerprint": "C12|C5|C7",
+      "status": "scheduled"
     }
   ],
   "proposals": [
@@ -334,7 +622,7 @@
         "novelty": "Existing PC mechanism.",
         "cost_efficiency": "No additional buffers."
       },
-      "status": "frozen"
+      "status": "tested-regressed"
     },
     {
       "id": "P2",
@@ -384,7 +672,7 @@
         "novelty": "Established PC setting.",
         "cost_efficiency": "No new passes."
       },
-      "status": "frozen"
+      "status": "tested-regressed"
     },
     {
       "id": "P3",
@@ -436,7 +724,124 @@
         "novelty": "Existing PC schedule.",
         "cost_efficiency": "No new GPU allocation."
       },
-      "status": "frozen"
+      "status": "tested-regressed"
+    },
+    {
+      "id": "P4",
+      "cycle": 2,
+      "combination_id": "R007",
+      "parent_proposal_ids": [
+        "P3"
+      ],
+      "title": "Visible-ID color cache with projected-error validation",
+      "family": "selected-color-cache",
+      "hypothesis": "A per-selected-ID SH cache lowers moving latency without the whole-bank refresh spikes seen in P3.",
+      "mechanism": "Allocate a color and last-direction entry by permanent world ID; during projection evaluate SH for first-use or direction-invalid entries and reuse others. Use projected footprint and a measured SH error bound to require tighter validity for more visible splats. Keep source SH and full-quality geometry.",
+      "interaction": "Permanent IDs allow view-to-view reuse while the footprint signal prevents treating a large close-up splat like a subpixel one. The existing quality and p95 guard rejects stale color.",
+      "known_implementation": true,
+      "prerequisites": [
+        "Additional storage buffer",
+        "Per-splat camera direction",
+        "Frame stamp for cache validity",
+        "Controlled LOD-switch handling"
+      ],
+      "baseline": "Current exact LOD plus visible SH; separately compare native cached SH",
+      "test": "Prototype and audit on synthetic SH3, then frozen bee/shop paths with stationary, rotation, translation and LOD-change cases",
+      "primary_metric": "Moving completed-frame median with cold-refresh and steady-state costs reported separately",
+      "guardrails": [
+        "At most 0.5 dB loss versus current LOD",
+        "At most 20% higher moving p95",
+        "No stale ID aliasing or hidden coefficient reduction"
+      ],
+      "rejection_rule": "Reject if cold-refresh spikes erase gains or the error guard fails; do not extrapolate SH0 results.",
+      "failure_modes": [
+        "Cache memory and random writes exceed saved SH cost",
+        "Translation invalidates most entries",
+        "Directional error bound is too loose"
+      ],
+      "cost": "One new GPU cache and projection branch; requires a separate authorized experiment batch",
+      "boundary": "Static SH3 scenes, one device until replicated",
+      "scores": {
+        "evidence_strength": 2,
+        "expected_impact": 3,
+        "feasibility": 4,
+        "testability": 5,
+        "information_gain": 4,
+        "generality": 3,
+        "novelty": 3,
+        "cost_efficiency": 3
+      },
+      "score_reasons": {
+        "evidence_strength": "P3 identifies refresh tails, not this solution's benefit.",
+        "expected_impact": "May save visible SH without full-bank updates.",
+        "feasibility": "Permanent IDs and projection hooks already exist.",
+        "testability": "Direct cache-on/off and cold/warm controls.",
+        "information_gain": "Separates cache granularity from cache validity.",
+        "generality": "Directional-color scenes only.",
+        "novelty": "New selected-ID cache schedule.",
+        "cost_efficiency": "Additional memory may negate savings."
+      },
+      "status": "candidate"
+    },
+    {
+      "id": "P5",
+      "cycle": 2,
+      "combination_id": "R010",
+      "parent_proposal_ids": [
+        "P1",
+        "P2"
+      ],
+      "title": "Locality-assisted, coverage-preserving projected aggregation",
+      "family": "projected-aggregation",
+      "hypothesis": "Aggregating compatible tiny splats instead of discarding them retains aggregate opacity while reducing sort and raster work.",
+      "mechanism": "Spatially order immutable banks with a permanent ID remap, bin projected tiny splats locally, and moment-merge only groups with bounded depth and color variation. Preserve summed optical contribution and depth-order constraints; leave incompatible splats unchanged. Compare locality-only, aggregation-only and combined controls.",
+      "interaction": "Physical locality can reduce binning and parameter-gather cost, while depth/color constraints prevent locality from merging unrelated overlapping surfaces. This directly addresses P1's lost aggregate coverage.",
+      "known_implementation": true,
+      "prerequisites": [
+        "One-time validated ID remap",
+        "GPU projected bins and reductions",
+        "Stable output IDs and global sorting",
+        "Explicit opacity-combination rule"
+      ],
+      "baseline": "Exact LOD with visible SH, plus P1 contribution cutoff as a loss-control",
+      "test": "Synthetic overlapping-opacity/depth-edge scenes followed by the same frozen bee, shop and city paths; retain the three ablations",
+      "primary_metric": "Total moving completed-frame latency including binning and reduction",
+      "guardrails": [
+        "At most 0.5 dB additional minimum foreground PSNR loss",
+        "At most 20% higher p95",
+        "No depth-order inversion across layers",
+        "Bijection of logical IDs after physical reordering"
+      ],
+      "rejection_rule": "Reject if binning/reduction costs more than the saved work or opacity/depth guard fails.",
+      "failure_modes": [
+        "Binning is expensive",
+        "No compatible groups at fine depth edges",
+        "SH and internal occlusion do not merge well",
+        "Physical reordering alone changes tie order"
+      ],
+      "cost": "Substantial new compute path; untested and outside the completed three-proposal budget",
+      "boundary": "Projected subpixel groups only; not a license to merge all distant geometry",
+      "scores": {
+        "evidence_strength": 2,
+        "expected_impact": 4,
+        "feasibility": 3,
+        "testability": 4,
+        "information_gain": 5,
+        "generality": 4,
+        "novelty": 4,
+        "cost_efficiency": 2
+      },
+      "score_reasons": {
+        "evidence_strength": "Cutoff failure establishes the coverage problem, not this solution.",
+        "expected_impact": "Can reduce sort and raster while retaining coverage.",
+        "feasibility": "WebGPU reductions exist but depth-safe grouping is nontrivial.",
+        "testability": "Three explicit ablations and synthetic opacity controls.",
+        "information_gain": "Distinguishes locality cost from aggregation quality.",
+        "generality": "SH0 and SH3, subject to compatibility.",
+        "novelty": "New projected aggregation operator and bank layout.",
+        "cost_efficiency": "Extra passes could erase all gains."
+      },
+      "status": "candidate"
     }
   ],
   "rejections": [
@@ -454,6 +859,26 @@
       "combination_id": "R006",
       "cycle": 1,
       "reason": "Same fine-culling and visible-SH implementation as P2."
+    },
+    {
+      "combination_id": "R008",
+      "cycle": 2,
+      "reason": "Physical bank order and directional cache invalidation have no direct causal interaction without a cache operator. Test locality alone as an ablation in P5 rather than invent a combined win."
+    },
+    {
+      "combination_id": "R009",
+      "cycle": 2,
+      "reason": "Footprint plus depth/color constraints and visible SH identifies eligible groups but supplies no reduction operator. The complete aggregation operator is covered by P5."
+    },
+    {
+      "combination_id": "R011",
+      "cycle": 2,
+      "reason": "Aggregate coverage does not determine directional SH-cache validity. Coupling the signals could reuse stale color."
+    },
+    {
+      "combination_id": "R012",
+      "cycle": 2,
+      "reason": "Depth/color constraints and existing visible SH plus a quality guard are not a new acceleration operator."
     }
   ],
   "frontier_history": [
@@ -505,13 +930,54 @@
       "left": [],
       "unchanged_updates": 0,
       "stable": false
+    },
+    {
+      "cycle": 2,
+      "created_at": "2026-09-06T04:54:09.451402+00:00",
+      "champion_identity": [
+        {
+          "family": "projected-aggregation",
+          "proposal_id": "P5"
+        },
+        {
+          "family": "selected-color-cache",
+          "proposal_id": "P4"
+        }
+      ],
+      "ranked": [
+        {
+          "rank": 1,
+          "proposal_id": "P5",
+          "title": "Locality-assisted, coverage-preserving projected aggregation",
+          "family": "projected-aggregation",
+          "weighted_score": 52
+        },
+        {
+          "rank": 2,
+          "proposal_id": "P4",
+          "title": "Visible-ID color cache with projected-error validation",
+          "family": "selected-color-cache",
+          "weighted_score": 50
+        }
+      ],
+      "entered": [
+        "P4",
+        "P5"
+      ],
+      "left": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "unchanged_updates": 0,
+      "stable": false
     }
   ],
   "test_batches": [
     {
       "id": "T001",
       "cycle": 1,
-      "status": "frozen",
+      "status": "complete",
       "frozen_at": "2026-09-06T03:53:11.633829+00:00",
       "proposal_ids": [
         "P1",
@@ -547,8 +1013,645 @@
         ],
         "artifact_dir": "packages/splat-lod/benchmark/results/pc-main-20260906"
       },
-      "results": []
+      "results": [
+        {
+          "proposal_id": "P1",
+          "outcome": "regressed",
+          "primary": {
+            "baseline": "ours-lod",
+            "candidate": "ours-contribution",
+            "delta": [
+              {
+                "scene": "bee",
+                "medianReduction": 0.31725882593973487
+              },
+              {
+                "scene": "ekotori",
+                "medianReduction": 0.05724953742790362
+              },
+              {
+                "scene": "lublin-16m",
+                "medianReduction": 0.0549823411003284
+              },
+              {
+                "scene": "lublin-32m",
+                "medianReduction": 0.11934457797785247
+              }
+            ],
+            "uncertainty": "Two reversed-order trials on one device; no confidence interval or significance claim.",
+            "perTrial": [
+              {
+                "scene": "bee",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 5.914999961853027,
+                    "movingMedianMs": 6.7250001430511475
+                  },
+                  {
+                    "staticMedianMs": 5.730000019073486,
+                    "movingMedianMs": 6.9725000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "bee",
+                "mode": "ours-contribution",
+                "values": [
+                  {
+                    "staticMedianMs": 4.3349997997283936,
+                    "movingMedianMs": 3.9624998569488525
+                  },
+                  {
+                    "staticMedianMs": 5.372499942779541,
+                    "movingMedianMs": 5.317500114440918
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 7.769999980926514,
+                    "movingMedianMs": 8.140000104904175
+                  },
+                  {
+                    "staticMedianMs": 7.480000019073486,
+                    "movingMedianMs": 7.9100000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-contribution",
+                "values": [
+                  {
+                    "staticMedianMs": 7.3374998569488525,
+                    "movingMedianMs": 7.667499780654907
+                  },
+                  {
+                    "staticMedianMs": 7.184999942779541,
+                    "movingMedianMs": 7.547499656677246
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 16.925000190734863,
+                    "movingMedianMs": 18.194999933242798
+                  },
+                  {
+                    "staticMedianMs": 16.950000047683716,
+                    "movingMedianMs": 18.524999856948853
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-contribution",
+                "values": [
+                  {
+                    "staticMedianMs": 16.390000104904175,
+                    "movingMedianMs": 17.430000066757202
+                  },
+                  {
+                    "staticMedianMs": 16.40249991416931,
+                    "movingMedianMs": 17.295000076293945
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 28.579999923706055,
+                    "movingMedianMs": 30.68499994277954
+                  },
+                  {
+                    "staticMedianMs": 28.56749987602234,
+                    "movingMedianMs": 30.615000009536743
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-contribution",
+                "values": [
+                  {
+                    "staticMedianMs": 25.807499885559082,
+                    "movingMedianMs": 26.982500076293945
+                  },
+                  {
+                    "staticMedianMs": 25.959999799728394,
+                    "movingMedianMs": 27.140000104904175
+                  }
+                ]
+              }
+            ]
+          },
+          "guardrails": {
+            "passed": false,
+            "deltas": [
+              {
+                "scene": "bee",
+                "mode": "ours-contribution",
+                "medianReduction": 0.31725882593973487,
+                "qualityLossDb": 9.555235349647372,
+                "p95Ratio": 0.8284423772832554,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-contribution",
+                "medianReduction": 0.05724953742790362,
+                "qualityLossDb": 0.03922971567243394,
+                "p95Ratio": 0.9532938198375372,
+                "passesSceneRule": true
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-contribution",
+                "medianReduction": 0.0549823411003284,
+                "qualityLossDb": 0.3508605386724071,
+                "p95Ratio": 0.9696020491241532,
+                "passesSceneRule": true
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-contribution",
+                "medianReduction": 0.11934457797785247,
+                "qualityLossDb": 4.034395428916618,
+                "p95Ratio": 1.192569603166159,
+                "passesSceneRule": false
+              }
+            ]
+          },
+          "protocol_deviations": [
+            "Build command consolidated into build-main.mjs, pinning all three builds to the same ENGINE_BASE.",
+            "Original run name pc-main-20260906 excluded after first-tab cleanup on an automation timeout; complete 56-case pc-main-20260906-r2 cohort used, with no fastest-attempt picking.",
+            "Browser viewport reports DPR 1, not the initially assumed 2. All cases explicitly render the frozen 2560x1440 framebuffer inside 1280x720 CSS, verified from every raw capture; no resolution change."
+          ],
+          "artifacts": [
+            "packages/splat-lod/benchmark/measurements/2026-09-06/summary.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/verification.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/optimization-decision.json"
+          ],
+          "observations": [
+            "Speed improves on some inputs but the universal promotion guard fails. Keep as explicit opt-in, not a new default.",
+            "Minimum foreground PSNR losses versus existing LOD are about 9.6 dB on Bee and 4 dB on 32M Lublin.",
+            "Contribution-only passes the per-scene rule on shop and 16M Lublin; this does not validate a universal policy."
+          ]
+        },
+        {
+          "proposal_id": "P2",
+          "outcome": "regressed",
+          "primary": {
+            "baseline": "ours-lod",
+            "candidate": "ours-defaults",
+            "delta": [
+              {
+                "scene": "bee",
+                "medianReduction": 0.251994166611197
+              },
+              {
+                "scene": "ekotori",
+                "medianReduction": 0.04667081468502943
+              },
+              {
+                "scene": "lublin-16m",
+                "medianReduction": 0.04629379321409577
+              },
+              {
+                "scene": "lublin-32m",
+                "medianReduction": 0.10874703831920463
+              }
+            ],
+            "uncertainty": "Two reversed-order trials on one device; no confidence interval or significance claim.",
+            "perTrial": [
+              {
+                "scene": "bee",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 5.914999961853027,
+                    "movingMedianMs": 6.7250001430511475
+                  },
+                  {
+                    "staticMedianMs": 5.730000019073486,
+                    "movingMedianMs": 6.9725000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "bee",
+                "mode": "ours-defaults",
+                "values": [
+                  {
+                    "staticMedianMs": 3.950000047683716,
+                    "movingMedianMs": 4.917499780654907
+                  },
+                  {
+                    "staticMedianMs": 5.6000001430511475,
+                    "movingMedianMs": 5.477499961853027
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 7.769999980926514,
+                    "movingMedianMs": 8.140000104904175
+                  },
+                  {
+                    "staticMedianMs": 7.480000019073486,
+                    "movingMedianMs": 7.9100000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-defaults",
+                "values": [
+                  {
+                    "staticMedianMs": 7.517500162124634,
+                    "movingMedianMs": 7.692499876022339
+                  },
+                  {
+                    "staticMedianMs": 7.472499847412109,
+                    "movingMedianMs": 7.634999990463257
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 16.925000190734863,
+                    "movingMedianMs": 18.194999933242798
+                  },
+                  {
+                    "staticMedianMs": 16.950000047683716,
+                    "movingMedianMs": 18.524999856948853
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-defaults",
+                "values": [
+                  {
+                    "staticMedianMs": 16.519999980926514,
+                    "movingMedianMs": 17.56249976158142
+                  },
+                  {
+                    "staticMedianMs": 16.389999866485596,
+                    "movingMedianMs": 17.510000228881836
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 28.579999923706055,
+                    "movingMedianMs": 30.68499994277954
+                  },
+                  {
+                    "staticMedianMs": 28.56749987602234,
+                    "movingMedianMs": 30.615000009536743
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-defaults",
+                "values": [
+                  {
+                    "staticMedianMs": 25.644999980926514,
+                    "movingMedianMs": 26.890000104904175
+                  },
+                  {
+                    "staticMedianMs": 26.447499752044678,
+                    "movingMedianMs": 27.565000295639038
+                  }
+                ]
+              }
+            ]
+          },
+          "guardrails": {
+            "passed": false,
+            "deltas": [
+              {
+                "scene": "bee",
+                "mode": "ours-defaults",
+                "medianReduction": 0.251994166611197,
+                "qualityLossDb": 9.555253160129272,
+                "p95Ratio": 0.9239399958390727,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-defaults",
+                "medianReduction": 0.04667081468502943,
+                "qualityLossDb": 0.03919653435897885,
+                "p95Ratio": 0.9509991788284659,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-defaults",
+                "medianReduction": 0.04629379321409577,
+                "qualityLossDb": 0.35212264046511166,
+                "p95Ratio": 0.9448530410766706,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-defaults",
+                "medianReduction": 0.10874703831920463,
+                "qualityLossDb": 4.039043922295583,
+                "p95Ratio": 0.8851137282021887,
+                "passesSceneRule": false
+              }
+            ]
+          },
+          "protocol_deviations": [
+            "Build command consolidated into build-main.mjs, pinning all three builds to the same ENGINE_BASE.",
+            "Original run name pc-main-20260906 excluded after first-tab cleanup on an automation timeout; complete 56-case pc-main-20260906-r2 cohort used, with no fastest-attempt picking.",
+            "Browser viewport reports DPR 1, not the initially assumed 2. All cases explicitly render the frozen 2560x1440 framebuffer inside 1280x720 CSS, verified from every raw capture; no resolution change."
+          ],
+          "artifacts": [
+            "packages/splat-lod/benchmark/measurements/2026-09-06/summary.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/verification.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/optimization-decision.json"
+          ],
+          "observations": [
+            "Speed improves on some inputs but the universal promotion guard fails. Keep as explicit opt-in, not a new default.",
+            "Minimum foreground PSNR losses versus existing LOD are about 9.6 dB on Bee and 4 dB on 32M Lublin.",
+            "Contribution-only passes the per-scene rule on shop and 16M Lublin; this does not validate a universal policy."
+          ]
+        },
+        {
+          "proposal_id": "P3",
+          "outcome": "regressed",
+          "primary": {
+            "baseline": "ours-lod",
+            "candidate": "ours-cached",
+            "delta": [
+              {
+                "scene": "bee",
+                "medianReduction": 0.21718633216602168
+              },
+              {
+                "scene": "ekotori",
+                "medianReduction": 0.04698196057099746
+              },
+              {
+                "scene": "lublin-16m",
+                "medianReduction": 0.054982354047305226
+              },
+              {
+                "scene": "lublin-32m",
+                "medianReduction": 0.07556860236405194
+              }
+            ],
+            "uncertainty": "Two reversed-order trials on one device; no confidence interval or significance claim.",
+            "perTrial": [
+              {
+                "scene": "bee",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 5.914999961853027,
+                    "movingMedianMs": 6.7250001430511475
+                  },
+                  {
+                    "staticMedianMs": 5.730000019073486,
+                    "movingMedianMs": 6.9725000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "bee",
+                "mode": "ours-cached",
+                "values": [
+                  {
+                    "staticMedianMs": 5.235000133514404,
+                    "movingMedianMs": 5.984999895095825
+                  },
+                  {
+                    "staticMedianMs": 5.672499895095825,
+                    "movingMedianMs": 5.017499923706055
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 7.769999980926514,
+                    "movingMedianMs": 8.140000104904175
+                  },
+                  {
+                    "staticMedianMs": 7.480000019073486,
+                    "movingMedianMs": 7.9100000858306885
+                  }
+                ]
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-cached",
+                "values": [
+                  {
+                    "staticMedianMs": 7.2174999713897705,
+                    "movingMedianMs": 7.81000018119812
+                  },
+                  {
+                    "staticMedianMs": 6.9775002002716064,
+                    "movingMedianMs": 7.454999923706055
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 16.925000190734863,
+                    "movingMedianMs": 18.194999933242798
+                  },
+                  {
+                    "staticMedianMs": 16.950000047683716,
+                    "movingMedianMs": 18.524999856948853
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-cached",
+                "values": [
+                  {
+                    "staticMedianMs": 16.462499856948853,
+                    "movingMedianMs": 17.53249979019165
+                  },
+                  {
+                    "staticMedianMs": 16.452500104904175,
+                    "movingMedianMs": 17.394999980926514
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-lod",
+                "values": [
+                  {
+                    "staticMedianMs": 28.579999923706055,
+                    "movingMedianMs": 30.68499994277954
+                  },
+                  {
+                    "staticMedianMs": 28.56749987602234,
+                    "movingMedianMs": 30.615000009536743
+                  }
+                ]
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-cached",
+                "values": [
+                  {
+                    "staticMedianMs": 29.22499990463257,
+                    "movingMedianMs": 29.880000114440918
+                  },
+                  {
+                    "staticMedianMs": 26.15000009536743,
+                    "movingMedianMs": 27.744999885559082
+                  }
+                ]
+              }
+            ]
+          },
+          "guardrails": {
+            "passed": false,
+            "deltas": [
+              {
+                "scene": "bee",
+                "mode": "ours-cached",
+                "medianReduction": 0.21718633216602168,
+                "qualityLossDb": 9.694684338950722,
+                "p95Ratio": 0.9117878586276496,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "ekotori",
+                "mode": "ours-cached",
+                "medianReduction": 0.04698196057099746,
+                "qualityLossDb": 0.03899342580297116,
+                "p95Ratio": 1.6893516833479065,
+                "passesSceneRule": false
+              },
+              {
+                "scene": "lublin-16m",
+                "mode": "ours-cached",
+                "medianReduction": 0.054982354047305226,
+                "qualityLossDb": 0.350146228270134,
+                "p95Ratio": 0.9449740101713319,
+                "passesSceneRule": true
+              },
+              {
+                "scene": "lublin-32m",
+                "mode": "ours-cached",
+                "medianReduction": 0.07556860236405194,
+                "qualityLossDb": 4.038804484153204,
+                "p95Ratio": 0.9569267423846605,
+                "passesSceneRule": false
+              }
+            ]
+          },
+          "protocol_deviations": [
+            "Build command consolidated into build-main.mjs, pinning all three builds to the same ENGINE_BASE.",
+            "Original run name pc-main-20260906 excluded after first-tab cleanup on an automation timeout; complete 56-case pc-main-20260906-r2 cohort used, with no fastest-attempt picking.",
+            "Browser viewport reports DPR 1, not the initially assumed 2. All cases explicitly render the frozen 2560x1440 framebuffer inside 1280x720 CSS, verified from every raw capture; no resolution change."
+          ],
+          "artifacts": [
+            "packages/splat-lod/benchmark/measurements/2026-09-06/summary.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/verification.json",
+            "packages/splat-lod/benchmark/measurements/2026-09-06/optimization-decision.json"
+          ],
+          "observations": [
+            "Speed improves on some inputs but the universal promotion guard fails. Keep as explicit opt-in, not a new default.",
+            "Minimum foreground PSNR losses versus existing LOD are about 9.6 dB on Bee and 4 dB on 32M Lublin.",
+            "Native color cache increases shop moving p95 by 68.9%; SH0 city inputs do not isolate a directional-SH benefit."
+          ]
+        }
+      ],
+      "completed_at": "2026-09-06T04:52:42.412139+00:00"
     }
   ],
-  "learnings": []
+  "learnings": [
+    {
+      "id": "L1",
+      "cycle": 1,
+      "test_id": "T001",
+      "proposal_ids": [
+        "P1",
+        "P2"
+      ],
+      "component_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7"
+      ],
+      "claim": "Contribution culling buys speed but aggregate low-opacity detail makes a universal cutoff unsafe.",
+      "evidence": "P1 moving reductions: 31.7% bee, 5.7% shop, 5.5% 16M and 11.9% 32M. Minimum foreground PSNR losses: 9.555, 0.039, 0.351 and 4.034 dB respectively.",
+      "implication": "Keep cutoff opt-in; preserve total projected coverage if replacing it with a new reduction operator.",
+      "confidence": "high"
+    },
+    {
+      "id": "L2",
+      "cycle": 1,
+      "test_id": "T001",
+      "proposal_ids": [
+        "P2"
+      ],
+      "component_ids": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "claim": "A two-pixel cutoff after contribution culling did not add a consistent speed benefit.",
+      "evidence": "P2 has nearly the same minimum PSNR as P1 but is slower at the pooled moving median on all four inputs; two trials do not establish a small timing difference as causal.",
+      "implication": "Do not stack additional cutoffs merely because they are defaults.",
+      "confidence": "medium"
+    },
+    {
+      "id": "L3",
+      "cycle": 1,
+      "test_id": "T001",
+      "proposal_ids": [
+        "P3"
+      ],
+      "component_ids": [
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "claim": "Native whole-bank cached SH did not dominate current-view visible SH.",
+      "evidence": "Shop p95 14.54 ms cached versus 8.19 ms with the same culling and visible SH; SH0 city data cannot establish SH reuse benefit.",
+      "implication": "Any new SH cache should avoid whole-bank refresh spikes and remain current enough on translated views.",
+      "confidence": "medium"
+    }
+  ]
 }

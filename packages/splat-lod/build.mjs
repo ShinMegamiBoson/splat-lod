@@ -1,10 +1,13 @@
 import { copyFile, mkdir, readdir, rename } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { buildTarget } from '../../utils/esbuild-build-target.mjs';
+import { ENGINE_BASE } from '../../src/framework/splat-lod/engine-base.js';
 
 // Reuse the upstream release transforms, including shader normalization and debug stripping.
 const root = fileURLToPath(new URL('../../', import.meta.url));
 process.chdir(root);
+// Match the benchmarked engine build even when packaging after a docs-only commit.
+process.env.ENGINE_BUILD_REVISION ??= ENGINE_BASE.revision.slice(0, 9);
+const { buildTarget } = await import('../../utils/esbuild-build-target.mjs');
 const dir = 'packages/splat-lod/build';
 await buildTarget({ moduleFormat: 'esm', buildType: 'min', input: `${root}src/framework/splat-lod/index.js`, dir: `${root}${dir}`, preserveModules: false });
 await rename(`${dir}/playcanvas.min.mjs`, `${dir}/index.js`);
