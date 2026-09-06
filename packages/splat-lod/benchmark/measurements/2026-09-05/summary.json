@@ -1,0 +1,1172 @@
+{
+  "generatedAt": "2026-09-06T03:16:55.465Z",
+  "protocol": {
+    "version": 2,
+    "width": 2560,
+    "height": 1440,
+    "cssWidth": 1280,
+    "cssHeight": 720,
+    "warmup": 20,
+    "samples": 90,
+    "interactiveDurationMs": 4000,
+    "repeats": 2,
+    "qualityFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "modes": [
+      "pc-full",
+      "ours-lod",
+      "pc-default",
+      "ours-source",
+      "spark",
+      "luma"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "cicada",
+      "name": "Cicada Shell",
+      "count": 652804,
+      "cellSize": 0.08,
+      "source": "/data/cicada/source.compressed.ply",
+      "manifest": "/data/cicada/manifest.json",
+      "luma": "/data/luma-cicada/manifest.json",
+      "sourceSha256": "eac75a8018606e524b03f905cd1392fedc359274a28250e403a945291ab5aa1f",
+      "sceneUrl": "https://superspl.at/scene/cbe96076",
+      "creator": "tokoyoshi",
+      "background": [
+        30,
+        30,
+        30
+      ],
+      "motionScale": 0.15,
+      "camera": {
+        "position": [
+          0.23608636856079102,
+          -0.9374303221702576,
+          -1.413392186164856
+        ],
+        "target": [
+          -0.1399042541644092,
+          -0.4090131106156434,
+          0.08348923990188797
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 33,
+        "near": 0.1,
+        "far": 1000
+      }
+    },
+    {
+      "id": "bee",
+      "name": "Bumblebee",
+      "count": 2315943,
+      "cellSize": 0.03,
+      "source": "/data/bee/source.compressed.ply",
+      "manifest": "/data/bee/manifest.json",
+      "luma": "/data/luma-bee/manifest.json",
+      "sourceSha256": "265a31cf8ed2c513d318668a6883bb5eab35cbadbce9eac5e2637246effa8fdd",
+      "sceneUrl": "https://superspl.at/scene/cf6ac78e",
+      "creator": "Dany Bittel (danylyon)",
+      "background": [
+        18,
+        18,
+        18
+      ],
+      "motionScale": 0.05,
+      "camera": {
+        "position": [
+          0.5789085030555725,
+          0.1545514017343521,
+          -0.2128286063671112
+        ],
+        "target": [
+          -0.029645833304136116,
+          -0.01141313311933568,
+          0.031808660507327585
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fovDegrees": 40,
+        "near": 0.1,
+        "far": 1000
+      }
+    },
+    {
+      "id": "ekotori",
+      "name": "Ekotori shop",
+      "count": 7081853,
+      "cellSize": 0.5,
+      "source": "/data/ekotori/source.ply",
+      "manifest": "/data/ekotori/manifest.json",
+      "luma": "/data/luma-ekotori/manifest.json",
+      "sourceSha256": "15ce5c1d3a6e99a8e29e3cdfd71179d4ead8ff17cb26c386c5429bfde09e78be",
+      "sceneUrl": "https://superspl.at/scene/8fa2ded1",
+      "creator": "J (jjames)",
+      "background": [
+        4,
+        5,
+        6
+      ],
+      "motionScale": 0.5,
+      "camera": {
+        "position": [
+          -1.9858983755111694,
+          -2.3475029468536377,
+          4.052705764770508
+        ],
+        "target": [
+          0.19238454783604775,
+          -1.733221074142452,
+          1.4301609710575098
+        ],
+        "up": [
+          0,
+          -1,
+          0
+        ],
+        "fovDegrees": 72.48762310530823,
+        "near": 0.1,
+        "far": 1000
+      }
+    }
+  ],
+  "reportCount": 36,
+  "passedCount": 36,
+  "rows": [
+    {
+      "scene": "cicada",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        0,
+        11
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.2799999713897705,
+        "p95": 6.7322500228881825,
+        "min": 3.989999771118164,
+        "max": 7.589999675750732
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.287499904632568,
+        "p95": 7.050250077247618,
+        "min": 4.295000076293945,
+        "max": 9.429999828338623
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.03000020980834961,
+        "min": 0.004999637603759766,
+        "max": 0.06500005722045898
+      },
+      "interactiveFps": [
+        119.98110297628124,
+        119.98740132286109
+      ],
+      "interactiveP95Ms": [
+        9.284999999999878,
+        9.319999999999709
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.8125,
+          "movingMedianMs": 5.175000190734863
+        },
+        {
+          "staticMedianMs": 4.917500019073486,
+          "movingMedianMs": 5.392499923706055
+        }
+      ]
+    },
+    {
+      "scene": "cicada",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        1,
+        10
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 4.987499952316284,
+        "p95": 6.7007502794265745,
+        "min": 3.635000228881836,
+        "max": 13.650000095367432
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.2149999141693115,
+        "p95": 6.584249925613402,
+        "min": 3.75,
+        "max": 7.424999713897705
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.03000020980834961,
+        "p95": 0.04525005817413322,
+        "min": 0.009999752044677734,
+        "max": 0.08500003814697266
+      },
+      "interactiveFps": [
+        119.9733059394285,
+        120.01402242840017
+      ],
+      "interactiveP95Ms": [
+        9.300000000000182,
+        9.309999999999945
+      ],
+      "minPsnrDb": 37.60036281707731,
+      "minForegroundPsnrDb": 27.079174040764286,
+      "selectedSplats": [
+        327883,
+        327883,
+        335147,
+        335899,
+        328567,
+        327883,
+        327883,
+        335147,
+        335899,
+        328567
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 4.9725000858306885,
+          "movingMedianMs": 5.150000095367432
+        },
+        {
+          "staticMedianMs": 4.987499952316284,
+          "movingMedianMs": 5.305000305175781
+        }
+      ]
+    },
+    {
+      "scene": "cicada",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        2,
+        9
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 4.869999885559082,
+        "p95": 7.960000038146973,
+        "min": 3.695000171661377,
+        "max": 9.904999732971191
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 4.84499979019165,
+        "p95": 6.572749710083007,
+        "min": 3.7800002098083496,
+        "max": 12.09499979019165
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.02499964237213135,
+        "min": 0.005000114440917969,
+        "max": 0.03500032424926758
+      },
+      "interactiveFps": [
+        120.00863263760759,
+        119.97854853394195
+      ],
+      "interactiveP95Ms": [
+        9.309999999999945,
+        9.25
+      ],
+      "minPsnrDb": 43.606819671441954,
+      "minForegroundPsnrDb": 33.06983472473512,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 4.674999952316284,
+          "movingMedianMs": 4.4624998569488525
+        },
+        {
+          "staticMedianMs": 5.202500104904175,
+          "movingMedianMs": 5.460000038146973
+        }
+      ]
+    },
+    {
+      "scene": "cicada",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        3,
+        8
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.125,
+        "p95": 11.504250144958483,
+        "min": 3.929999828338623,
+        "max": 52.20500040054321
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.700000047683716,
+        "p95": 23.904499888420002,
+        "min": 4.174999713897705,
+        "max": 51.125
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.029999732971191406,
+        "p95": 0.039999961853027344,
+        "min": 0.019999980926513672,
+        "max": 0.07000017166137695
+      },
+      "interactiveFps": [
+        120.02809805372317,
+        119.99980041613233
+      ],
+      "interactiveP95Ms": [
+        9.269999999999527,
+        9.220000000000255
+      ],
+      "minPsnrDb": 69.19045530168488,
+      "minForegroundPsnrDb": 58.407705618555426,
+      "selectedSplats": [
+        642543,
+        642543,
+        649807,
+        650559,
+        650559,
+        642543,
+        642543,
+        649807,
+        650559,
+        650559
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 4.762500047683716,
+          "movingMedianMs": 5.309999942779541
+        },
+        {
+          "staticMedianMs": 6.050000190734863,
+          "movingMedianMs": 6.275000095367432
+        }
+      ]
+    },
+    {
+      "scene": "cicada",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        4,
+        7
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 9.009999990463257,
+        "p95": 10.270499968528748,
+        "min": 4.424999713897705,
+        "max": 14.989999771118164
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 19.765000104904175,
+        "p95": 21.250750017166137,
+        "min": 18.175000190734863,
+        "max": 24.829999923706055
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 10.252500057220459,
+        "p95": 11.080249929428101,
+        "min": 9.304999828338623,
+        "max": 11.795000076293945
+      },
+      "interactiveFps": [
+        120.02884684967948,
+        120.01746615931633
+      ],
+      "interactiveP95Ms": [
+        9.289999999999964,
+        9.270000000000437
+      ],
+      "minPsnrDb": 43.66692507153231,
+      "minForegroundPsnrDb": 33.11411898112081,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.234999895095825,
+          "movingMedianMs": 19.762500047683716
+        },
+        {
+          "staticMedianMs": 9.492500066757202,
+          "movingMedianMs": 19.77749991416931
+        }
+      ]
+    },
+    {
+      "scene": "cicada",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        5,
+        6
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 0.16500043869018555,
+        "p95": 0.7882498741149823,
+        "min": 0.11499977111816406,
+        "max": 44.63000011444092
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 6.315000057220459,
+        "p95": 8.298000073432922,
+        "min": 4.904999732971191,
+        "max": 10.179999828338623
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.014999866485595703,
+        "p95": 0.02500009536743164,
+        "min": 0.005000114440917969,
+        "max": 0.034999847412109375
+      },
+      "interactiveFps": [
+        119.74315094123108,
+        116.74620574831319
+      ],
+      "interactiveP95Ms": [
+        9.284999999999854,
+        9.295000000000073
+      ],
+      "minPsnrDb": 42.039924145959205,
+      "minForegroundPsnrDb": 30.636986396752075,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.15999984741210938,
+          "movingMedianMs": 6.507500171661377
+        },
+        {
+          "staticMedianMs": 0.17999982833862305,
+          "movingMedianMs": 6.002500057220459
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        12,
+        23
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 7.637500047683716,
+        "p95": 10.745750236511228,
+        "min": 6.515000343322754,
+        "max": 14.934999942779541
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 8.610000133514404,
+        "p95": 11.206249809265135,
+        "min": 6.99500036239624,
+        "max": 14.550000190734863
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.02500009536743164,
+        "min": 0.005000114440917969,
+        "max": 0.034999847412109375
+      },
+      "interactiveFps": [
+        91.32830279075337,
+        119.74897620862266
+      ],
+      "interactiveP95Ms": [
+        17.3787499999994,
+        9.295000000000073
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 8.610000133514404,
+          "movingMedianMs": 8.732500076293945
+        },
+        {
+          "staticMedianMs": 7.37749981880188,
+          "movingMedianMs": 8.347500085830688
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        13,
+        22
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.537499904632568,
+        "p95": 7.527500104904174,
+        "min": 4.335000038146973,
+        "max": 40.764999866485596
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 5.387500286102295,
+        "p95": 6.7147502660751295,
+        "min": 4.5,
+        "max": 9.09000015258789
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.029999732971191406,
+        "p95": 0.04000043869018555,
+        "min": 0.014999866485595703,
+        "max": 0.06500005722045898
+      },
+      "interactiveFps": [
+        119.9877012606208,
+        119.99775004218668
+      ],
+      "interactiveP95Ms": [
+        9.210249999999178,
+        9.26549999999943
+      ],
+      "minPsnrDb": 39.52916162763651,
+      "minForegroundPsnrDb": 28.581403015379237,
+      "selectedSplats": [
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408,
+        1155408
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 6.080000162124634,
+          "movingMedianMs": 5.5874998569488525
+        },
+        {
+          "staticMedianMs": 5.210000038146973,
+          "movingMedianMs": 5.272500038146973
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        14,
+        21
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 5.422499895095825,
+        "p95": 7.054999828338623,
+        "min": 4.274999618530273,
+        "max": 12.25
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 4.927500009536743,
+        "p95": 6.256500101089477,
+        "min": 3.7150001525878906,
+        "max": 18.140000343322754
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.015000343322753906,
+        "p95": 0.02500009536743164,
+        "min": 0.009999752044677734,
+        "max": 0.059999942779541016
+      },
+      "interactiveFps": [
+        120.2420339652498,
+        119.98588107927425
+      ],
+      "interactiveP95Ms": [
+        9.3100000000004,
+        9.30999999999949
+      ],
+      "minPsnrDb": 29.468402567794676,
+      "minForegroundPsnrDb": 18.03658648937969,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 5.454999923706055,
+          "movingMedianMs": 4.894999980926514
+        },
+        {
+          "staticMedianMs": 5.3450000286102295,
+          "movingMedianMs": 5.104999780654907
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        15,
+        20
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 8.0625,
+        "p95": 9.527999973297117,
+        "min": 7.255000114440918,
+        "max": 16.52999973297119
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 8.377500057220459,
+        "p95": 11.30399997234344,
+        "min": 7.194999694824219,
+        "max": 12.699999809265137
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.02500009536743164,
+        "p95": 0.039999961853027344,
+        "min": 0.014999866485595703,
+        "max": 0.08500003814697266
+      },
+      "interactiveFps": [
+        119.74850314371072,
+        92.70184768239152
+      ],
+      "interactiveP95Ms": [
+        9.31500000000051,
+        17.196999999999843
+      ],
+      "minPsnrDb": 77.79581562583618,
+      "minForegroundPsnrDb": 66.49154032214875,
+      "selectedSplats": [
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943,
+        2315943
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 8.142500162124634,
+          "movingMedianMs": 8.427499771118164
+        },
+        {
+          "staticMedianMs": 7.984999895095825,
+          "movingMedianMs": 8.377500057220459
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        16,
+        19
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 9.615000009536743,
+        "p95": 10.41399986743927,
+        "min": 5.385000228881836,
+        "max": 10.974999904632568
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 29.00499987602234,
+        "p95": 36.04625005722046,
+        "min": 26.80999994277954,
+        "max": 41.80999994277954
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 19.31500005722046,
+        "p95": 21.987249779701227,
+        "min": 17.704999923706055,
+        "max": 28.425000190734863
+      },
+      "interactiveFps": [
+        119.1528903943286,
+        117.60358353849456
+      ],
+      "interactiveP95Ms": [
+        9.289999999999964,
+        9.297499999999673
+      ],
+      "minPsnrDb": 44.00773730389528,
+      "minForegroundPsnrDb": 32.90311477672653,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 9.635000228881836,
+          "movingMedianMs": 28.740000009536743
+        },
+        {
+          "staticMedianMs": 9.59249997138977,
+          "movingMedianMs": 29.6875
+        }
+      ]
+    },
+    {
+      "scene": "bee",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        17,
+        18
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 0.17500019073486328,
+        "p95": 0.304999852180481,
+        "min": 0.10500001907348633,
+        "max": 6.590000152587891
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 10.389999866485596,
+        "p95": 13.121750020980823,
+        "min": 9.010000228881836,
+        "max": 22.269999980926514
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.02500009536743164,
+        "min": 0.010000228881835938,
+        "max": 0.05000019073486328
+      },
+      "interactiveFps": [
+        78.16772846578975,
+        75.15980823012386
+      ],
+      "interactiveP95Ms": [
+        17.98900000000012,
+        17.465000000000146
+      ],
+      "minPsnrDb": 40.155404457616385,
+      "minForegroundPsnrDb": 28.727100944752895,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.16499996185302734,
+          "movingMedianMs": 10.212500095367432
+        },
+        {
+          "staticMedianMs": 0.18499994277954102,
+          "movingMedianMs": 10.555000066757202
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "pc-full",
+      "passed": true,
+      "trials": [
+        24,
+        35
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 13.65999984741211,
+        "p95": 17.003500008583067,
+        "min": 11.649999618530273,
+        "max": 18.610000133514404
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 16.830000162124634,
+        "p95": 18.140500330924986,
+        "min": 15.21500015258789,
+        "max": 20.210000038146973
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.03025019168853751,
+        "min": 0.009999752044677734,
+        "max": 0.04500007629394531
+      },
+      "interactiveFps": [
+        54.52087601853213,
+        62.23685246491678
+      ],
+      "interactiveP95Ms": [
+        25.546500000000197,
+        24.852999999999884
+      ],
+      "minPsnrDb": null,
+      "minForegroundPsnrDb": null,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 15.15250015258789,
+          "movingMedianMs": 16.585000038146973
+        },
+        {
+          "staticMedianMs": 12.607500076293945,
+          "movingMedianMs": 16.90499997138977
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-lod",
+      "passed": true,
+      "trials": [
+        25,
+        34
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 8.754999876022339,
+        "p95": 35.65050017833706,
+        "min": 7.434999942779541,
+        "max": 45.485000133514404
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 10.104999780654907,
+        "p95": 43.512000107765196,
+        "min": 8.480000019073486,
+        "max": 47.58999967575073
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.03000020980834961,
+        "p95": 0.04499962329864502,
+        "min": 0.019999980926513672,
+        "max": 0.06999969482421875
+      },
+      "interactiveFps": [
+        108.11931078309097,
+        111.86143165154171
+      ],
+      "interactiveP95Ms": [
+        16.665000000000873,
+        9.330000000000473
+      ],
+      "minPsnrDb": 31.548380991569786,
+      "minForegroundPsnrDb": 31.550213361978912,
+      "selectedSplats": [
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342,
+        2026088,
+        2020047,
+        2118917,
+        2155557,
+        2122342
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 8.067500114440918,
+          "movingMedianMs": 9.515000104904175
+        },
+        {
+          "staticMedianMs": 10.442499876022339,
+          "movingMedianMs": 11.057499885559082
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "pc-default",
+      "passed": true,
+      "trials": [
+        26,
+        33
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 10.480000019073486,
+        "p95": 11.960250043869019,
+        "min": 9.804999828338623,
+        "max": 14.604999542236328
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 10.847500085830688,
+        "p95": 12.931999969482415,
+        "min": 9.829999923706055,
+        "max": 15.00499963760376
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.019999980926513672,
+        "p95": 0.02500009536743164,
+        "min": 0.009999752044677734,
+        "max": 0.03500032424926758
+      },
+      "interactiveFps": [
+        88.89707859796609,
+        95.05312122266756
+      ],
+      "interactiveP95Ms": [
+        17.12800000000061,
+        16.904999999999745
+      ],
+      "minPsnrDb": 41.97871203581191,
+      "minForegroundPsnrDb": 41.977197688083976,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 10.602499961853027,
+          "movingMedianMs": 11.085000038146973
+        },
+        {
+          "staticMedianMs": 10.355000019073486,
+          "movingMedianMs": 10.569999933242798
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "ours-source",
+      "passed": true,
+      "trials": [
+        27,
+        32
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 14.634999990463257,
+        "p95": 16.154750108718872,
+        "min": 12.28000020980835,
+        "max": 17.640000343322754
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 15.96749997138977,
+        "p95": 17.976749897003174,
+        "min": 12.50499963760376,
+        "max": 18.789999961853027
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.034999847412109375,
+        "p95": 0.04999973773956299,
+        "min": 0.019999980926513672,
+        "max": 0.07499980926513672
+      },
+      "interactiveFps": [
+        70.20950815998806,
+        68.47217415337269
+      ],
+      "interactiveP95Ms": [
+        17.4530000000017,
+        17.521500000000742
+      ],
+      "minPsnrDb": 57.153238843670394,
+      "minForegroundPsnrDb": 57.151233830123154,
+      "selectedSplats": [
+        4029033,
+        3935808,
+        4138366,
+        4255840,
+        4292233,
+        4029033,
+        3935808,
+        4138366,
+        4255840,
+        4292233
+      ],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 15.15749979019165,
+          "movingMedianMs": 16.06749987602234
+        },
+        {
+          "staticMedianMs": 14.187499761581421,
+          "movingMedianMs": 15.732500076293945
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "spark",
+      "passed": true,
+      "trials": [
+        28,
+        31
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 18.575000047683716,
+        "p95": 19.965750050544738,
+        "min": 17.049999713897705,
+        "max": 53.33999967575073
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 88.7975001335144,
+        "p95": 113.61775004863738,
+        "min": 78.2350001335144,
+        "max": 134.21000003814697
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 69.60500001907349,
+        "p95": 93.73175005912779,
+        "min": 60.704999923706055,
+        "max": 111.66000032424927
+      },
+      "interactiveFps": [
+        56.94095297771347,
+        51.641397219479614
+      ],
+      "interactiveP95Ms": [
+        50.05900000000038,
+        58.43400000000092
+      ],
+      "minPsnrDb": 37.58464411285649,
+      "minForegroundPsnrDb": 37.58162303576535,
+      "selectedSplats": [],
+      "staticReusesPresentation": false,
+      "perTrial": [
+        {
+          "staticMedianMs": 18.65999984741211,
+          "movingMedianMs": 85.1875
+        },
+        {
+          "staticMedianMs": 18.545000076293945,
+          "movingMedianMs": 95.5625
+        }
+      ]
+    },
+    {
+      "scene": "ekotori",
+      "mode": "luma",
+      "passed": true,
+      "trials": [
+        29,
+        30
+      ],
+      "staticMs": {
+        "samples": 180,
+        "median": 0.18499994277954102,
+        "p95": 0.3402501344680785,
+        "min": 0.13499975204467773,
+        "max": 0.8949999809265137
+      },
+      "movingMs": {
+        "samples": 180,
+        "median": 24.042500019073486,
+        "p95": 28.8684996843338,
+        "min": 20.519999980926514,
+        "max": 31.490000247955322
+      },
+      "movingPrepareMs": {
+        "samples": 180,
+        "median": 0.024999618530273438,
+        "p95": 0.03499987125396729,
+        "min": 0.014999866485595703,
+        "max": 0.04999971389770508
+      },
+      "interactiveFps": [
+        42.611778044966634,
+        43.230511797084915
+      ],
+      "interactiveP95Ms": [
+        33.19250000000102,
+        32.4305000000003
+      ],
+      "minPsnrDb": 38.22117662174058,
+      "minForegroundPsnrDb": 38.22294038945211,
+      "selectedSplats": [],
+      "staticReusesPresentation": true,
+      "perTrial": [
+        {
+          "staticMedianMs": 0.19500017166137695,
+          "movingMedianMs": 24.41499972343445
+        },
+        {
+          "staticMedianMs": 0.1700000762939453,
+          "movingMedianMs": 23.68250012397766
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "cpu": "Apple M5 Max",
+    "memoryBytes": 137438953472,
+    "os": "macOS 26.4 (25E246)",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "physicalRenderSize": [
+      2560,
+      1440
+    ],
+    "cssViewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 2
+  },
+  "evidence": {
+    "harnessRevision": "3c4f11ea9f2266670e92f3a6f97026265772fd68",
+    "librarySha256": "93f755175d0ee59273bd3e61f68a8879b8fcfcfa8b60a7cd3a008341b1afdfc1",
+    "harnessSha256": "dd20a08054f778b6a2db2aa2a63bc3198f723047ced78f31124ebce36f6a168e",
+    "dependencyLockSha256": "184d7cdc44e6a1463772563eaba96594c30d79e53dadb1b7589d0f31349a0174"
+  }
+}

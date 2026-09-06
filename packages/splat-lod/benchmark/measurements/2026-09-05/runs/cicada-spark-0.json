@@ -1,0 +1,5526 @@
+{
+  "run": "multi-scene-20260906-r2",
+  "index": 4,
+  "pilot": false,
+  "protocol": {
+    "version": 2,
+    "width": 2560,
+    "height": 1440,
+    "cssWidth": 1280,
+    "cssHeight": 720,
+    "warmup": 20,
+    "samples": 90,
+    "interactiveDurationMs": 4000,
+    "repeats": 2,
+    "qualityFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "modes": [
+      "pc-full",
+      "ours-lod",
+      "pc-default",
+      "ours-source",
+      "spark",
+      "luma"
+    ]
+  },
+  "libraryRevision": "21bf25a67082af374fd899b6d91846381bb89c89",
+  "evidence": {
+    "harnessRevision": "3c4f11ea9f2266670e92f3a6f97026265772fd68",
+    "librarySha256": "93f755175d0ee59273bd3e61f68a8879b8fcfcfa8b60a7cd3a008341b1afdfc1",
+    "harnessSha256": "dd20a08054f778b6a2db2aa2a63bc3198f723047ced78f31124ebce36f6a168e",
+    "dependencyLockSha256": "184d7cdc44e6a1463772563eaba96594c30d79e53dadb1b7589d0f31349a0174"
+  },
+  "scene": {
+    "id": "cicada",
+    "name": "Cicada Shell",
+    "count": 652804,
+    "cellSize": 0.08,
+    "source": "/data/cicada/source.compressed.ply",
+    "manifest": "/data/cicada/manifest.json",
+    "luma": "/data/luma-cicada/manifest.json",
+    "sourceSha256": "eac75a8018606e524b03f905cd1392fedc359274a28250e403a945291ab5aa1f",
+    "sceneUrl": "https://superspl.at/scene/cbe96076",
+    "creator": "tokoyoshi",
+    "background": [
+      30,
+      30,
+      30
+    ],
+    "motionScale": 0.15,
+    "camera": {
+      "position": [
+        0.23608636856079102,
+        -0.9374303221702576,
+        -1.413392186164856
+      ],
+      "target": [
+        -0.1399042541644092,
+        -0.4090131106156434,
+        0.08348923990188797
+      ],
+      "up": [
+        0,
+        -1,
+        0
+      ],
+      "fovDegrees": 33,
+      "near": 0.1,
+      "far": 1000
+    }
+  },
+  "mode": "spark",
+  "round": 0,
+  "startedAt": "2026-09-06T02:55:45.850Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "devicePixelRatio": 2,
+  "browserViewport": [
+    1280,
+    720
+  ],
+  "phases": {
+    "static": {
+      "samples": [
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 4.880000114440918
+        },
+        {
+          "prepareMs": 0.03000020980834961,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 5.410000324249268
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 9.079999923706055
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 6.565000057220459
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.08000040054321289,
+          "completeMs": 5.474999904632568
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 4.914999961853027
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 9.214999675750732
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 4.909999847412109
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 8.96500015258789
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 4.904999732971191
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 9.71999979019165
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 4.934999942779541
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.08499956130981445,
+          "completeMs": 9.565000057220459
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 8.710000038146973
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 4.914999961853027
+        },
+        {
+          "prepareMs": 0.03000020980834961,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 9.950000286102295
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.259999752044678
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 13.559999942779541
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 14.009999752044678
+        },
+        {
+          "prepareMs": 0.03000020980834961,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 5.21999979019165
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 5.239999771118164
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 9.244999885559082
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 8.820000171661377
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 9.46999979019165
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 9.109999656677246
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 4.610000133514404
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 9.37000036239624
+        },
+        {
+          "prepareMs": 0.015000343322753906,
+          "submitMs": 0.06499958038330078,
+          "completeMs": 4.910000324249268
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 4.914999961853027
+        },
+        {
+          "prepareMs": 0.039999961853027344,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 8.924999713897705
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 4.859999656677246
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 4.769999980926514
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 9.664999961853027
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 4.424999713897705
+        },
+        {
+          "prepareMs": 0.04999971389770508,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 9.799999713897705
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 4.934999942779541
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 10.049999713897705
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 5.279999732971191
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 5.275000095367432
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 5.264999866485596
+        },
+        {
+          "prepareMs": 0.03000020980834961,
+          "submitMs": 0.1399998664855957,
+          "completeMs": 5.230000019073486
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 5.220000267028809
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 5.055000305175781
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 5.170000076293945
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 5.139999866485596
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.130000114440918
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 5.404999732971191
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.164999961853027
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 5.149999618530273
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.119999885559082
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.025000095367432
+        },
+        {
+          "prepareMs": 0.03500032424926758,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 5.160000324249268
+        },
+        {
+          "prepareMs": 0.03000020980834961,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.170000076293945
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 4.815000057220459
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.08499956130981445,
+          "completeMs": 4.940000057220459
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.105000019073486
+        },
+        {
+          "prepareMs": 0.029999732971191406,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.125
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 5.195000171661377
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 5.140000343322754
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 4.799999713897705
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 5.054999828338623
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 4.944999694824219
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 5.105000019073486
+        },
+        {
+          "prepareMs": 0.039999961853027344,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 4.824999809265137
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 5.210000038146973
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 4.994999885559082
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 5.215000152587891
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 5.440000057220459
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 5.12999963760376
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 5.070000171661377
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.115000247955322
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 5.164999961853027
+        },
+        {
+          "prepareMs": 0.024999618530273438,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 5.154999732971191
+        },
+        {
+          "prepareMs": 0.014999866485595703,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 9.489999771118164
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.06499958038330078,
+          "completeMs": 5.25
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 9.559999942779541
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 9.654999732971191
+        },
+        {
+          "prepareMs": 0.020000457763671875,
+          "submitMs": 0.05499982833862305,
+          "completeMs": 9.925000190734863
+        },
+        {
+          "prepareMs": 0.014999866485595703,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 9.960000038146973
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 9.25
+        },
+        {
+          "prepareMs": 0.014999866485595703,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 9.690000057220459
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.05499982833862305,
+          "completeMs": 8.824999809265137
+        },
+        {
+          "prepareMs": 0.020000457763671875,
+          "submitMs": 0.06499958038330078,
+          "completeMs": 8.835000038146973
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 8.775000095367432
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 8.930000305175781
+        },
+        {
+          "prepareMs": 0.009999752044677734,
+          "submitMs": 0.05499982833862305,
+          "completeMs": 9.574999809265137
+        },
+        {
+          "prepareMs": 0.02500009536743164,
+          "submitMs": 0.059999942779541016,
+          "completeMs": 9.150000095367432
+        },
+        {
+          "prepareMs": 0.015000343322753906,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 9.820000171661377
+        },
+        {
+          "prepareMs": 0.014999866485595703,
+          "submitMs": 0.05499982833862305,
+          "completeMs": 9.474999904632568
+        },
+        {
+          "prepareMs": 0.019999980926513672,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 10.450000286102295
+        }
+      ],
+      "medianMs": 5.234999895095825,
+      "p95Ms": 9.955500149726868
+    },
+    "moving": {
+      "samples": [
+        {
+          "prepareMs": 10.09499979019165,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 20.18499994277954
+        },
+        {
+          "prepareMs": 10.494999885559082,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.5
+        },
+        {
+          "prepareMs": 10.325000286102295,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.785000324249268
+        },
+        {
+          "prepareMs": 10.115000247955322,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 18.97000026702881
+        },
+        {
+          "prepareMs": 10.144999980926514,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 19.610000133514404
+        },
+        {
+          "prepareMs": 10.210000038146973,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 19.985000133514404
+        },
+        {
+          "prepareMs": 10.230000019073486,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 19.730000019073486
+        },
+        {
+          "prepareMs": 10.204999923706055,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 18.744999885559082
+        },
+        {
+          "prepareMs": 10.109999656677246,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 19.714999675750732
+        },
+        {
+          "prepareMs": 10.349999904632568,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 20.164999961853027
+        },
+        {
+          "prepareMs": 9.759999752044678,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 19.81999969482422
+        },
+        {
+          "prepareMs": 9.744999885559082,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 19.320000171661377
+        },
+        {
+          "prepareMs": 9.545000076293945,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.385000228881836
+        },
+        {
+          "prepareMs": 10.485000133514404,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 20.05500030517578
+        },
+        {
+          "prepareMs": 9.994999885559082,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 19.509999752044678
+        },
+        {
+          "prepareMs": 9.804999828338623,
+          "submitMs": 0.10500001907348633,
+          "completeMs": 18.619999885559082
+        },
+        {
+          "prepareMs": 10.460000038146973,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.454999923706055
+        },
+        {
+          "prepareMs": 10.309999942779541,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 20.56500005722046
+        },
+        {
+          "prepareMs": 10.179999828338623,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 20.19000005722046
+        },
+        {
+          "prepareMs": 10.315000057220459,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 19.289999961853027
+        },
+        {
+          "prepareMs": 9.800000190734863,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.760000228881836
+        },
+        {
+          "prepareMs": 10.59000015258789,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.94499969482422
+        },
+        {
+          "prepareMs": 11.795000076293945,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 20.84000015258789
+        },
+        {
+          "prepareMs": 9.615000247955322,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.135000228881836
+        },
+        {
+          "prepareMs": 10.15999984741211,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.764999866485596
+        },
+        {
+          "prepareMs": 9.650000095367432,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 19.285000324249268
+        },
+        {
+          "prepareMs": 10.380000114440918,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 20.375
+        },
+        {
+          "prepareMs": 10.269999980926514,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.59499979019165
+        },
+        {
+          "prepareMs": 10.049999713897705,
+          "submitMs": 0.10000038146972656,
+          "completeMs": 19.25499963760376
+        },
+        {
+          "prepareMs": 10.135000228881836,
+          "submitMs": 0.09999990463256836,
+          "completeMs": 19.40500020980835
+        },
+        {
+          "prepareMs": 10.875,
+          "submitMs": 0.09499979019165039,
+          "completeMs": 20.324999809265137
+        },
+        {
+          "prepareMs": 10.994999885559082,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 20.579999923706055
+        },
+        {
+          "prepareMs": 10.095000267028809,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 19.454999923706055
+        },
+        {
+          "prepareMs": 9.62000036239624,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 18.875
+        },
+        {
+          "prepareMs": 10.380000114440918,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.65000009536743
+        },
+        {
+          "prepareMs": 10.105000019073486,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.375
+        },
+        {
+          "prepareMs": 10.105000019073486,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 18.889999866485596
+        },
+        {
+          "prepareMs": 10.704999923706055,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 21.079999923706055
+        },
+        {
+          "prepareMs": 10.190000057220459,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 20.005000114440918
+        },
+        {
+          "prepareMs": 10.49500036239624,
+          "submitMs": 0.09999990463256836,
+          "completeMs": 19.765000343322754
+        },
+        {
+          "prepareMs": 10.230000019073486,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.30999994277954
+        },
+        {
+          "prepareMs": 10.065000057220459,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 19.394999980926514
+        },
+        {
+          "prepareMs": 10.305000305175781,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 19.55999994277954
+        },
+        {
+          "prepareMs": 10.710000038146973,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 20.130000114440918
+        },
+        {
+          "prepareMs": 10.269999980926514,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 20.40499973297119
+        },
+        {
+          "prepareMs": 10.350000381469727,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.505000114440918
+        },
+        {
+          "prepareMs": 11.079999923706055,
+          "submitMs": 0.09499979019165039,
+          "completeMs": 20.204999923706055
+        },
+        {
+          "prepareMs": 10.90500020980835,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 20.365000247955322
+        },
+        {
+          "prepareMs": 10.864999771118164,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.47499990463257
+        },
+        {
+          "prepareMs": 9.644999980926514,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.389999866485596
+        },
+        {
+          "prepareMs": 10.015000343322754,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 19.660000324249268
+        },
+        {
+          "prepareMs": 10.360000133514404,
+          "submitMs": 0.09000015258789062,
+          "completeMs": 19.789999961853027
+        },
+        {
+          "prepareMs": 11.059999942779541,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 21.21999979019165
+        },
+        {
+          "prepareMs": 9.96999979019165,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 18.96999979019165
+        },
+        {
+          "prepareMs": 10.53000020980835,
+          "submitMs": 0.09999990463256836,
+          "completeMs": 20.164999961853027
+        },
+        {
+          "prepareMs": 10.25,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 19.910000324249268
+        },
+        {
+          "prepareMs": 10.03000020980835,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 18.920000076293945
+        },
+        {
+          "prepareMs": 11.085000038146973,
+          "submitMs": 0.06999969482421875,
+          "completeMs": 20.18499994277954
+        },
+        {
+          "prepareMs": 9.869999885559082,
+          "submitMs": 0.08000040054321289,
+          "completeMs": 19.195000171661377
+        },
+        {
+          "prepareMs": 10.304999828338623,
+          "submitMs": 0.09999990463256836,
+          "completeMs": 19.329999923706055
+        },
+        {
+          "prepareMs": 10.360000133514404,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.860000133514404
+        },
+        {
+          "prepareMs": 10.690000057220459,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 24.829999923706055
+        },
+        {
+          "prepareMs": 10.019999980926514,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 19.299999713897705
+        },
+        {
+          "prepareMs": 10.744999885559082,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 19.984999656677246
+        },
+        {
+          "prepareMs": 10.49500036239624,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 20.015000343322754
+        },
+        {
+          "prepareMs": 10.740000247955322,
+          "submitMs": 0.09999990463256836,
+          "completeMs": 20.789999961853027
+        },
+        {
+          "prepareMs": 10.954999923706055,
+          "submitMs": 0.0950002670288086,
+          "completeMs": 21.02500009536743
+        },
+        {
+          "prepareMs": 10.380000114440918,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.539999961853027
+        },
+        {
+          "prepareMs": 10.255000114440918,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 19.59000015258789
+        },
+        {
+          "prepareMs": 10.680000305175781,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.90500020980835
+        },
+        {
+          "prepareMs": 11.350000381469727,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 20.625
+        },
+        {
+          "prepareMs": 10.204999923706055,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 20.53499984741211
+        },
+        {
+          "prepareMs": 11.019999980926514,
+          "submitMs": 0.07000017166137695,
+          "completeMs": 20.225000381469727
+        },
+        {
+          "prepareMs": 10.25,
+          "submitMs": 0.06500005722045898,
+          "completeMs": 19.480000019073486
+        },
+        {
+          "prepareMs": 10.210000038146973,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 19.320000171661377
+        },
+        {
+          "prepareMs": 10.150000095367432,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.445000171661377
+        },
+        {
+          "prepareMs": 10.949999809265137,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 20.50499963760376
+        },
+        {
+          "prepareMs": 10.824999809265137,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 20.420000076293945
+        },
+        {
+          "prepareMs": 11.054999828338623,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 20.46999979019165
+        },
+        {
+          "prepareMs": 10.615000247955322,
+          "submitMs": 0.09499979019165039,
+          "completeMs": 21.140000343322754
+        },
+        {
+          "prepareMs": 10.434999942779541,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 20.44000005722046
+        },
+        {
+          "prepareMs": 10.369999885559082,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 19.21999979019165
+        },
+        {
+          "prepareMs": 9.74500036239624,
+          "submitMs": 0.08999967575073242,
+          "completeMs": 18.664999961853027
+        },
+        {
+          "prepareMs": 10.414999961853027,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 20.170000076293945
+        },
+        {
+          "prepareMs": 10.210000038146973,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 19.735000133514404
+        },
+        {
+          "prepareMs": 10.710000038146973,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.5
+        },
+        {
+          "prepareMs": 10.044999599456787,
+          "submitMs": 0.08500003814697266,
+          "completeMs": 19.519999980926514
+        },
+        {
+          "prepareMs": 10.294999599456787,
+          "submitMs": 0.07500028610229492,
+          "completeMs": 19.78499984741211
+        },
+        {
+          "prepareMs": 10.62000036239624,
+          "submitMs": 0.07999992370605469,
+          "completeMs": 21.125
+        },
+        {
+          "prepareMs": 10.130000114440918,
+          "submitMs": 0.07499980926513672,
+          "completeMs": 20.18499994277954
+        }
+      ],
+      "medianMs": 19.762500047683716,
+      "p95Ms": 21.055250000953674
+    }
+  },
+  "quality": [
+    {
+      "t": 0,
+      "nonBackground": 333149,
+      "stats": {
+        "engine": "Spark 2.1.0 / Three 0.180.0",
+        "sourceCount": 652804,
+        "shBands": 3,
+        "activeSplats": 652804,
+        "sourceEncoding": "PackedSplats: additional native quantization",
+        "settings": {
+          "enableLod": false,
+          "sortRadial": false,
+          "minSortIntervalMs": 0,
+          "minPixelRadius": 0,
+          "minAlpha": 0.00392156862745098,
+          "focalAdjustment": 2,
+          "preBlurAmount": 0.3,
+          "blurAmount": 0
+        },
+        "device": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)"
+        }
+      }
+    },
+    {
+      "t": 0.25,
+      "nonBackground": 327021,
+      "stats": {
+        "engine": "Spark 2.1.0 / Three 0.180.0",
+        "sourceCount": 652804,
+        "shBands": 3,
+        "activeSplats": 652804,
+        "sourceEncoding": "PackedSplats: additional native quantization",
+        "settings": {
+          "enableLod": false,
+          "sortRadial": false,
+          "minSortIntervalMs": 0,
+          "minPixelRadius": 0,
+          "minAlpha": 0.00392156862745098,
+          "focalAdjustment": 2,
+          "preBlurAmount": 0.3,
+          "blurAmount": 0
+        },
+        "device": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)"
+        }
+      }
+    },
+    {
+      "t": 0.5,
+      "nonBackground": 285585,
+      "stats": {
+        "engine": "Spark 2.1.0 / Three 0.180.0",
+        "sourceCount": 652804,
+        "shBands": 3,
+        "activeSplats": 652804,
+        "sourceEncoding": "PackedSplats: additional native quantization",
+        "settings": {
+          "enableLod": false,
+          "sortRadial": false,
+          "minSortIntervalMs": 0,
+          "minPixelRadius": 0,
+          "minAlpha": 0.00392156862745098,
+          "focalAdjustment": 2,
+          "preBlurAmount": 0.3,
+          "blurAmount": 0
+        },
+        "device": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)"
+        }
+      }
+    },
+    {
+      "t": 0.75,
+      "nonBackground": 292950,
+      "stats": {
+        "engine": "Spark 2.1.0 / Three 0.180.0",
+        "sourceCount": 652804,
+        "shBands": 3,
+        "activeSplats": 652804,
+        "sourceEncoding": "PackedSplats: additional native quantization",
+        "settings": {
+          "enableLod": false,
+          "sortRadial": false,
+          "minSortIntervalMs": 0,
+          "minPixelRadius": 0,
+          "minAlpha": 0.00392156862745098,
+          "focalAdjustment": 2,
+          "preBlurAmount": 0.3,
+          "blurAmount": 0
+        },
+        "device": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)"
+        }
+      }
+    },
+    {
+      "t": 1,
+      "nonBackground": 246989,
+      "stats": {
+        "engine": "Spark 2.1.0 / Three 0.180.0",
+        "sourceCount": 652804,
+        "shBands": 3,
+        "activeSplats": 652804,
+        "sourceEncoding": "PackedSplats: additional native quantization",
+        "settings": {
+          "enableLod": false,
+          "sortRadial": false,
+          "minSortIntervalMs": 0,
+          "minPixelRadius": 0,
+          "minAlpha": 0.00392156862745098,
+          "focalAdjustment": 2,
+          "preBlurAmount": 0.3,
+          "blurAmount": 0
+        },
+        "device": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)"
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "interactive": {
+    "frames": [
+      {
+        "intervalMs": 8.024999999999636,
+        "submitMs": 0.22499990463256836,
+        "t": 0.002006249999999909,
+        "sortLag": {
+          "angleRadians": 0.001817916739681279,
+          "distance": 0.2994040954346442
+        }
+      },
+      {
+        "intervalMs": 8.650000000000091,
+        "submitMs": 0.1700000762939453,
+        "t": 0.004168749999999932,
+        "sortLag": {
+          "angleRadians": 0.001958847107201539,
+          "distance": 0.0021384889059994317
+        }
+      },
+      {
+        "intervalMs": 7.454999999999927,
+        "submitMs": 0.18499994277954102,
+        "t": 0.006032499999999914,
+        "sortLag": {
+          "angleRadians": 0.0036460065671621855,
+          "distance": 0.00398100373157635
+        }
+      },
+      {
+        "intervalMs": 8.38000000000011,
+        "submitMs": 0.1700000762939453,
+        "t": 0.00812749999999994,
+        "sortLag": {
+          "angleRadians": 0.001894720737881516,
+          "distance": 0.002070232060897583
+        }
+      },
+      {
+        "intervalMs": 8.775000000000091,
+        "submitMs": 0.18000030517578125,
+        "t": 0.010321249999999964,
+        "sortLag": {
+          "angleRadians": 0.0019813397704257804,
+          "distance": 0.0021664543335313214
+        }
+      },
+      {
+        "intervalMs": 7.804999999999836,
+        "submitMs": 0.1550002098083496,
+        "t": 0.012272499999999922,
+        "sortLag": {
+          "angleRadians": 0.0017594219236884662,
+          "distance": 0.0019255047045025708
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1549997329711914,
+        "t": 0.014354999999999904,
+        "sortLag": {
+          "angleRadians": 0.003633576641467935,
+          "distance": 0.003978695915235633
+        }
+      },
+      {
+        "intervalMs": 9.295000000000073,
+        "submitMs": 0.14999961853027344,
+        "t": 0.016678749999999923,
+        "sortLag": {
+          "angleRadians": 0.0020861198944494373,
+          "distance": 0.0022884303890539936
+        }
+      },
+      {
+        "intervalMs": 7.385000000000218,
+        "submitMs": 0.1549997329711914,
+        "t": 0.01852499999999998,
+        "sortLag": {
+          "angleRadians": 0.0016530304095546335,
+          "distance": 0.0018159387159525189
+        }
+      },
+      {
+        "intervalMs": 9.279999999999745,
+        "submitMs": 0.16499996185302734,
+        "t": 0.020844999999999912,
+        "sortLag": {
+          "angleRadians": 0.0020709444135260076,
+          "distance": 0.002278718971067192
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.24000024795532227,
+        "t": 0.022907499999999914,
+        "sortLag": {
+          "angleRadians": 0.0018346097012038674,
+          "distance": 0.002022486560230019
+        }
+      },
+      {
+        "intervalMs": 7.950000000000273,
+        "submitMs": 0.19999980926513672,
+        "t": 0.024894999999999983,
+        "sortLag": {
+          "angleRadians": 0.0017615622419787525,
+          "distance": 0.0019456908208491746
+        }
+      },
+      {
+        "intervalMs": 8.775000000000091,
+        "submitMs": 0.17499971389770508,
+        "t": 0.027088750000000005,
+        "sortLag": {
+          "angleRadians": 0.0036980817473233527,
+          "distance": 0.004089254834968442
+        }
+      },
+      {
+        "intervalMs": 7.394999999999982,
+        "submitMs": 0.15999984741210938,
+        "t": 0.0289375,
+        "sortLag": {
+          "angleRadians": 0.0016251023089594735,
+          "distance": 0.0018029049397618197
+        }
+      },
+      {
+        "intervalMs": 9.294999999999618,
+        "submitMs": 0.1700000762939453,
+        "t": 0.03126124999999991,
+        "sortLag": {
+          "angleRadians": 0.0020330681970006656,
+          "distance": 0.0022611605857937624
+        }
+      },
+      {
+        "intervalMs": 7.355000000000018,
+        "submitMs": 0.16499996185302734,
+        "t": 0.03309999999999991,
+        "sortLag": {
+          "angleRadians": 0.001600702832386973,
+          "distance": 0.0017850386847012162
+        }
+      },
+      {
+        "intervalMs": 9.315000000000055,
+        "submitMs": 0.19999980926513672,
+        "t": 0.035428749999999926,
+        "sortLag": {
+          "angleRadians": 0.0036171283525129544,
+          "distance": 0.004040094321982289
+        }
+      },
+      {
+        "intervalMs": 7.75,
+        "submitMs": 0.19000005722045898,
+        "t": 0.03736624999999992,
+        "sortLag": {
+          "angleRadians": 0.0016679216010301835,
+          "distance": 0.0018710692430046535
+        }
+      },
+      {
+        "intervalMs": 8.9050000000002,
+        "submitMs": 0.17499971389770508,
+        "t": 0.039592499999999975,
+        "sortLag": {
+          "angleRadians": 0.001904988495187129,
+          "distance": 0.0021438357547836203
+        }
+      },
+      {
+        "intervalMs": 7.349999999999909,
+        "submitMs": 0.19499969482421875,
+        "t": 0.04142999999999995,
+        "sortLag": {
+          "angleRadians": 0.001562638215835827,
+          "distance": 0.0017643218520485163
+        }
+      },
+      {
+        "intervalMs": 8.470000000000255,
+        "submitMs": 0.13499975204467773,
+        "t": 0.04354750000000002,
+        "sortLag": {
+          "angleRadians": 0.0017893897115347415,
+          "distance": 0.00202709593673978
+        }
+      },
+      {
+        "intervalMs": 8.199999999999818,
+        "submitMs": 0.18000030517578125,
+        "t": 0.04559749999999997,
+        "sortLag": {
+          "angleRadians": 0.003509664098820452,
+          "distance": 0.003983086597714523
+        }
+      },
+      {
+        "intervalMs": 9.239999999999782,
+        "submitMs": 0.1699995994567871,
+        "t": 0.047907499999999915,
+        "sortLag": {
+          "angleRadians": 0.0019236700756375465,
+          "distance": 0.002196055340450551
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.18499994277954102,
+        "t": 0.049993749999999976,
+        "sortLag": {
+          "angleRadians": 0.001723355631473901,
+          "distance": 0.0019757154094005476
+        }
+      },
+      {
+        "intervalMs": 7.420000000000073,
+        "submitMs": 0.23000001907348633,
+        "t": 0.05184874999999999,
+        "sortLag": {
+          "angleRadians": 0.001520802398124435,
+          "distance": 0.0017503843864230242
+        }
+      },
+      {
+        "intervalMs": 8.734999999999673,
+        "submitMs": 0.17999982833862305,
+        "t": 0.054032499999999914,
+        "sortLag": {
+          "angleRadians": 0.0017759822769378164,
+          "distance": 0.002052655777315902
+        }
+      },
+      {
+        "intervalMs": 8.495000000000346,
+        "submitMs": 0.2199997901916504,
+        "t": 0.05615625,
+        "sortLag": {
+          "angleRadians": 0.0034878347153093287,
+          "distance": 0.004040369328902429
+        }
+      },
+      {
+        "intervalMs": 8.224999999999909,
+        "submitMs": 0.17999982833862305,
+        "t": 0.05821249999999998,
+        "sortLag": {
+          "angleRadians": 0.0016426749642928246,
+          "distance": 0.0019162133562467582
+        }
+      },
+      {
+        "intervalMs": 8.840000000000146,
+        "submitMs": 0.18499994277954102,
+        "t": 0.06042250000000001,
+        "sortLag": {
+          "angleRadians": 0.0017488489913380521,
+          "distance": 0.0020500342151483562
+        }
+      },
+      {
+        "intervalMs": 8.274999999999636,
+        "submitMs": 0.25,
+        "t": 0.06249124999999992,
+        "sortLag": {
+          "angleRadians": 0.0016210633704558796,
+          "distance": 0.0019098270441664693
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.19499969482421875,
+        "t": 0.06457624999999996,
+        "sortLag": {
+          "angleRadians": 0.001617780909197259,
+          "distance": 0.0019155514358913152
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1549997329711914,
+        "t": 0.06665999999999997,
+        "sortLag": {
+          "angleRadians": 0.0032181715567951097,
+          "distance": 0.0038203607775496922
+        }
+      },
+      {
+        "intervalMs": 8.159999999999854,
+        "submitMs": 0.17500019073486328,
+        "t": 0.06869999999999993,
+        "sortLag": {
+          "angleRadians": 0.001550653994199788,
+          "distance": 0.0018552537535317
+        }
+      },
+      {
+        "intervalMs": 7.994999999999891,
+        "submitMs": 0.19500017166137695,
+        "t": 0.07069874999999991,
+        "sortLag": {
+          "angleRadians": 0.001503527385457962,
+          "distance": 0.0018083042696716315
+        }
+      },
+      {
+        "intervalMs": 8.9050000000002,
+        "submitMs": 0.20000028610229492,
+        "t": 0.07292499999999995,
+        "sortLag": {
+          "angleRadians": 0.0016559966837189958,
+          "distance": 0.002002829096962401
+        }
+      },
+      {
+        "intervalMs": 8.260000000000218,
+        "submitMs": 0.11999988555908203,
+        "t": 0.07499000000000001,
+        "sortLag": {
+          "angleRadians": 0.0015182229175301834,
+          "distance": 0.0018468318998216742
+        }
+      },
+      {
+        "intervalMs": 8.349999999999909,
+        "submitMs": 0.15999984741210938,
+        "t": 0.0770775,
+        "sortLag": {
+          "angleRadians": 0.003035281941124478,
+          "distance": 0.0037028122315124305
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.17499971389770508,
+        "t": 0.07915999999999997,
+        "sortLag": {
+          "angleRadians": 0.001495583070746406,
+          "distance": 0.0018402725899477235
+        }
+      },
+      {
+        "intervalMs": 8.25500000000011,
+        "submitMs": 0.14499998092651367,
+        "t": 0.08122375,
+        "sortLag": {
+          "angleRadians": 0.0014643270453822217,
+          "distance": 0.0018123388153456362
+        }
+      },
+      {
+        "intervalMs": 8.420000000000073,
+        "submitMs": 0.19000005722045898,
+        "t": 0.08332875000000001,
+        "sortLag": {
+          "angleRadians": 0.0014752053721534713,
+          "distance": 0.0018366388282654235
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.16499996185302734,
+        "t": 0.08540999999999997,
+        "sortLag": {
+          "angleRadians": 0.0014401836626000849,
+          "distance": 0.0018038118138643535
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.13500022888183594,
+        "t": 0.08749249999999995,
+        "sortLag": {
+          "angleRadians": 0.0028627879595508493,
+          "distance": 0.0035963954788301635
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.16499996185302734,
+        "t": 0.08957624999999995,
+        "sortLag": {
+          "angleRadians": 0.0014050510128540378,
+          "distance": 0.001781081205986729
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.13000011444091797,
+        "t": 0.09165999999999996,
+        "sortLag": {
+          "angleRadians": 0.0013865382906214283,
+          "distance": 0.0017682412153907916
+        }
+      },
+      {
+        "intervalMs": 7.920000000000073,
+        "submitMs": 0.13500022888183594,
+        "t": 0.09363999999999999,
+        "sortLag": {
+          "angleRadians": 0.0013003414127794872,
+          "distance": 0.001668074195852979
+        }
+      },
+      {
+        "intervalMs": 8.74499999999989,
+        "submitMs": 0.1399998664855957,
+        "t": 0.09582624999999996,
+        "sortLag": {
+          "angleRadians": 0.0014163822759622427,
+          "distance": 0.0018278442962342217
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.1550002098083496,
+        "t": 0.09790749999999991,
+        "sortLag": {
+          "angleRadians": 0.0013294816101065085,
+          "distance": 0.001726168161006969
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.14499998092651367,
+        "t": 0.09999249999999996,
+        "sortLag": {
+          "angleRadians": 0.0013134933119255737,
+          "distance": 0.001715448825768997
+        }
+      },
+      {
+        "intervalMs": 8.164999999999964,
+        "submitMs": 0.13499975204467773,
+        "t": 0.10203374999999994,
+        "sortLag": {
+          "angleRadians": 0.0012682110637225856,
+          "distance": 0.0016658151943104093
+        }
+      },
+      {
+        "intervalMs": 8.524999999999636,
+        "submitMs": 0.1550002098083496,
+        "t": 0.10416499999999985,
+        "sortLag": {
+          "angleRadians": 0.0025736677463112792,
+          "distance": 0.0033904339871013885
+        }
+      },
+      {
+        "intervalMs": 8.3100000000004,
+        "submitMs": 0.1400003433227539,
+        "t": 0.10624249999999995,
+        "sortLag": {
+          "angleRadians": 0.0012545442196550184,
+          "distance": 0.001666504324233051
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.10832624999999996,
+        "sortLag": {
+          "angleRadians": 0.001240582306499423,
+          "distance": 0.0016567882777696634
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.13000011444091797,
+        "t": 0.11040874999999994,
+        "sortLag": {
+          "angleRadians": 0.001222322884861753,
+          "distance": 0.001640835002454233
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.13500022888183594,
+        "t": 0.11249374999999998,
+        "sortLag": {
+          "angleRadians": 0.0012065123926174128,
+          "distance": 0.0016276056736152422
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1399998664855957,
+        "t": 0.11457624999999996,
+        "sortLag": {
+          "angleRadians": 0.001188103763222964,
+          "distance": 0.0016102606786170329
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.11665874999999994,
+        "sortLag": {
+          "angleRadians": 0.0023594465298708346,
+          "distance": 0.003204922495541794
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1700000762939453,
+        "t": 0.11874249999999995,
+        "sortLag": {
+          "angleRadians": 0.0011558998062254965,
+          "distance": 0.0015798163708798882
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.14499998092651367,
+        "t": 0.12082624999999995,
+        "sortLag": {
+          "angleRadians": 0.001140002985049097,
+          "distance": 0.0015638036094242943
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.2200002670288086,
+        "t": 0.12290874999999994,
+        "sortLag": {
+          "angleRadians": 0.001123857073393339,
+          "distance": 0.001546673726395419
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.18000030517578125,
+        "t": 0.12499249999999995,
+        "sortLag": {
+          "angleRadians": 0.0011095113081600045,
+          "distance": 0.0015312121778489876
+        }
+      },
+      {
+        "intervalMs": 8.159999999999854,
+        "submitMs": 0.16000032424926758,
+        "t": 0.1270324999999999,
+        "sortLag": {
+          "angleRadians": 0.0010721248025868113,
+          "distance": 0.0014830048707090548
+        }
+      },
+      {
+        "intervalMs": 8.529999999999745,
+        "submitMs": 0.11500024795532227,
+        "t": 0.12916499999999986,
+        "sortLag": {
+          "angleRadians": 0.0021783012331964852,
+          "distance": 0.00301607675656991
+        }
+      },
+      {
+        "intervalMs": 8.3100000000004,
+        "submitMs": 0.14999961853027344,
+        "t": 0.13124249999999996,
+        "sortLag": {
+          "angleRadians": 0.001064222121136897,
+          "distance": 0.0014764934328953096
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.16499996185302734,
+        "t": 0.13332624999999995,
+        "sortLag": {
+          "angleRadians": 0.0010545093852666883,
+          "distance": 0.0014638668454045266
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.14499998092651367,
+        "t": 0.13540874999999994,
+        "sortLag": {
+          "angleRadians": 0.0020958571260003525,
+          "distance": 0.002909605363542245
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.12999963760375977,
+        "t": 0.13749249999999996,
+        "sortLag": {
+          "angleRadians": 0.0010304353412893665,
+          "distance": 0.0014292150151550944
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.1395775,
+        "sortLag": {
+          "angleRadians": 0.0010199403701185686,
+          "distance": 0.0014125009803830602
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1700000762939453,
+        "t": 0.14165999999999998,
+        "sortLag": {
+          "angleRadians": 0.0020280009710809716,
+          "distance": 0.002805608700051597
+        }
+      },
+      {
+        "intervalMs": 7.505000000000109,
+        "submitMs": 0.15000009536743164,
+        "t": 0.14353625,
+        "sortLag": {
+          "angleRadians": 0.0009000303000788202,
+          "distance": 0.0012399008432156097
+        }
+      },
+      {
+        "intervalMs": 9.204999999999927,
+        "submitMs": 0.15999984741210938,
+        "t": 0.14583749999999998,
+        "sortLag": {
+          "angleRadians": 0.0010937820094874433,
+          "distance": 0.001500882072283115
+        }
+      },
+      {
+        "intervalMs": 8.284999999999854,
+        "submitMs": 0.14499998092651367,
+        "t": 0.14790874999999995,
+        "sortLag": {
+          "angleRadians": 0.0009756753456222912,
+          "distance": 0.0013320283618210116
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.13000011444091797,
+        "t": 0.14999374999999998,
+        "sortLag": {
+          "angleRadians": 0.0009744562353091155,
+          "distance": 0.0013227214743772586
+        }
+      },
+      {
+        "intervalMs": 7.430000000000291,
+        "submitMs": 0.16499996185302734,
+        "t": 0.15185125000000005,
+        "sortLag": {
+          "angleRadians": 0.000862206074218575,
+          "distance": 0.0011629746566514689
+        }
+      },
+      {
+        "intervalMs": 9.30999999999949,
+        "submitMs": 0.1400003433227539,
+        "t": 0.15417874999999992,
+        "sortLag": {
+          "angleRadians": 0.0019352278039592508,
+          "distance": 0.0025995737569839703
+        }
+      },
+      {
+        "intervalMs": 7.460000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.15604374999999993,
+        "sortLag": {
+          "angleRadians": 0.0008549210532506297,
+          "distance": 0.0011345208857074045
+        }
+      },
+      {
+        "intervalMs": 8.400000000000546,
+        "submitMs": 0.17999982833862305,
+        "t": 0.15814375000000006,
+        "sortLag": {
+          "angleRadians": 0.0009579023911920309,
+          "distance": 0.001259694173789727
+        }
+      },
+      {
+        "intervalMs": 8.164999999999964,
+        "submitMs": 0.19500017166137695,
+        "t": 0.16018500000000005,
+        "sortLag": {
+          "angleRadians": 0.0018846185147117867,
+          "distance": 0.0024660074394905916
+        }
+      },
+      {
+        "intervalMs": 9.304999999999382,
+        "submitMs": 0.18499994277954102,
+        "t": 0.1625112499999999,
+        "sortLag": {
+          "angleRadians": 0.001052180386380444,
+          "distance": 0.0013529198281545716
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.15999984741210938,
+        "t": 0.1645737499999999,
+        "sortLag": {
+          "angleRadians": 0.0009298899586767289,
+          "distance": 0.0011800138411626874
+        }
+      },
+      {
+        "intervalMs": 7.425000000000182,
+        "submitMs": 0.15000009536743164,
+        "t": 0.16642999999999994,
+        "sortLag": {
+          "angleRadians": 0.0008350359928248957,
+          "distance": 0.001046301142172594
+        }
+      },
+      {
+        "intervalMs": 8.36999999999989,
+        "submitMs": 0.1549997329711914,
+        "t": 0.16852249999999994,
+        "sortLag": {
+          "angleRadians": 0.0017745954689446512,
+          "distance": 0.0022078699794445995
+        }
+      },
+      {
+        "intervalMs": 9.289999999999964,
+        "submitMs": 0.17500019073486328,
+        "t": 0.1708449999999999,
+        "sortLag": {
+          "angleRadians": 0.001041832943681694,
+          "distance": 0.0012670780185596922
+        }
+      },
+      {
+        "intervalMs": 7.440000000000509,
+        "submitMs": 0.16499996185302734,
+        "t": 0.17270500000000005,
+        "sortLag": {
+          "angleRadians": 0.0008339856117238229,
+          "distance": 0.0009979165495073781
+        }
+      },
+      {
+        "intervalMs": 8.239999999999782,
+        "submitMs": 0.15000009536743164,
+        "t": 0.17476499999999998,
+        "sortLag": {
+          "angleRadians": 0.0009237609370749674,
+          "distance": 0.0010877496651548698
+        }
+      },
+      {
+        "intervalMs": 9.3149999999996,
+        "submitMs": 0.13000011444091797,
+        "t": 0.17709374999999988,
+        "sortLag": {
+          "angleRadians": 0.001045014349879086,
+          "distance": 0.0012075780402010534
+        }
+      },
+      {
+        "intervalMs": 8.070000000000618,
+        "submitMs": 0.1549997329711914,
+        "t": 0.17911125000000003,
+        "sortLag": {
+          "angleRadians": 0.0009065050719274828,
+          "distance": 0.001027280020637777
+        }
+      },
+      {
+        "intervalMs": 8.549999999999272,
+        "submitMs": 0.17499971389770508,
+        "t": 0.18124874999999985,
+        "sortLag": {
+          "angleRadians": 0.0018683713051920615,
+          "distance": 0.002096532143670757
+        }
+      },
+      {
+        "intervalMs": 7.705000000000837,
+        "submitMs": 0.18000030517578125,
+        "t": 0.18317500000000006,
+        "sortLag": {
+          "angleRadians": 0.0008688245110388931,
+          "distance": 0.0009468622961769538
+        }
+      },
+      {
+        "intervalMs": 9.009999999999309,
+        "submitMs": 0.15999984741210938,
+        "t": 0.18542749999999988,
+        "sortLag": {
+          "angleRadians": 0.0010185911562342362,
+          "distance": 0.0010871782368301428
+        }
+      },
+      {
+        "intervalMs": 7.755000000000109,
+        "submitMs": 0.27500009536743164,
+        "t": 0.18736624999999993,
+        "sortLag": {
+          "angleRadians": 0.0008793109613673817,
+          "distance": 0.0009185361158283389
+        }
+      },
+      {
+        "intervalMs": 7.9350000000004,
+        "submitMs": 0.1700000762939453,
+        "t": 0.18935000000000002,
+        "sortLag": {
+          "angleRadians": 0.0009024819685641979,
+          "distance": 0.0009234850406067109
+        }
+      },
+      {
+        "intervalMs": 9.3149999999996,
+        "submitMs": 0.16499996185302734,
+        "t": 0.19167874999999993,
+        "sortLag": {
+          "angleRadians": 0.0019655972137518573,
+          "distance": 0.0019865437089347042
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.1699995994567871,
+        "t": 0.19373999999999988,
+        "sortLag": {
+          "angleRadians": 0.0009449527766300163,
+          "distance": 0.0009223041371407107
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.15000009536743164,
+        "t": 0.19582624999999995,
+        "sortLag": {
+          "angleRadians": 0.0009602356912479571,
+          "distance": 0.0009157991170663957
+        }
+      },
+      {
+        "intervalMs": 7.9099999999998545,
+        "submitMs": 0.1550002098083496,
+        "t": 0.19780374999999992,
+        "sortLag": {
+          "angleRadians": 0.0009138935402338321,
+          "distance": 0.0008518271429876925
+        }
+      },
+      {
+        "intervalMs": 8.805000000000291,
+        "submitMs": 0.1399998664855957,
+        "t": 0.200005,
+        "sortLag": {
+          "angleRadians": 0.0010216884986578554,
+          "distance": 0.0009298775092037312
+        }
+      },
+      {
+        "intervalMs": 7.6899999999996,
+        "submitMs": 0.21000003814697266,
+        "t": 0.2019274999999999,
+        "sortLag": {
+          "angleRadians": 0.0008962010571276238,
+          "distance": 0.0007965683009097331
+        }
+      },
+      {
+        "intervalMs": 9,
+        "submitMs": 0.1700000762939453,
+        "t": 0.2041774999999999,
+        "sortLag": {
+          "angleRadians": 0.0019495945875822958,
+          "distance": 0.0017106320109139168
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.16000032424926758,
+        "t": 0.20623874999999986,
+        "sortLag": {
+          "angleRadians": 0.0009696477392289302,
+          "distance": 0.0008206698149284473
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.16000032424926758,
+        "t": 0.20832499999999993,
+        "sortLag": {
+          "angleRadians": 0.0009857815964145944,
+          "distance": 0.0008146243645937787
+        }
+      },
+      {
+        "intervalMs": 7.454999999999927,
+        "submitMs": 0.1550002098083496,
+        "t": 0.21018874999999992,
+        "sortLag": {
+          "angleRadians": 0.0008843599233448737,
+          "distance": 0.0007144523141838683
+        }
+      },
+      {
+        "intervalMs": 8.885000000000218,
+        "submitMs": 0.19999980926513672,
+        "t": 0.21240999999999996,
+        "sortLag": {
+          "angleRadians": 0.0010585134591064834,
+          "distance": 0.0008355376456851125
+        }
+      },
+      {
+        "intervalMs": 8.704999999999927,
+        "submitMs": 0.16499996185302734,
+        "t": 0.21458624999999995,
+        "sortLag": {
+          "angleRadians": 0.0010417659333936064,
+          "distance": 0.0008022926827915331
+        }
+      },
+      {
+        "intervalMs": 8.284999999999854,
+        "submitMs": 0.17999982833862305,
+        "t": 0.21665749999999992,
+        "sortLag": {
+          "angleRadians": 0.000995721004679059,
+          "distance": 0.0007491035798188535
+        }
+      },
+      {
+        "intervalMs": 8.210000000000036,
+        "submitMs": 0.12999963760375977,
+        "t": 0.21870999999999993,
+        "sortLag": {
+          "angleRadians": 0.0009906455076772065,
+          "distance": 0.0007289153067971629
+        }
+      },
+      {
+        "intervalMs": 7.610000000000582,
+        "submitMs": 0.11999988555908203,
+        "t": 0.22061250000000007,
+        "sortLag": {
+          "angleRadians": 0.0019121735565831523,
+          "distance": 0.0013929903261489663
+        }
+      },
+      {
+        "intervalMs": 9.259999999999309,
+        "submitMs": 0.18499994277954102,
+        "t": 0.2229274999999999,
+        "sortLag": {
+          "angleRadians": 0.0011256537371584431,
+          "distance": 0.0007940616164122469
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.13000011444091797,
+        "t": 0.22498999999999988,
+        "sortLag": {
+          "angleRadians": 0.0010065766490917822,
+          "distance": 0.0006950623803498898
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.18999958038330078,
+        "t": 0.22707624999999995,
+        "sortLag": {
+          "angleRadians": 0.001021500412826499,
+          "distance": 0.0006919023636061006
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.17500019073486328,
+        "t": 0.22915874999999994,
+        "sortLag": {
+          "angleRadians": 0.0010227888468098618,
+          "distance": 0.000680203173057806
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.16000032424926758,
+        "t": 0.23124249999999996,
+        "sortLag": {
+          "angleRadians": 0.0020489725420740758,
+          "distance": 0.00135093897362873
+        }
+      },
+      {
+        "intervalMs": 8.210000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.23329499999999995,
+        "sortLag": {
+          "angleRadians": 0.0010134847931293686,
+          "distance": 0.0006522280589203141
+        }
+      },
+      {
+        "intervalMs": 8.279999999999745,
+        "submitMs": 0.18499994277954102,
+        "t": 0.2353649999999999,
+        "sortLag": {
+          "angleRadians": 0.0010244671567695902,
+          "distance": 0.0006499365595359055
+        }
+      },
+      {
+        "intervalMs": 8.070000000000618,
+        "submitMs": 0.13000011444091797,
+        "t": 0.23738250000000005,
+        "sortLag": {
+          "angleRadians": 0.001000493480250199,
+          "distance": 0.0006267094287111981
+        }
+      },
+      {
+        "intervalMs": 8.829999999999927,
+        "submitMs": 0.19999980926513672,
+        "t": 0.23959000000000003,
+        "sortLag": {
+          "angleRadians": 0.001096678435712312,
+          "distance": 0.0006791088253781388
+        }
+      },
+      {
+        "intervalMs": 7.420000000000073,
+        "submitMs": 0.15000009536743164,
+        "t": 0.24144500000000005,
+        "sortLag": {
+          "angleRadians": 0.0009229055766955965,
+          "distance": 0.0005661531941396419
+        }
+      },
+      {
+        "intervalMs": 9.219999999999345,
+        "submitMs": 0.1399998664855957,
+        "t": 0.24374999999999988,
+        "sortLag": {
+          "angleRadians": 0.00114815687771035,
+          "distance": 0.0006988376940991854
+        }
+      },
+      {
+        "intervalMs": 8.300000000000182,
+        "submitMs": 0.26999998092651367,
+        "t": 0.24582499999999993,
+        "sortLag": {
+          "angleRadians": 0.0021826208245060695,
+          "distance": 0.001324324282859655
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.15000009536743164,
+        "t": 0.24790874999999993,
+        "sortLag": {
+          "angleRadians": 0.0010395639395167897,
+          "distance": 0.0006263191939509038
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1700000762939453,
+        "t": 0.24999249999999995,
+        "sortLag": {
+          "angleRadians": 0.0010398770576177882,
+          "distance": 0.0006252590907151883
+        }
+      },
+      {
+        "intervalMs": 7.414999999999964,
+        "submitMs": 0.15999984741210938,
+        "t": 0.25184624999999994,
+        "sortLag": {
+          "angleRadians": 0.0009251112438652043,
+          "distance": 0.0005562165675918686
+        }
+      },
+      {
+        "intervalMs": 8.319999999999709,
+        "submitMs": 0.16000032424926758,
+        "t": 0.25392624999999985,
+        "sortLag": {
+          "angleRadians": 0.0010377464647265378,
+          "distance": 0.0006250117570416711
+        }
+      },
+      {
+        "intervalMs": 9.340000000000146,
+        "submitMs": 0.17999982833862305,
+        "t": 0.2562612499999999,
+        "sortLag": {
+          "angleRadians": 0.0011642538556045196,
+          "distance": 0.0007040307233486888
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.14499998092651367,
+        "t": 0.2583237499999999,
+        "sortLag": {
+          "angleRadians": 0.0021915650599316325,
+          "distance": 0.0013288517228180747
+        }
+      },
+      {
+        "intervalMs": 7.869999999999891,
+        "submitMs": 0.20000028610229492,
+        "t": 0.26029124999999986,
+        "sortLag": {
+          "angleRadians": 0.0009789841755395788,
+          "distance": 0.0006001176957000306
+        }
+      },
+      {
+        "intervalMs": 8.860000000000582,
+        "submitMs": 0.1700000762939453,
+        "t": 0.26250625,
+        "sortLag": {
+          "angleRadians": 0.0011005026364737088,
+          "distance": 0.0006810845318758015
+        }
+      },
+      {
+        "intervalMs": 7.550000000000182,
+        "submitMs": 0.15999984741210938,
+        "t": 0.2643937500000001,
+        "sortLag": {
+          "angleRadians": 0.0009361791433345556,
+          "distance": 0.0005858205129973684
+        }
+      },
+      {
+        "intervalMs": 9.134999999999309,
+        "submitMs": 0.21500015258789062,
+        "t": 0.2666774999999999,
+        "sortLag": {
+          "angleRadians": 0.0011304061519750118,
+          "distance": 0.0007165179349977694
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.18499994277954102,
+        "t": 0.26873999999999987,
+        "sortLag": {
+          "angleRadians": 0.002148736547593715,
+          "distance": 0.0013715797065342943
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.15999984741210938,
+        "t": 0.27082624999999994,
+        "sortLag": {
+          "angleRadians": 0.0010275450342291613,
+          "distance": 0.0006716740633178887
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1699995994567871,
+        "t": 0.2729087499999999,
+        "sortLag": {
+          "angleRadians": 0.0010228104977977651,
+          "distance": 0.0006801307284190619
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.18499994277954102,
+        "t": 0.2749925,
+        "sortLag": {
+          "angleRadians": 0.001020301636889981,
+          "distance": 0.0006909887496892024
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1399998664855957,
+        "t": 0.2770749999999999,
+        "sortLag": {
+          "angleRadians": 0.0010163492709299895,
+          "distance": 0.0007017607924460263
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1700000762939453,
+        "t": 0.27915874999999996,
+        "sortLag": {
+          "angleRadians": 0.002029648166655953,
+          "distance": 0.0014156605331954219
+        }
+      },
+      {
+        "intervalMs": 7.550000000000182,
+        "submitMs": 0.16000032424926758,
+        "t": 0.28104625,
+        "sortLag": {
+          "angleRadians": 0.0009147574777709219,
+          "distance": 0.0006576497741035516
+        }
+      },
+      {
+        "intervalMs": 9.1899999999996,
+        "submitMs": 0.17999982833862305,
+        "t": 0.2833437499999999,
+        "sortLag": {
+          "angleRadians": 0.0011091429859725432,
+          "distance": 0.0008150594527110991
+        }
+      },
+      {
+        "intervalMs": 8.090000000000146,
+        "submitMs": 0.17499971389770508,
+        "t": 0.28536624999999993,
+        "sortLag": {
+          "angleRadians": 0.0009723305635361824,
+          "distance": 0.0007313213081742468
+        }
+      },
+      {
+        "intervalMs": 8.525000000000546,
+        "submitMs": 0.15999984741210938,
+        "t": 0.2874975000000001,
+        "sortLag": {
+          "angleRadians": 0.0010203704591575788,
+          "distance": 0.0007852034161497985
+        }
+      },
+      {
+        "intervalMs": 8.30999999999949,
+        "submitMs": 0.15999984741210938,
+        "t": 0.2895749999999999,
+        "sortLag": {
+          "angleRadians": 0.0020105879736430636,
+          "distance": 0.001565351151946604
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.29165874999999997,
+        "sortLag": {
+          "angleRadians": 0.0009890101821126355,
+          "distance": 0.0007978495207784005
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.17999982833862305,
+        "t": 0.29374249999999996,
+        "sortLag": {
+          "angleRadians": 0.000984637207354756,
+          "distance": 0.0008135149296410359
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.23000001907348633,
+        "t": 0.29582499999999995,
+        "sortLag": {
+          "angleRadians": 0.0009796607284380547,
+          "distance": 0.000829066996437085
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.25,
+        "t": 0.29790874999999994,
+        "sortLag": {
+          "angleRadians": 0.0009758727034603076,
+          "distance": 0.000845970451083239
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.125,
+        "t": 0.29999124999999993,
+        "sortLag": {
+          "angleRadians": 0.0019466774334614123,
+          "distance": 0.0017080596814024308
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.16499996185302734,
+        "t": 0.3020749999999999,
+        "sortLag": {
+          "angleRadians": 0.000967280877158183,
+          "distance": 0.0008797270681761536
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.15999984741210938,
+        "t": 0.30416,
+        "sortLag": {
+          "angleRadians": 0.0009637044972270742,
+          "distance": 0.0008975686162099969
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.14999961853027344,
+        "t": 0.3062412499999999,
+        "sortLag": {
+          "angleRadians": 0.0019215028534617729,
+          "distance": 0.001810958244886366
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.3083249999999999,
+        "sortLag": {
+          "angleRadians": 0.0009552806206385238,
+          "distance": 0.0009323073986179675
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.3104074999999999,
+        "sortLag": {
+          "angleRadians": 0.0009510832441113604,
+          "distance": 0.00094967730731078
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.13500022888183594,
+        "t": 0.31249249999999995,
+        "sortLag": {
+          "angleRadians": 0.0009488406050537851,
+          "distance": 0.0009689423427817085
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.1399998664855957,
+        "t": 0.31457374999999993,
+        "sortLag": {
+          "angleRadians": 0.0009440374946324004,
+          "distance": 0.0009854338079788598
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.13500022888183594,
+        "t": 0.31665874999999993,
+        "sortLag": {
+          "angleRadians": 0.0018867979376437289,
+          "distance": 0.0019909822222738244
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.10500001907348633,
+        "t": 0.31874249999999993,
+        "sortLag": {
+          "angleRadians": 0.0009399553824101651,
+          "distance": 0.001023503102322262
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.08999967575073242,
+        "t": 0.3208249999999999,
+        "sortLag": {
+          "angleRadians": 0.0009373497754082707,
+          "distance": 0.0010414592603622864
+        }
+      },
+      {
+        "intervalMs": 8.279999999999745,
+        "submitMs": 0.1550002098083496,
+        "t": 0.3228949999999999,
+        "sortLag": {
+          "angleRadians": 0.0009301185851706858,
+          "distance": 0.0010536778208907786
+        }
+      },
+      {
+        "intervalMs": 8.400000000000546,
+        "submitMs": 0.09999990463256836,
+        "t": 0.324995,
+        "sortLag": {
+          "angleRadians": 0.0018723287485961514,
+          "distance": 0.0021414571659542515
+        }
+      },
+      {
+        "intervalMs": 8.319999999999709,
+        "submitMs": 0.1399998664855957,
+        "t": 0.32707499999999995,
+        "sortLag": {
+          "angleRadians": 0.0009327721527572746,
+          "distance": 0.0010962416562487402
+        }
+      },
+      {
+        "intervalMs": 7.775000000000546,
+        "submitMs": 0.10499954223632812,
+        "t": 0.3290187500000001,
+        "sortLag": {
+          "angleRadians": 0.0008715266681857772,
+          "distance": 0.0010413507013561799
+        }
+      },
+      {
+        "intervalMs": 8.964999999999236,
+        "submitMs": 0.0950002670288086,
+        "t": 0.3312599999999999,
+        "sortLag": {
+          "angleRadians": 0.0018766246074183564,
+          "distance": 0.0022623504380616436
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.1399998664855957,
+        "t": 0.33332249999999986,
+        "sortLag": {
+          "angleRadians": 0.0009261371429157919,
+          "distance": 0.0011428659219378644
+        }
+      },
+      {
+        "intervalMs": 8.180000000000291,
+        "submitMs": 0.10500001907348633,
+        "t": 0.33536749999999993,
+        "sortLag": {
+          "angleRadians": 0.0009198057994483238,
+          "distance": 0.0011513378682861898
+        }
+      },
+      {
+        "intervalMs": 8.5,
+        "submitMs": 0.1549997329711914,
+        "t": 0.3374925,
+        "sortLag": {
+          "angleRadians": 0.0009580337113338861,
+          "distance": 0.001215519210634712
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.14500045776367188,
+        "t": 0.3395737499999999,
+        "sortLag": {
+          "angleRadians": 0.0009411854426375277,
+          "distance": 0.0012093679140068262
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.1399998664855957,
+        "t": 0.34165999999999996,
+        "sortLag": {
+          "angleRadians": 0.0018879224717121034,
+          "distance": 0.0024403131650594405
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.14499998092651367,
+        "t": 0.34374124999999994,
+        "sortLag": {
+          "angleRadians": 0.0009488985005638996,
+          "distance": 0.0012466155617103568
+        }
+      },
+      {
+        "intervalMs": 8.265000000000327,
+        "submitMs": 0.11499977111816406,
+        "t": 0.3458075,
+        "sortLag": {
+          "angleRadians": 0.0009468866505213557,
+          "distance": 0.001255936967172331
+        }
+      },
+      {
+        "intervalMs": 8.295000000000073,
+        "submitMs": 0.14499998092651367,
+        "t": 0.34788125000000003,
+        "sortLag": {
+          "angleRadians": 0.0009558471764137535,
+          "distance": 0.0012787590941334128
+        }
+      },
+      {
+        "intervalMs": 8.449999999999818,
+        "submitMs": 0.13000011444091797,
+        "t": 0.34999375,
+        "sortLag": {
+          "angleRadians": 0.0009801143932189926,
+          "distance": 0.00132137856239406
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.17999982833862305,
+        "t": 0.3520749999999999,
+        "sortLag": {
+          "angleRadians": 0.001952532798912331,
+          "distance": 0.0026415763292140537
+        }
+      },
+      {
+        "intervalMs": 7.824999999999818,
+        "submitMs": 0.16499996185302734,
+        "t": 0.3540312499999999,
+        "sortLag": {
+          "angleRadians": 0.0009212372442098988,
+          "distance": 0.0012574696053037797
+        }
+      },
+      {
+        "intervalMs": 8.909999999999854,
+        "submitMs": 0.14999961853027344,
+        "t": 0.35625874999999985,
+        "sortLag": {
+          "angleRadians": 0.0010579734103388864,
+          "distance": 0.0014512287712150139
+        }
+      },
+      {
+        "intervalMs": 8.260000000000218,
+        "submitMs": 0.1700000762939453,
+        "t": 0.3583237499999999,
+        "sortLag": {
+          "angleRadians": 0.002047806891744633,
+          "distance": 0.002814903462388297
+        }
+      },
+      {
+        "intervalMs": 8.034999999999854,
+        "submitMs": 0.14499998092651367,
+        "t": 0.3603324999999999,
+        "sortLag": {
+          "angleRadians": 0.0009723164239755985,
+          "distance": 0.0013433491990306053
+        }
+      },
+      {
+        "intervalMs": 8.570000000000618,
+        "submitMs": 0.19000005722045898,
+        "t": 0.36247500000000005,
+        "sortLag": {
+          "angleRadians": 0.0010477422550448261,
+          "distance": 0.0014509215725528163
+        }
+      },
+      {
+        "intervalMs": 8.409999999999854,
+        "submitMs": 0.1550002098083496,
+        "t": 0.3645775,
+        "sortLag": {
+          "angleRadians": 0.002087104150143806,
+          "distance": 0.0028927872360390385
+        }
+      },
+      {
+        "intervalMs": 7.609999999999673,
+        "submitMs": 0.2200002670288086,
+        "t": 0.3664799999999999,
+        "sortLag": {
+          "angleRadians": 0.0009509708926054554,
+          "distance": 0.0013200004751422745
+        }
+      },
+      {
+        "intervalMs": 9.11999999999989,
+        "submitMs": 0.125,
+        "t": 0.36875999999999987,
+        "sortLag": {
+          "angleRadians": 0.0011531885012974338,
+          "distance": 0.0016008710897560776
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.14999961853027344,
+        "t": 0.3708224999999999,
+        "sortLag": {
+          "angleRadians": 0.0010565069162957546,
+          "distance": 0.0014657925485238466
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.15999984741210938,
+        "t": 0.37290874999999996,
+        "sortLag": {
+          "angleRadians": 0.0010821221929949918,
+          "distance": 0.0014995439917834443
+        }
+      },
+      {
+        "intervalMs": 7.640000000000327,
+        "submitMs": 0.16499996185302734,
+        "t": 0.37481875000000003,
+        "sortLag": {
+          "angleRadians": 0.002084994006724091,
+          "distance": 0.002887128554709831
+        }
+      },
+      {
+        "intervalMs": 8.104999999999563,
+        "submitMs": 0.19000005722045898,
+        "t": 0.37684499999999993,
+        "sortLag": {
+          "angleRadians": 0.0010773967708779199,
+          "distance": 0.001487285242273504
+        }
+      },
+      {
+        "intervalMs": 8.414999999999964,
+        "submitMs": 0.11999988555908203,
+        "t": 0.3789487499999999,
+        "sortLag": {
+          "angleRadians": 0.0022108244284528896,
+          "distance": 0.0030478704877995467
+        }
+      },
+      {
+        "intervalMs": 8.930000000000291,
+        "submitMs": 0.1699995994567871,
+        "t": 0.38118124999999997,
+        "sortLag": {
+          "angleRadians": 0.0012201676245619194,
+          "distance": 0.001674187150203653
+        }
+      },
+      {
+        "intervalMs": 7.670000000000073,
+        "submitMs": 0.22499990463256836,
+        "t": 0.38309875,
+        "sortLag": {
+          "angleRadians": 0.001062546682420193,
+          "distance": 0.0014526529544549448
+        }
+      },
+      {
+        "intervalMs": 8.75,
+        "submitMs": 0.16000032424926758,
+        "t": 0.38528625,
+        "sortLag": {
+          "angleRadians": 0.0012289686662313338,
+          "distance": 0.0016735660439077468
+        }
+      },
+      {
+        "intervalMs": 8.3149999999996,
+        "submitMs": 0.13499975204467773,
+        "t": 0.3873649999999999,
+        "sortLag": {
+          "angleRadians": 0.0011848431537908888,
+          "distance": 0.0016063258621061515
+        }
+      },
+      {
+        "intervalMs": 7.914999999999964,
+        "submitMs": 0.1550002098083496,
+        "t": 0.3893437499999999,
+        "sortLag": {
+          "angleRadians": 0.0011435145382336224,
+          "distance": 0.0015433091634991763
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.11499977111816406,
+        "t": 0.39142624999999986,
+        "sortLag": {
+          "angleRadians": 0.0023636585864703803,
+          "distance": 0.003182346681265091
+        }
+      },
+      {
+        "intervalMs": 9.050000000000182,
+        "submitMs": 0.1549997329711914,
+        "t": 0.3936887499999999,
+        "sortLag": {
+          "angleRadians": 0.0013455474508540046,
+          "distance": 0.001797685004414422
+        }
+      },
+      {
+        "intervalMs": 7.720000000000255,
+        "submitMs": 0.19000005722045898,
+        "t": 0.39561874999999996,
+        "sortLag": {
+          "angleRadians": 0.001164342984064801,
+          "distance": 0.0015472580421741176
+        }
+      },
+      {
+        "intervalMs": 8.5649999999996,
+        "submitMs": 0.19999980926513672,
+        "t": 0.3977599999999999,
+        "sortLag": {
+          "angleRadians": 0.0013098027291998718,
+          "distance": 0.001731213153416576
+        }
+      },
+      {
+        "intervalMs": 8.00500000000011,
+        "submitMs": 0.1700000762939453,
+        "t": 0.3997612499999999,
+        "sortLag": {
+          "angleRadians": 0.001241461853145501,
+          "distance": 0.0016316927467270273
+        }
+      },
+      {
+        "intervalMs": 8.364999999999782,
+        "submitMs": 0.13000011444091797,
+        "t": 0.40185249999999983,
+        "sortLag": {
+          "angleRadians": 0.0013152850042759195,
+          "distance": 0.001718956501155521
+        }
+      },
+      {
+        "intervalMs": 9.300000000000182,
+        "submitMs": 0.1399998664855957,
+        "t": 0.4041774999999999,
+        "sortLag": {
+          "angleRadians": 0.0027991968576854586,
+          "distance": 0.0036464131849704797
+        }
+      },
+      {
+        "intervalMs": 7.350000000000364,
+        "submitMs": 0.1400003433227539,
+        "t": 0.40601499999999996,
+        "sortLag": {
+          "angleRadians": 0.0011891100292669254,
+          "distance": 0.0015352977778036667
+        }
+      },
+      {
+        "intervalMs": 8.349999999999454,
+        "submitMs": 0.13500022888183594,
+        "t": 0.40810249999999987,
+        "sortLag": {
+          "angleRadians": 0.0013683467203186833,
+          "distance": 0.0017567855672929666
+        }
+      },
+      {
+        "intervalMs": 8.975000000000364,
+        "submitMs": 0.15999984741210938,
+        "t": 0.41034624999999997,
+        "sortLag": {
+          "angleRadians": 0.0014914934554433742,
+          "distance": 0.001902957001112632
+        }
+      },
+      {
+        "intervalMs": 7.7150000000001455,
+        "submitMs": 0.15000009536743164,
+        "t": 0.412275,
+        "sortLag": {
+          "angleRadians": 0.0012992640885159264,
+          "distance": 0.0016477207670194962
+        }
+      },
+      {
+        "intervalMs": 8.654999999999745,
+        "submitMs": 0.14499998092651367,
+        "t": 0.4144387499999999,
+        "sortLag": {
+          "angleRadians": 0.002775608591539203,
+          "distance": 0.003509050120427757
+        }
+      },
+      {
+        "intervalMs": 8.079999999999927,
+        "submitMs": 0.15000009536743164,
+        "t": 0.4164587499999999,
+        "sortLag": {
+          "angleRadians": 0.0013962461479022697,
+          "distance": 0.0017496943097078624
+        }
+      },
+      {
+        "intervalMs": 9.210000000000036,
+        "submitMs": 0.17500019073486328,
+        "t": 0.4187612499999999,
+        "sortLag": {
+          "angleRadians": 0.0016125104251011682,
+          "distance": 0.0020082372749754517
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.1400003433227539,
+        "t": 0.4208224999999999,
+        "sortLag": {
+          "angleRadians": 0.0030748608909811543,
+          "distance": 0.0038182877464989426
+        }
+      },
+      {
+        "intervalMs": 8.075000000000728,
+        "submitMs": 0.1400003433227539,
+        "t": 0.42284125000000006,
+        "sortLag": {
+          "angleRadians": 0.0014493881215244756,
+          "distance": 0.0017836766210051875
+        }
+      },
+      {
+        "intervalMs": 8.634999999999309,
+        "submitMs": 0.1700000762939453,
+        "t": 0.4249999999999999,
+        "sortLag": {
+          "angleRadians": 0.0015684798716756106,
+          "distance": 0.0019190769397369007
+        }
+      },
+      {
+        "intervalMs": 8.295000000000073,
+        "submitMs": 0.15000009536743164,
+        "t": 0.4270737499999999,
+        "sortLag": {
+          "angleRadians": 0.0015246086760634884,
+          "distance": 0.0018546281971979562
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.4291587499999999,
+        "sortLag": {
+          "angleRadians": 0.001550331095124433,
+          "distance": 0.0018753912845311696
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.21500015258789062,
+        "t": 0.4312412499999999,
+        "sortLag": {
+          "angleRadians": 0.0031159923343539826,
+          "distance": 0.0037589661215156086
+        }
+      },
+      {
+        "intervalMs": 7.430000000000291,
+        "submitMs": 0.13499975204467773,
+        "t": 0.43309875,
+        "sortLag": {
+          "angleRadians": 0.001410853053918484,
+          "distance": 0.0016886398312331366
+        }
+      },
+      {
+        "intervalMs": 8.449999999999818,
+        "submitMs": 0.11999988555908203,
+        "t": 0.43521124999999994,
+        "sortLag": {
+          "angleRadians": 0.0016206750849974986,
+          "distance": 0.001930015590340052
+        }
+      },
+      {
+        "intervalMs": 9.194999999999709,
+        "submitMs": 0.13000011444091797,
+        "t": 0.4375099999999999,
+        "sortLag": {
+          "angleRadians": 0.0017827203862367893,
+          "distance": 0.0021113983807261602
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.15999984741210938,
+        "t": 0.43957124999999986,
+        "sortLag": {
+          "angleRadians": 0.003397855120398633,
+          "distance": 0.004014289266196481
+        }
+      },
+      {
+        "intervalMs": 7.550000000000182,
+        "submitMs": 0.17500019073486328,
+        "t": 0.4414587499999999,
+        "sortLag": {
+          "angleRadians": 0.0014925175318161114,
+          "distance": 0.0017502351000274379
+        }
+      },
+      {
+        "intervalMs": 9.204999999999927,
+        "submitMs": 0.13499975204467773,
+        "t": 0.4437599999999999,
+        "sortLag": {
+          "angleRadians": 0.0018367353773476322,
+          "distance": 0.002143587509658708
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.125,
+        "t": 0.44582124999999984,
+        "sortLag": {
+          "angleRadians": 0.001660691754034838,
+          "distance": 0.0019287671619597538
+        }
+      },
+      {
+        "intervalMs": 7.470000000000255,
+        "submitMs": 0.1549997329711914,
+        "t": 0.4476887499999999,
+        "sortLag": {
+          "angleRadians": 0.0015169117084433193,
+          "distance": 0.0017543496323397174
+        }
+      },
+      {
+        "intervalMs": 9.289999999999964,
+        "submitMs": 0.1399998664855957,
+        "t": 0.4500112499999999,
+        "sortLag": {
+          "angleRadians": 0.003419254985007195,
+          "distance": 0.003944921255778886
+        }
+      },
+      {
+        "intervalMs": 8.079999999999927,
+        "submitMs": 0.11500024795532227,
+        "t": 0.4520312499999999,
+        "sortLag": {
+          "angleRadians": 0.0016684543393348601,
+          "distance": 0.0019128796342508484
+        }
+      },
+      {
+        "intervalMs": 8.525000000000546,
+        "submitMs": 0.14499998092651367,
+        "t": 0.4541625,
+        "sortLag": {
+          "angleRadians": 0.0017738561985669013,
+          "distance": 0.002025601757217295
+        }
+      },
+      {
+        "intervalMs": 7.479999999999563,
+        "submitMs": 0.12999963760375977,
+        "t": 0.4560324999999999,
+        "sortLag": {
+          "angleRadians": 0.0015674579926748225,
+          "distance": 0.0017832852623648294
+        }
+      },
+      {
+        "intervalMs": 9.24499999999989,
+        "submitMs": 0.14499998092651367,
+        "t": 0.4583437499999999,
+        "sortLag": {
+          "angleRadians": 0.0035184846234050863,
+          "distance": 0.003994743878009493
+        }
+      },
+      {
+        "intervalMs": 7.375,
+        "submitMs": 0.11999988555908203,
+        "t": 0.46018749999999986,
+        "sortLag": {
+          "angleRadians": 0.0015668573666641498,
+          "distance": 0.0017697386216330346
+        }
+      },
+      {
+        "intervalMs": 9.289999999999964,
+        "submitMs": 0.14500045776367188,
+        "t": 0.46250999999999987,
+        "sortLag": {
+          "angleRadians": 0.0019863298212387955,
+          "distance": 0.002235982227844767
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.16000032424926758,
+        "t": 0.4645724999999999,
+        "sortLag": {
+          "angleRadians": 0.0017752207575457638,
+          "distance": 0.0019916205731364857
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.17999982833862305,
+        "t": 0.46665874999999996,
+        "sortLag": {
+          "angleRadians": 0.0018058860552071802,
+          "distance": 0.002019931533211279
+        }
+      },
+      {
+        "intervalMs": 8.159999999999854,
+        "submitMs": 0.14999961853027344,
+        "t": 0.4686987499999999,
+        "sortLag": {
+          "angleRadians": 0.0035811507823788223,
+          "distance": 0.004000013766956945
+        }
+      },
+      {
+        "intervalMs": 8.525000000000546,
+        "submitMs": 0.19499969482421875,
+        "t": 0.47083,
+        "sortLag": {
+          "angleRadians": 0.0018640604130430007,
+          "distance": 0.002073539947959169
+        }
+      },
+      {
+        "intervalMs": 8.125,
+        "submitMs": 0.15000009536743164,
+        "t": 0.47286125000000007,
+        "sortLag": {
+          "angleRadians": 0.0017849727710349459,
+          "distance": 0.001980593456180097
+        }
+      },
+      {
+        "intervalMs": 8.545000000000073,
+        "submitMs": 0.17499971389770508,
+        "t": 0.4749975000000001,
+        "sortLag": {
+          "angleRadians": 0.003670435877590049,
+          "distance": 0.004067819244701887
+        }
+      },
+      {
+        "intervalMs": 8.304999999999382,
+        "submitMs": 0.14499998092651367,
+        "t": 0.4770737499999999,
+        "sortLag": {
+          "angleRadians": 0.0018400057922430817,
+          "distance": 0.0020324621025775438
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.15000009536743164,
+        "t": 0.4791574999999999,
+        "sortLag": {
+          "angleRadians": 0.0018534856959091066,
+          "distance": 0.002043310951090074
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.11999988555908203,
+        "t": 0.48124249999999996,
+        "sortLag": {
+          "angleRadians": 0.0018608507251575543,
+          "distance": 0.0020477363334533557
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.11999988555908203,
+        "t": 0.48332499999999995,
+        "sortLag": {
+          "angleRadians": 0.00186425824978299,
+          "distance": 0.0020481584488596686
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1550002098083496,
+        "t": 0.48540749999999994,
+        "sortLag": {
+          "angleRadians": 0.00373353955380767,
+          "distance": 0.0040988747345981165
+        }
+      },
+      {
+        "intervalMs": 7.835000000000036,
+        "submitMs": 0.125,
+        "t": 0.48736624999999995,
+        "sortLag": {
+          "angleRadians": 0.0017622382207377314,
+          "distance": 0.0019309048432240923
+        }
+      },
+      {
+        "intervalMs": 8.900000000000546,
+        "submitMs": 0.1699995994567871,
+        "t": 0.48959125000000003,
+        "sortLag": {
+          "angleRadians": 0.0020058539042335653,
+          "distance": 0.0021954373087909153
+        }
+      },
+      {
+        "intervalMs": 8.2549999999992,
+        "submitMs": 0.12999963760375977,
+        "t": 0.49165499999999984,
+        "sortLag": {
+          "angleRadians": 0.0018637253643813947,
+          "distance": 0.002037969835160581
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.11499977111816406,
+        "t": 0.4937412499999999,
+        "sortLag": {
+          "angleRadians": 0.0018865739996775295,
+          "distance": 0.0020614676575981933
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.16499996185302734,
+        "t": 0.4958249999999999,
+        "sortLag": {
+          "angleRadians": 0.0037727952732123835,
+          "distance": 0.004121428875959313
+        }
+      },
+      {
+        "intervalMs": 8.19000000000051,
+        "submitMs": 0.125,
+        "t": 0.49787250000000005,
+        "sortLag": {
+          "angleRadians": 0.0018546514985212433,
+          "distance": 0.0020247528259941736
+        }
+      },
+      {
+        "intervalMs": 8.5,
+        "submitMs": 0.11999988555908203,
+        "t": 0.49999750000000004,
+        "sortLag": {
+          "angleRadians": 0.001925506680040362,
+          "distance": 0.0021017221453802997
+        }
+      },
+      {
+        "intervalMs": 8.304999999999382,
+        "submitMs": 0.09999990463256836,
+        "t": 0.5020737499999999,
+        "sortLag": {
+          "angleRadians": 0.0018813390386653278,
+          "distance": 0.0020535090660616577
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.09499979019165039,
+        "t": 0.50415875,
+        "sortLag": {
+          "angleRadians": 0.0018886345954346416,
+          "distance": 0.002061843841108042
+        }
+      },
+      {
+        "intervalMs": 8.180000000000291,
+        "submitMs": 0.1099996566772461,
+        "t": 0.5062037500000001,
+        "sortLag": {
+          "angleRadians": 0.0037398068499741007,
+          "distance": 0.004083511357699582
+        }
+      },
+      {
+        "intervalMs": 8.50500000000011,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5083300000000001,
+        "sortLag": {
+          "angleRadians": 0.0019227825531731892,
+          "distance": 0.002101011184249485
+        }
+      },
+      {
+        "intervalMs": 8.134999999999309,
+        "submitMs": 0.09999990463256836,
+        "t": 0.5103637499999999,
+        "sortLag": {
+          "angleRadians": 0.001836673779643163,
+          "distance": 0.002008365197234415
+        }
+      },
+      {
+        "intervalMs": 8.530000000000655,
+        "submitMs": 0.08500003814697266,
+        "t": 0.51249625,
+        "sortLag": {
+          "angleRadians": 0.0019226230636814061,
+          "distance": 0.002104246669582735
+        }
+      },
+      {
+        "intervalMs": 8.30999999999949,
+        "submitMs": 0.10500001907348633,
+        "t": 0.5145737499999999,
+        "sortLag": {
+          "angleRadians": 0.003791847497830462,
+          "distance": 0.004152289866873543
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.19500017166137695,
+        "t": 0.5166574999999999,
+        "sortLag": {
+          "angleRadians": 0.0018704460764833591,
+          "distance": 0.0020519681529512644
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.13000011444091797,
+        "t": 0.5187399999999999,
+        "sortLag": {
+          "angleRadians": 0.0018643030258549873,
+          "distance": 0.0020481812683118437
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.10500001907348633,
+        "t": 0.5208237499999999,
+        "sortLag": {
+          "angleRadians": 0.0037240876738499915,
+          "distance": 0.004094716267988639
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.14499998092651367,
+        "t": 0.5229074999999999,
+        "sortLag": {
+          "angleRadians": 0.0018535445932872123,
+          "distance": 0.002043341130817777
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.12999963760375977,
+        "t": 0.5249912499999999,
+        "sortLag": {
+          "angleRadians": 0.0018467036281600874,
+          "distance": 0.0020398302537635083
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.125,
+        "t": 0.5270737499999999,
+        "sortLag": {
+          "angleRadians": 0.0018381703346372802,
+          "distance": 0.0020347830991088154
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5291575,
+        "sortLag": {
+          "angleRadians": 0.0036694264309654434,
+          "distance": 0.004066646413050754
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.10500001907348633,
+        "t": 0.5312412499999999,
+        "sortLag": {
+          "angleRadians": 0.0018226709639636775,
+          "distance": 0.002027407061948324
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.15000009536743164,
+        "t": 0.5333237499999999,
+        "sortLag": {
+          "angleRadians": 0.0018124309816707081,
+          "distance": 0.0020214253622618753
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.53540875,
+        "sortLag": {
+          "angleRadians": 0.0036173147911010266,
+          "distance": 0.0040401919075300835
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.13499975204467773,
+        "t": 0.53749125,
+        "sortLag": {
+          "angleRadians": 0.001792478733085169,
+          "distance": 0.0020109562973912812
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.13500022888183594,
+        "t": 0.5395737499999999,
+        "sortLag": {
+          "angleRadians": 0.0017817044577288787,
+          "distance": 0.002005259975743519
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1100001335144043,
+        "t": 0.5416574999999999,
+        "sortLag": {
+          "angleRadians": 0.0017714692604452946,
+          "distance": 0.0020004536678004726
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.0950002670288086,
+        "t": 0.54374125,
+        "sortLag": {
+          "angleRadians": 0.0017596529680068273,
+          "distance": 0.001994134619580956
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.11999988555908203,
+        "t": 0.5458249999999999,
+        "sortLag": {
+          "angleRadians": 0.003506981778167589,
+          "distance": 0.003981643648802082
+        }
+      },
+      {
+        "intervalMs": 7.805000000000291,
+        "submitMs": 0.07999992370605469,
+        "t": 0.54777625,
+        "sortLag": {
+          "angleRadians": 0.0016246442006775349,
+          "distance": 0.001854852632961752
+        }
+      },
+      {
+        "intervalMs": 8.425000000000182,
+        "submitMs": 0.11999988555908203,
+        "t": 0.5498825,
+        "sortLag": {
+          "angleRadians": 0.0017406687773773922,
+          "distance": 0.001995089252982974
+        }
+      },
+      {
+        "intervalMs": 8.614999999999782,
+        "submitMs": 0.14499998092651367,
+        "t": 0.55203625,
+        "sortLag": {
+          "angleRadians": 0.003506110812172319,
+          "distance": 0.004027225662536393
+        }
+      },
+      {
+        "intervalMs": 8.50500000000011,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5541625,
+        "sortLag": {
+          "angleRadians": 0.001728105791590347,
+          "distance": 0.0019979888960033414
+        }
+      },
+      {
+        "intervalMs": 7.6599999999998545,
+        "submitMs": 0.12000036239624023,
+        "t": 0.5560775,
+        "sortLag": {
+          "angleRadians": 0.0015434465116049355,
+          "distance": 0.0017922447677762372
+        }
+      },
+      {
+        "intervalMs": 8.765000000000327,
+        "submitMs": 0.18500041961669922,
+        "t": 0.5582687500000001,
+        "sortLag": {
+          "angleRadians": 0.0017506055082628276,
+          "distance": 0.002042066326811212
+        }
+      },
+      {
+        "intervalMs": 7.644999999999527,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5601799999999999,
+        "sortLag": {
+          "angleRadians": 0.0015130789597972386,
+          "distance": 0.0017732746615730106
+        }
+      },
+      {
+        "intervalMs": 8.385000000000218,
+        "submitMs": 0.10500001907348633,
+        "t": 0.56227625,
+        "sortLag": {
+          "angleRadians": 0.003157420011292921,
+          "distance": 0.0037094973564969023
+        }
+      },
+      {
+        "intervalMs": 9.269999999999527,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5645937499999999,
+        "sortLag": {
+          "angleRadians": 0.0017990308084960148,
+          "distance": 0.0021296503916517174
+        }
+      },
+      {
+        "intervalMs": 7.395000000000437,
+        "submitMs": 0.11499977111816406,
+        "t": 0.5664425,
+        "sortLag": {
+          "angleRadians": 0.0014206376756504336,
+          "distance": 0.001690407487179542
+        }
+      },
+      {
+        "intervalMs": 9.269999999999527,
+        "submitMs": 0.15000009536743164,
+        "t": 0.5687599999999999,
+        "sortLag": {
+          "angleRadians": 0.0031828949959079185,
+          "distance": 0.0037984457165937914
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.15999984741210938,
+        "t": 0.5708212499999998,
+        "sortLag": {
+          "angleRadians": 0.0015498000945590525,
+          "distance": 0.0018644025502437577
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.14499998092651367,
+        "t": 0.5729074999999999,
+        "sortLag": {
+          "angleRadians": 0.0015514221475531533,
+          "distance": 0.001876614083178088
+        }
+      },
+      {
+        "intervalMs": 7.75,
+        "submitMs": 0.125,
+        "t": 0.5748449999999999,
+        "sortLag": {
+          "angleRadians": 0.002976506789357992,
+          "distance": 0.0036098093305315846
+        }
+      },
+      {
+        "intervalMs": 8.989999999999782,
+        "submitMs": 0.14499998092651367,
+        "t": 0.5770924999999999,
+        "sortLag": {
+          "angleRadians": 0.001633980144115506,
+          "distance": 0.0019986095719026833
+        }
+      },
+      {
+        "intervalMs": 7.405000000000655,
+        "submitMs": 0.125,
+        "t": 0.57894375,
+        "sortLag": {
+          "angleRadians": 0.001330280772265917,
+          "distance": 0.0016364115623502963
+        }
+      },
+      {
+        "intervalMs": 9.264999999999418,
+        "submitMs": 0.17500019073486328,
+        "t": 0.5812599999999999,
+        "sortLag": {
+          "angleRadians": 0.002974583927948912,
+          "distance": 0.003671044458222057
+        }
+      },
+      {
+        "intervalMs": 7.3400000000001455,
+        "submitMs": 0.125,
+        "t": 0.5830949999999999,
+        "sortLag": {
+          "angleRadians": 0.001286751764669733,
+          "distance": 0.0016015606686982963
+        }
+      },
+      {
+        "intervalMs": 9.324999999999818,
+        "submitMs": 0.125,
+        "t": 0.5854262499999998,
+        "sortLag": {
+          "angleRadians": 0.00161424708560233,
+          "distance": 0.0020211944484118606
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.14499998092651367,
+        "t": 0.5874887499999999,
+        "sortLag": {
+          "angleRadians": 0.0014089489051873037,
+          "distance": 0.001775334065901585
+        }
+      },
+      {
+        "intervalMs": 7.505000000000109,
+        "submitMs": 0.16499996185302734,
+        "t": 0.5893649999999999,
+        "sortLag": {
+          "angleRadians": 0.0026748904753030873,
+          "distance": 0.0033796446084331743
+        }
+      },
+      {
+        "intervalMs": 8.930000000000291,
+        "submitMs": 0.12999963760375977,
+        "t": 0.5915975,
+        "sortLag": {
+          "angleRadians": 0.0014868188393609776,
+          "distance": 0.0018953785796648813
+        }
+      },
+      {
+        "intervalMs": 8.604999999999563,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5937487499999998,
+        "sortLag": {
+          "angleRadians": 0.0014125936037739535,
+          "distance": 0.001812192555042541
+        }
+      },
+      {
+        "intervalMs": 8.295000000000073,
+        "submitMs": 0.1399998664855957,
+        "t": 0.5958224999999999,
+        "sortLag": {
+          "angleRadians": 0.0027555465771191222,
+          "distance": 0.003545639502610698
+        }
+      },
+      {
+        "intervalMs": 7.440000000000509,
+        "submitMs": 0.15000009536743164,
+        "t": 0.5976825,
+        "sortLag": {
+          "angleRadians": 0.001189054043140786,
+          "distance": 0.0015433387000641956
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.14499998092651367,
+        "t": 0.5997637499999999,
+        "sortLag": {
+          "angleRadians": 0.0013131248665742912,
+          "distance": 0.0017138785662801274
+        }
+      },
+      {
+        "intervalMs": 9.284999999999854,
+        "submitMs": 0.13499975204467773,
+        "t": 0.6020849999999999,
+        "sortLag": {
+          "angleRadians": 0.0014430334013131672,
+          "distance": 0.001894985635042607
+        }
+      },
+      {
+        "intervalMs": 7.364999999999782,
+        "submitMs": 0.2049999237060547,
+        "t": 0.6039262499999999,
+        "sortLag": {
+          "angleRadians": 0.0011286296440144662,
+          "distance": 0.0014905284764283285
+        }
+      },
+      {
+        "intervalMs": 8.410000000000764,
+        "submitMs": 0.1400003433227539,
+        "t": 0.60602875,
+        "sortLag": {
+          "angleRadians": 0.0024001403673508284,
+          "distance": 0.0031786850207102665
+        }
+      },
+      {
+        "intervalMs": 8.3149999999996,
+        "submitMs": 0.11999988555908203,
+        "t": 0.6081074999999999,
+        "sortLag": {
+          "angleRadians": 0.0012394343229712456,
+          "distance": 0.0016543503994903923
+        }
+      },
+      {
+        "intervalMs": 8.289999999999964,
+        "submitMs": 0.12999963760375977,
+        "t": 0.61018,
+        "sortLag": {
+          "angleRadians": 0.0012183137637808406,
+          "distance": 0.00163456544705596
+        }
+      },
+      {
+        "intervalMs": 8.659999999999854,
+        "submitMs": 0.14499998092651367,
+        "t": 0.6123449999999999,
+        "sortLag": {
+          "angleRadians": 0.0012544176844009735,
+          "distance": 0.0016914937254922655
+        }
+      },
+      {
+        "intervalMs": 8.985000000000582,
+        "submitMs": 0.11999988555908203,
+        "t": 0.61459125,
+        "sortLag": {
+          "angleRadians": 0.002536370922112977,
+          "distance": 0.003428898623715594
+        }
+      },
+      {
+        "intervalMs": 8.2549999999992,
+        "submitMs": 0.1700000762939453,
+        "t": 0.6166549999999998,
+        "sortLag": {
+          "angleRadians": 0.0011608870884893096,
+          "distance": 0.0015802690149237784
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.11500024795532227,
+        "t": 0.6187399999999998,
+        "sortLag": {
+          "angleRadians": 0.0011566173533007914,
+          "distance": 0.0015807879404498351
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.620825,
+        "sortLag": {
+          "angleRadians": 0.0011407009689922906,
+          "distance": 0.0015647561978057029
+        }
+      },
+      {
+        "intervalMs": 7.414999999999964,
+        "submitMs": 0.125,
+        "t": 0.62267875,
+        "sortLag": {
+          "angleRadians": 0.001001163293813656,
+          "distance": 0.0013775871521620152
+        }
+      },
+      {
+        "intervalMs": 9.324999999999818,
+        "submitMs": 0.13000011444091797,
+        "t": 0.6250099999999998,
+        "sortLag": {
+          "angleRadians": 0.002243138526215745,
+          "distance": 0.0030916000673884758
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.15999984741210938,
+        "t": 0.6270724999999999,
+        "sortLag": {
+          "angleRadians": 0.001083754320975491,
+          "distance": 0.0014991337374405094
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.11499977111816406,
+        "t": 0.6291574999999999,
+        "sortLag": {
+          "angleRadians": 0.0010816019358814474,
+          "distance": 0.0014988022389938115
+        }
+      },
+      {
+        "intervalMs": 7.470000000000255,
+        "submitMs": 0.24000024795532227,
+        "t": 0.631025,
+        "sortLag": {
+          "angleRadians": 0.0020387364212074628,
+          "distance": 0.0028268629306810807
+        }
+      },
+      {
+        "intervalMs": 8.269999999999527,
+        "submitMs": 0.10500001907348633,
+        "t": 0.6330924999999998,
+        "sortLag": {
+          "angleRadians": 0.0010476477877074414,
+          "distance": 0.001454295353992962
+        }
+      },
+      {
+        "intervalMs": 9.25,
+        "submitMs": 0.11999988555908203,
+        "t": 0.6354049999999999,
+        "sortLag": {
+          "angleRadians": 0.0011573349888643533,
+          "distance": 0.0016065184772730457
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.6374899999999999,
+        "sortLag": {
+          "angleRadians": 0.0010310706112825578,
+          "distance": 0.001430098597451076
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.13000011444091797,
+        "t": 0.6395737499999999,
+        "sortLag": {
+          "angleRadians": 0.001019345072596794,
+          "distance": 0.0014116806022560575
+        }
+      },
+      {
+        "intervalMs": 7.414999999999964,
+        "submitMs": 0.11999988555908203,
+        "t": 0.6414274999999999,
+        "sortLag": {
+          "angleRadians": 0.0008980318276233415,
+          "distance": 0.0012409927623169687
+        }
+      },
+      {
+        "intervalMs": 9.329999999999927,
+        "submitMs": 0.14500045776367188,
+        "t": 0.6437599999999999,
+        "sortLag": {
+          "angleRadians": 0.0020167262767614392,
+          "distance": 0.002782425326777913
+        }
+      },
+      {
+        "intervalMs": 7.360000000000582,
+        "submitMs": 0.09999990463256836,
+        "t": 0.6456000000000001,
+        "sortLag": {
+          "angleRadians": 0.000874579104813402,
+          "distance": 0.0012001089038035611
+        }
+      },
+      {
+        "intervalMs": 9.304999999999382,
+        "submitMs": 0.13499975204467773,
+        "t": 0.6479262499999998,
+        "sortLag": {
+          "angleRadians": 0.0010962684873231222,
+          "distance": 0.0014970861035790643
+        }
+      },
+      {
+        "intervalMs": 7.375,
+        "submitMs": 0.11999988555908203,
+        "t": 0.6497699999999998,
+        "sortLag": {
+          "angleRadians": 0.00086202921275923,
+          "distance": 0.0011704728275040278
+        }
+      },
+      {
+        "intervalMs": 9.050000000000182,
+        "submitMs": 0.1399998664855957,
+        "t": 0.6520324999999999,
+        "sortLag": {
+          "angleRadians": 0.0010502675322535098,
+          "distance": 0.0014167438431875333
+        }
+      },
+      {
+        "intervalMs": 7.574999999999818,
+        "submitMs": 0.13499975204467773,
+        "t": 0.6539262499999998,
+        "sortLag": {
+          "angleRadians": 0.001923379442147281,
+          "distance": 0.0025859057798130187
+        }
+      },
+      {
+        "intervalMs": 8.400000000000546,
+        "submitMs": 0.1550002098083496,
+        "t": 0.65602625,
+        "sortLag": {
+          "angleRadians": 0.0009629895745590025,
+          "distance": 0.0012786834451865754
+        }
+      },
+      {
+        "intervalMs": 9.264999999999418,
+        "submitMs": 0.11499977111816406,
+        "t": 0.6583424999999998,
+        "sortLag": {
+          "angleRadians": 0.001056318686134184,
+          "distance": 0.0013885128160317005
+        }
+      },
+      {
+        "intervalMs": 8.225000000000364,
+        "submitMs": 0.11500024795532227,
+        "t": 0.6603987499999999,
+        "sortLag": {
+          "angleRadians": 0.0009333776024003631,
+          "distance": 0.0012133800606030085
+        }
+      },
+      {
+        "intervalMs": 8.36999999999989,
+        "submitMs": 0.125,
+        "t": 0.66249125,
+        "sortLag": {
+          "angleRadians": 0.000946306427417153,
+          "distance": 0.0012161021056019993
+        }
+      },
+      {
+        "intervalMs": 7.440000000000509,
+        "submitMs": 0.09999990463256836,
+        "t": 0.6643512500000001,
+        "sortLag": {
+          "angleRadians": 0.0017848336672148125,
+          "distance": 0.0022812115125630727
+        }
+      },
+      {
+        "intervalMs": 8.349999999999454,
+        "submitMs": 0.1399998664855957,
+        "t": 0.66643875,
+        "sortLag": {
+          "angleRadians": 0.0009391614450547027,
+          "distance": 0.0011776116356169276
+        }
+      },
+      {
+        "intervalMs": 9.284999999999854,
+        "submitMs": 0.11999988555908203,
+        "t": 0.6687599999999999,
+        "sortLag": {
+          "angleRadians": 0.0010423970610651061,
+          "distance": 0.0012873407354838512
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.16499996185302734,
+        "t": 0.6708212499999998,
+        "sortLag": {
+          "angleRadians": 0.0009246087746671332,
+          "distance": 0.0011235964912334
+        }
+      },
+      {
+        "intervalMs": 7.515000000000327,
+        "submitMs": 0.1549997329711914,
+        "t": 0.6727,
+        "sortLag": {
+          "angleRadians": 0.0017668129879695317,
+          "distance": 0.002131660135308527
+        }
+      },
+      {
+        "intervalMs": 9.239999999999782,
+        "submitMs": 0.15000009536743164,
+        "t": 0.6750099999999999,
+        "sortLag": {
+          "angleRadians": 0.001035887746243423,
+          "distance": 0.0012185579918032247
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.16499996185302734,
+        "t": 0.6770724999999999,
+        "sortLag": {
+          "angleRadians": 0.00196122653037924,
+          "distance": 0.002287031385005889
+        }
+      },
+      {
+        "intervalMs": 8.345000000000255,
+        "submitMs": 0.18000030517578125,
+        "t": 0.6791587499999999,
+        "sortLag": {
+          "angleRadians": 0.0009374036327568271,
+          "distance": 0.0010621682701835184
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.13500022888183594,
+        "t": 0.6812399999999998,
+        "sortLag": {
+          "angleRadians": 0.0009367723076282925,
+          "distance": 0.0010409848027726604
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1549997329711914,
+        "t": 0.683325,
+        "sortLag": {
+          "angleRadians": 0.0018770705112353822,
+          "distance": 0.0020652038625582356
+        }
+      },
+      {
+        "intervalMs": 8.159999999999854,
+        "submitMs": 0.125,
+        "t": 0.6853649999999999,
+        "sortLag": {
+          "angleRadians": 0.0009225548436845729,
+          "distance": 0.0009842359398390926
+        }
+      },
+      {
+        "intervalMs": 8.525000000000546,
+        "submitMs": 0.11499977111816406,
+        "t": 0.68749625,
+        "sortLag": {
+          "angleRadians": 0.0018890252136477513,
+          "distance": 0.001993614467161583
+        }
+      },
+      {
+        "intervalMs": 7.854999999999563,
+        "submitMs": 0.13500022888183594,
+        "t": 0.68946,
+        "sortLag": {
+          "angleRadians": 0.0008935588445603778,
+          "distance": 0.0009131868281835056
+        }
+      },
+      {
+        "intervalMs": 8.850000000000364,
+        "submitMs": 0.10000038146972656,
+        "t": 0.6916725,
+        "sortLag": {
+          "angleRadians": 0.0010103312725164518,
+          "distance": 0.0010095807104116188
+        }
+      },
+      {
+        "intervalMs": 8.264999999999418,
+        "submitMs": 0.1399998664855957,
+        "t": 0.6937387499999998,
+        "sortLag": {
+          "angleRadians": 0.0009472381948214546,
+          "distance": 0.0009245732261909493
+        }
+      },
+      {
+        "intervalMs": 8.240000000000691,
+        "submitMs": 0.13000011444091797,
+        "t": 0.69579875,
+        "sortLag": {
+          "angleRadians": 0.0009481273621048385,
+          "distance": 0.0009043966594153819
+        }
+      },
+      {
+        "intervalMs": 8.444999999999709,
+        "submitMs": 0.14499998092651367,
+        "t": 0.6979099999999999,
+        "sortLag": {
+          "angleRadians": 0.0019237410417376605,
+          "distance": 0.001813426427698452
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.1100001335144043,
+        "t": 0.69999125,
+        "sortLag": {
+          "angleRadians": 0.000966087621015534,
+          "distance": 0.000878805354438225
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.11499977111816406,
+        "t": 0.7020724999999999,
+        "sortLag": {
+          "angleRadians": 0.0009703366290036089,
+          "distance": 0.0008618128579028553
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.12000036239624023,
+        "t": 0.7041574999999999,
+        "sortLag": {
+          "angleRadians": 0.0009764201274545727,
+          "distance": 0.0008466222297898072
+        }
+      },
+      {
+        "intervalMs": 8.300000000000182,
+        "submitMs": 0.11999988555908203,
+        "t": 0.7062324999999999,
+        "sortLag": {
+          "angleRadians": 0.0009760881429536886,
+          "distance": 0.0008262460964803472
+        }
+      },
+      {
+        "intervalMs": 8.364999999999782,
+        "submitMs": 0.12999963760375977,
+        "t": 0.7083237499999999,
+        "sortLag": {
+          "angleRadians": 0.0019640811388183807,
+          "distance": 0.001642743712176842
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.12000036239624023,
+        "t": 0.7104074999999999,
+        "sortLag": {
+          "angleRadians": 0.000988973604729124,
+          "distance": 0.0007979793693878339
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.11499977111816406,
+        "t": 0.7124912499999999,
+        "sortLag": {
+          "angleRadians": 0.0009933022245114497,
+          "distance": 0.00078273384759332
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.18500041961669922,
+        "t": 0.7145724999999998,
+        "sortLag": {
+          "angleRadians": 0.0009963601998892403,
+          "distance": 0.0007670349571469015
+        }
+      },
+      {
+        "intervalMs": 7.670000000000073,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7164899999999998,
+        "sortLag": {
+          "angleRadians": 0.000921647137214781,
+          "distance": 0.0006940592852004791
+        }
+      },
+      {
+        "intervalMs": 8.99499999999989,
+        "submitMs": 0.125,
+        "t": 0.7187387499999999,
+        "sortLag": {
+          "angleRadians": 0.0020067414658282916,
+          "distance": 0.0014930070688430734
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.09999990463256836,
+        "t": 0.7208224999999999,
+        "sortLag": {
+          "angleRadians": 0.0010096493318054566,
+          "distance": 0.0007267490228318315
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.11499977111816406,
+        "t": 0.7229062499999999,
+        "sortLag": {
+          "angleRadians": 0.0010133814728948438,
+          "distance": 0.0007141864390289884
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.0950002670288086,
+        "t": 0.72499125,
+        "sortLag": {
+          "angleRadians": 0.0010175403332613564,
+          "distance": 0.0007027003598437115
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7270749999999999,
+        "sortLag": {
+          "angleRadians": 0.0010202763928865042,
+          "distance": 0.0006910732436943538
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7291574999999999,
+        "sortLag": {
+          "angleRadians": 0.0020429528560824708,
+          "distance": 0.0013710864749696668
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.13499975204467773,
+        "t": 0.73124125,
+        "sortLag": {
+          "angleRadians": 0.0010262905326903768,
+          "distance": 0.0006709469796939274
+        }
+      },
+      {
+        "intervalMs": 8.170000000000073,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7332837499999999,
+        "sortLag": {
+          "angleRadians": 0.0010085398571741228,
+          "distance": 0.0006490751145098106
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.1400003433227539,
+        "t": 0.7353662499999999,
+        "sortLag": {
+          "angleRadians": 0.0010306478132808918,
+          "distance": 0.0006538794003858603
+        }
+      },
+      {
+        "intervalMs": 7.569999999999709,
+        "submitMs": 0.11500024795532227,
+        "t": 0.7372587499999999,
+        "sortLag": {
+          "angleRadians": 0.0009384550967273205,
+          "distance": 0.0005880576825572213
+        }
+      },
+      {
+        "intervalMs": 9.330000000000837,
+        "submitMs": 0.1100001335144043,
+        "t": 0.73959125,
+        "sortLag": {
+          "angleRadians": 0.0020970677029962946,
+          "distance": 0.0013055608967432306
+        }
+      },
+      {
+        "intervalMs": 7.339999999999236,
+        "submitMs": 0.1100001335144043,
+        "t": 0.7414262499999998,
+        "sortLag": {
+          "angleRadians": 0.0009129503728893061,
+          "distance": 0.0005600665786405887
+        }
+      },
+      {
+        "intervalMs": 9.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7437587499999998,
+        "sortLag": {
+          "angleRadians": 0.001161851144777669,
+          "distance": 0.0007071852081301824
+        }
+      },
+      {
+        "intervalMs": 8.25500000000011,
+        "submitMs": 0.09000015258789062,
+        "t": 0.7458224999999998,
+        "sortLag": {
+          "angleRadians": 0.0010289717176966196,
+          "distance": 0.0006223884337414657
+        }
+      },
+      {
+        "intervalMs": 7.550000000000182,
+        "submitMs": 0.14499998092651367,
+        "t": 0.7477099999999999,
+        "sortLag": {
+          "angleRadians": 0.0019705278514179658,
+          "distance": 0.0011895683084558854
+        }
+      },
+      {
+        "intervalMs": 9.194999999999709,
+        "submitMs": 0.125,
+        "t": 0.7500087499999999,
+        "sortLag": {
+          "angleRadians": 0.0011471559268330567,
+          "distance": 0.0006897997665221739
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.09499979019165039,
+        "t": 0.7520712499999999,
+        "sortLag": {
+          "angleRadians": 0.0010292737219523814,
+          "distance": 0.0006188803627069985
+        }
+      },
+      {
+        "intervalMs": 7.845000000000255,
+        "submitMs": 0.11499977111816406,
+        "t": 0.7540324999999999,
+        "sortLag": {
+          "angleRadians": 0.0009784699483696433,
+          "distance": 0.0005894415102256809
+        }
+      },
+      {
+        "intervalMs": 8.890000000000327,
+        "submitMs": 0.0950002670288086,
+        "t": 0.756255,
+        "sortLag": {
+          "angleRadians": 0.0011081444135697123,
+          "distance": 0.0006701767258236867
+        }
+      },
+      {
+        "intervalMs": 8.269999999999527,
+        "submitMs": 0.14499998092651367,
+        "t": 0.7583224999999999,
+        "sortLag": {
+          "angleRadians": 0.002137956211428374,
+          "distance": 0.0012965276231718939
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.09499979019165039,
+        "t": 0.7604074999999999,
+        "sortLag": {
+          "angleRadians": 0.001037408293161093,
+          "distance": 0.000636085357578104
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.7624899999999999,
+        "sortLag": {
+          "angleRadians": 0.0010346348880730391,
+          "distance": 0.0006404776579213073
+        }
+      },
+      {
+        "intervalMs": 7.914999999999964,
+        "submitMs": 0.2049999237060547,
+        "t": 0.7644687499999999,
+        "sortLag": {
+          "angleRadians": 0.000981409725274896,
+          "distance": 0.0006142296128791191
+        }
+      },
+      {
+        "intervalMs": 8.805000000000291,
+        "submitMs": 0.13499975204467773,
+        "t": 0.76667,
+        "sortLag": {
+          "angleRadians": 0.0010895348221596165,
+          "distance": 0.000690762214969829
+        }
+      },
+      {
+        "intervalMs": 8.109999999999673,
+        "submitMs": 0.13500022888183594,
+        "t": 0.7686974999999999,
+        "sortLag": {
+          "angleRadians": 0.0010011966312281437,
+          "distance": 0.0006440970924498139
+        }
+      },
+      {
+        "intervalMs": 8.010000000000218,
+        "submitMs": 0.16000032424926758,
+        "t": 0.7706999999999999,
+        "sortLag": {
+          "angleRadians": 0.0019875052443004784,
+          "distance": 0.0012882531075553562
+        }
+      },
+      {
+        "intervalMs": 8.885000000000218,
+        "submitMs": 0.12000036239624023,
+        "t": 0.77292125,
+        "sortLag": {
+          "angleRadians": 0.0010910402627747678,
+          "distance": 0.0007251528573510684
+        }
+      },
+      {
+        "intervalMs": 7.349999999999454,
+        "submitMs": 0.125,
+        "t": 0.7747587499999998,
+        "sortLag": {
+          "angleRadians": 0.0008998827829068296,
+          "distance": 0.000608824213615927
+        }
+      },
+      {
+        "intervalMs": 9.335000000000036,
+        "submitMs": 0.15999984741210938,
+        "t": 0.7770924999999999,
+        "sortLag": {
+          "angleRadians": 0.0011391622256424956,
+          "distance": 0.0007857562919891335
+        }
+      },
+      {
+        "intervalMs": 7.365000000000691,
+        "submitMs": 0.13000011444091797,
+        "t": 0.77893375,
+        "sortLag": {
+          "angleRadians": 0.0008956416875187191,
+          "distance": 0.0006304371551496276
+        }
+      },
+      {
+        "intervalMs": 8.889999999999418,
+        "submitMs": 0.17500019073486328,
+        "t": 0.7811562499999999,
+        "sortLag": {
+          "angleRadians": 0.0010772147382134033,
+          "distance": 0.00077399351830991
+        }
+      },
+      {
+        "intervalMs": 7.744999999999891,
+        "submitMs": 0.12999963760375977,
+        "t": 0.7830924999999999,
+        "sortLag": {
+          "angleRadians": 0.002011974299660479,
+          "distance": 0.0014603168322094417
+        }
+      },
+      {
+        "intervalMs": 8.385000000000218,
+        "submitMs": 0.13500022888183594,
+        "t": 0.7851887499999999,
+        "sortLag": {
+          "angleRadians": 0.0010082084779934907,
+          "distance": 0.0007565403803609727
+        }
+      },
+      {
+        "intervalMs": 8.279999999999745,
+        "submitMs": 0.13000011444091797,
+        "t": 0.7872587499999999,
+        "sortLag": {
+          "angleRadians": 0.0019995462577706087,
+          "distance": 0.0015175976896826308
+        }
+      },
+      {
+        "intervalMs": 8.425000000000182,
+        "submitMs": 0.125,
+        "t": 0.7893649999999999,
+        "sortLag": {
+          "angleRadians": 0.0010045243970043354,
+          "distance": 0.000789448931191835
+        }
+      },
+      {
+        "intervalMs": 8.295000000000073,
+        "submitMs": 0.09000015258789062,
+        "t": 0.79143875,
+        "sortLag": {
+          "angleRadians": 0.000984711076964349,
+          "distance": 0.0007924354348037595
+        }
+      },
+      {
+        "intervalMs": 8.289999999999964,
+        "submitMs": 0.14499998092651367,
+        "t": 0.7935112499999999,
+        "sortLag": {
+          "angleRadians": 0.0019643683523194472,
+          "distance": 0.0015997376460553608
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.125,
+        "t": 0.7955937499999999,
+        "sortLag": {
+          "angleRadians": 0.0009801475366559608,
+          "distance": 0.0008272682228390301
+        }
+      },
+      {
+        "intervalMs": 8.360000000000582,
+        "submitMs": 0.15000009536743164,
+        "t": 0.79768375,
+        "sortLag": {
+          "angleRadians": 0.000979278719146375,
+          "distance": 0.0008466893930280387
+        }
+      },
+      {
+        "intervalMs": 9.304999999999382,
+        "submitMs": 0.13000011444091797,
+        "t": 0.8000099999999999,
+        "sortLag": {
+          "angleRadians": 0.0010848357371262556,
+          "distance": 0.0009621660234372227
+        }
+      },
+      {
+        "intervalMs": 8.085000000000036,
+        "submitMs": 0.1399998664855957,
+        "t": 0.8020312499999999,
+        "sortLag": {
+          "angleRadians": 0.000938294031086387,
+          "distance": 0.0008532408111356205
+        }
+      },
+      {
+        "intervalMs": 8.075000000000728,
+        "submitMs": 0.16499996185302734,
+        "t": 0.80405,
+        "sortLag": {
+          "angleRadians": 0.0009332307105228046,
+          "distance": 0.0008684263828669606
+        }
+      },
+      {
+        "intervalMs": 8.8149999999996,
+        "submitMs": 0.15000009536743164,
+        "t": 0.80625375,
+        "sortLag": {
+          "angleRadians": 0.0019475020288712201,
+          "distance": 0.0018351413867782622
+        }
+      },
+      {
+        "intervalMs": 7.375,
+        "submitMs": 0.1549997329711914,
+        "t": 0.8080974999999999,
+        "sortLag": {
+          "angleRadians": 0.0008454291088888259,
+          "distance": 0.0008241130176913475
+        }
+      },
+      {
+        "intervalMs": 8.3100000000004,
+        "submitMs": 0.125,
+        "t": 0.8101750000000001,
+        "sortLag": {
+          "angleRadians": 0.0009491876733176954,
+          "distance": 0.0009454137025462921
+        }
+      },
+      {
+        "intervalMs": 9.334999999999127,
+        "submitMs": 0.11499977111816406,
+        "t": 0.8125087499999999,
+        "sortLag": {
+          "angleRadians": 0.0010622253467311156,
+          "distance": 0.0010834834713336588
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.14499998092651367,
+        "t": 0.8145712499999999,
+        "sortLag": {
+          "angleRadians": 0.0019975294689910956,
+          "distance": 0.002060030225481726
+        }
+      },
+      {
+        "intervalMs": 7.625,
+        "submitMs": 0.1099996566772461,
+        "t": 0.8164774999999999,
+        "sortLag": {
+          "angleRadians": 0.0008622208716834231,
+          "distance": 0.0009186485066897513
+        }
+      },
+      {
+        "intervalMs": 8.885000000000218,
+        "submitMs": 0.15999984741210938,
+        "t": 0.8186987499999999,
+        "sortLag": {
+          "angleRadians": 0.0010021072391679113,
+          "distance": 0.001089972989258621
+        }
+      },
+      {
+        "intervalMs": 8.070000000000618,
+        "submitMs": 0.10000038146972656,
+        "t": 0.82071625,
+        "sortLag": {
+          "angleRadians": 0.0009081591387387684,
+          "distance": 0.0010082931513160837
+        }
+      },
+      {
+        "intervalMs": 8.819999999999709,
+        "submitMs": 0.19000005722045898,
+        "t": 0.8229212499999999,
+        "sortLag": {
+          "angleRadians": 0.000990805653939983,
+          "distance": 0.0011220037297103025
+        }
+      },
+      {
+        "intervalMs": 7.354999999999563,
+        "submitMs": 0.13500022888183594,
+        "t": 0.8247599999999998,
+        "sortLag": {
+          "angleRadians": 0.0018158391291110067,
+          "distance": 0.002073629616146348
+        }
+      },
+      {
+        "intervalMs": 8.610000000000582,
+        "submitMs": 0.15000009536743164,
+        "t": 0.8269125,
+        "sortLag": {
+          "angleRadians": 0.0009653272503273813,
+          "distance": 0.0011326020531439406
+        }
+      },
+      {
+        "intervalMs": 9.054999999999382,
+        "submitMs": 0.17499971389770508,
+        "t": 0.8291762499999998,
+        "sortLag": {
+          "angleRadians": 0.0010150014047017784,
+          "distance": 0.0012127621640147614
+        }
+      },
+      {
+        "intervalMs": 7.585000000000036,
+        "submitMs": 0.16499996185302734,
+        "t": 0.8310724999999999,
+        "sortLag": {
+          "angleRadians": 0.001865352325429593,
+          "distance": 0.0022456847964814845
+        }
+      },
+      {
+        "intervalMs": 9.079999999999927,
+        "submitMs": 0.15000009536743164,
+        "t": 0.8333424999999999,
+        "sortLag": {
+          "angleRadians": 0.0010192538715190504,
+          "distance": 0.0012570210386071885
+        }
+      },
+      {
+        "intervalMs": 7.555000000000291,
+        "submitMs": 0.26999998092651367,
+        "t": 0.83523125,
+        "sortLag": {
+          "angleRadians": 0.0008494814215560033,
+          "distance": 0.001062894996143068
+        }
+      },
+      {
+        "intervalMs": 9.109999999999673,
+        "submitMs": 0.125,
+        "t": 0.8375087499999998,
+        "sortLag": {
+          "angleRadians": 0.0018759571096215414,
+          "distance": 0.002365026065981384
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.125,
+        "t": 0.8395712499999999,
+        "sortLag": {
+          "angleRadians": 0.0009327169014665594,
+          "distance": 0.001198533889436056
+        }
+      },
+      {
+        "intervalMs": 7.415000000000873,
+        "submitMs": 0.1100001335144043,
+        "t": 0.8414250000000001,
+        "sortLag": {
+          "angleRadians": 0.0008412448423197887,
+          "distance": 0.0010928421354707393
+        }
+      },
+      {
+        "intervalMs": 8.375,
+        "submitMs": 0.08500003814697266,
+        "t": 0.8435187500000001,
+        "sortLag": {
+          "angleRadians": 0.0009541002648066001,
+          "distance": 0.0012520522146984617
+        }
+      },
+      {
+        "intervalMs": 8.364999999999782,
+        "submitMs": 0.125,
+        "t": 0.84561,
+        "sortLag": {
+          "angleRadians": 0.0009578167344187557,
+          "distance": 0.001269259789618367
+        }
+      },
+      {
+        "intervalMs": 8.264999999999418,
+        "submitMs": 0.07999992370605469,
+        "t": 0.8476762499999999,
+        "sortLag": {
+          "angleRadians": 0.001909409409369539,
+          "distance": 0.002541607386833049
+        }
+      },
+      {
+        "intervalMs": 9.329999999999927,
+        "submitMs": 0.125,
+        "t": 0.8500087499999999,
+        "sortLag": {
+          "angleRadians": 0.0010818448328396041,
+          "distance": 0.0014580516602981917
+        }
+      },
+      {
+        "intervalMs": 8.2450000000008,
+        "submitMs": 0.08500003814697266,
+        "t": 0.8520700000000001,
+        "sortLag": {
+          "angleRadians": 0.0009633237561717143,
+          "distance": 0.0013075734863746149
+        }
+      },
+      {
+        "intervalMs": 7.859999999999673,
+        "submitMs": 0.09499979019165039,
+        "t": 0.854035,
+        "sortLag": {
+          "angleRadians": 0.0009253554577626577,
+          "distance": 0.001263088884127672
+        }
+      },
+      {
+        "intervalMs": 8.4350000000004,
+        "submitMs": 0.12000036239624023,
+        "t": 0.8561437500000001,
+        "sortLag": {
+          "angleRadians": 0.0010013371177529167,
+          "distance": 0.0013733764953860336
+        }
+      },
+      {
+        "intervalMs": 8.739999999999782,
+        "submitMs": 0.09999990463256836,
+        "t": 0.85832875,
+        "sortLag": {
+          "angleRadians": 0.0010473462205397089,
+          "distance": 0.0014424414355906925
+        }
+      },
+      {
+        "intervalMs": 8.30999999999949,
+        "submitMs": 0.08999967575073242,
+        "t": 0.8604062499999999,
+        "sortLag": {
+          "angleRadians": 0.002052899584599886,
+          "distance": 0.002832085600471249
+        }
+      },
+      {
+        "intervalMs": 7.414999999999964,
+        "submitMs": 0.1400003433227539,
+        "t": 0.8622599999999999,
+        "sortLag": {
+          "angleRadians": 0.0009062131053300802,
+          "distance": 0.0012548475211516003
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.8643424999999999,
+        "sortLag": {
+          "angleRadians": 0.0010284623593459397,
+          "distance": 0.001426276075597009
+        }
+      },
+      {
+        "intervalMs": 8.895000000000437,
+        "submitMs": 0.0950002670288086,
+        "t": 0.86656625,
+        "sortLag": {
+          "angleRadians": 0.0011110891475636367,
+          "distance": 0.0015422281590081748
+        }
+      },
+      {
+        "intervalMs": 8.024999999999636,
+        "submitMs": 0.125,
+        "t": 0.8685724999999999,
+        "sortLag": {
+          "angleRadians": 0.0010144369648488318,
+          "distance": 0.001408261491579719
+        }
+      },
+      {
+        "intervalMs": 8.475000000000364,
+        "submitMs": 0.09499979019165039,
+        "t": 0.8706912499999999,
+        "sortLag": {
+          "angleRadians": 0.002098548287430075,
+          "distance": 0.002912695562301814
+        }
+      },
+      {
+        "intervalMs": 7.9399999999996,
+        "submitMs": 0.13499975204467773,
+        "t": 0.8726762499999998,
+        "sortLag": {
+          "angleRadians": 0.0010284625976991048,
+          "distance": 0.001425367693301032
+        }
+      },
+      {
+        "intervalMs": 9.329999999999927,
+        "submitMs": 0.13499975204467773,
+        "t": 0.8750087499999999,
+        "sortLag": {
+          "angleRadians": 0.0012247336930397193,
+          "distance": 0.0016943400002366468
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.13000011444091797,
+        "t": 0.8770712499999999,
+        "sortLag": {
+          "angleRadians": 0.0010981308520670115,
+          "distance": 0.0015155236963184302
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.1399998664855957,
+        "t": 0.8791562499999999,
+        "sortLag": {
+          "angleRadians": 0.0011250688876652069,
+          "distance": 0.0015483836757972697
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.12000036239624023,
+        "t": 0.8812399999999999,
+        "sortLag": {
+          "angleRadians": 0.002264784308615098,
+          "distance": 0.0031120438387503796
+        }
+      },
+      {
+        "intervalMs": 7.610000000000582,
+        "submitMs": 0.11500024795532227,
+        "t": 0.8831425,
+        "sortLag": {
+          "angleRadians": 0.0010545957172711513,
+          "distance": 0.0014416470744804757
+        }
+      },
+      {
+        "intervalMs": 9.13000000000011,
+        "submitMs": 0.10500001907348633,
+        "t": 0.885425,
+        "sortLag": {
+          "angleRadians": 0.0012831290341629767,
+          "distance": 0.001747000003271768
+        }
+      },
+      {
+        "intervalMs": 7.339999999999236,
+        "submitMs": 0.14499998092651367,
+        "t": 0.8872599999999998,
+        "sortLag": {
+          "angleRadians": 0.0010460322598052172,
+          "distance": 0.0014180839335012942
+        }
+      },
+      {
+        "intervalMs": 9.270000000000437,
+        "submitMs": 0.10500001907348633,
+        "t": 0.8895775,
+        "sortLag": {
+          "angleRadians": 0.0013398616443728,
+          "distance": 0.0018080368123744263
+        }
+      },
+      {
+        "intervalMs": 8.30999999999949,
+        "submitMs": 0.12999963760375977,
+        "t": 0.8916549999999999,
+        "sortLag": {
+          "angleRadians": 0.002558969903088404,
+          "distance": 0.003444807918056102
+        }
+      },
+      {
+        "intervalMs": 7.420000000000073,
+        "submitMs": 0.09499979019165039,
+        "t": 0.8935099999999999,
+        "sortLag": {
+          "angleRadians": 0.001103391813895267,
+          "distance": 0.0014740654616083476
+        }
+      },
+      {
+        "intervalMs": 9.325000000000728,
+        "submitMs": 0.09499979019165039,
+        "t": 0.89584125,
+        "sortLag": {
+          "angleRadians": 0.0014066171295528133,
+          "distance": 0.0018691029812073837
+        }
+      },
+      {
+        "intervalMs": 8.2549999999992,
+        "submitMs": 0.13000011444091797,
+        "t": 0.8979049999999998,
+        "sortLag": {
+          "angleRadians": 0.0012639726725546154,
+          "distance": 0.0016698143646933976
+        }
+      },
+      {
+        "intervalMs": 7.420000000000073,
+        "submitMs": 0.09999990463256836,
+        "t": 0.8997599999999999,
+        "sortLag": {
+          "angleRadians": 0.0011512965776382304,
+          "distance": 0.0015128869627764599
+        }
+      },
+      {
+        "intervalMs": 9.090000000000146,
+        "submitMs": 0.13499975204467773,
+        "t": 0.9020324999999999,
+        "sortLag": {
+          "angleRadians": 0.002581341660414582,
+          "distance": 0.0033814734530174194
+        }
+      },
+      {
+        "intervalMs": 8.515000000000327,
+        "submitMs": 0.13500022888183594,
+        "t": 0.90416125,
+        "sortLag": {
+          "angleRadians": 0.0013594962170550362,
+          "distance": 0.0017653200729559706
+        }
+      },
+      {
+        "intervalMs": 7.489999999999782,
+        "submitMs": 0.09000015258789062,
+        "t": 0.90603375,
+        "sortLag": {
+          "angleRadians": 0.0012117693939156207,
+          "distance": 0.001564548518668352
+        }
+      },
+      {
+        "intervalMs": 9.145000000000437,
+        "submitMs": 0.1399998664855957,
+        "t": 0.90832,
+        "sortLag": {
+          "angleRadians": 0.0014997754463016778,
+          "distance": 0.0019248693412611366
+        }
+      },
+      {
+        "intervalMs": 8.344999999999345,
+        "submitMs": 0.08500003814697266,
+        "t": 0.9104062499999999,
+        "sortLag": {
+          "angleRadians": 0.001388034905723262,
+          "distance": 0.0017702458298542877
+        }
+      },
+      {
+        "intervalMs": 7.414999999999964,
+        "submitMs": 0.10500001907348633,
+        "t": 0.9122599999999998,
+        "sortLag": {
+          "angleRadians": 0.0026368955744256804,
+          "distance": 0.003354014659853357
+        }
+      },
+      {
+        "intervalMs": 9.329999999999927,
+        "submitMs": 0.125,
+        "t": 0.9145924999999998,
+        "sortLag": {
+          "angleRadians": 0.001592236913742036,
+          "distance": 0.002006959597849082
+        }
+      },
+      {
+        "intervalMs": 8.2450000000008,
+        "submitMs": 0.1100001335144043,
+        "t": 0.91665375,
+        "sortLag": {
+          "angleRadians": 0.0014262789233586248,
+          "distance": 0.0017864346724073869
+        }
+      },
+      {
+        "intervalMs": 8.344999999999345,
+        "submitMs": 0.13499975204467773,
+        "t": 0.9187399999999999,
+        "sortLag": {
+          "angleRadians": 0.0014618296125952536,
+          "distance": 0.0018201253131336572
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.1099996566772461,
+        "t": 0.9208237499999999,
+        "sortLag": {
+          "angleRadians": 0.001478289280331059,
+          "distance": 0.0018297551455277786
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.10500001907348633,
+        "t": 0.9229062499999999,
+        "sortLag": {
+          "angleRadians": 0.0029736809750357668,
+          "distance": 0.003669936502299026
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.11999988555908203,
+        "t": 0.9249899999999999,
+        "sortLag": {
+          "angleRadians": 0.0015142232564723979,
+          "distance": 0.0018525515187759586
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.08999967575073242,
+        "t": 0.9270737499999999,
+        "sortLag": {
+          "angleRadians": 0.001531918252871445,
+          "distance": 0.0018635453890963089
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.08000040054321289,
+        "t": 0.9291562499999999,
+        "sortLag": {
+          "angleRadians": 0.0015484618161781462,
+          "distance": 0.0018731362996557903
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.08999967575073242,
+        "t": 0.9312387499999999,
+        "sortLag": {
+          "angleRadians": 0.0015656796159493674,
+          "distance": 0.0018835642896356428
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.07499980926513672,
+        "t": 0.9333224999999998,
+        "sortLag": {
+          "angleRadians": 0.003149234068201279,
+          "distance": 0.0037784145118100413
+        }
+      },
+      {
+        "intervalMs": 8.175000000000182,
+        "submitMs": 0.1400003433227539,
+        "t": 0.93536625,
+        "sortLag": {
+          "angleRadians": 0.0015694084913851908,
+          "distance": 0.0018680743539163927
+        }
+      },
+      {
+        "intervalMs": 8.515000000000327,
+        "submitMs": 0.1100001335144043,
+        "t": 0.937495,
+        "sortLag": {
+          "angleRadians": 0.0016514429200847852,
+          "distance": 0.001955580307623051
+        }
+      },
+      {
+        "intervalMs": 7.479999999999563,
+        "submitMs": 0.0950002670288086,
+        "t": 0.9393649999999999,
+        "sortLag": {
+          "angleRadians": 0.0014645522019098068,
+          "distance": 0.0017259005883601226
+        }
+      },
+      {
+        "intervalMs": 9.235000000000582,
+        "submitMs": 0.07499980926513672,
+        "t": 0.9416737500000001,
+        "sortLag": {
+          "angleRadians": 0.0018256432316376213,
+          "distance": 0.002140865573536502
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.09000015258789062,
+        "t": 0.94373625,
+        "sortLag": {
+          "angleRadians": 0.0016468716153366396,
+          "distance": 0.0019215874397209348
+        }
+      },
+      {
+        "intervalMs": 8.344999999999345,
+        "submitMs": 0.10500001907348633,
+        "t": 0.9458224999999999,
+        "sortLag": {
+          "angleRadians": 0.0033276026251268195,
+          "distance": 0.003873701678475532
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.11500024795532227,
+        "t": 0.9479049999999999,
+        "sortLag": {
+          "angleRadians": 0.0016922950215921934,
+          "distance": 0.0019567373743203985
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.08500003814697266,
+        "t": 0.9499899999999999,
+        "sortLag": {
+          "angleRadians": 0.0017084837541581483,
+          "distance": 0.001966926713065825
+        }
+      },
+      {
+        "intervalMs": 8.324999999999818,
+        "submitMs": 0.11500024795532227,
+        "t": 0.9520712499999998,
+        "sortLag": {
+          "angleRadians": 0.0017191042329827266,
+          "distance": 0.0019709140143283625
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.08500003814697266,
+        "t": 0.9541549999999999,
+        "sortLag": {
+          "angleRadians": 0.0017344242318743104,
+          "distance": 0.0019805122217584846
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.0950002670288086,
+        "t": 0.9562387499999999,
+        "sortLag": {
+          "angleRadians": 0.0034816311318791883,
+          "distance": 0.003967956121708802
+        }
+      },
+      {
+        "intervalMs": 8.335000000000036,
+        "submitMs": 0.13000011444091797,
+        "t": 0.9583224999999999,
+        "sortLag": {
+          "angleRadians": 0.0017595371340579178,
+          "distance": 0.001994072484207579
+        }
+      },
+      {
+        "intervalMs": 8.329999999999927,
+        "submitMs": 0.11499977111816406,
+        "t": 0.9604049999999998,
+        "sortLag": {
+          "angleRadians": 0.0017702921993417368,
+          "distance": 0.0019991926454024284
+        }
+      },
+      {
+        "intervalMs": 8.340000000000146,
+        "submitMs": 0.11499977111816406,
+        "t": 0.9624899999999998,
+        "sortLag": {
+          "angleRadians": 0.003554019008994095,
+          "distance": 0.004006803107923563
+        }
+      },
+      {
+        "intervalMs": 7.4099999999998545,
+        "submitMs": 0.10500001907348633,
+        "t": 0.9643424999999999,
+        "sortLag": {
+          "angleRadians": 0.0015939128271071114,
+          "distance": 0.0017885431039644172
+        }
+      },
+      {
+        "intervalMs": 9.00500000000011,
+        "submitMs": 0.1100001335144043,
+        "t": 0.9665937499999999,
+        "sortLag": {
+          "angleRadians": 0.0019479426445792624,
+          "distance": 0.0021792825146842
+        }
+      },
+      {
+        "intervalMs": 8.615000000000691,
+        "submitMs": 0.13000011444091797,
+        "t": 0.9687475000000001,
+        "sortLag": {
+          "angleRadians": 0.0038221538011344327,
+          "distance": 0.004269752327881593
+        }
+      },
+      {
+        "intervalMs": 7.3799999999992,
+        "submitMs": 0.1399998664855957,
+        "t": 0.9705924999999999,
+        "sortLag": {
+          "angleRadians": 0.00161334579374191,
+          "distance": 0.0017948585696965524
+        }
+      },
+      {
+        "intervalMs": 9.330000000000837,
+        "submitMs": 0.13499975204467773,
+        "t": 0.972925,
+        "sortLag": {
+          "angleRadians": 0.002049300975611326,
+          "distance": 0.0022741250210142313
+        }
+      },
+      {
+        "intervalMs": 7.354999999999563,
+        "submitMs": 0.1699995994567871,
+        "t": 0.9747637499999999,
+        "sortLag": {
+          "angleRadians": 0.0036719158279806805,
+          "distance": 0.004070537318180979
+        }
+      },
+      {
+        "intervalMs": 8.704999999999927,
+        "submitMs": 0.1400003433227539,
+        "t": 0.9769399999999999,
+        "sortLag": {
+          "angleRadians": 0.0019279646312432433,
+          "distance": 0.002130012359201429
+        }
+      },
+      {
+        "intervalMs": 8.38000000000011,
+        "submitMs": 0.125,
+        "t": 0.979035,
+        "sortLag": {
+          "angleRadians": 0.0018630862972341296,
+          "distance": 0.0020541344479546694
+        }
+      },
+      {
+        "intervalMs": 7.899999999999636,
+        "submitMs": 0.19499969482421875,
+        "t": 0.9810099999999998,
+        "sortLag": {
+          "angleRadians": 0.0036252804397243913,
+          "distance": 0.0039935915248225685
+        }
+      },
+      {
+        "intervalMs": 8.36999999999989,
+        "submitMs": 0.125,
+        "t": 0.9831024999999999,
+        "sortLag": {
+          "angleRadians": 0.0018726211979308276,
+          "distance": 0.002057693286862752
+        }
+      },
+      {
+        "intervalMs": 9.285000000000764,
+        "submitMs": 0.14499998092651367,
+        "t": 0.98542375,
+        "sortLag": {
+          "angleRadians": 0.002083320336704622,
+          "distance": 0.002285686072770083
+        }
+      },
+      {
+        "intervalMs": 8.25,
+        "submitMs": 0.1549997329711914,
+        "t": 0.98748625,
+        "sortLag": {
+          "angleRadians": 0.0018557101004974,
+          "distance": 0.0020332462311065777
+        }
+      },
+      {
+        "intervalMs": 7.4399999999996,
+        "submitMs": 0.12999963760375977,
+        "t": 0.98934625,
+        "sortLag": {
+          "angleRadians": 0.0016767178694499748,
+          "distance": 0.001835243442791434
+        }
+      },
+      {
+        "intervalMs": 8.625,
+        "submitMs": 0.125,
+        "t": 0.9915025,
+        "sortLag": {
+          "angleRadians": 0.0019469731699965848,
+          "distance": 0.002129169218076242
+        }
+      },
+      {
+        "intervalMs": 9.020000000000437,
+        "submitMs": 0.11499977111816406,
+        "t": 0.9937575000000001,
+        "sortLag": {
+          "angleRadians": 0.0039860616554603665,
+          "distance": 0.004357339912267786
+        }
+      },
+      {
+        "intervalMs": 7.339999999999236,
+        "submitMs": 0.125,
+        "t": 0.9955924999999999,
+        "sortLag": {
+          "angleRadians": 0.0016609835064550031,
+          "distance": 0.001814016612138692
+        }
+      },
+      {
+        "intervalMs": 9.330000000000837,
+        "submitMs": 0.125,
+        "t": 0.9979250000000001,
+        "sortLag": {
+          "angleRadians": 0.0021127524597840666,
+          "distance": 0.002306558465430407
+        }
+      },
+      {
+        "intervalMs": 8.24499999999989,
+        "submitMs": 0.125,
+        "t": 0.9999862500000001,
+        "sortLag": {
+          "angleRadians": 0.0039804986678425355,
+          "distance": 0.0043452313471705984
+        }
+      },
+      {
+        "intervalMs": 7.424999999999272,
+        "submitMs": 0.13000011444091797,
+        "t": 1,
+        "sortLag": {
+          "angleRadians": 0.000012459883738794758,
+          "distance": 0.00001359974676114942
+        }
+      }
+    ],
+    "durationMs": 4007.3699999999994,
+    "rafFps": 120.02884684967948,
+    "p95IntervalMs": 9.289999999999964,
+    "note": "Animation-frame submissions, not proof of physical presentation or fresh asynchronous sorting"
+  },
+  "errors": [
+    {
+      "t": 0,
+      "referenceSha256": "f3e5c746ff37ab040c9b01a756c74f0a3108073bd64f17e24d962c4d6f296ad5",
+      "candidateSha256": "beefe37511acc40ec1ebefd57e2ce0bd7bd4b82952f5b20c2995f380dab31b2e",
+      "psnrDb": 43.89350017600604,
+      "exact": false,
+      "foregroundPsnrDb": 33.44965084160005,
+      "foregroundPixels": 331824,
+      "pixels": 3686400,
+      "squared": 29339591,
+      "foregroundSquared": 29251243,
+      "max": 123
+    },
+    {
+      "t": 0.25,
+      "referenceSha256": "1635b214dfa842204692ccbbeef0113245405ad158e2e589c5f1096e6d48c48a",
+      "candidateSha256": "b88db5a45acb2f8cab6e59bde536ecbc13899202ed63f8357ea0f1411a7dbff5",
+      "psnrDb": 43.66692507153231,
+      "exact": false,
+      "foregroundPsnrDb": 33.14131807845614,
+      "foregroundPixels": 325707,
+      "pixels": 3686400,
+      "squared": 30910894,
+      "foregroundSquared": 30824561,
+      "max": 107
+    },
+    {
+      "t": 0.5,
+      "referenceSha256": "c34860a674cac12f720546113e90b6445acc816bcc29dc4aef7cbd875bb06c46",
+      "candidateSha256": "6f7b43eb8596c3924c0e035e9140e77ce8c29b3cc28df555f23d4efcc244b5b4",
+      "psnrDb": 44.49653550316535,
+      "exact": false,
+      "foregroundPsnrDb": 33.385101435038386,
+      "foregroundPixels": 284522,
+      "pixels": 3686400,
+      "squared": 25535862,
+      "foregroundSquared": 25457006,
+      "max": 102
+    },
+    {
+      "t": 0.75,
+      "referenceSha256": "09e97c23d23d09823237313966b09cd346de0c0a0766bc58396b27fa67098939",
+      "candidateSha256": "baabc08e9f5c06379ae67292d2057783ec51689d46b957dd5eeedfeb6efb5cec",
+      "psnrDb": 44.39739561839363,
+      "exact": false,
+      "foregroundPsnrDb": 33.39775424183599,
+      "foregroundPixels": 291723,
+      "pixels": 3686400,
+      "squared": 26125494,
+      "foregroundSquared": 26025367,
+      "max": 137
+    },
+    {
+      "t": 1,
+      "referenceSha256": "8e47595479a5068e7f170a85e05b41789fe8c94bd2a7b8fe2c2ef72996911e44",
+      "candidateSha256": "0f25cca9bdde8cbb5328dc17a08ac2f9a78d3755e6d9e28f6abd55dcd5cb1e10",
+      "psnrDb": 44.855767707560126,
+      "exact": false,
+      "foregroundPsnrDb": 33.11836803978797,
+      "foregroundPixels": 245938,
+      "pixels": 3686400,
+      "squared": 23508629,
+      "foregroundSquared": 23398631,
+      "max": 115
+    }
+  ]
+}

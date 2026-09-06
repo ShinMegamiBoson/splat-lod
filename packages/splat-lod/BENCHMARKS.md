@@ -1,47 +1,73 @@
-# Retained bee benchmark
+# Multi-scene renderer benchmark
 
-Recorded September 5, 2026. Scene: [DanyBittel's bumblebee](https://superspl.at/scene/cf6ac78e), 2,315,943 original SH3 Gaussians. Source SHA-256: `265a31cf8ed2c513d318668a6883bb5eab35cbadbce9eac5e2637246effa8fdd`. No scene files or rendered images are redistributed here.
+Recorded September 5, 2026 local time (September 6 UTC), using the **standalone v0.1.0 runtime bundle**. Hardware: Apple M5 Max, 128 GiB, macOS 26.4, Metal 3. Browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36. Physical framebuffer **2560×1440**; fixed CSS viewport **1280×720**, DPR 2.
 
-Device: Apple M5 Max, 128 GB, Metal 3. Viewport: **2560 × 1440**, DPR 2. All original-source comparisons retained degree-3 SH, matched camera path/FOV, and matched native-resolution output. LOD intentionally changes geometry and appearance.
+Three complete scenes × six configurations × two counterbalanced trials. **6,480 timed completed frames**, 36 four-second interactive passes, and 180 full-resolution quality captures. All 36 cases completed. No scene or derived image is redistributed.
 
-Two counterbalanced fresh-page trials, each with 60 static and 60 moving samples per renderer after warmup: **120 samples per phase per renderer**, 1,440 timed frames in total.
+## Cicada Shell
 
-| Renderer | Static median | Moving median | Moving p95 |
-| --- | ---: | ---: | ---: |
-| Stock PlayCanvas 2.21.4 | 9.65 ms | 9.75 ms | 19.8 ms |
-| Our four-bank renderer, LOD off | 10.90 ms | 10.65 ms | 12.6 ms |
-| **Our renderer, 2× sooner LOD** | **6.10 ms** | **6.50 ms** | **8.3 ms** |
-| Stock PlayCanvas 2.22.0 | 8.80 ms | 9.30 ms | 16.7 ms |
-| Stock 2.22.0, compressed GPU format | 11.10 ms | 11.40 ms | 16.5 ms |
-| Spark 2.1.0, strictly current-camera sorting | 13.10 ms | 36.95 ms | 107.7 ms |
+[Source / creator: tokoyoshi](https://superspl.at/scene/cbe96076) · 652,804 originals · cube edge 0.08 scene units. Our LOD selected **327,883–335,899** splats across the five quality poses.
 
-The LOD row's pooled moving median is **1.43× faster** than stock 2.22.0, with a quality tradeoff. It selected approximately **1.158M down to 1.049M** Gaussians along the path. This is not evidence that the four-bank, LOD-disabled renderer is faster than stock; it was slower.
+| Configuration | Static median | Moving median / p95 | Interactive RAF/s, trials 1 / 2 | Min RGB / foreground PSNR |
+| --- | ---: | ---: | ---: | ---: |
+| PlayCanvas 2.22 full quality | 5.28 ms | 5.29 / 7.05 ms | 119.98 / 119.99 | — / — dB |
+| Ours · 2× sooner LOD | 4.99 ms | 5.21 / 6.58 ms | 119.97 / 120.01 | 37.60 / 27.08 dB |
+| PlayCanvas 2.22 defaults | 4.87 ms | 4.84 / 6.57 ms | 120.01 / 119.98 | 43.61 / 33.07 dB |
+| Ours · LOD off | 5.13 ms | 5.70 / 23.90 ms | 120.03 / 120.00 | 69.19 / 58.41 dB |
+| Spark 2.1 · fresh sort | 9.01 ms | 19.77 / 21.25 ms | 120.03 / 120.02 | 43.67 / 33.11 dB |
+| luma.gl 9.4 · experimental | Cached, no redraw | 6.32 / 8.30 ms | 119.74 / 116.75 | 42.04 / 30.64 dB |
 
-## Measurement boundary
+## Bumblebee
 
-These are **current-view completed-frame latencies, not uncapped interactive FPS**. Each sample waits for preparation/sorting for the requested camera and GPU completion. Completion-fence overhead is included. Pixel readbacks occur separately, outside timing. Spark's normal asynchronous display can reuse a stale sort; that was intentionally not counted as a freshly sorted moving frame, so the Spark row should not be interpreted as its usual interactive frame rate.
+[Source / creator: Dany Bittel (danylyon)](https://superspl.at/scene/cf6ac78e) · 2,315,943 originals · cube edge 0.03 scene units. Our LOD selected **1,155,408–1,155,408** splats across the five quality poses.
 
-GPU timing scopes were not identical between engines. PlayCanvas timestamps covered all native passes. Spark's GPU column covered draw only, with generation/readback/worker sorting charged to preparation and completed-frame latency. Do not compare those raw GPU columns as equivalent pipeline totals.
+| Configuration | Static median | Moving median / p95 | Interactive RAF/s, trials 1 / 2 | Min RGB / foreground PSNR |
+| --- | ---: | ---: | ---: | ---: |
+| PlayCanvas 2.22 full quality | 7.64 ms | 8.61 / 11.21 ms | 91.33 / 119.75 | — / — dB |
+| Ours · 2× sooner LOD | 5.54 ms | 5.39 / 6.71 ms | 119.99 / 120.00 | 39.53 / 28.58 dB |
+| PlayCanvas 2.22 defaults | 5.42 ms | 4.93 / 6.26 ms | 120.24 / 119.99 | 29.47 / 18.04 dB |
+| Ours · LOD off | 8.06 ms | 8.38 / 11.30 ms | 119.75 / 92.70 | 77.80 / 66.49 dB |
+| Spark 2.1 · fresh sort | 9.62 ms | 29.00 / 36.05 ms | 119.15 / 117.60 | 44.01 / 32.90 dB |
+| luma.gl 9.4 · experimental | Cached, no redraw | 10.39 / 13.12 ms | 78.17 / 75.16 | 40.16 / 28.73 dB |
 
-There was substantial run-to-run timing drift. These are two trials on one device/scene and a short camera path, not a universal ranking, thermal study, statistical significance claim or full all-angle evaluation.
+## Ekotori shop
 
-## Image error
+[Source / creator: J (jjames)](https://superspl.at/scene/8fa2ded1) · 7,081,853 originals · cube edge 0.5 scene units. Our LOD selected **2,020,047–2,155,557** splats across the five quality poses.
 
-Three fixed positions along the path were compared against stock PlayCanvas 2.21.4, using lossless native-resolution RGB outputs.
+| Configuration | Static median | Moving median / p95 | Interactive RAF/s, trials 1 / 2 | Min RGB / foreground PSNR |
+| --- | ---: | ---: | ---: | ---: |
+| PlayCanvas 2.22 full quality | 13.66 ms | 16.83 / 18.14 ms | 54.52 / 62.24 | — / — dB |
+| Ours · 2× sooner LOD | 8.75 ms | 10.10 / 43.51 ms | 108.12 / 111.86 | 31.55 / 31.55 dB |
+| PlayCanvas 2.22 defaults | 10.48 ms | 10.85 / 12.93 ms | 88.90 / 95.05 | 41.98 / 41.98 dB |
+| Ours · LOD off | 14.63 ms | 15.97 / 17.98 ms | 70.21 / 68.47 | 57.15 / 57.15 dB |
+| Spark 2.1 · fresh sort | 18.58 ms | 88.80 / 113.62 ms | 56.94 / 51.64 | 37.58 / 37.58 dB |
+| luma.gl 9.4 · experimental | Cached, no redraw | 24.04 / 28.87 ms | 42.61 / 43.23 | 38.22 / 38.22 dB |
 
-| Configuration | Minimum full-image PSNR | Minimum foreground PSNR |
-| --- | ---: | ---: |
-| Our renderer, LOD off | 77.72 dB | 66.76 dB |
-| **Our renderer, 2× sooner LOD** | **39.53 dB** | **28.73 dB** |
-| Stock PlayCanvas 2.22.0 | 84.74 dB | — |
-| Spark 2.1.0 | 44.01 dB | 33.06 dB |
+## How to read these numbers
 
-The foreground mask is a heuristic: a reference pixel differs from background RGB 18 by more than 3 in any channel. It is **not** a true alpha silhouette. The dark background inflates full-image PSNR; the foreground result matters. **LOD is visibly approximate and is not qualified as negligible error.**
+- **Completed-frame latency**, not GPU-only time: camera preparation, current-view sorting, draw submission and GPU completion fence are included. Readbacks and loading are excluded. There are 180 static and 180 moving samples per scene/configuration. Medians and p95 are pooled across two trials; individual trials and every sample are retained.
+- **Interactive RAF/s** counts browser animation callbacks submitting frames, not physically presented frames. The path runs for four seconds without a per-frame GPU fence; the browser may cap cadence around 120 Hz, queue GPU work, or reuse stale sorting. Do not substitute these values for fresh-view latency. Spark's per-callback sort lag is recorded.
+- **Default ≠ full quality.** Stock defaults retain their 2-pixel size filter, minimum contribution 3, SH update angle 10°, source format, reorder and budget. The reference disables those approximations, uses current-view SH3 and decompressed parameters. Both use the same camera, output size, background and no tone mapping.
+- **LOD is lossy.** Foreground PSNR is intentionally reported because background inflates full-image PSNR. The foreground mask is a reference-only RGB/background threshold, not a true alpha silhouette. Five path poses cannot certify all-angle or temporal quality. Reference-versus-itself PSNR is exact (shown as —).
+- **Different renderers, different pixels.** Spark adds PackedSplats quantization and uses asynchronous worker sorting in its interactive loop; its completed-frame test waits for a current-camera sort. luma.gl uses Float32 SH3 pages, a 16-bit global depth key, and different projection/filtering. Its unchanged static scene is reused, not newly rendered, so its static cached latency is not ranked.
+- **Memory is not reduced.** Ours keeps original and three replacement banks resident, approximately 1.875× the source record count before working buffers. This benchmark excludes preprocessing, downloads, load time and peak-memory measurement.
+- **Limited evidence.** One device/browser, two trials and short paths; no universal ranking, significance test, mobile qualification, or negligible-error claim. The unreported development pass ran alongside tooling work, changed browser CSS size and eventually hit allocation failures; it was used for harness validation, not mixed into this frozen production-build result.
 
-## Reproducing the library's extraction checks
+## Large-scene isolation
 
-Build the synthetic example, run the example server, and choose **Compare detail and verify → Check renderer**. The checks compare actual GPU IDs against a CPU oracle at near/far cameras and verify that chunk-color mode restores normal appearance. Local JSON proofs are saved under the ignored `packages/splat-lod/.proof/` directory.
+The two object scenes use the frozen production batch `multi-scene-20260906-r2`. Every shop case was rerun, in the prescribed order, in its own independently closed tab (`multi-scene-20260906-r4`), with the viewport set before starting. Repeated large-scene loads in one embedded-browser tab hit allocation failures even after history replacement; those attempts are excluded as failed setup, not ranked as rendering performance. This lifetime issue is not claimed to be fixed in the engines. All shop configurations use the same isolation procedure, and no case was chosen because it was faster. Original run IDs and failed-batch statuses are retained with the evidence.
 
-For your own scan, prepare its banks, serve its manifest, and supply a local configuration through `SPLAT_LOD_DEMO_CONFIG`. `SPLAT_LOD_ASSETS_ROOT` optionally mounts an existing asset directory read-only at `/assets/`. An optional `regression` section accepts a fixed width/height and ordered cases containing mode, camera and reference-PNG paths. Capture the baseline at the exact same camera, viewport, background, SH degree and LOD history; do not compare unrelated framing or stale sorting.
+## Reproduction and provenance
 
-The standalone extraction was checked against six bee frames and rebuilt its LOD assets byte-for-byte. Those parity checks do **not** replace a fresh performance benchmark on your scene and hardware.
+Independent [Python/NumPy verification](benchmark/measurements/2026-09-05/verification.json) recomputed all 180 image comparisons and all 18 timing rows. [Case selection](benchmark/measurements/2026-09-05/case-selection.json) and [development-attempt statuses](benchmark/measurements/2026-09-05/development-attempts.json) retain the setup failures and exact inclusion boundary.
+
+
+
+[Run the pinned harness](benchmark/README.md). [Summary, settings and hardware](benchmark/measurements/2026-09-05/summary.json). [All per-frame timing samples, quality numerators and capture hashes](benchmark/measurements/2026-09-05/runs).
+
+- Harness revision: `3c4f11ea9f2266670e92f3a6f97026265772fd68`.
+- Executed production harness SHA-256: `dd20a08054f778b6a2db2aa2a63bc3198f723047ced78f31124ebce36f6a168e`.
+- Standalone bundle SHA-256: `93f755175d0ee59273bd3e61f68a8879b8fcfcfa8b60a7cd3a008341b1afdfc1`, verified equal to the previously installed release package.
+- Sources, camera transforms, clipping planes, cube sizes and immutable input hashes: [scenes.mjs](benchmark/scenes.mjs).
+
+The comparison covers PlayCanvas, Spark and luma.gl, not every renderer. GaussianSplats3D and gsplat.js were surveyed but excluded from SH3 headline comparisons; their limitations and primary-source links are in the [methodology](benchmark/README.md).

@@ -35,6 +35,10 @@ Open `http://localhost:8016/?auto=1&run=my-comparison` in a **1280×720 CSS-pixe
 
 For a short preflight only, add `&pilot=1&single=1&index=0`; pilot results cannot be exported by the summary tool. `index` resumes at an explicit case, `last` bounds a development run, and `single` prevents automatic continuation. Do not mix different protocols or runs into one result directory.
 
+For the 7.08M shop, use **one fresh, independently closed tab per case**, indices 24–35. Open `?single=1&index=24&run=my-shop`, set the viewport before pressing Run, and close that tab after it saves; repeat in order through index 35. Repeated multi-gigabyte loads in one embedded-browser tab exhausted allocation capacity in our automated batches even with history replacement. This is a known harness/browser-lifetime limitation, not a valid timing result. The reported shop trials all use the fresh-tab procedure; do not keep the faster attempt from a failed batch. Browser viewport overrides may need to be reapplied to each new tab.
+
+If collecting the small scenes automatically and the shop separately, `combine-runs.mjs OBJECT-RUN SHOP-RUN NEW-DESTINATION` makes a provenance-preserving local view of all 36 cases. It selects **all** object cases from the first run and **all** shop cases from the second, never by speed. Original run IDs remain in the reports; failed attempts stay in their original directories.
+
 ```sh
 node summarize.mjs results/my-comparison
 ```

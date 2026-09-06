@@ -39,4 +39,4 @@ The library's per-view path does not upload camera-indexed splat lists, read ful
 - Six saved-frame comparisons at 2560×1440, using the **installed tarball** and newly preprocessed banks, matched the original renderer very closely: source-mode PSNR **85.72–87.69 dB**, LOD-mode **88.56–89.76 dB**. These are **extraction parity**, not LOD-versus-ground-truth quality. Small pixel differences remain; this is not a bit-exact-render claim. Numeric results: [VALIDATION.json](VALIDATION.json).
 - Chunk-color round trips restored natural appearance. They do not change geometry, opacity, bank ownership or the SH coefficients stored on disk.
 
-See [BENCHMARKS.md](BENCHMARKS.md) for the earlier speed/quality experiment and its limits. The performance table is retained evidence from the renderer before packaging, not a newly run multi-renderer benchmark of this release.
+See [BENCHMARKS.md](BENCHMARKS.md) for the fresh three-scene, multi-renderer comparison of the standalone runtime bundle, including stock defaults, a full-quality control, moving-camera timing, image error, and its limits. The benchmark harness is separate development tooling; it is not a runtime dependency.

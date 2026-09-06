@@ -89,7 +89,7 @@ At multiplier 1, cube bounding-sphere diameters of **128 / 64 / 32 physical pixe
 - SH3 only; no silent dropping of coefficients. The SOG v2 runtime path is retained, but this extraction's browser regression tests cover native and compressed PLY, not a new SOG scene.
 - Static geometry, identity model transform, one mono perspective camera per renderer. No WebGL, XR/stereo, orthographic camera, picking, animated splats, or scene-graph embedding API is supplied.
 - Merged covariance and SH are approximations. Weighted SH does **not** exactly encode internal occlusion, and the pixel-size thresholds are not a proven perceptual-error bound. View-dependent differences and LOD transitions can remain visible.
-- With LOD disabled, this four-bank renderer did not outperform stock PlayCanvas in the retained bee benchmark. See [BENCHMARKS.md](BENCHMARKS.md).
+- LOD is a quality/performance tradeoff, not a universal speedup. Compare the LOD-disabled control and stock-default/full-quality settings in the [three-scene benchmark](BENCHMARKS.md).
 - The integration deliberately pins private projector APIs to PlayCanvas 2.21.4. Shader-source substitutions and layout checks fail closed if those internals change. Rebase and requalify before upgrading the engine.
 
 ## Build and run the example from the fork
